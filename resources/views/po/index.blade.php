@@ -41,7 +41,7 @@
 				<td>Kaos</td>
 				<td class="text-center">24-07-15</td>
 				<td>200</td>
-				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}"><i class="fa fa-eye"></i> 150</a></td>
+				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status pm-reject-vice" title="Kurang 200, telat 2 hari">-200, -2D</span></td>
 				<td class="text-right">
 					<ul class="actions">
@@ -51,7 +51,7 @@
 								<li><a href="{{ url('') }}"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 								
 								<li class="separator">&nbsp;</li>
-								<li><a href="{{ url('printing/po/po_id') }}" target="_blank"><i class="fa fa-print"></i>Cetak PO</a></li>
+								<li><a href="{{ url('printing/po/po_id') }}" target="_blank" ><i class="fa fa-print"></i>Cetak PO</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -63,7 +63,7 @@
 				<td>Kaos</td>
 				<td class="text-center">04-06-15</td>
 				<td>121</td>
-				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}"><i class="fa fa-eye"></i> 150</a></td>
+				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status pm-reject-ppic" title="Kurang 200, lebih awal 2 hari">-200, +2D</span></td>
 				<td class="text-right">
 					<ul class="actions">
@@ -85,7 +85,7 @@
 				<td>Kutang</td>
 				<td class="text-center">26-07-15</td>
 				<td>230</td>
-				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}"><i class="fa fa-eye"></i> 150</a></td>
+				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status vice-approve" title="Terpenuhi, tepat waktu">Closed, tepat</span></td>
 				<td class="text-right">
 					<ul class="actions">
