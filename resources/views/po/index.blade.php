@@ -16,7 +16,7 @@
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
 	</div>
-	<h2>Data List PO <span>{{ $fetch->count() }} dari {{ $fetch->total() }}</span></h2>
+	<h2>Data List PO <span>{{ '$fetch->count()' }} dari {{ '$fetch->total()' }}</span></h2>
 	<div class="clearfix"></div>
 </div>
 <div class="main">
@@ -26,43 +26,44 @@
 			<tr>
 				<th>No</th>
 				<th>Nomor PO</th>
-				<th>Nomor PM</th>
-				<th>Tanggal Order</th>
-				<th>Dibutuhkan</th>
+				<th>Material</th>
+				<th>Tgl Order</th>
+				<th>Permintaan</th>
+				<th>Jml Masuk</th>
+				<th>Status</th>
 				<th>Aksi</th>
 			</tr>
 		</thead>
 		<tbody>
-		<?php $x = $getNumb(); ?>
-		@foreach($fetch as $row)
-
 			<tr>
-				<td>{{ ++$x }}</td>
-				<td>{{ $row->po_no }}</td>
-				<td><a class="pm-detail no-print" href="{{ url('material/request/show/' . $row->pb_id) }}">{{ $row->pb_no }}</a></td>
-				<td class="text-center">{{ to_indDate($row->po_tgl_buat) }}</td>
-				<td class="text-center">{{ to_indDate($row->po_tgl_kedatangan) }}</td>
+				<td>1</td>
+				<td>P/001/VII/JIU/2015</td>
+				<td>Kaos</td>
+				<td>24-07-15</td>
+				<td>200</td>
+				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}">150</a></td>
+				<td>
+					<span class="status pm-reject-ppic" status="Kurang 200, telat 2 hari">-200, -2D</span>
+					<span class="status vice-approve" status="Kurang 200, lebih awal 2 hari">-200, +2D</span>
+					<span class="status po-done" status="Terpenuhi, tepat waktu">Closed, tepat</span>
+				</td>
 				<td class="text-right">
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ (($hak_akses == 3 || $hak_akses == 4) ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
+								<li><a href="{{ url('po/show/po_id' }}" class="view-detail"><i class="fa fa-eye"></i>Detail PO</a></li>
 								<li><a href="{{ url('') }}"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 								
-								@if($hak_akses != 3 && $hak_akses != 4)
 								<li class="separator">&nbsp;</li>
-								<li><a href="{{ url('printing/po/' . $row->po_id) }}" target="_blank"><i class="fa fa-print"></i>Cetak PO</a></li>
-								@endif
+								<li><a href="{{ url('printing/po/po_id') }}" target="_blank"><i class="fa fa-print"></i>Cetak PO</a></li>
 							</ul>
 						</li>
 					</ul>
 				</td>
 			</tr>
-
-		@endforeach
 		</tbody>
 	</table>
 
-	<?php echo $fetch->render() ?>
+	<?php echo '$fetch->render()' ?>
 </div>
 @endsection
