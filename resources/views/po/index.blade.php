@@ -39,7 +39,7 @@
 				<td class="text-right">1.</td>
 				<td>P/001/VII/JIU/2015</td>
 				<td>Kaos</td>
-				<td class="text-center">24-07-15</td>
+				<td class="text-center">24-07-2015</td>
 				<td>200</td>
 				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status pm-reject-vice" title="Kurang 200, telat 2 hari">-200, -2D</span></td>
@@ -61,7 +61,7 @@
 				<td class="text-right">2.</td>
 				<td>NP/001/VII/JIU/2015</td>
 				<td>Kaos</td>
-				<td class="text-center">04-06-15</td>
+				<td class="text-center">04-06-2015</td>
 				<td>121</td>
 				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status pm-reject-ppic" title="Kurang 200, lebih awal 2 hari">-200, +2D</span></td>
@@ -83,7 +83,7 @@
 				<td class="text-right">3.</td>
 				<td>P/002/VII/JIU/2015</td>
 				<td>Kutang</td>
-				<td class="text-center">26-07-15</td>
+				<td class="text-center">26-07-2015</td>
 				<td>230</td>
 				<td><a class="mat-acceptance no-print" href="{{ url('po/matAcceptanceDetail/the_id') }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> 150</a></td>
 				<td class="text-center"><span class="status vice-approve" title="Terpenuhi, tepat waktu">Closed, tepat</span></td>
