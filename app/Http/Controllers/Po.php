@@ -7,6 +7,7 @@ use App\Models\Po as PoModel;
 use App\Models\Po_sub;
 use App\Models\Permintaan_barang as Pb;
 use App\Models\Permintaan_barang_sub as Pbs;
+use App\Models\Penerimaan_sub as Peners;
 use Auth;
 use Session;
 
@@ -35,8 +36,10 @@ class Po extends Controller {
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['po' => 'Purchasing Order'],
-			'fetch'		=> PoModel::fetchData(['search' => $search, 'perPage' => $perPage]),
+			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'opened'	=> 'po',
 			'hak_akses'	=> $this->role->hak_akses,
@@ -200,6 +203,15 @@ class Po extends Controller {
 		}
 
 		echo $numb;
+	}
+	public function matAcceptanceDetail($pos_id)
+	{
+		$data = [
+			'head'	=> Peners::fetchDetail($pos_id)->first(),
+			'fetch'	=> Peners::fetchDetail($pos_id)
+		];
+
+		return view('po.matAcceptanceDetail', $data);
 	}
 
 }
