@@ -20,5 +20,24 @@ class Po_sub extends Model {
 			->where($i->table.'.po_id', $po_id)
 			->get();
 	}
+	public static function fetch($args){
+		$i 		= new static;
+		$get	= self::select($i->table.'.'.$i->primaryKey, 'B.po_id', 'B.po_no', 'D.mat_nama', 'B.po_tgl_buat', 'C.pbs_jml')
+					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
+					->join('permintaan_barang_sub AS C', $i->table.'.pbs_id', '=', 'C.pbs_id')
+					->join('material_laravel AS D', 'C.mat_id', '=', 'D.mat_id');
+
+		if(! is_null($args['search']['s'])){
+			switch($args['search']['field']){
+				case 'po_no' 		:
+				case 'po_tgl_butuh' : $preffix = 'B'; break;
+				case 'mat_nama'		: $preffix = 'D'; break;
+			}
+
+			$get->where($preffix.'.'.$args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
+		}
+
+		return $get->orderBy($i->table.'.'.$i->primaryKey, 'DESC')->paginate($args['perPage']);
+	}
 
 }
