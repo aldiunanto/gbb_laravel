@@ -9,7 +9,8 @@ po = {
 			this._closeSearchForm();
 			this._focusingSearch();
 			this._viewDetail();
-			this._viewPmDetail();
+			this._expandMaterial();
+			this._matAcceptanceDetail();
 		},
 		_openSearchForm: function(){
 			$('.btn-search').on('click', function(){
@@ -27,6 +28,16 @@ po = {
 		},
 		_focusingSearch: function(){
 			$('select[name="field"]').on('change', function(){
+				if($(this).val() == 'po_tgl_butuh'){
+					$('input[name="s"]').datepicker({
+						dateFormat	: 'yy-mm-dd',
+						changeMonth	: true,
+						changeYear	: true
+					});
+				}else{
+					$('input[name="s"]').datepicker('destroy').removeAttr('id class');
+				}
+
 				$('input[name="s"]').focus();
 			});
 		},
@@ -54,7 +65,7 @@ po = {
 				});
 			});
 		},
-		_viewPmDetail: function(){
+		/*_viewPmDetail: function(){
 			$('.pm-detail').on('click', function(e){
 				e.preventDefault();
 
@@ -69,7 +80,37 @@ po = {
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});
 			});
+		},*/
+		_expandMaterial: function(){
+			$('.data-list .expand').on('click', function(){
+				var poId = $(this).attr('data-po');
+				
+				if($(this).hasClass('expanded')){
+					$('tr.child[data-po="' + poId + '"]').addClass('hidden');
+					$(this).removeClass('expanded');
+				}else{
+					$('a.expand').removeClass('expanded');
+					$('tr.child').addClass('hidden');
+					$('tr.child[data-po="' + poId + '"]').removeClass('hidden');
+
+					$(this).addClass('expanded');
+				}
+			});
 		},
+		_matAcceptanceDetail: function(){
+			$('.mat-acceptance').on('click', function(e){
+				e.preventDefault();
+				var popupContent = LIBS.callAjax($(this).attr('href'));
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Detail Penerimaan Material',
+					'content'		: popupContent,
+					'posButtonText'	: 'OK',
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		}
 	},
 	create: {
 		init: function(){
