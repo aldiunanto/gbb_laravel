@@ -33,6 +33,8 @@ class Po extends Controller {
 			's'		=> ($request->has('s') ? $request->input('s') : null),
 			'field'	=> ($request->has('field') ? $request->input('field') : null)
 		];
+
+
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
