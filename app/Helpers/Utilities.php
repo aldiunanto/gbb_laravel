@@ -93,3 +93,27 @@
 
         return $str . '</span>';
     }
+    function poDateDiff($f, $s){
+        $first  = new DateTime($f);
+        $second = new DateTime($s);
+        $diff = $first->diff($second);
+        
+        $date1 = strtotime($f); // tanggal penerimaan terakhir
+        $date2 = strtotime($s); // tanggal permintaan
+
+        if($date1 < $date2){
+            $text['s']['t'] = 'lebih awal ' . $diff->d . ' hari';
+            $text['s']['c'] = '+' . $diff->d . 'D';
+            $text['s_type'] = 'fast';
+        }elseif($date1 > $date2){
+            $text['s']['t'] = 'telat ' . $diff->d . ' hari';
+            $text['s']['c'] = '-' . $diff->d . 'D';
+            $text['s_type'] = 'slow';
+        }else{
+            $text['s']['t'] = 'tepat waktu';
+            $text['s']['s'] = 'tepat';
+            $text['s_type'] = 'ontime';
+        }
+
+        return $text;
+    }
