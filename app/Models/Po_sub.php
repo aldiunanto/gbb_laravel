@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Po_sub extends Model {
 
@@ -22,7 +23,13 @@ class Po_sub extends Model {
 	}
 	public static function fetch($args){
 		$i 		= new static;
-		$get	= self::select($i->table.'.'.$i->primaryKey, 'B.po_id', 'B.po_no', 'B.po_status','D.mat_nama', 'B.po_tgl_buat', 'C.pbs_jml')
+		$get	= self::select(
+							$i->table.'.'.$i->primaryKey,
+							'B.po_id', 'B.po_no', 'B.po_status',
+							'B.po_tgl_kedatangan', 'D.mat_nama',
+							'B.po_tgl_buat', 'C.pbs_jml',
+							DB::raw('(SELECT MAX(pener_date) FROM penerimaan_laravel WHERE po_id = B.po_id LIMIT 1) AS pener_date')
+					)
 					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 					->join('permintaan_barang_sub AS C', $i->table.'.pbs_id', '=', 'C.pbs_id')
 					->join('material_laravel AS D', 'C.mat_id', '=', 'D.mat_id');
@@ -38,6 +45,14 @@ class Po_sub extends Model {
 		}
 
 		return $get->orderBy($i->table.'.'.$i->primaryKey, 'DESC')->paginate($args['perPage']);
+
+		/*SELECT A.pos_id, B.po_id, B.po_no, B.po_status, B.po_tgl_kedatangan, D.mat_nama, B.po_tgl_buat, C.pbs_jml,
+			(SELECT MAX(pener_date) FROM penerimaan_laravel WHERE po_id = B.po_id LIMIT 1) AS pener_date
+		FROM po_sub_laravel AS A
+		INNER JOIN po_laravel AS B ON A.po_id = B.po_id
+		INNER JOIN permintaan_barang_sub AS C ON A.pbs_id = C.pbs_id
+		INNER JOIN material_laravel AS D ON C.mat_id = D.mat_id
+		ORDER BY A.pos_id DESC*/
 	}
 
 }
