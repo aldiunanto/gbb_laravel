@@ -7,7 +7,7 @@
 </div>
 <div class="main">
 	{!! session('inserted') !!}
-	<table class="data-list">
+	<table class="data-list index">
 		<thead>
 			<tr>
 				<th>No</th>
@@ -81,7 +81,7 @@
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail"><i class="fa fa-eye"></i>Detail PO</a></li>
-								<li><a href="{{ url('') }}"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
+								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 								
 								<li class="separator">&nbsp;</li>
 								<li><a href="{{ url('printing/po/' . $row->po_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak PO</a></li>
