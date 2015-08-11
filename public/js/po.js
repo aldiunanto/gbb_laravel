@@ -11,15 +11,18 @@ po = {
 			this._viewDetail();
 			this._expandMaterial();
 			this._matAcceptanceDetail();
+			this._acceptanceDetail();
 
 			this._dataTables();
 		},
 		_dataTables: function(){
-			$('.main table.data-list').DataTable({
-				'aoColumnDefs' : [
-					{ 'bSortable' : false, 'aTargets' : [6, 7] }
-				]
-			});
+			if($('.main table.data-list.index').length > 0){
+				$('.main table.data-list').DataTable({
+					'aoColumnDefs' : [
+						{ 'bSortable' : false, 'aTargets' : [6, 7] }
+					]
+				});
+			}
 		},
 		_openSearchForm: function(){
 			$('.btn-search').on('click', function(){
@@ -119,7 +122,24 @@ po = {
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});
 			});
-		}
+		},
+		_acceptanceDetail: function(){
+			$('.acceptance-detail').on('click', function(e){
+				e.preventDefault();
+
+				var el = $(this);
+				var href = el.attr('href');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Detail Penerimaan',
+					'content'		: popupContent,
+					'posButtonText'	: 'ok',
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		},
 	},
 	create: {
 		init: function(){
