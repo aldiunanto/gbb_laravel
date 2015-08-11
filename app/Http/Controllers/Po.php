@@ -34,12 +34,11 @@ class Po extends Controller {
 			'field'	=> ($request->has('field') ? $request->input('field') : null)
 		];
 
-
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
-			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
-			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min', 'vendor/jquery.dataTables.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min', 'jquery.dataTables'],
 			'position'	=> ['po' => 'Purchasing Order'],
 			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
