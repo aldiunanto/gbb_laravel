@@ -77,38 +77,6 @@ po = {
 				});
 			});
 		},
-		/*_viewPmDetail: function(){
-			$('.pm-detail').on('click', function(e){
-				e.preventDefault();
-
-				var href = $(this).attr('href');
-				var popupContent = LIBS.callAjax(href);
-
-				LIBS.popupDialog('open', {
-					'caption'		: 'PM Detail',
-					'content'		: popupContent,
-					'posButtonText'	: 'OK',
-					'okAction'		: function(){ LIBS.popupDialog('close'); },
-					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
-				});
-			});
-		},*/
-		_expandMaterial: function(){
-			$('.data-list .expand').on('click', function(){
-				var poId = $(this).attr('data-po');
-				
-				if($(this).hasClass('expanded')){
-					$('tr.child[data-po="' + poId + '"]').addClass('hidden');
-					$(this).removeClass('expanded');
-				}else{
-					$('a.expand').removeClass('expanded');
-					$('tr.child').addClass('hidden');
-					$('tr.child[data-po="' + poId + '"]').removeClass('hidden');
-
-					$(this).addClass('expanded');
-				}
-			});
-		},
 		_matAcceptanceDetail: function(){
 			$('.mat-acceptance').on('click', function(e){
 				e.preventDefault();
