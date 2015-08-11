@@ -8,53 +8,11 @@
 
 #content{
 	.top{ margin-bottom: 12px;
-		.tools{ float: right;
-			.btn{ float: left; }
-			.btn-search{ margin-right: 5px; }
-			.search{
-				display: none;
-				position: relative;
-				margin-right: 5px;
-				float: left;
-	
-				.fa-close{
-					margin-right: 5px;
-					cursor: pointer;
-				}
-				input[type="text"]{
-					padding-right: 30px;
-				}
-				button{
-					position: absolute;
-					right: 0; top: 0;
-					background-color: transparent;
-					border: 0;
-					padding: 6px 7px;
-					cursor: pointer;
-				}
-			}
-		}
 		h2{ font-weight: 500; font-size: 25px;
 			> span{
 				color: #A8AFB4;
 				font-style: italic;
 				font-size: 13px;
-			}
-		}
-
-		&.approving{
-			h2 > span{
-				display: inline-block;
-				margin-right: 10px;
-				text-align: center;
-				background-color: #ff0000;
-				color: #fff;
-				float: left;
-				line-height: 25px;
-				font-weight: bold;
-				font-size: 25px;
-				padding: 5px 7px;
-				font-style: normal;
 			}
 		}
 	}
@@ -63,27 +21,6 @@
 		border: 1px solid darken(#eee, 5%);
 		padding: 17px;
 		margin-bottom: 30px;
-
-		.pagination{
-			display: block;
-			list-style: none;
-			margin: 0; padding: 0;
-			text-align: center;
-			margin: 10px 0;
-
-			li{ display: inline;
-				&.active > span{ background-color: #333; color: #fff; }
-				a, span{
-					display: inline-block;
-					padding: 5px 10px;
-					text-decoration: none;
-					background-color: #A8AFB4;
-					color: #000;
-
-					&:hover{ background-color: lighten(#A8AFB4, 10%); }
-				}
-			}
-		}
 
 		.form{
 			padding: 10px 12px;
@@ -143,6 +80,23 @@
 				.colon{ text-align: center; width: 30px; }
 				.row-ppn, .row-final{ display: none; }
 				.text-left{ width: 150px; }
+			}
+		}
+
+		.dataTables_wrapper{
+			.dataTables_length{ margin-bottom: 10px; }
+			table.dataTable.no-footer{ border-bottom: 1px solid #c2c1c1; margin-bottom: 10px; }
+			.dataTables_paginate{
+				.paginate_button{
+					display: inline-block;
+					padding: 5px 10px;
+					text-decoration: none;
+					background-color: #A8AFB4;
+					color: #000 !important;
+
+					&:hover{ background-color: lighten(#A8AFB4, 10%); }
+					&.current{ background: none; background-color: #333; color: #fff !important; }
+				}
 			}
 		}
 	}
