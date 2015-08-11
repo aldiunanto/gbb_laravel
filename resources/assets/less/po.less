@@ -1,0 +1,266 @@
+@import 'libs';
+
+.text-right{ text-align: right; }
+.text-left{ text-align: left; }
+.text-center{ text-align: center; }
+
+.money{ float: right; }
+
+#content{
+	.top{ margin-bottom: 12px;
+		.tools{ float: right;
+			.btn{ float: left; }
+			.btn-search{ margin-right: 5px; }
+			.search{
+				display: none;
+				position: relative;
+				margin-right: 5px;
+				float: left;
+	
+				.fa-close{
+					margin-right: 5px;
+					cursor: pointer;
+				}
+				input[type="text"]{
+					padding-right: 30px;
+				}
+				button{
+					position: absolute;
+					right: 0; top: 0;
+					background-color: transparent;
+					border: 0;
+					padding: 6px 7px;
+					cursor: pointer;
+				}
+			}
+		}
+		h2{ font-weight: 500; font-size: 25px;
+			> span{
+				color: #A8AFB4;
+				font-style: italic;
+				font-size: 13px;
+			}
+		}
+
+		&.approving{
+			h2 > span{
+				display: inline-block;
+				margin-right: 10px;
+				text-align: center;
+				background-color: #ff0000;
+				color: #fff;
+				float: left;
+				line-height: 25px;
+				font-weight: bold;
+				font-size: 25px;
+				padding: 5px 7px;
+				font-style: normal;
+			}
+		}
+	}
+	.main{
+		background-color: #fff;
+		border: 1px solid darken(#eee, 5%);
+		padding: 17px;
+		margin-bottom: 30px;
+
+		.pagination{
+			display: block;
+			list-style: none;
+			margin: 0; padding: 0;
+			text-align: center;
+			margin: 10px 0;
+
+			li{ display: inline;
+				&.active > span{ background-color: #333; color: #fff; }
+				a, span{
+					display: inline-block;
+					padding: 5px 10px;
+					text-decoration: none;
+					background-color: #A8AFB4;
+					color: #000;
+
+					&:hover{ background-color: lighten(#A8AFB4, 10%); }
+				}
+			}
+		}
+
+		.form{
+			padding: 10px 12px;
+
+			table{ width: 100%; }
+			td{
+				padding: 7px 7px 15px;
+				vertical-align: top;
+
+				.actions{
+					border-top: 1px solid darken(#eee, 5%);
+					background-color: #eee;
+					padding: 25px;
+					display: block;
+					margin-top: 20px;
+
+					a{ margin-right: 5px; }
+					.btn{ padding: 10px 13px;
+						> i{ margin-right: 10px; }
+					}
+				}
+			}
+			label{
+				margin-bottom: 3px;
+				cursor: pointer;
+				text-transform: capitalize;
+				display: block;
+
+				.required{ color: #ff0000; }
+			}
+			input[type="text"], textarea{ width: 350px;
+				//&[name="sup_nama"]{ width: 310px; }
+				&[readonly], &[disabled]{ background-color: #eee; cursor: not-allowed; }
+			}
+			select[disabled]{ background-color: #eee; cursor: not-allowed; }
+			textarea[name="pb_note"]{ height: 182px; }
+			.open-supplier{ padding: 6px 8px 6px 11px; }
+			legend{ margin-left: 8px; padding: 0 5px; }
+			.supp-info{ display: none;
+				.field{ width: 30%; }
+				.colon{ width: 5%; }
+			}
+			.caption{
+				position: relative;
+				border-bottom: 1px solid #c2c1c1;
+				display: block;
+				padding-bottom: 3px;
+				margin: 15px 0;
+
+				button{
+					position: absolute;
+					right: 0; top: 0;
+				}
+			}
+
+			.total{ float: right; width: 500px; font-weight: bold;
+				.colon{ text-align: center; width: 30px; }
+				.row-ppn, .row-final{ display: none; }
+				.text-left{ width: 150px; }
+			}
+		}
+	}
+}
+
+.data-list{
+	width: 100%;
+	margin-bottom: 30px;
+	
+	thead tr{
+		background-color: #0A539F;
+		color: #fff;
+
+		th{ padding: 5px; font-size: 14px; }
+	}
+	tbody tr{ border-bottom: 1px solid darken(#eee, 5%);
+		td{ padding: 5px 7px; font-size: 14px; }
+		&:hover{ background-color: lighten(@baseColor, 40%); }
+		&.new-po{ background-color: #eee; }
+	}
+	span.status{
+		display: inline-block;
+		padding: 3px 10px;
+		cursor: help;
+
+		&.wait-ppic{ background-color: lighten(#FFC502, 22%); }
+		&.wait-vice{ background-color: darken(#FFC502, 5%); }
+		&.vice-approve{ background-color: #8DC63F; }
+		&.po-done{ background-color: #019FE9; }
+		&.pm-reject-ppic{ background-color: lighten(#ff0000, 27%); }
+		&.pm-reject-vice{ background-color: #ff0000; }
+
+	}
+	.actions{
+		list-style: none;
+		margin: 0; padding: 0;
+		float: right;
+
+		> li{ position: relative; width: 27px;
+			span{
+				display: inline-block;
+				padding: 5px 8px;
+				width: auto;
+				border: 1px solid darken(#eee, 10%);
+				background-color: darken(#eee, 5%);
+				cursor: pointer;
+
+				& + ul{
+					z-index: 2;
+					display: none;
+					position: absolute;
+					top: 100%;
+					right: 0;
+					text-align: left;
+					background-color: #eee;
+					margin: -3px 0 0 0;
+					padding: 0;
+					list-style: none;
+					min-width: 160px;
+					#class > .box-shadow(-1px, 1px, 2px, #333);
+
+					a{
+						display: block;
+						padding: 6px 6px 6px 9px;
+						text-decoration: none;
+						color: #333;
+						
+						> i{ display: inline-block; width: 21px; }
+						&:hover{
+							background-color: #ddd;
+						}
+					}
+				}
+			}
+
+			&:hover ul{ display: block; }
+			li.separator{
+				border-top: 1px solid #A8AFB4;
+				height: 1px;
+				margin: 4px 0;
+			}
+		}
+	}
+}
+
+.form .data-list{
+	.btn > i{ margin-right: 0; }
+	th{ font-size: 13px; padding: 3px; border: 1px solid #000; }
+	td{
+		font-size: 13px; padding: 4px;
+
+		&.material{ width: auto !important; min-width: 300px; }
+		&.sat-jum{ min-width: 120px; }
+	}
+	input[type="text"]{
+		padding: 4px;
+		font-size: 13px;
+
+		&[name="mat_nama[]"]{ width: 250px !important; }
+		&[name="pbs_jml[]"]{ width: 60px !important; }
+		&[name="pos_discount[]"]{ width: 30px !important; text-align: center; display: inline; }
+	}
+
+	&.po-sub{
+		//tbody tr > td:first-child{ width: 120px; }
+	}
+}
+
+.material-request-detail .base-info, .po-detail .base-info, .mat-acceptance-detail .base-info{ margin-bottom: 15px; }
+.material-request-detail .base-info table, .po-detail .base-info table, .mat-acceptance-detail .base-info table{ width: 650px;
+	td{ vertical-align: top; padding: 0 5px; }
+	td.field{ width: 110px; font-weight: bold; text-align: right; }
+	td.colon{ text-align: center; width: 20px; }
+}
+.po-detail .base-info table{ width: 700px; }
+.mat-acceptance-detail .base-info table{ width: 500px; }
+.mat-acceptance-detail .total{ background-color: #eee; }
+.material-request-detail .data-list, .po-detail .data-list, .mat-acceptance-detail .data-list{
+	margin-bottom: 10px;
+	th, td{ padding: 3px; font-size: 13px; }
+}
