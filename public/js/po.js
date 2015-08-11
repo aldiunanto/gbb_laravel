@@ -11,6 +11,15 @@ po = {
 			this._viewDetail();
 			this._expandMaterial();
 			this._matAcceptanceDetail();
+
+			this._dataTables();
+		},
+		_dataTables: function(){
+			$('.main table.data-list').DataTable({
+				'aoColumnDefs' : [
+					{ 'bSortable' : false, 'aTargets' : [6, 7] }
+				]
+			});
 		},
 		_openSearchForm: function(){
 			$('.btn-search').on('click', function(){
