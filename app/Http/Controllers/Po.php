@@ -208,11 +208,30 @@ class Po extends Controller {
 	public function matAcceptanceDetail($pos_id)
 	{
 		$data = [
-			'head'	=> Peners::fetchDetail($pos_id)->first(),
-			'fetch'	=> Peners::fetchDetail($pos_id)
+			'head'	=> Peners::fetchDetail(['penerimaan_sub_laravel.pos_id' => $pos_id])->first(),
+			'fetch'	=> Peners::fetchDetail(['penerimaan_sub_laravel.pos_id' => $pos_id])
 		];
 
 		return view('po.matAcceptanceDetail', $data);
+	}
+	public function acceptanceDetail($po_id)
+	{
+		$fetch = Peners::fetchDetail(['D.po_id' => $po_id]);	
+		foreach($fetch as $row){
+			$item[$row->mat_id][$row->pener_date] = $row->peners_jml;
+			$matNama[$row->mat_id] = $row->mat_nama;
+			$pbsJml[$row->mat_id] = $row->pbs_jml;
+		}
+
+		$data = [
+			'head'		=> PoModel::getDetail($po_id),
+			'master' 	=> $item,
+			'matNama'	=> $matNama,
+			'pbsJml'	=> $pbsJml,
+			'role'		=> $this->role->hak_akses
+		];
+
+		return view('po.acceptanceDetail', $data);
 	}
 
 }
