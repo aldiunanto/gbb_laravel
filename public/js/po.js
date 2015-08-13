@@ -9,7 +9,6 @@ po = {
 			this._closeSearchForm();
 			this._focusingSearch();
 			this._viewDetail();
-			this._expandMaterial();
 			this._matAcceptanceDetail();
 			this._acceptanceDetail();
 
