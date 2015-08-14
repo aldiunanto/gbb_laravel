@@ -53,6 +53,10 @@
 							$text['f']['t'] = 'Kurang ' . $diff . ', ';
 							$text['f']['c'] = '-' . $diff . ', ';
 							$text['f_type'] = 'min';
+						}elseif($diff < 0){
+							$text['f']['t'] = 'Lebih ' . abs($diff) . ', ';
+							$text['f']['c'] = '+' . abs($diff) . ', ';
+							$text['f_type'] = 'plus';
 						}
 
 						$first = ($row->po_status == 1 ? now() : $row->pener_date);
@@ -70,6 +74,12 @@
 							$class = 'vice-approve';
 						}elseif($text['f_type'] == 'closed' && $text['s_type'] == 'slow'){
 							$class = 'wait-ppic';
+						}elseif($text['f_type'] == 'plus' && $text['s_type'] == 'slow'){
+							$class = 'over-min';
+						}elseif($text['f_type'] == 'plus' && $text['s_type'] == 'fast'){
+							$class = 'over-plus';
+						}elseif($text['f_type'] == 'plus' && $text['s_type'] == 'ontime'){
+							$class = 'over-ontime';
 						}
 
 						echo '<span class="status '.$class.'" title="'.$text['f']['t'].$text['s']['t'].'">'.$text['f']['c'].$text['s']['c'].'</span>';
@@ -98,14 +108,18 @@
 	<?php echo $fetch->render() ?>
 </div>
 
-<!--
-<span class="status pm-reject-vice" title="Kurang 200, telat 2 hari">-200, -2D</span>
+
+<!-- <span class="status pm-reject-vice" title="Kurang 200, telat 2 hari">-200, -2D</span>
 <span class="status pm-reject-ppic" title="Kurang 200, lebih awal 2 hari">-200, +2D</span>
 <span class="status wait-vice" title="Kurang 200, tepat watu">-200, tepat</span>
 
 <span class="status po-done" title="Terpenuhi, tepat waktu">Closed, tepat</span>
 <span class="status vice-approve" title="Terpenuhi, lebih awal 3 hari">Closed, +3D</span>
 <span class="status wait-ppic" title="Terpenuhi, telat 3 hari">Closed, -3D</span>
--->
+
+<span class="status over-min" title="Kurang 200, telat 2 hari">+200, -2D</span>
+<span class="status over-plus" title="Kurang 200, lebih awal 2 hari">+200, +2D</span>
+<span class="status over-ontime" title="Kurang 200, tepat watu">+200, tepat</span> -->
+
 
 @endsection
