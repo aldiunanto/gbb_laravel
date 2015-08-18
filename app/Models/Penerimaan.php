@@ -19,8 +19,12 @@ class Penerimaan extends Model {
 
 		return $get->orderBy($i->table.'.pener_date', 'DESC')->paginate($args['perPage']);
 	}
-	public static function fetchALl(){
-		
+	public static function fetchAll($po_id){
+		return self::select('pener_id', 'pener_date')
+					->where('po_id', $po_id)
+					->where('visibility', 1)
+					->orderBy('pener_date', 'ASC')
+					->get();
 	}
 
 }
