@@ -567,8 +567,9 @@ class Material extends Controller {
 	public function acceptanceShow($po_id)
 	{
 		$data = [
-			'head'	=> Po::getDetail($po_id),
-			'fetch'	=> Pener::
+			'head'		=> Po::getDetail($po_id),
+			'fetch'		=> Pener::fetchAll($po_id),
+			'Peners'	=> new Peners()
 		];
 
 		return view('material.acceptance.show', $data);
