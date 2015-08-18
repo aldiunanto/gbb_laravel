@@ -29,15 +29,14 @@
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
-				<td class="text-center">{{ $row->po_tgl_kedatangan }}</td>
-				<td class="text-center">{{ $row->pener_date }}</td>
+				<td class="text-center">{{ to_indDate($row->po_tgl_kedatangan) }}</td>
+				<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
 				<td class="text-center"><?php echo dateDiff($row->po_tgl_kedatangan, $row->pener_date) ?></td>
 				<td class="text-right">
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('material/acceptance/show/' . $row->pener_id) }}" class="view-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
-								<li><a href="{{ url('material/acceptance/destroy/' . $row->pener_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
+								<li><a href="{{ url('material/acceptance/show/' . $row->po_id) }}" class="view-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
 							</ul>
 						</li>
 					</ul>
