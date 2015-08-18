@@ -30,16 +30,21 @@ supplier = {
 			$('.view-detail').on('click', function(e){
 				e.preventDefault();
 
-				var href = $(this).attr('href');
+				var el = $(this);
+				var href = el.attr('href');
 				var splitHref = href.split('/');
 				var popupContent = LIBS.callAjax(href);
 
 				LIBS.popupDialog('open', {
 					'caption'		: 'Supplier Detail',
 					'content'		: popupContent,
-					'posButtonText'	: 'ubah data supplier ini &raquo;',
+					'posButtonText'	: (el.hasClass('no-print') ? 'OK' : 'ubah data supplier ini &raquo;'),
 					'okAction'		: function(){
-						window.location.href = options.baseUrl + 'supplier/edit/' + splitHref[splitHref.length-1];
+						if(el.hasClass('no-print')){
+							LIBS.popupDialog('close');
+						}else{
+							window.location.href = options.baseUrl + 'supplier/edit/' + splitHref[splitHref.length-1];
+						}
 					},
 					'cancelAction'	: function(){
 						LIBS.popupDialog('close');
