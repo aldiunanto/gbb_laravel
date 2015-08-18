@@ -18,14 +18,31 @@
 			</tr>
 		</table>
 	</div>
-	<table class="data-list">
-		<thead>
-			<td>
-				<th>Material</th>
-				<th>Spesifikasi</th>
-				<th>Diterima</th>
-				<th>Satuan</th>
-			</td>
-		</thead>
-	</table>
+	<div class="list">
+		<table class="data-list">
+			<thead>
+				<tr>
+					<th>Material</th>
+					<th>Spesifikasi</th>
+					<th>Diterima</th>
+					<th>Satuan</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($fetch as $row)
+				<tr class="new-pener">
+					<td colspan="4">{{ to_indDate($row->pener_date) }}</td>
+				</tr>
+					@foreach($Peners::fetchDetail(['B.pener_id' => $row->pener_id]) as $sub)
+					<tr>
+						<td class="mat-nama">{{ $sub->mat_nama }}</td>
+						<td class="text-center">{{ $sub->mat_spesifikasi }}</td>
+						<td class="text-right">{{ $sub->peners_jml }}</td>
+						<td class="text-center">{{ $sub->mats_nama }}</td>
+					</tr>
+					@endforeach
+				@endforeach
+			</tbody>
+		</table>
+	</div>
 </div>
