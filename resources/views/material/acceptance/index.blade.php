@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="top">
+	@if($role == 3)
 	<div class="tools">
 		<a href="{{ url('material/acceptance/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah penerimaan</a>
 	</div>
-	<h2>Daftar Penerimaan Material <span>{{ $fetch->count() }} dari {{ $fetch->total() }}</span></h2>
+	@endif
+	<h2>Daftar Penerimaan Material</h2>
 	<div class="clearfix"></div>
 </div>
 <div class="main">
@@ -23,7 +25,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?php $x = $getNumb(); ?>
+		<?php $x = 0; ?>
 		@foreach($fetch as $row)
 
 			<tr>
@@ -46,7 +48,5 @@
 		@endforeach
 		</tbody>
 	</table>
-
-	<?php echo $fetch->render() ?>
 </div>
 @endsection
