@@ -467,41 +467,16 @@ class Material extends Controller {
 	}
 	public function acceptance(Request $req)
 	{
-		$perPage	= 20;
-		$search 	= [
-			's'		=> ($req->has('s') ? $req->input('s') : null),
-			'field'	=> ($req->has('field') ? $req->input('field') : null)
-		];
-		$role		= $this->role;
-
 		$data = [
 			'title'		=> 'Daftar Penerimaan Material',
 			'asset'		=> new Assets(),
 			'js'		=> ['vendor/jquery.dataTables.min'],
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
-			'fetch'		=> Pener::fetchData(['perPage' => $perPage]),
-			'search'	=> $search,
+			'fetch'		=> Pener::fetchData(),
 			'opened'	=> 'material',
-			'role'		=> $role,
-			'getNumb'	=> function() use ($perPage, $req){
-				if($req->has('page') && $req->input('page') != 1){
-					return ($req->input('page') * $perPage) - $perPage;
-				}else{
-					return 0;
-				}
-			},
-			'isSelected'=> function($field) use($search){
-				if(! is_null($search['field'])){
-					if($search['field'] == $field) return 'selected="selected"';
-				}
-			}
-		];	
-
-		# Pagination config
-		$data['fetch']->setPath(url('material/acceptance'));
-		if($req->has('s')) $data['fetchData']->appends(['s' => $s]);
-		# End of pagination config
+			'role'		=> $this->role
+		];
 
 		return view('material.acceptance.index', $data);
 	}
