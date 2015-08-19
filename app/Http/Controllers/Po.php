@@ -43,7 +43,7 @@ class Po extends Controller {
 			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'opened'	=> 'po',
-			'hak_akses'	=> $this->role->hak_akses,
+			'role'		=> $this->role->hak_akses,
 			'getNumb'	=> function() use ($perPage, $request){
 				if($request->has('page') && $request->input('page') != 1){
 					return ($request->input('page') * $perPage) - $perPage;
