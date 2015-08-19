@@ -10,14 +10,14 @@ class Penerimaan extends Model {
 	protected	$fillable	= ['po_id', 'pener_date', 'userid_input', 'visibility'];
 	public 		$timestamps	= true;
 
-	public static function fetchData($args){
+	public static function fetchData(){
 		$i = new static;
 		$get = self::select($i->table.'.'.$i->primaryKey, 'B.po_id', 'B.po_no', 'B.po_tgl_kedatangan', DB::raw('MAX('.$i->table.'.pener_date) AS pener_date'))
 					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 					->where($i->table.'.visibility', 1)
 					->groupBy($i->table.'.po_id');
 
-		return $get->orderBy($i->table.'.pener_date', 'DESC')->paginate($args['perPage']);
+		return $get->orderBy($i->table.'.pener_date', 'DESC')->get();
 	}
 	public static function fetchAll($po_id){
 		return self::select('pener_id', 'pener_date')
