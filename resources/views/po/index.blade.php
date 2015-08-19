@@ -90,11 +90,13 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail"><i class="fa fa-eye"></i>Detail PO</a></li>
+								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
 								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 								
+								@if($role != 3 && $role != 4)
 								<li class="separator">&nbsp;</li>
 								<li><a href="{{ url('printing/po/' . $row->po_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak PO</a></li>
+								@endif
 							</ul>
 						</li>
 					</ul>
