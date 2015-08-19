@@ -17,7 +17,7 @@
 				<th>No</th>
 				<th>Nomor PO</th>
 				<th>Tanggal Permintaan</th>
-				<th>Tanggal Penerimaan</th>
+				<th>Penerimaan Terakhir</th>
 				<th>Keterangan</th>
 				<th>Aksi</th>
 			</tr>
