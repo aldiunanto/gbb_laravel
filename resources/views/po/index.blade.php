@@ -24,7 +24,7 @@
 
 		<?php $x = 0; $po_no = ''; ?>
 		@foreach($fetch as $row)
-			<?php $accepted = countDiterima($row->pos_id) ?>
+			<?php $accepted = countDiterima($row->pos_id); $text = null; ?>
 			@if($po_no != $row->po_no)
 			<?php
 				$tr_class = 'new-po';
