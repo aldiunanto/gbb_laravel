@@ -28,40 +28,16 @@ class Po extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		$perPage	= 20;
-		$search 	= [
-			's'		=> ($request->has('s') ? $request->input('s') : null),
-			'field'	=> ($request->has('field') ? $request->input('field') : null)
-		];
-
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
 			'js'		=> ['vendor/jquery.dataTables.min'],
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['po' => 'Purchasing Order'],
-			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
-			'search'	=> $search,
+			'fetch'		=> Po_sub::fetch(),
 			'opened'	=> 'po',
-			'role'		=> $this->role->hak_akses,
-			'getNumb'	=> function() use ($perPage, $request){
-				if($request->has('page') && $request->input('page') != 1){
-					return ($request->input('page') * $perPage) - $perPage;
-				}else{
-					return 0;
-				}
-			},
-			'isSelected'=> function($field) use($search){
-				if(! is_null($search['field'])){
-					if($search['field'] == $field) return 'selected="selected"';
-				}
-			}
-		];	
-
-		# Pagination config
-		$data['fetch']->setPath(url('po'));
-		if($request->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
-		# End of pagination config
+			'role'		=> $this->role->hak_akses
+		];
 
 		return view('po.index', $data);
 	}
@@ -103,7 +79,8 @@ class Po extends Controller {
 			'po_tgl_buat'		=> $request->input('po_tgl_buat'),
 			'po_tgl_kedatangan'	=> $request->input('po_tgl_kedatangan'),
 			'po_note'			=> trim($request->input('po_note')),
-			'po_is_ppn'			=> ($path[0] == 'P' ? 1 : 2)
+			'po_is_ppn'			=> ($path[0] == 'P' ? 1 : 2),
+			'po_status'			=> 1
 		];
 
 		$po = PoModel::create($values);
