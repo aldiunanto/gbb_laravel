@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="top">
-	@if($role == 3)
+	@if($role == 3 || $role == 1)
 	<div class="tools">
 		<a href="{{ url('material/acceptance/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah penerimaan</a>
 	</div>
