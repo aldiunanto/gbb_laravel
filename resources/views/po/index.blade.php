@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="top">
-	<h2>Data List PO <span>{{ $fetch->count() }} dari {{ $fetch->total() }}</span></h2>
+	<h2>Data List PO</h2>
 	<div class="clearfix"></div>
 </div>
 <div class="main">
@@ -106,8 +106,6 @@
 		@endforeach
 		</tbody>
 	</table>
-
-	<?php echo $fetch->render() ?>
 </div>
 
 
