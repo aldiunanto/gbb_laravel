@@ -536,6 +536,27 @@ class Material extends Controller {
 			}
 		}
 
+		#Checking for update po_status
+		$sub = Po_sub::fetchDetail($_POST['po_id']);
+		$el = array();
+
+		foreach($sub as $row){
+			$diterima = countDiterima($row->pos_id);
+			$rest = $row->pbs_jml - $diterima;
+
+			if($rest > 0){
+				array_push($el, 'open');
+			}
+		}
+
+		if(! in_array('open', $el)){
+			$rec = Po::find($_POST['po_id']);
+
+			$rec->po_status = 2;
+			$rec->save();
+		}
+		#End of checking
+
 		Session::flash('inserted', '<div class="info success">Penerimaan material berhasil diinput.</div>');
 		return redirect('material/acceptance');
 	}
