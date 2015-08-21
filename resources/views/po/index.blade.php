@@ -40,7 +40,13 @@
 				<td>{{ $row->mat_nama }}</td>
 				<td class="text-center">{{ to_indDate($row->po_tgl_buat) }}</td>
 				<td>{{ $row->pbs_jml }}</td>
-				<td><a class="mat-acceptance" href="{{ url('po/matAcceptanceDetail/' . $row->pos_id) }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> {{ $accepted }}</a></td>
+				<td>
+					@if($accepted != 0)
+					<a class="mat-acceptance" href="{{ url('po/matAcceptanceDetail/' . $row->pos_id) }}" title="Klik untuk lihat detail penerimaan material ini"><i class="fa fa-eye"></i> {{ $accepted }}</a>
+					@else
+					0
+					@endif
+				</td>
 				<td class="text-center">
 					<?php
 
@@ -82,17 +88,24 @@
 							$class = 'over-ontime';
 						}
 
-						echo '<span class="status '.$class.'" title="'.$text['f']['t'].$text['s']['t'].'">'.$text['f']['c'].$text['s']['c'].'</span>';
+						if($accepted != 0 && ! is_null($row->pener_date)){
+							echo '<span class="status '.$class.'" title="'.$text['f']['t'].$text['s']['t'].'">'.$text['f']['c'].$text['s']['c'].'</span>';
+						}else{
+							echo '-';
+						}
 
 					?>
 				</td>
 				<td class="text-right">
+					@if(! empty($tr_class))
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
+								@if($accepted != 0 && ! is_null($row->pener_date))
 								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
-								
+								@endif
+
 								@if($role != 3 && $role != 4)
 								<li class="separator">&nbsp;</li>
 								<li><a href="{{ url('printing/po/' . $row->po_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak PO</a></li>
@@ -100,6 +113,7 @@
 							</ul>
 						</li>
 					</ul>
+					@endif
 				</td>
 			</tr>
 
