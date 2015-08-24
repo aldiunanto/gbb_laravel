@@ -397,12 +397,34 @@ class Material extends Controller {
 			'pb_no'			=> trim($req->input('pb_no')),
 			'pb_tgl_butuh'	=> $req->input('pb_tgl_butuh'),
 			'pb_note'		=> trim($req->input('pb_note')),
-			'pb_status'		=> 1,
 			'visibility'	=> 1,
 			'userid_input'	=> Auth::user()->user_id
 		];
 
+		#pb_status, wether sudden-PO or not
+		$values['pb_status'] = ($req->input('create_po') == 1 ? 4 : 1);
+		#End of sudden-PO
+
 		$pb = Pb::create($values);
+
+		#If sudden-PO then create PO head directly
+		if($req->input('create_po') == 1){
+
+			$get = Po::generateNumb('non');
+			$values = [
+				'pb_id'				=> $pb->pb_id,
+				'po_no'				=> generatePoNumb($get),
+				'po_tgl_buat'		=> now(),
+				'po_tgl_kedatangan'	=> $req->input('pb_tgl_butuh'),
+				'po_is_ppn'			=> 2,
+				'po_status'			=> 1,
+				'po_sudden'			=> 1
+			];
+
+			$po = Po::create($values);
+
+		}
+		#Endif
 
 		$x = 0;
 		foreach($_POST['mat_id'] as $val){
@@ -412,11 +434,30 @@ class Material extends Controller {
 				'pbs_jml'	=> $_POST['pbs_jml'][$x]
 			];
 
-			Pbs::create($values);
+			$pbs = Pbs::create($values);
+
+			#If sudden-PO then create PO sub directly
+			if($req->input('create_po') == 1){
+				$values = [
+					'po_id'		=> $po->po_id,
+					'pbs_id'	=> $pbs->pbs_id,
+					'pos_harga'	=> $_POST['mat_harga'][$x]
+				];
+
+				Po_sub::create($values);
+			}
+			#Endif
+
 			$x++;
 		}
 
-		Session::flash('inserted', '<div class="info success">Permintaan material telah dibuat.</div>');
+		if($req->input('create_po') == 1){
+			$message = 'Permintaan material telah dibuat berikut PO-nya dengan nomor: <strong>' . $po->po_no . '</strong>';
+		}else{
+			$message = 'Permintaan material telah dibuat.';
+		}
+		
+		Session::flash('inserted', '<div class="info success">' . $message . '</div>');
 		return redirect('material/request');
 	}
 	public function requestEdit($pb_id)
