@@ -161,26 +161,7 @@ class Po extends Controller {
 	public function generateNumb()
 	{
 		$get = PoModel::generateNumb($_POST['type']);
-
-		if($get->count() > 0){
-			$row = $get->first();
-			$path = explode('/', $row->po_no);
-
-			if(date('Y') == ($path[4] + 1)){
-				$numb = $path[0] . '/' . '001' . '/' . romawi()[date('n')] . '/' . 'JIU' . '/' . date('Y');
-			}else{
-				$preffix = ''; $path[1]++;
-				for($x = 0; $x < (3 - strlen($path[1])); $x++){
-					$preffix .= '0';
-				}
-
-				$numb = $path[0] . '/' . ($preffix . $path[1]) . '/' . romawi()[date('n')] . '/' . 'JIU' . '/' . date('Y');
-			}
-		}else{
-			$numb = ($_POST['type'] == 'ppn' ? 'P' : 'NP') . '/' . '001' . '/' . romawi()[date('n')] . '/' . 'JIU' . '/' . date('Y');
-		}
-
-		echo $numb;
+		echo generatePoNumb($get);
 	}
 	public function matAcceptanceDetail($pos_id)
 	{
