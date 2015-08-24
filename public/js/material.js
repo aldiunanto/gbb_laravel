@@ -208,6 +208,7 @@ material = {
 			this._removeRow();
 			this._calculateComparison();
 			this._addItem();
+			this._createPO();
 
 			material.create._openSupplier();
 			/*material.create._openSupplier(function(){
@@ -289,7 +290,7 @@ material = {
 				var other 	= LIBS.callAjax('material/request/getDetailItem', 'mat_id=' + mat_id);
 				other		= JSON.parse(other);
 
-				el.prev().val(other.mat_perbandingan).prev().val(mat_id).prev().val(mat_nama);
+				el.prev().val(other.mat_harga).prev().val(other.mat_perbandingan).prev().val(mat_id).prev().val(mat_nama);
 				el.parent().next().html(other.satuan_p).next().html(other.satuan_r).next().children().val(0).parent().next().empty();
 
 				LIBS.popupDialog('close');
@@ -324,6 +325,12 @@ material = {
 				self._openMaterial();
 				self._removeRow();
 				self._calculateComparison();
+			});
+		},
+		_createPO: function(){
+			$('select[name="create_po"]').on('change', function(){
+				if($(this).val() === '1') $('.create-po-info').slideDown();
+				else $('.create-po-info').slideUp();
 			});
 		}
 	},
