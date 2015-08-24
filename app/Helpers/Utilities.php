@@ -111,7 +111,7 @@
             $text['s_type'] = 'slow';
         }else{
             $text['s']['t'] = 'tepat waktu';
-            $text['s']['s'] = 'tepat';
+            $text['s']['c'] = 'tepat';
             $text['s_type'] = 'ontime';
         }
 
