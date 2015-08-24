@@ -80,7 +80,8 @@ class Po extends Controller {
 			'po_tgl_kedatangan'	=> $request->input('po_tgl_kedatangan'),
 			'po_note'			=> trim($request->input('po_note')),
 			'po_is_ppn'			=> ($path[0] == 'P' ? 1 : 2),
-			'po_status'			=> 1
+			'po_status'			=> 1,
+			'po_sudden'			=> 2
 		];
 
 		$po = PoModel::create($values);
