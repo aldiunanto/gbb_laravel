@@ -13,6 +13,7 @@ use App\Models\Penerimaan as Pener;
 use App\Models\Penerimaan_sub as Peners;
 use App\Models\Po;
 use App\Models\Po_sub;
+use App\Models\Notification as Notif;
 use Validator;
 use Session;
 use Auth;
@@ -407,7 +408,7 @@ class Material extends Controller {
 
 		$pb = Pb::create($values);
 
-		#If sudden-PO then create PO head directly
+		#If sudden-PO then create PO head directly and a notification
 		if($req->input('create_po') == 1){
 
 			$get = Po::generateNumb('non');
@@ -420,8 +421,15 @@ class Material extends Controller {
 				'po_status'			=> 1,
 				'po_sudden'			=> 1
 			];
-
 			$po = Po::create($values);
+
+			$values = [
+				'gn_desc'	=> 'Pembuatan <i>Sudden-PO</i> oleh Rawmat dengan nomor PO: <strong>' . $po->po_no . '</strong>',
+				'gn_date'	=> now(true),
+				'gn_role'	=> 2,
+				'gn_read'	=> 2
+			];
+			Notif::create($values);
 
 		}
 		#Endif
