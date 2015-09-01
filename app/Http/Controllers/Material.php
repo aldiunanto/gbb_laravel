@@ -14,6 +14,7 @@ use App\Models\Penerimaan_sub as Peners;
 use App\Models\Po;
 use App\Models\Po_sub;
 use App\Models\Notification as Notif;
+use App\Models\Supplier as Supp;
 use Validator;
 use Session;
 use Auth;
@@ -167,6 +168,20 @@ class Material extends Controller {
 	 */
 	public function edit($id, $is_price = null)
 	{
+		if(! is_null($is_price)){
+			$data = [
+				'title'		=> 'Ubah Harga Material',
+				'asset'		=> new Assets(),
+				'position'	=> ['material' => 'Material', 'material/edit/'.$id.'/price' => 'Ubah Harga'],
+				'opened'	=> 'material',
+				'head'		=> Supp::find($id),
+				'fetch'		=> MatModel::forSupplierDetail($id)
+			];
+
+			return view('material.editPrice', $data);
+		}
+
+
 		$role = $this->role;
 		switch($role){
 			case 1 : //admin
