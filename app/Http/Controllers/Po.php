@@ -177,7 +177,12 @@ class Po extends Controller {
 	{
 		$fetch = Peners::fetchDetail(['D.po_id' => $po_id]);	
 		foreach($fetch as $row){
-			$item[$row->mat_id][$row->pener_date] = $row->peners_jml;
+			if(! empty($item[$row->mat_id][$row->pener_date])){
+				$item[$row->mat_id][$row->pener_date] += $row->peners_jml;
+			}else{
+				$item[$row->mat_id][$row->pener_date] = $row->peners_jml;	
+			}
+			
 			$matNama[$row->mat_id] = $row->mat_nama;
 			$pbsJml[$row->mat_id] = $row->pbs_jml;
 		}
