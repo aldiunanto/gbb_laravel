@@ -38,14 +38,14 @@
 								<?php $x = 0 ?>
 								@foreach($fetch as $row)
 								<tr>
-									<td class="text-right">{{ ++$x }}</td>
+									<td class="text-right">{{ ++$x }}.</td>
 									<td>{{ $row->mat_nama }}</td>
-									<td>{{ $row->mat_spesifikasi }}</td>
-									<td>{{ $row->wrn_nama }}</td>
+									<td class="text-center">{{ $row->mat_spesifikasi }}</td>
+									<td class="text-center">{{ $row->wrn_nama }}</td>
 									<td>{{ $row->mu_shortcut }}</td>
-									<td>
+									<td class="text-center">
 										<input type="hidden" name="mat_id[]" value="{{ $row->mat_id }}" />
-										<input type="text" name="mat_price[]" value="{{ $row->mat_harga }}" />
+										<input type="text" name="mat_price[]" class="text-right" value="{{ $row->mat_harga }}" />
 									</td>
 								</tr>
 								@endforeach
