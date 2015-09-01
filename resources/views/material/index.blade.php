@@ -53,6 +53,7 @@
 								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ ($hak_akses == 4) ? 'no-print' : '' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 								@if($hak_akses != 4)
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
+								<li><a href="{{ url('material/edit/' . $row->mat_id . '/price') }}"><i class="fa fa-money"></i>Ubah harga</a></li>
 								@endif
 								@if($hak_akses != 3 && $hak_akses != 4)
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
