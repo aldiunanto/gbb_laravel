@@ -165,7 +165,7 @@ class Material extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id, $is_price = null)
 	{
 		$role = $this->role;
 		switch($role){
