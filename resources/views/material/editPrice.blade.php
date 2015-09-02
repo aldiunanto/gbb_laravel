@@ -8,11 +8,12 @@
 </div>
 <div class="main">
 	<div class="form">
+		{!! session('updated') !!}
 		<div class="info warning">
 			*<i>Gunakan titik(.) untuk bilangan yang mengandung koma.</i>
 		</div>
 
-		<form action="{{ url('material/store') }}" method="post">
+		<form action="{{ url('material/update') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<input type="hidden" name="method" value="price" />
 			<input type="hidden" name="sup_id" value="{{ $head->sup_id }}" />
@@ -45,7 +46,7 @@
 									<td>{{ $row->mu_shortcut }}</td>
 									<td class="text-center">
 										<input type="hidden" name="mat_id[]" value="{{ $row->mat_id }}" />
-										<input type="text" name="mat_price[]" class="text-right" value="{{ $row->mat_harga }}" />
+										<input type="text" name="mat_price[]" class="text-right" value="{{ $row->mat_harga }}" required="required" />
 									</td>
 								</tr>
 								@endforeach
