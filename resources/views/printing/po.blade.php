@@ -1,0 +1,178 @@
+@extends('printing')
+
+@section('content')
+
+<header>
+	<div id="tagline">
+		<div>
+			<h1>surat pesanan</h1>
+			<h1>{{ $head->po_no }}</h1>
+		</div>
+		<div <?php echo ($head->po_is_ppn == 2 ? 'style="display: none;"' : '') ?>>
+			<h1>pt. jaly indonesia utama</h1>
+			Jl. H.M. Asyari No.47 Cibinong-Bogor 16911<br />
+			Telp. (021) 875 4501&emsp;Fax. (021) 875 2174
+		</div>
+		<div class="endfloat"></div>
+	</div>
+	<div id="base-info">
+		<table>
+			<tr>
+				<td class="parent top-left" style="vertical-align: top;">
+					<table>
+						<tr>
+							<td class="left" style="width: 90px; vertical-align: top;">Kepada</td>
+							<td style="width: 15px; vertical-align: top;">:</td>
+							<td class="left">{{ $head->sup_nama }}</td>
+						</tr>
+						<tr>
+							<td class="left" style="vertical-align: top;">Alamat</td>
+							<td style="vertical-align: top;">:</td>
+							<td class="left">{{ $head->sup_alamat }}</td>
+						</tr>
+						<tr>
+							<td class="left">Telepon</td>
+							<td>:</td>
+							<td class="left">{{ $head->sup_telepon }}</td>
+						</tr>
+						<tr>
+							<td class="left">Fax</td>
+							<td>:</td>
+							<td class="left">{{ $head->sup_fax }}</td>
+						</tr>
+						<tr>
+							<td class="left">Contact Person</td>
+							<td>:</td>
+							<td class="left">{{ $head->sup_cp }}</td>
+						</tr>
+					</table>
+				</td>
+				<td class="parent" style="vertical-align: top;">
+					<table>
+						<tr>
+							<td class="left" style="width: 115px;">Tanggal PO</td>
+							<td style="width: 15px;">:</td>
+							<td class="left">{{ to_indDate($head->po_tgl_buat) }}</td>
+						</tr>
+						<tr>
+							<td class="left">Tanggal Pengiriman</td>
+							<td>:</td>
+							<td class="left">{{ to_indDate($head->po_tgl_kedatangan) }}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</header>
+<section>
+	<table>
+		<thead>
+			<tr>
+				<td>QTY</td>
+				<td>satuan</td>
+				<td>nama barang</td>
+				<td>warna</td>
+				<td>spesifikasi</td>
+				<td>harga satuan</td>
+				<td>diskon</td>
+				<td>jumlah</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $x = 0; $total = 0; ?>
+			@foreach($sub as $row)
+			<?php $subJml = ($row->pos_harga - (($row->pos_harga * $row->pos_discount) / 100)) * $row->pbs_jml; $total += $subJml; ?>
+			<tr>
+				<td class="bordered-left">{{ number_format($row->pbs_jml, 0, null, '.') }}</td>
+				<td>{{ $row->mats_nama }}</td>
+				<td class="left">{{ $row->mat_nama }}</td>
+				<td>{{ $row->wrn_nama }}</td>
+				<td>{{ $row->mat_spesifikasi }}</td>
+				<td class="left"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($row->pos_harga, 0, null, '.') . '</span>' ?></td>
+				<td>{{ $row->pos_discount }}%</td>
+				<td class="bordered-right left"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($subJml, 0, null, '.') . '</span>' ?></td>
+			</tr>
+			<?php $x++; ?>
+			@endforeach
+
+			@for($y = 1; $y <= (5 - $x); $y++)
+			@if($y == (5 - $x))
+			<tr>
+				<td colspan="8" class="bordered-bottom bordered-left bordered-right">&nbsp;</td>
+			</tr>
+			@else
+			<tr>
+				<td class="bordered-left">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="bordered-right">&nbsp;</td>
+			</tr>
+			@endif
+			@endfor
+		</tbody>
+	</table>
+</section>
+<footer>
+	<table>
+		<tr>
+			<td style="vertical-align: top;">
+				<table>
+					<tr>
+						@if($head->po_is_ppn == 2)
+						<td style="width: 35px;" class="left">&nbsp;</td>
+						<td class="left">&nbsp;</td>
+						@else
+						<td style="width: 35px;" class="left">Note :</td>
+						<td class="left">{{ $head->po_note }}</td>
+						@endif
+					</tr>
+				</table>
+			</td>
+			<td style="width: 300px">
+				<?php $mu_shortcut = (! empty($row->mu_shortcut) ? $row->mu_shortcut : '') ?>
+				<table>
+					@if($head->po_is_ppn != 2)
+					<tr>
+						<td class="left">Total</td>
+						<td>:</td>
+						<td class="left"><?php echo $mu_shortcut . '<span class="money">' . number_format($total, 2, ',', '.') . '</span>' ?></td>
+					</tr>
+					<tr>
+						<td class="left">PPN</td>
+						<td>:</td>
+						<td class="left"><?php $ppn = ($total * 0.1); echo $mu_shortcut . '<span class="money">' . number_format($ppn, 2, ',', '.') . '</span>' ?></td>
+					</tr>
+					@endif
+
+					<tr class="total">
+						<td class="left">Total Bayar</td>
+						<td>:</td>
+						<td class="left"><?php if($head->po_is_ppn != 2){ $bayar = $total + $ppn; }else{ $bayar = $total; } echo $mu_shortcut . '<span class="money">' . number_format($bayar, 2, ',', '.') . '</span>' ?></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	@if($head->po_is_ppn != 2)
+	<table class="signature">
+		<tr>
+			<td>Purchasing</td>
+			<td>Vice Director</td>
+		</tr>
+		<tr>
+			<td>{{ session('kar_nama') }}</td>
+			<td>Livia Yuwono</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="right" style="font-weight: normal">Form-ADM-012-1</td>
+		</tr>
+	</table>
+	@endif
+</footer>
+
+@endsection
