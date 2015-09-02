@@ -18,7 +18,8 @@
 			<tr>
 				<th>No</th>
 				<th>Nomor PO</th>
-				<th>Tanggal Permintaan</th>
+				<th>Supplier</th>
+				<th>Tgl Permintaan</th>
 				<th>Penerimaan Terakhir</th>
 				<th>Keterangan</th>
 				<th>Aksi</th>
@@ -31,6 +32,7 @@
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
+				<td>{{ $row->sup_nama }}</td>
 				<td class="text-center">{{ to_indDate($row->po_tgl_kedatangan) }}</td>
 				<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
 				<td class="text-center"><?php echo dateDiff($row->po_tgl_kedatangan, $row->pener_date) ?></td>
@@ -48,5 +50,14 @@
 		@endforeach
 		</tbody>
 	</table>
+
+	<fieldset class="label-info">
+		<legend>Label Info</legend>
+		<ul>
+			<li><span class="status pm-reject-vice label">&nbsp;</span> - Terlambat [x] Hari</li>
+			<li><span class="status po-done label">&nbsp;</span> - Lebih cepat [x] Hari</li>
+			<li><span class="status vice-approve label">&nbsp;</span> - Tepat waktu</li>
+		</ul>
+	</fieldset>
 </div>
 @endsection

@@ -120,6 +120,21 @@
 		@endforeach
 		</tbody>
 	</table>
+
+	<fieldset class="label-info">
+		<legend>Label Info</legend>
+		<ul>
+			<li><span class="status pm-reject-vice">&nbsp;</span> - Kurang [x], telat [y] hari</li>
+			<li><span class="status pm-reject-ppic">&nbsp;</span> - Kurang [x], lebih awal [y] hari</li>
+			<li><span class="status wait-vice">&nbsp;</span> - Kurang [x], tepat watu</li>
+			<li><span class="status wait-ppic">&nbsp;</span> - Terpenuhi, telat [y] hari</li>
+			<li><span class="status vice-approve">&nbsp;</span> - Terpenuhi, lebih awal [y] hari</li>
+			<li><span class="status po-done">&nbsp;</span> - Terpenuhi, tepat waktu</li>
+			<li><span class="status over-min">&nbsp;</span> - Lebih [x], telat [y] hari</li>
+			<li><span class="status over-plus">&nbsp;</span> - Lebih [x], lebih awal [y] hari</li>
+			<li><span class="status over-ontime">&nbsp;</span> - Lebih [x], tepat watu</li>
+		</ul>
+	</fieldset>
 </div>
 
 

@@ -117,22 +117,6 @@
 		&:hover{ background-color: lighten(@baseColor, 40%); }
 		&.new-po{ background-color: #eee; }
 	}
-	span.status{
-		display: inline-block;
-		padding: 3px 10px;
-		cursor: help;
-
-		&.wait-ppic{ background-color: lighten(#FFC502, 22%); }
-		&.wait-vice{ background-color: darken(#FFC502, 5%); }
-		&.vice-approve{ background-color: #8DC63F; }
-		&.po-done{ background-color: #019FE9; }
-		&.pm-reject-ppic{ background-color: lighten(#ff0000, 27%); }
-		&.pm-reject-vice{ background-color: #ff0000; }
-		&.over-min{ background-color: #030202; color: #fff; }
-		&.over-plus{ background-color: #6B6A6A; color: #fff; }
-		&.over-ontime{ background-color: #333333; color: #fff; }
-
-	}
 	.actions{
 		list-style: none;
 		margin: 0; padding: 0;
@@ -221,4 +205,25 @@
 .material-request-detail .data-list, .po-detail .data-list, .mat-acceptance-detail .data-list, .acceptance-detail .data-list{
 	margin-bottom: 10px;
 	th, td{ padding: 3px; font-size: 13px; }
+}
+
+span.status{
+	display: inline-block;
+	padding: 3px 10px;
+	cursor: help;
+
+	&.wait-ppic{ background-color: lighten(#FFC502, 22%); }
+	&.wait-vice{ background-color: darken(#FFC502, 5%); }
+	&.vice-approve{ background-color: #8DC63F; }
+	&.po-done{ background-color: #019FE9; }
+	&.pm-reject-ppic{ background-color: lighten(#ff0000, 27%); }
+	&.pm-reject-vice{ background-color: #ff0000; }
+	&.over-min{ background-color: #000; color: #fff; }
+	&.over-plus{ background-color: #6B6A6A; color: #fff; }
+	&.over-ontime{ background-color: #333333; color: #fff; }
+
+}
+fieldset.label-info{ margin-top: 20px;
+	legend{ font-weight: bold; display: block; padding: 5px; }
+	ul li{ margin: 5px; }
 }

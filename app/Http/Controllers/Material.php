@@ -225,33 +225,48 @@ class Material extends Controller {
 	 */
 	public function update(Request $request)
 	{
-		$mat_id = $request->input('mat_id');
-		$role	= $this->role;
+		if($request->input('method') && $request->input('method') == 'price'){
+			$x = 0;
+			foreach($_POST['mat_id'] as $mat_id){
+				$get = MatModel::find($mat_id);
 
-		$mat = MatModel::find($mat_id);
+				$get->mat_harga = trim($_POST['mat_price'][$x]);
+				$get->save();
 
-		if($role == 3 || $role == 1){
-			$mat->matsr_id 			= $request->input('matsr_id');
-			$mat->mat_stock_min		= trim($request->input('mat_stock_min'));
-			$mat->mat_perbandingan	= (empty($_POST['mat_perbandingan']) ? 1 : trim($request->input('mat_perbandingan')));
-			$mat->mat_stock_awal	= trim($request->input('mat_stock_awal'));
-			$mat->mat_stock_akhir	= trim($request->input('mat_stock_akhir'));
+				$x++;
+			}
+
+			Session::flash('updated', '<div class="info success">Data harga berhasil diubah.</div>');
+			return redirect('material/edit/' . $request->input('sup_id') . '/price');
+		}else{
+			$mat_id = $request->input('mat_id');
+			$role	= $this->role;
+
+			$mat = MatModel::find($mat_id);
+
+			if($role == 3 || $role == 1){
+				$mat->matsr_id 			= $request->input('matsr_id');
+				$mat->mat_stock_min		= trim($request->input('mat_stock_min'));
+				$mat->mat_perbandingan	= (empty($_POST['mat_perbandingan']) ? 1 : trim($request->input('mat_perbandingan')));
+				$mat->mat_stock_awal	= trim($request->input('mat_stock_awal'));
+				$mat->mat_stock_akhir	= trim($request->input('mat_stock_akhir'));
+			}
+
+			if($role == 2 || $role == 1){
+				$mat->matsp_id			= $request->input('matsp_id');
+				$mat->wrn_id			= $request->input('wrn_id');
+				$mat->sup_id 			= $request->input('sup_id');
+				$mat->mu_id 			= $request->input('mu_id');
+				$mat->mat_nama 			= trim($request->input('mat_nama'));
+				$mat->mat_spesifikasi	= trim($request->input('mat_spesifikasi'));
+				$mat->mat_harga			= trim($request->input('mat_harga'));
+			}
+
+			$mat->save();
+
+			Session::flash('updated', '<div class="info success">Data berhasil diubah.</div>');
+			return redirect('material/edit/' . $mat_id);
 		}
-
-		if($role == 2 || $role == 1){
-			$mat->matsp_id			= $request->input('matsp_id');
-			$mat->wrn_id			= $request->input('wrn_id');
-			$mat->sup_id 			= $request->input('sup_id');
-			$mat->mu_id 			= $request->input('mu_id');
-			$mat->mat_nama 			= trim($request->input('mat_nama'));
-			$mat->mat_spesifikasi	= trim($request->input('mat_spesifikasi'));
-			$mat->mat_harga			= trim($request->input('mat_harga'));
-		}
-
-		$mat->save();
-
-		Session::flash('updated', '<div class="info success">Data berhasil diubah.</div>');
-		return redirect('material/edit/' . $mat_id);
 	}
 
 	/**
