@@ -28,22 +28,22 @@
 						<tr>
 							<td class="left" style="vertical-align: top;">Alamat</td>
 							<td style="vertical-align: top;">:</td>
-							<td class="left">{{ $head->sup_alamat }}</td>
+							<td class="left"><span class="rawmat">{{ $head->sup_alamat }}</span></td>
 						</tr>
 						<tr>
 							<td class="left">Telepon</td>
 							<td>:</td>
-							<td class="left">{{ $head->sup_telepon }}</td>
+							<td class="left"><span class="rawmat">{{ $head->sup_telepon }}</span></td>
 						</tr>
 						<tr>
 							<td class="left">Fax</td>
 							<td>:</td>
-							<td class="left">{{ $head->sup_fax }}</td>
+							<td class="left"><span class="rawmat">{{ $head->sup_fax }}</span></td>
 						</tr>
 						<tr>
 							<td class="left">Contact Person</td>
 							<td>:</td>
-							<td class="left">{{ $head->sup_cp }}</td>
+							<td class="left"><span class="rawmat">{{ $head->sup_cp }}</span></td>
 						</tr>
 					</table>
 				</td>
@@ -63,6 +63,11 @@
 				</td>
 			</tr>
 		</table>
+		<form class="hidden-element" style="float: right;">
+			<label for="check-for-rawmat">Cetak ke Rawmat</label>
+			<input type="checkbox" style="vertical-align: middle;" id="check-for-rawmat" />
+		</form>
+		<div class="endfloat"></div>
 	</div>
 </header>
 <section>
@@ -74,9 +79,9 @@
 				<td>nama barang</td>
 				<td>warna</td>
 				<td>spesifikasi</td>
-				<td>harga satuan</td>
-				<td>diskon</td>
-				<td>jumlah</td>
+				<td class="rawmat">harga satuan</td>
+				<td class="rawmat">diskon</td>
+				<td class="rawmat">jumlah</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -88,10 +93,10 @@
 				<td>{{ $row->mats_nama }}</td>
 				<td class="left">{{ $row->mat_nama }}</td>
 				<td>{{ $row->wrn_nama }}</td>
-				<td>{{ $row->mat_spesifikasi }}</td>
-				<td class="left"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($row->pos_harga, 0, null, '.') . '</span>' ?></td>
-				<td>{{ $row->pos_discount }}%</td>
-				<td class="bordered-right left"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($subJml, 0, null, '.') . '</span>' ?></td>
+				<td class="spek">{{ $row->mat_spesifikasi }}</td>
+				<td class="left rawmat"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($row->pos_harga, 0, null, '.') . '</span>' ?></td>
+				<td class="rawmat">{{ $row->pos_discount }}%</td>
+				<td class="bordered-right left rawmat"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($subJml, 0, null, '.') . '</span>' ?></td>
 			</tr>
 			<?php $x++; ?>
 			@endforeach
@@ -99,7 +104,7 @@
 			@for($y = 1; $y <= (5 - $x); $y++)
 			@if($y == (5 - $x))
 			<tr>
-				<td colspan="8" class="bordered-bottom bordered-left bordered-right">&nbsp;</td>
+				<td colspan="8" class="bordered-bottom bordered-left bordered-right bottom">&nbsp;</td>
 			</tr>
 			@else
 			<tr>
@@ -107,10 +112,10 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td class="bordered-right">&nbsp;</td>
+				<td class="spek">&nbsp;</td>
+				<td class="rawmat">&nbsp;</td>
+				<td class="rawmat">&nbsp;</td>
+				<td class="bordered-right rawmat">&nbsp;</td>
 			</tr>
 			@endif
 			@endfor
@@ -133,7 +138,7 @@
 					</tr>
 				</table>
 			</td>
-			<td style="width: 300px">
+			<td style="width: 300px" class="rawmat">
 				<?php $mu_shortcut = (! empty($row->mu_shortcut) ? $row->mu_shortcut : '') ?>
 				<table>
 					@if($head->po_is_ppn != 2)
