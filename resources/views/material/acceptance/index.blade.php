@@ -18,7 +18,8 @@
 			<tr>
 				<th>No</th>
 				<th>Nomor PO</th>
-				<th>Tanggal Permintaan</th>
+				<th>Supplier</th>
+				<th>Tgl Permintaan</th>
 				<th>Penerimaan Terakhir</th>
 				<th>Keterangan</th>
 				<th>Aksi</th>
@@ -31,6 +32,7 @@
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
+				<td>{{ $row->sup_nama }}</td>
 				<td class="text-center">{{ to_indDate($row->po_tgl_kedatangan) }}</td>
 				<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
 				<td class="text-center"><?php echo dateDiff($row->po_tgl_kedatangan, $row->pener_date) ?></td>
