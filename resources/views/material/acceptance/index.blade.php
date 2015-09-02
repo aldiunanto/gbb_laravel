@@ -50,5 +50,14 @@
 		@endforeach
 		</tbody>
 	</table>
+
+	<fieldset class="label-info">
+		<legend>Label Info</legend>
+		<ul>
+			<li><span class="status pm-reject-vice label">&nbsp;</span> - Terlambat [x] Hari</li>
+			<li><span class="status po-done label">&nbsp;</span> - Lebih cepat [x] Hari</li>
+			<li><span class="status vice-approve label">&nbsp;</span> - Tepat waktu</li>
+		</ul>
+	</fieldset>
 </div>
 @endsection
