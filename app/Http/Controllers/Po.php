@@ -197,5 +197,15 @@ class Po extends Controller {
 
 		return view('po.acceptanceDetail', $data);
 	}
+	public function closing($po_id)
+	{
+		$get = PoModel::find($po_id);
+
+		$get->po_status = 2;
+		$get->save();
+
+		Session::flash('inserted', '<div class="info success">PO dengan nomor ' . $get->po_no . ' sudah di-closing.</div>');
+		return redirect('po');
+	}
 
 }
