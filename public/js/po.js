@@ -11,6 +11,7 @@ po = {
 			this._viewDetail();
 			this._matAcceptanceDetail();
 			this._acceptanceDetail();
+			this._closePO();
 
 			this._dataTables();
 		},
@@ -107,6 +108,19 @@ po = {
 				});
 			});
 		},
+		_closePO: function(){
+			$('.close-po').on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+				
+				LIBS.confirmation({
+					'text'		: 'Apakah anda yakin ingin meng-closing PO ini sementara quantity permintaan barang belum terpenuhi?',
+					'okAction'	: function(){
+						window.location.href = options.baseUrl + 'po/closing/' + el.attr('href');
+					}
+				});
+			});
+		}
 	},
 	create: {
 		init: function(){
