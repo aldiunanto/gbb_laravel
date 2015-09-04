@@ -33,7 +33,7 @@
 				<tr class="new-pener">
 					<td colspan="4">
 						@if($head->po_status == 1)
-						<a href="{{ url('material/acceptance/retur/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
+						<a href="{{ url('material/acceptance/retur/create/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
 						@endif
 
 						{{ to_indDate($row->pener_date) }}
