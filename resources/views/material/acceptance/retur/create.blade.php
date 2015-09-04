@@ -40,6 +40,7 @@
 					<th>Satuan</th>
 					<th>Diterima</th>
 					<th>Jml Retur</th>
+					<th>Alasan</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,6 +52,7 @@
 					<td class="text-center">Pcs</td>
 					<td class="text-right">300</td>
 					<td class="text-center jml_retur"><input type="text" name="jml_retur[]" /></td>
+					<td class="text-center reason"><textarea name="reason[]"></textarea></td>
 				</tr>
 			</tbody>
 		</table>
