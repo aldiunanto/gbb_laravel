@@ -116,7 +116,20 @@ po = {
 				LIBS.confirmation({
 					'text'		: 'Apakah anda yakin ingin meng-closing PO ini sementara quantity permintaan barang belum terpenuhi?',
 					'okAction'	: function(){
-						window.location.href = options.baseUrl + 'po/closing/' + el.attr('href');
+						$('#confirmation .container').slideUp(300, function(){
+							$(this).parent().fadeOut(200, function(){
+								var popupContent = LIBS.callAjax('po/closingForm', 'poId=' + el.attr('href'));
+								LIBS.popupDialog('open', {
+									'caption'		: 'Closing PO - alasan...',
+									'content'		: popupContent,
+									'posButtonText'	: 'tutup po',
+									'okAction'		: function(){
+										alert('Hello');
+									},
+									'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+								});
+							});
+						});
 					}
 				});
 			});
