@@ -197,9 +197,14 @@ class Po extends Controller {
 
 		return view('po.acceptanceDetail', $data);
 	}
-	public function closing($po_id)
+
+	public function closingForm()
 	{
-		$get = PoModel::find($po_id);
+		return view('po.closingForm', ['po_id' => $_POST['poId']]);
+	}
+	public function closing()
+	{
+		$get = PoModel::find($_POST['po_id']);
 
 		$get->po_status = 2;
 		$get->save();
