@@ -660,7 +660,8 @@ class Material extends Controller {
 			'title'		=> 'Form Pengendalian Barang Tidak Sesuai',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur', 'material/acceptance/retur/create/'.$pener_id => 'Create'],
-			'opened'	=> 'material'
+			'opened'	=> 'material',
+			'head'		=> Pener::fetchHead($pener_id)
 		];
 
 		return view('material.acceptance.retur.create', $data);
