@@ -11,7 +11,7 @@ class Penerimaan_sub extends Model {
 
 	public static function fetchDetail($where = null){
 		$i 		= new static;
-		$query	= self::select('B.pener_id', 'B.pener_date', 'B.created_at', $i->table.'.peners_jml', 'E.pbs_jml', 'D.po_no', 'F.mat_id', 'F.mat_nama', 'F.mat_spesifikasi', 'G.mats_nama', 'H.wrn_nama')
+		$query	= self::select('B.pener_id', 'B.pener_date', 'B.created_at', $i->table.'.'.$i->primaryKey, $i->table.'.peners_jml', 'E.pbs_jml', 'D.po_no', 'F.mat_id', 'F.mat_nama', 'F.mat_spesifikasi', 'G.mats_nama', 'H.wrn_nama')
 					->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
 					->join('po_sub_laravel AS C', $i->table.'.pos_id', '=', 'C.pos_id')
 					->join('po_laravel AS D', 'C.po_id', '=', 'D.po_id')
