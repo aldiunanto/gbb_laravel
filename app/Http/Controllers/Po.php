@@ -202,14 +202,15 @@ class Po extends Controller {
 	{
 		return view('po.closingForm', ['po_id' => $_POST['poId']]);
 	}
-	public function closing()
+	public function closing(Request $req)
 	{
-		$get = PoModel::find($_POST['po_id']);
+		$get = PoModel::find($req->input('po_id'));
 
 		$get->po_status = 2;
+		$get->po_reason = trim($req->input('po_reason'));
 		$get->save();
 
-		Session::flash('inserted', '<div class="info success">PO dengan nomor ' . $get->po_no . ' sudah di-closing.</div>');
+		Session::flash('inserted', '<div class="info success">PO dengan nomor <strong>' . $get->po_no . '</strong> sudah di-closing.</div>');
 		return redirect('po');
 	}
 
