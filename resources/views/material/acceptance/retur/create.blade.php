@@ -71,7 +71,10 @@
 						<td class="text-center">{{ empty($row->wrn_nama) ? '-' : $row->wrn_nama }}</td>
 						<td class="text-center">{{ $row->mats_nama }}</td>
 						<td class="text-right">{{ $row->peners_jml }}</td>
-						<td class="text-center jml_retur"><input type="text" name="jml_retur[]" class="text-right" /></td>
+						<td class="text-center jml_retur">
+							<input type="hidden" name="peners_id[]" value="{{ $row->peners_id }}" />
+							<input type="text" name="jml_retur[]" class="text-right" />
+						</td>
 						<td class="text-center reason"><textarea name="reason[]"></textarea></td>
 					</tr>
 					@endforeach
@@ -87,8 +90,8 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
 
 @endsection
