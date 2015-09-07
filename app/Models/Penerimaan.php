@@ -28,5 +28,13 @@ class Penerimaan extends Model {
 					->orderBy('pener_date', 'ASC')
 					->get();
 	}
+	public static function fetchHead($pener_id){
+		$i = new static;
+		return self::select($i->table.'.pener_date', $i->table.'.created_at', 'B.po_no', 'D.sup_nama')
+					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
+					->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
+					->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
+					->where($i->table.'.'.$i->primaryKey, $pener_id)->first();
+	}
 
 }
