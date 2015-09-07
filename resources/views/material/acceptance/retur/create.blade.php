@@ -9,23 +9,31 @@
 <div class="main">
 	<div class="form">
 		<div class="base-info">
-			<table>
-				<tr>
-					<td>Nomor PO</td>
-					<td>:</td>
-					<td><strong>NP/002/VII/JIU/2015</strong></td>
-				</tr>
-				<tr>
-					<td>Supplier</td>
-					<td>:</td>
-					<td>Aldi Unanto</td>
-				</tr>
-				<tr>
-					<td>Tanggal Penerimaan</td>
-					<td>:</td>
-					<td>22-08-2015 21:21:22</td>
-				</tr>
-			</table>
+			<fieldset>
+				<legend><h4>Informasi PO</h4></legend>
+				<table>
+					<tr>
+						<td>Nomor PO</td>
+						<td>:</td>
+						<td><strong>{{ $head->po_no }}</strong></td>
+					</tr>
+					<tr>
+						<td>Supplier</td>
+						<td>:</td>
+						<td>{{ $head->sup_nama }}</td>
+					</tr>
+					<tr>
+						<td>Tanggal Penerimaan</td>
+						<td>:</td>
+						<td>{{ $head->pener_date }}</td>
+					</tr>
+					<tr>
+						<td>Tanggal Input</td>
+						<td>:</td>
+						<td>{{ $head->created_at }}</td>
+					</tr>
+				</table>
+			</fieldset>
 		</div>
 		<div class="caption">
 			<h3>Material</h3>
