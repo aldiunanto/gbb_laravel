@@ -124,7 +124,7 @@ po = {
 									'content'		: popupContent,
 									'posButtonText'	: 'tutup po',
 									'okAction'		: function(){
-										alert('Hello');
+										$('.closing-form form').submit();
 									},
 									'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 								});
