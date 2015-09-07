@@ -668,5 +668,9 @@ class Material extends Controller {
 
 		return view('material.acceptance.retur.create', $data);
 	}
+	public function acceptanceReturStore(Request $req)
+	{
+		print_r($_POST);
+	}
 
 }
