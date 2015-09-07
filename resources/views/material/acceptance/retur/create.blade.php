@@ -25,12 +25,17 @@
 					<tr>
 						<td>Tanggal Penerimaan</td>
 						<td>:</td>
-						<td>{{ $head->pener_date }}</td>
+						<td>{{ to_indDate($head->pener_date) }}</td>
 					</tr>
 					<tr>
 						<td>Tanggal Input</td>
 						<td>:</td>
-						<td>{{ $head->created_at }}</td>
+						<td>
+							<?php
+								$created = explode(' ', $head->created_at);
+								echo to_indDate($created[0]) . ' ' . $created[1];
+							?>
+						</td>
 					</tr>
 				</table>
 			</fieldset>
