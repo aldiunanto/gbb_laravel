@@ -8,68 +8,87 @@
 </div>
 <div class="main">
 	<div class="form">
-		<div class="base-info">
-			<fieldset>
-				<legend><h4>Informasi PO</h4></legend>
-				<table>
+
+		<form action="{{ url('material/acceptance/retur/store') }}" method="post">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+			<input type="hidden" name="pener_id" value="{{ $pener_id }}" />
+
+			<div class="base-info">
+				<fieldset>
+					<legend><h4>Informasi PO</h4></legend>
+					<table>
+						<tr>
+							<td>Nomor PO</td>
+							<td>:</td>
+							<td><strong>{{ $head->po_no }}</strong></td>
+						</tr>
+						<tr>
+							<td>Supplier</td>
+							<td>:</td>
+							<td>{{ $head->sup_nama }}</td>
+						</tr>
+						<tr>
+							<td>Tanggal Penerimaan</td>
+							<td>:</td>
+							<td>{{ to_indDate($head->pener_date) }}</td>
+						</tr>
+						<tr>
+							<td>Tanggal Input</td>
+							<td>:</td>
+							<td>
+								<?php
+									$created = explode(' ', $head->created_at);
+									echo to_indDate($created[0]) . ' ' . $created[1];
+								?>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</div>
+			<div class="caption">
+				<h3>Material</h3>
+			</div>
+			<table class="data-list">
+				<thead>
 					<tr>
-						<td>Nomor PO</td>
-						<td>:</td>
-						<td><strong>{{ $head->po_no }}</strong></td>
+						<th>No</th>
+						<th>Material</th>
+						<th>Spesifikasi</th>
+						<th>Warna</th>
+						<th>Satuan</th>
+						<th>Diterima</th>
+						<th>Jml Retur</th>
+						<th>Alasan</th>
 					</tr>
+				</thead>
+				<tbody>
+					<?php $x = 0; ?>
+					@foreach($fetch as $row)
 					<tr>
-						<td>Supplier</td>
-						<td>:</td>
-						<td>{{ $head->sup_nama }}</td>
+						<td class="text-right">{{ ++$x }}.</td>
+						<td>{{ $row->mat_nama }}</td>
+						<td>{{ $row->mat_spesifikasi }}</td>
+						<td class="text-center">{{ empty($row->wrn_nama) ? '-' : $row->wrn_nama }}</td>
+						<td class="text-center">{{ $row->mats_nama }}</td>
+						<td class="text-right">{{ $row->peners_jml }}</td>
+						<td class="text-center jml_retur"><input type="text" name="jml_retur[]" class="text-right" /></td>
+						<td class="text-center reason"><textarea name="reason[]"></textarea></td>
 					</tr>
-					<tr>
-						<td>Tanggal Penerimaan</td>
-						<td>:</td>
-						<td>{{ to_indDate($head->pener_date) }}</td>
-					</tr>
-					<tr>
-						<td>Tanggal Input</td>
-						<td>:</td>
-						<td>
-							<?php
-								$created = explode(' ', $head->created_at);
-								echo to_indDate($created[0]) . ' ' . $created[1];
-							?>
-						</td>
-					</tr>
-				</table>
-			</fieldset>
-		</div>
-		<div class="caption">
-			<h3>Material</h3>
-		</div>
-		<table class="data-list">
-			<thead>
+					@endforeach
+				</tbody>
+			</table>
+			<table>
 				<tr>
-					<th>No</th>
-					<th>Material</th>
-					<th>Spesifikasi</th>
-					<th>Warna</th>
-					<th>Satuan</th>
-					<th>Diterima</th>
-					<th>Jml Retur</th>
-					<th>Alasan</th>
+					<td class="text-right">
+						<div class="actions">
+							<a href="{{ url('material/acceptance') }}" class="btn default"><i class="fa fa-mail-reply"></i>Batal</a>
+							<button class="btn warning" name="save"><i class="fa fa-check"></i>Retur</button>
+						</div>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="text-right">1.</td>
-					<td>Spidol</td>
-					<td>Size M</td>
-					<td class="text-center">Putih</td>
-					<td class="text-center">Pcs</td>
-					<td class="text-right">300</td>
-					<td class="text-center jml_retur"><input type="text" name="jml_retur[]" /></td>
-					<td class="text-center reason"><textarea name="reason[]"></textarea></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+			</table>
+		</div>
+	</form>
 </div>
 
 @endsection
