@@ -31,7 +31,13 @@
 			<tbody>
 				@foreach($fetch as $row)
 				<tr class="new-pener">
-					<td colspan="4">{{ to_indDate($row->pener_date) }}</td>
+					<td colspan="4">
+						@if($head->po_status == 1)
+						<a href="{{ url('material/acceptance/retur/create/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
+						@endif
+
+						{{ to_indDate($row->pener_date) }}
+					</td>
 				</tr>
 					@foreach($Peners::fetchDetail(['B.pener_id' => $row->pener_id]) as $sub)
 					<tr>

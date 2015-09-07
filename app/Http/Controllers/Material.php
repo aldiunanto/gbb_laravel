@@ -650,4 +650,21 @@ class Material extends Controller {
 		return view('material.acceptance.show', $data);
 	}
 
+	public function acceptanceRetur()
+	{
+		return 'acceptance retur list';
+	}
+	public function acceptanceReturCreate($pener_id)
+	{
+		$data = [
+			'title'		=> 'Form Pengendalian Barang Tidak Sesuai',
+			'asset'		=> new Assets(),
+			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur', 'material/acceptance/retur/create/'.$pener_id => 'Create'],
+			'opened'	=> 'material',
+			'head'		=> Pener::fetchHead($pener_id)
+		];
+
+		return view('material.acceptance.retur.create', $data);
+	}
+
 }

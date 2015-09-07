@@ -11,6 +11,7 @@ po = {
 			this._viewDetail();
 			this._matAcceptanceDetail();
 			this._acceptanceDetail();
+			this._closePO();
 
 			this._dataTables();
 		},
@@ -107,6 +108,32 @@ po = {
 				});
 			});
 		},
+		_closePO: function(){
+			$('.close-po').on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+				
+				LIBS.confirmation({
+					'text'		: 'Apakah anda yakin ingin meng-closing PO ini sementara quantity permintaan barang belum terpenuhi?',
+					'okAction'	: function(){
+						$('#confirmation .container').slideUp(300, function(){
+							$(this).parent().fadeOut(200, function(){
+								var popupContent = LIBS.callAjax('po/closingForm', 'poId=' + el.attr('href'));
+								LIBS.popupDialog('open', {
+									'caption'		: 'Closing PO - alasan...',
+									'content'		: popupContent,
+									'posButtonText'	: 'tutup po',
+									'okAction'		: function(){
+										$('.closing-form form').submit();
+									},
+									'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+								});
+							});
+						});
+					}
+				});
+			});
+		}
 	},
 	create: {
 		init: function(){

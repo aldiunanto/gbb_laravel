@@ -360,7 +360,7 @@ material = {
 			}
 		},
 		_viewDetail: function(){
-			$('.view-detail').on('click', function(e){
+			$('.main table.data-list').on('click', '.view-detail', function(e){
 				e.preventDefault();
 
 				var el = $(this);

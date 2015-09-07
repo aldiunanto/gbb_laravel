@@ -89,10 +89,16 @@
 						}
 
 						if($accepted != 0 && ! is_null($row->pener_date)){
-							echo '<span class="status '.$class.'" title="'.$text['f']['t'].$text['s']['t'].'">'.$text['f']['c'].$text['s']['c'].'</span>';
+							$status = '<span class="status '.$class.'" title="'.$text['f']['t'].$text['s']['t'].'">'.$text['f']['c'].$text['s']['c'].'</span>';
 						}else{
-							echo '-';
+							$status = '-';
 						}
+
+						if($text['f_type'] == 'min' && $row->po_status == 2){
+							$status = '<span class="status cuted-po" title="Closed, kurang '.$diff.' qty. (Potong PO)">Closed, -'.$diff.'Q</span>';
+						}
+
+						echo $status;
 
 					?>
 				</td>
@@ -104,6 +110,10 @@
 								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
 								@if($accepted != 0 && ! is_null($row->pener_date))
 								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
+								@endif
+
+								@if(($role == 2 || $role == 1) && $text['f_type'] == 'min' && $row->po_status == 1)
+								<li><a href="{{ $row->po_id }}" class="close-po"><i class="fa fa-check-square-o"></i>Close</a></li>
 								@endif
 
 								@if($role != 3 && $role != 4)
@@ -133,6 +143,7 @@
 			<li><span class="status over-min">&nbsp;</span> - Lebih [x], telat [y] hari</li>
 			<li><span class="status over-plus">&nbsp;</span> - Lebih [x], lebih awal [y] hari</li>
 			<li><span class="status over-ontime">&nbsp;</span> - Lebih [x], tepat watu</li>
+			<li><span class="status cuted-po">&nbsp;</span> - Closed, kurang [x] qty. (Potong PO)</li>
 		</ul>
 	</fieldset>
 </div>
