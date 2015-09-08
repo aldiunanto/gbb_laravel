@@ -23,10 +23,10 @@ use Illuminate\Http\Request;
 
 class Material extends Controller {
 
-	protected $role;
+	private $_user;
 
 	public function __construct(){
-		$this->role = Auth::user()->hak_akses;
+		$this->_user = Auth::user();
 	}
 	/**
 	 * Display a listing of the resource.
@@ -47,7 +47,7 @@ class Material extends Controller {
 			'fetch'		=> MatModel::fetchData(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'opened'	=> 'material',
-			'hak_akses'	=> $this->role,
+			'hak_akses'	=> $this->_user->hak_akses,
 			'getNumb'	=> function() use ($perPage, $request){
 				if($request->has('page') && $request->input('page') != 1){
 					return ($request->input('page') * $perPage) - $perPage;
@@ -77,7 +77,7 @@ class Material extends Controller {
 	 */
 	public function create()
 	{
-		$role = $this->role;
+		$role = $this->_user->hak_akses;
 		if($role == 2){
 			$accessable = ['', '', '', '', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"'];
 		}elseif($role == 3){
@@ -154,7 +154,7 @@ class Material extends Controller {
 	{
 		$data = [
 			'row'	=> MatModel::getDetail($id),
-			'role'	=> $this->role
+			'role'	=> $this->_user->hak_akses
 		];
 
 		return view('material.show', $data);
@@ -182,7 +182,7 @@ class Material extends Controller {
 		}
 
 
-		$role = $this->role;
+		$role = $this->_user->hak_akses;
 		switch($role){
 			case 1 : //admin
 				$accessable = ['', '', '', '', '', '', '', '', '', '', ''];	
@@ -240,7 +240,7 @@ class Material extends Controller {
 			return redirect('material/edit/' . $request->input('sup_id') . '/price');
 		}else{
 			$mat_id = $request->input('mat_id');
-			$role	= $this->role;
+			$role	= $this->_user->hak_akses;
 
 			$mat = MatModel::find($mat_id);
 
@@ -290,7 +290,7 @@ class Material extends Controller {
 	{
 		$perPage	= 20;
 		$s 			= ($request->has('s') ? $request->input('s') : null);
-		$role		= $this->role;
+		$role		= $this->_user->hak_akses;
 
 		$data = [
 			'title'		=> 'Daftar Permintaan Barang',
@@ -322,7 +322,7 @@ class Material extends Controller {
 		$data = [
 			'row'	=> Pb::fetchDetail($pb_id),
 			'list'	=> Pbs::fetchDetail($pb_id),
-			'role'	=> $this->role
+			'role'	=> $this->_user->hak_akses
 		];
 
 		return view('material.request.show', $data);
@@ -367,8 +367,8 @@ class Material extends Controller {
 		$once = Pb::find($request->input('pb_id'));
 
 		$once->pb_alasan_tolak 	= trim($request->input('pb_alasan_tolak'));
-		$once->pb_role_tolak	= $this->role;
-		$once->userid_reject	= Auth::user()->user_id;
+		$once->pb_role_tolak	= $this->_user->hak_akses;
+		$once->userid_reject	= $this->_user->user_id;
 		$once->pb_status		= 5;
 
 		$once->save();
@@ -429,7 +429,7 @@ class Material extends Controller {
 			'pb_tgl_butuh'	=> $req->input('pb_tgl_butuh'),
 			'pb_note'		=> trim($req->input('pb_note')),
 			'visibility'	=> 1,
-			'userid_input'	=> Auth::user()->user_id
+			'userid_input'	=> $this->_user->user_id
 		];
 
 		#pb_status, wether sudden-PO or not
@@ -521,7 +521,7 @@ class Material extends Controller {
 		$rec->pb_tgl_butuh	= $req->input('pb_tgl_butuh');
 		$rec->sup_id 		= $req->input('sup_id');
 		$rec->pb_note		= trim($req->input('pb_note'));
-		$rec->userid_edit	= Auth::user()->user_id;
+		$rec->userid_edit	= $this->_user->user_id;
 
 		$rec->save();
 
@@ -554,7 +554,7 @@ class Material extends Controller {
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
 			'fetch'		=> Pener::fetchData(),
 			'opened'	=> 'material',
-			'role'		=> $this->role
+			'role'		=> $this->_user->hak_akses
 		];
 
 		return view('material.acceptance.index', $data);
@@ -591,7 +591,7 @@ class Material extends Controller {
 		$vals = [
 			'po_id'			=> $_POST['po_id'],
 			'pener_date'	=> now(),
-			'userid_input'	=> Auth::user()->user_id,
+			'userid_input'	=> $this->_user->user_id,
 			'visibility'	=> 1
 		];
 
@@ -671,7 +671,7 @@ class Material extends Controller {
 	public function acceptanceReturStore(Request $req)
 	{
 		$vals = [
-			'userid_input'		=> Auth::user()->user_id,
+			'userid_input'		=> $this->_user->user_id,
 			'pener_id'			=> $req->input('pener_id'),
 			'returpener_status'	=> 1,
 			'visibility'		=> 1,
