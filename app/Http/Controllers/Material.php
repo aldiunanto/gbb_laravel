@@ -15,6 +15,8 @@ use App\Models\Po;
 use App\Models\Po_sub;
 use App\Models\Notification as Notif;
 use App\Models\Supplier as Supp;
+use App\Models\Retur_penerimaan as Returpener;
+use App\Models\Retur_penerimaan_sub as Returpeners;
 use Validator;
 use Session;
 use Auth;
@@ -652,7 +654,7 @@ class Material extends Controller {
 
 	public function acceptanceRetur()
 	{
-		return 'acceptance retur list';
+		return 'acceptance retur list.<br />' . Session::get('message');
 	}
 	public function acceptanceReturCreate($pener_id)
 	{
@@ -678,7 +680,26 @@ class Material extends Controller {
 			'created_at'		=> now(true)
 		];
 
-		print_r($vals);
+		$head = Returpener::create($vals);
+
+		$x = 0;
+		foreach($_POST['peners_id'] as $peners_id){
+			if(! empty($_POST['jml_retur'][$x]) && $_POST['jml_retur'][$x] != '0'){
+				$vals = [
+					'returpener_id'		=> $head->returpener_id,
+					'peners_id'			=> $peners_id,
+					'returpeners_jml'	=> trim($_POST['jml_retur'][$x]),
+					'returpeners_reason'=> trim($_POST['reason'][$x])
+				];
+
+				Returpeners::create($vals);
+			}
+
+			$x++;
+		}
+
+		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya data akan ditampilkan di QA untuk proses approvement.</div>');
+		return redirect('material/acceptance/retur');
 	}
 
 }
