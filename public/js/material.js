@@ -354,7 +354,7 @@ material = {
 			if($('.main table.data-list.index').length > 0){
 				$('.main table.data-list').DataTable({
 					'aoColumnDefs' : [
-						{ 'bSortable' : false, 'aTargets' : [0, 5] }
+						{ 'bSortable' : false, 'aTargets' : [0, 5, 6] }
 					]
 				});
 			}
@@ -427,6 +427,22 @@ material = {
 
 				if($(this).val() > diff){
 					alert('Maksimal diterima = ' + diff);
+					$(this).css('border', '1px solid #ff0000');
+				}else{
+					$(this).css('border', '1px solid #c2c1c1');
+				}
+			});
+		}
+	},
+	acceptanceReturCreate: {
+		init: function(){
+			this._controlDiretur();
+		},
+		_controlDiretur: function(){
+			$('input[name="jml_retur[]"]').on('change', function(){
+				var max = parseInt($(this).parent().prev().html());
+				if($(this).val() > max){
+					alert('Maksimal diretur = ' + max);
 					$(this).css('border', '1px solid #ff0000');
 				}else{
 					$(this).css('border', '1px solid #c2c1c1');
