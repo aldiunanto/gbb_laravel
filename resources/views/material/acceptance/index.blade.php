@@ -8,6 +8,8 @@
 	</div>
 	@endif
 	<h2>Daftar Penerimaan Material</h2>
+	<a href="{{ url('material/acceptance/retur') }}">Retur penerimaan &raquo;</a>
+
 	<div class="clearfix"></div>
 </div>
 <div class="main">

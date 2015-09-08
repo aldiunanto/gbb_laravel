@@ -670,7 +670,15 @@ class Material extends Controller {
 	}
 	public function acceptanceReturStore(Request $req)
 	{
-		print_r($_POST);
+		$vals = [
+			'userid_input'		=> Auth::user()->user_id,
+			'pener_id'			=> $req->input('pener_id'),
+			'returpener_status'	=> 1,
+			'visibility'		=> 1,
+			'created_at'		=> now(true)
+		];
+
+		print_r($vals);
 	}
 
 }
