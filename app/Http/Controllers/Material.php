@@ -654,7 +654,14 @@ class Material extends Controller {
 
 	public function acceptanceRetur()
 	{
-		return 'acceptance retur list.<br />' . Session::get('message');
+		$data = [
+			'title'		=> 'Daftar Retur Penerimaan',
+			'asset'		=> new Assets(),
+			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur'],
+			'opened'	=> 'material'
+		];
+
+		return view('material.acceptance.retur.index', $data);
 	}
 	public function acceptanceReturCreate($pener_id)
 	{
