@@ -31,8 +31,8 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
 				<td>{{ $row->sup_nama }}</td>
-				<td class="text-center">{{ $row->pener_date }}</td>
-				<td class="text-center">{{ $row->created_at }}</td>
+				<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
+				<td class="text-center"><?php $diket = explode(' ', $row->created_at); echo to_indDate($diket[0]); ?></td>
 				<td class="text-right">
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
