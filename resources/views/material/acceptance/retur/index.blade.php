@@ -1,9 +1,14 @@
 @extends('base')
 
 @section('content')
+
+@if($role != 3 && $fetchAppr->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
-	<h2><span>2</span>Persetujuan Retur Penerimaan</h2>
+	<h2>
+		<?php $count = count_returApprovement(); echo ($count == 0 ? '' : '<span>'.$count.'</span>') ?>
+		<?php echo ($role == 2 ? 'Retur Penerimaan di-approve' : 'Persetujuan Retur Penerimaan') ?>
+	</h2>
 	<div class="clearfix"></div>
 </div>
 <div class="main approving">	
@@ -20,12 +25,14 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php $x = 0 ?>
+			@foreach($fetchAppr as $row)
 			<tr>
-				<td class="text-right">1.</td>
-				<td>P/006/VIII/JIU/2015</td>
-				<td>Aldi Unanto</td>
-				<td class="text-center">28-08-2015</td>
-				<td class="text-center">30-08-2015</td>
+				<td class="text-right">{{ ++$x }}.</td>
+				<td>{{ $row->po_no }}</td>
+				<td>{{ $row->sup_nama }}</td>
+				<td class="text-center">{{ $row->pener_date }}</td>
+				<td class="text-center">{{ $row->created_at }}</td>
 				<td class="text-right">
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
@@ -40,7 +47,10 @@
 					</ul>
 				</td>
 			</tr>
+			@endforeach
 		</tbody>
 	</table>
 </div>
+@endif
+
 @endsection
