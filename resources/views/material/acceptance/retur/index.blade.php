@@ -37,11 +37,11 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="" class="view-retur-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
+								<li><a href="{{ url('material/acceptance/retur/show/' . $row->returpener_id) }}" class="view-retur-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
 								<li class="separator">&nbsp;</li>
 
-								<li><a href="" class="do-approve"><i class="fa fa-check"></i>Setujui</a></li>
-								<li><a href="" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
+								<li><a href="{{ url('material/acceptance/retur/accept/' . $row->returpener_id) }}" class="do-approve"><i class="fa fa-check"></i>Setujui</a></li>
+								<li><a href="{{ url('material/acceptance/retur/reject/' . $row->returpener_id) }}" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
 							</ul>
 						</li>
 					</ul>
