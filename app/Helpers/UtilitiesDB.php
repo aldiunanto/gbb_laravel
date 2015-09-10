@@ -53,3 +53,19 @@
         if($role != 1) $count->where('gn_role', $role);
         return $count->count();
     }
+    function count_returApprovement(){
+        $role = Auth::user()->hak_akses;
+        if($role == 3) return 0;
+
+        $count = DB::table('retur_penerimaan_laravel')->where('visibility', 1);
+
+        switch($role){
+            case 2 : $count->where('returpener_status', 5); break;
+            case 4 : $count->where('returpener_status', 3); break;
+            case 5 : $count->where('returpener_status', 4); break;
+            case 6 : $count->where('returpener_status', 2); break;
+            case 7 : $count->where('returpener_status', 1); break;
+        }
+
+        return $count->count();
+    }
