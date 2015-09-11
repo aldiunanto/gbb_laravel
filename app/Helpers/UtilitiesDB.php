@@ -2,7 +2,7 @@
 
 	function count_request(){
         $role = Auth::user()->hak_akses;
-        if($role == 3) return 0;
+        if($role == 3 || $role == 6 || $role == 7) return 0;
 
         $count = DB::table('permintaan_barang')->where('visibility', 1);
 
