@@ -28,5 +28,15 @@ class Retur_penerimaan extends Model {
 
 		return $get->orderBy($i->table.'.created_at', 'DESC')->get();
 	}
+	public static function fetchHead($returpener_id){
+		$i = new static;
+		return self::select($i->table.'.created_at', 'C.po_no', 'E.sup_nama', 'B.pener_date')
+					->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+					->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
+					->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')
+					->join('supplier_laravel AS E', 'D.sup_id', '=', 'E.sup_id')
+					->where($i->table.'.'.$i->primaryKey, $returpener_id)
+					->first();
+	}
 
 }
