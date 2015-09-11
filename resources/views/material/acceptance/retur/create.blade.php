@@ -14,13 +14,7 @@
 			<input type="hidden" name="pener_id" value="{{ $pener_id }}" />
 
 			<div class="base-info">
-				<div class="diketahui">
-					Tanggal diketahui: 
-					<?php
-						$created = explode(' ', $head->created_at);
-						echo to_indDate($created[0]) . ' ' . $created[1];
-					?>
-				</div>
+				<span class="diketahui">Tanggal diketahui: {{ now() }}</span>
 
 				<fieldset>
 					<legend><h4>Informasi PO</h4></legend>
@@ -39,6 +33,16 @@
 							<td>Tanggal Penerimaan</td>
 							<td>:</td>
 							<td>{{ to_indDate($head->pener_date) }}</td>
+						</tr>
+						<tr>
+							<td>Tanggal Input</td>
+							<td>:</td>
+							<td>
+								<?php
+									$created = explode(' ', $head->created_at);
+									echo to_indDate($created[0]) . ' ' . $created[1];
+								?>
+							</td>
 						</tr>
 					</table>
 				</fieldset>
