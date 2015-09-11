@@ -710,5 +710,13 @@ class Material extends Controller {
 		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya data akan ditampilkan di QA untuk proses approvement.</div>');
 		return redirect('material/acceptance/retur');
 	}
+	public function acceptanceReturShow($returpener_id)
+	{
+		$data = [
+			'head'	=> Returpener::fetchHead($returpener_id)
+		];
+
+		return view('material.acceptance.retur.show', $data);
+	}
 
 }
