@@ -434,6 +434,25 @@ material = {
 			});
 		}
 	},
+	acceptanceRetur: {
+		init: function(){
+			this._returDetail();
+		},
+		_returDetail: function(){
+			$('.view-retur-detail').on('click', function(e){
+				var el = $(this);
+				e.preventDefault();
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Retur Detail',
+					'content'		: LIBS.callAjax(el.attr('href')),
+					'posButtonText'	: 'ok',
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		}
+	},
 	acceptanceReturCreate: {
 		init: function(){
 			this._controlDiretur();
