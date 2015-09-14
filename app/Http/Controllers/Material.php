@@ -713,7 +713,8 @@ class Material extends Controller {
 	public function acceptanceReturShow($returpener_id)
 	{
 		$data = [
-			'head'	=> Returpener::fetchHead($returpener_id)
+			'head'	=> Returpener::fetchHead($returpener_id),
+			'fetch'	=> Returpeners::fetch($returpener_id)
 		];
 
 		return view('material.acceptance.retur.show', $data);
