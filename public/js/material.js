@@ -140,7 +140,7 @@ material = {
 	request: {
 		init: function(){
 			this._viewRequestDetail();
-			this._doApprove('Permintan Material');
+			this._doApprove();
 			this._doReject();
 			
 			material.index._delete('Anda yakin ingin menghapus Permintaan Material ini?');
@@ -165,13 +165,13 @@ material = {
 				});
 			}
 		},
-		_doApprove: function(msg){
+		_doApprove: function(){
 			$('.do-approve').on('click', function(e){
 				e.preventDefault();
 				var el = $(this);
 
 				LIBS.confirmation({
-					'text'		: 'Apakah anda yakin akan meng-approve ' + msg + ' ini?',
+					'text'		: 'Apakah anda yakin akan meng-approve Permintan Material ini?',
 					'okAction'	: function(){
 						window.location.href = el.attr('href');
 					}
@@ -437,8 +437,7 @@ material = {
 	acceptanceRetur: {
 		init: function(){
 			this._returDetail();
-
-			material.request._doApprove('Retur Penerimaan Material');
+			this._doApprove();
 		},
 		_returDetail: function(){
 			$('.view-retur-detail').on('click', function(e){
@@ -451,6 +450,34 @@ material = {
 					'posButtonText'	: 'ok',
 					'okAction'		: function(){ LIBS.popupDialog('close'); },
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		},
+		_doApprove: function(){
+			$('.do-approve').on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+
+				LIBS.confirmation({
+					'text'		: 'Apakah anda yakin akan meng-approve Retur Penerimaan Material ini?',
+					'okAction'	: function(){
+						if(el.hasClass('vd')){
+							$('#confirmation .container').slideUp(300, function(){
+								$(this).parent().fadeOut(200, function(){
+									LIBS.popupDialog('open', {
+										'caption'		: 'Keterangan Tambahan',
+										'content'		: LIBS.callAjax('material/acceptance/retur/acceptForm'),
+										'cancelAction'	: function(){ LIBS.popupDialog('close'); },
+										'okAction'		: function(){
+											alert('You clicked OK');
+										}
+									});
+								});
+							});
+						}else{
+							window.location.href = el.attr('href');
+						}
+					}
 				});
 			});
 		}
