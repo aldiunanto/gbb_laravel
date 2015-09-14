@@ -140,7 +140,7 @@ material = {
 	request: {
 		init: function(){
 			this._viewRequestDetail();
-			this._doApprove();
+			this._doApprove('Permintan Material');
 			this._doReject();
 			
 			material.index._delete('Anda yakin ingin menghapus Permintaan Material ini?');
@@ -165,13 +165,13 @@ material = {
 				});
 			}
 		},
-		_doApprove: function(){
+		_doApprove: function(msg){
 			$('.do-approve').on('click', function(e){
 				e.preventDefault();
 				var el = $(this);
 
 				LIBS.confirmation({
-					'text'		: 'Apakah anda yakin akan meng-approve Permintan Material ini?',
+					'text'		: 'Apakah anda yakin akan meng-approve ' + msg + ' ini?',
 					'okAction'	: function(){
 						window.location.href = el.attr('href');
 					}
@@ -437,6 +437,8 @@ material = {
 	acceptanceRetur: {
 		init: function(){
 			this._returDetail();
+
+			material.request._doApprove('Retur Penerimaan Material');
 		},
 		_returDetail: function(){
 			$('.view-retur-detail').on('click', function(e){
