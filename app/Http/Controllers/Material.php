@@ -748,5 +748,9 @@ class Material extends Controller {
 		Session::flash('message', '<div class="info success">Retur penerimaan material telah di-approve.</div>');
 		return redirect('material/acceptance/retur');
 	}
+	public function acceptForm()
+	{
+		return view('material.acceptance.retur.acceptForm');
+	}
 
 }
