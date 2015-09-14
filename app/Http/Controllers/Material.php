@@ -346,15 +346,15 @@ class Material extends Controller {
 		switch($req->pb_status){
 			case 1 : //approved by PPIC
 				$set = 2;
-				$req->ppic_approved_at = date('Y-m-d H:i:s');
+				$req->ppic_approved_at = now(true);
 			break;
 			case 2 : //approved by Vice Director
 				$set = 3;
-				$req->vd_approved_at = date('Y-m-d H:i:s');
+				$req->vd_approved_at = now(true);
 			break;
 		}
 
-		$req->pb_status 	= $set;
+		$req->pb_status = $set;
 		$req->save();
 
 		Session::flash('accepted', '<div class="info success">Permintaan telah di-approve.</div>');
@@ -718,6 +718,35 @@ class Material extends Controller {
 		];
 
 		return view('material.acceptance.retur.show', $data);
+	}
+	public function acceptanceReturAccept($returpener_id)
+	{
+		$get = Returpener::find($returpener_id);
+
+		switch($get->returpener_status){
+			case 1 :
+				$status = 2;
+				$get->qa_approved_at = now(true);
+			break;
+			case 2 :
+				$status = 3;
+				$get->kprod_approved_at = now(true);
+			break;
+			case 3 :
+				$status = 4;
+				$get->ppic_approved_at = now(true);
+			break;
+			case 4 :
+				$status = 5;
+				$get->vd_approved_at = now(true);
+			break;
+		}
+
+		$get->returpener_status = $status;
+		$get->save();
+
+		Session::flash('message', '<div class="info success">Retur penerimaan material telah di-approve.</div>');
+		return redirect('material/acceptance/retur');
 	}
 
 }
