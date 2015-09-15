@@ -49,49 +49,35 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Item</th>
-				<th>Spec</th>
-				<th>QTY</th>
-				<th>Unit</th>
+				<th>Barang</th>
+				<th>Spek</th>
+				<th>Jumlah</th>
+				<th>Satuan</th>
 				<th>Keterangan</th>
 			</tr>
 		</thead>
 		<tbody>
+			@foreach($sub as $row)
 			<tr>
-				<td>O/S RUBBER EXECUTIVE LADIES</td>
-				<td>Size 39</td>
-				<td>3</td>
-				<td>Pcs</td>
-				<td>Pleteran Belakang/Reject</td>
+				<td>{{ $row->mat_nama }}</td>
+				<td>{{ $row->mat_spesifikasi }}</td>
+				<td>{{ $row->returpeners_jml }}</td>
+				<td>{{ $row->mats_nama }}</td>
+				<td>{{ $row->returpeners_reason }}</td>
 			</tr>
-			<tr>
-				<td>O/S RUBBER EXECUTIVE LADIES</td>
-				<td>Size 41</td>
-				<td>32</td>
-				<td>Pcs</td>
-				<td>Pleteran Belakang/Reject</td>
-			</tr>
-			<tr>
-				<td>O/S RUBBER EXECUTIVE LADIES</td>
-				<td>Size 42</td>
-				<td>9</td>
-				<td>Pcs</td>
-				<td>Pleteran Belakang/Reject</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			</tr>
+			@endforeach
+
+			@if($sub->count() < 5)
+				@for($x = 1; $x <= (5 - $sub->count()); $x++)
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				@endfor
+			@endif
 		</tbody>
 	</table>
 </section>
