@@ -28,7 +28,7 @@
 	footer .top{ vertical-align: top; }
 	footer .name td{ height: 15px; }
 	footer table h5{ font-weight: normal; font-size: 14px; margin: 0; padding: 0; }
-	footer table table td{ border: 1px solid #000; }
+	footer table table td{ border: 1px solid #000; width: 60px; }
 	footer table table tr:last-child td{ height: 40px; }
-	footer table .iso-no{ text-align: left; }
+	footer table .iso-no{ text-align: center; }
 }

@@ -127,7 +127,9 @@
 			<td>LIVIA YUWONO</td>
 		</tr>
 		<tr>
-			<td colspan="4" class="iso-no">Form-ADM-036-0 Rev: 0-Hal: 1 / Agust'15</td>
+			<td>&nbsp;</td>
+			<td class="iso-no">Form-ADM-036-1</td>
+			<td colspan="2">&nbsp;</td>
 		</tr>
 	</table>
 </footer>
