@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+@media all{
+	.caption{
+		display: block;
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+	.caption h1{ font-size: 20px; }
+	.caption h2{ font-size: 15px; }
+
+	.base-info table{ float: right; }
+	.base-info .profile-info, .base-info .supp-info{ vertical-align: top; }
+	.base-info table tr td:first-child{ text-align: left; width: 100px; }
+	.base-info table tr td:nth-child(2){ width: 20px; }
+	.base-info table tr td:last-child{ text-align: left; }
+
+	.content{ margin-top: 10px; }
+	.content .info{ display: block; margin-bottom: 5px; }
+	.content .info > span{ display: block; font-weight: bold; }
+	.content table th, .content table td{ border: 1px solid #000; }
+	.content table th{ font-weight: bold; }
+	.content tbody tr td:first-child{ text-align: left; }
+
+	footer{ margin-top: 13px; }
+	footer .top{ vertical-align: top; }
+	footer .name td{ height: 15px; }
+	footer table h5{ font-weight: normal; font-size: 14px; margin: 0; padding: 0; }
+	footer table table td{ border: 1px solid #000; }
+	footer table table tr:last-child td{ height: 40px; }
+	footer table .iso-no{ text-align: left; }
+}
