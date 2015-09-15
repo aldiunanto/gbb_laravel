@@ -752,5 +752,12 @@ class Material extends Controller {
 	{
 		return view('material.acceptance.retur.acceptForm');
 	}
+	public function saveVdDesc(Request $req)
+	{
+		$get = Returpener::find($req->input('returpener_id'));
+		$get->returpener_vd_desc = trim($req->input('desc'));
+		
+		return $get->save();
+	}
 
 }

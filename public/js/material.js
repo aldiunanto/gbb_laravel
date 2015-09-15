@@ -469,7 +469,16 @@ material = {
 										'content'		: LIBS.callAjax('material/acceptance/retur/acceptForm'),
 										'cancelAction'	: function(){ LIBS.popupDialog('close'); },
 										'okAction'		: function(){
-											alert('You clicked OK');
+											var $desc = $('textarea[name="returpener_vd_desc"]');
+
+											if($desc.val()){
+												var splitted = el.attr('href').split('/');
+												var data = 'returpener_id=' + splitted[splitted.length-1] + '&desc=' + $desc.val();
+
+												LIBS.callAjax('material/acceptance/retur/saveVdDesc', data);
+											}
+
+											window.location.href = el.attr('href');
 										}
 									});
 								});
