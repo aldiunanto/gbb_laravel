@@ -19,22 +19,22 @@
 					<tr>
 						<td>Kepada Yth</td>
 						<td>:</td>
-						<td>PT. PILAR MAKMUR</td>
+						<td>{{ $head->sup_nama }}</td>
 					</tr>
 					<tr>
 						<td>Alamat</td>
 						<td>:</td>
-						<td>Tangerang</td>
+						<td>{{ $head->sup_alamat }}</td>
 					</tr>
 					<tr>
 						<td>Phone</td>
 						<td>:</td>
-						<td>021-8765789</td>
+						<td>{{ $head->sup_telepon }}</td>
 					</tr>
 					<tr>
 						<td>Attn</td>
 						<td>:</td>
-						<td>Bp. Bandi/Bp. Musa</td>
+						<td>{{ $head->sup_cp }}</td>
 					</tr>
 				</table>
 			</td>
@@ -43,7 +43,7 @@
 </header>
 <section class="content">
 	<div class="info">
-		<span class="date">Tanggal&emsp;&emsp;&nbsp;: 21-05-2015</span>
+		<span class="date">Tanggal&emsp;&emsp;&nbsp;:</span>
 		<span class="po-no">Nomor PO&emsp;: P/404/VIII/2015</span>
 	</div>
 	<table>
