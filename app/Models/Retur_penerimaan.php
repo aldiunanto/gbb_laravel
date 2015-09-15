@@ -19,6 +19,7 @@ class Retur_penerimaan extends Model {
 					->where($i->table.'.visibility', 1);
 
 		switch($role){
+			case 1 : $get->where($i->table.'.returpener_status', '<>', 6); break;
 			case 2 : $get->where($i->table.'.returpener_status', 5); break;
 			case 4 : $get->where($i->table.'.returpener_status', 3); break;
 			case 5 : $get->where($i->table.'.returpener_status', 4); break;
