@@ -98,8 +98,8 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
 				<td>{{ $row->sup_nama }}</td>
-				<td>{{ $row->pener_date }}</td>
-				<td>{{ $row->created_at }}</td>
+				<td>{{ to_inDate($row->pener_date) }}</td>
+				<td><?php $diket = explode(' ', $row->created_at); echo to_indDate($diket[0]); ?></td>
 				<td>
 					<?php
 						switch($row->returpener_status){
