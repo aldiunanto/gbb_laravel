@@ -2,6 +2,7 @@
 
 @section('content')
 
+{!! session('message') !!}
 @if($role != 3 && $fetchAppr->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
@@ -11,8 +12,7 @@
 	</h2>
 	<div class="clearfix"></div>
 </div>
-<div class="main approving">	
-	{!! session('message') !!}
+<div class="main approving">
 	<table class="data-list">
 		<thead>
 			<tr>
@@ -56,5 +56,87 @@
 	</table>
 </div>
 @endif
+
+<div class="top">
+	<div class="tools">
+		<div class="search" <?php echo (! is_null($search['s']) ? 'style="display: block;"' : '') ?>>
+			<form action="{{ url('material/acceptance/retur') }}" method="get">
+				<i class="fa fa-close"></i>
+				<select name="field">
+					<option value="po_no" <?php echo $isSelected('po_no') ?>>Nomor PO</option>
+					<option value="sup_nama" <?php echo $isSelected('sup_nama') ?>>Supplier</option>
+				</select>
+				<input type="text" name="s" value="{{ $search['s'] }}" placeholder="Kata pencarian.." />
+				<button><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i></a>
+	</div>
+	<h2>Daftar Retur Penerimaan Material <span>{{ $fetch->count() . ' dari ' . $fetch->total() }}</span></h2>
+	<div class="clearfix"></div>
+</div>
+<div class="main">
+	{!! session('deleted') !!}
+	{!! session('inserted') !!}
+	<table class="data-list">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Nomor PO</th>
+				<th>Supplier</th>
+				<th>Tgl Penerimaan</th>
+				<th>Tgl Diketahui</th>
+				<th>Status</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php $x = $getNumb(); ?>
+		@foreach($fetch as $row)
+
+			<tr>
+				<td class="text-right">{{ ++$x }}.</td>
+				<td>{{ $row->po_no }}</td>
+				<td>{{ $row->sup_nama }}</td>
+				<td>{{ $row->pener_date }}</td>
+				<td>{{ $row->created_at }}</td>
+				<td>
+					<?php
+						switch($row->returpener_status){
+							case 1: echo 'Menunggu persetujuan QA';  break;
+							case 2: echo 'Menunggu persetujuan Kepala Produksi'; break;
+							case 3: echo 'Menunggu persetujuan PPIC'; break;
+							case 4: echo 'Menunggu persetujuan Vice Director'; break;
+							case 5: echo 'Sudah di-approve Vice Director'; break;
+							case 6: echo 'Sudah dibuat surat jalan'; break;
+						}
+					?>
+				</td>
+				<td class="text-right">
+					<ul class="actions">
+						<li><span><i class="fa fa-angle-down"></i></span>
+							<ul>
+								<li><a href="{{ url('material/acceptance/retur/show/' . $row->returpener_id) }}" class="view-retur-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
+								<li class="separator">&nbsp;</li>
+
+								@if($row->returpener_status == 6 && ($role == 1 || $role == 2))
+								<li><a href="{{ url('printing/do/' . $row->returpener_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak Surat Jalan</a></li>
+								@endif
+
+								@if($role == 1 || $role == 5)
+								<li><a href="{{ url('material/acceptance/retur/destroy/' . $row->returpener_id) }}"><i class="fa fa-trash"></i>Hapus</a></li>
+								@endif
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+
+		@endforeach
+		</tbody>
+	</table>
+
+	<?php echo $fetch->render() ?>
+</div>
 
 @endsection

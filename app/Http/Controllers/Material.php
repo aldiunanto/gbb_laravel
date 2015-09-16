@@ -652,16 +652,40 @@ class Material extends Controller {
 		return view('material.acceptance.show', $data);
 	}
 
-	public function acceptanceRetur()
+	public function acceptanceRetur(Request $request)
 	{
+		$perPage	= 20;
+		$search 	= [
+			's'		=> ($request->has('s') ? $request->input('s') : null),
+			'field'	=> ($request->has('field') ? $request->input('field') : null)
+		];
 		$data = [
 			'title'		=> 'Daftar Retur Penerimaan',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur'],
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
-			'fetchAppr' => Returpener::fetchApprovement($this->_user->hak_akses)
+			'fetchAppr' => Returpener::fetchApprovement($this->_user->hak_akses),
+			'fetch'		=> Returpener::fetch(['search' => $search, 'perPage' => $perPage, 'role' => $this->_user->hak_akses]),
+			'search'	=> $search,
+			'getNumb'	=> function() use ($perPage, $request){
+				if($request->has('page') && $request->input('page') != 1){
+					return ($request->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
 		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('material'));
+		if($request->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
 
 		return view('material.acceptance.retur.index', $data);
 	}

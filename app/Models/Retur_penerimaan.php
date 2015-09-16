@@ -39,5 +39,34 @@ class Retur_penerimaan extends Model {
 					->where($i->table.'.'.$i->primaryKey, $returpener_id)
 					->first();
 	}
+	public static function fetch($args){
+		$i 		= new static;
+		$get 	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.returpener_status', 'C.po_no', 'E.sup_nama', 'B.pener_date', $i->table.'.created_at')
+					->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+					->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
+					->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')
+					->join('supplier_laravel AS E', 'D.sup_id', '=', 'E.sup_id')
+					->where($i->table.'.visibility', 1);
+
+		switch($args['role']){
+			#case 1, 3, & 7 (admin, rawmat, and QA) let them know all of datas
+
+			case 2: $get->whereIn($i->table.'.returpener_status', [5, 6]); break; //Purchasing
+			case 4: $get->whereIn($i->table.'.returpener_status', [3, 4, 5, 6]); break; //PPIC
+			case 5: $get->whereIn($i->table.'.returpener_status', [4, 5, 6]); break; //Vice Director
+			case 6: $get->whereIn($i->table.'.returpener_status', [2, 3, 4, 5, 6]); break; //K.a Prod
+		}
+
+		if(! is_null($args['search']['s'])){
+			switch($args['search']['field']){
+				case 'po_no'	: $preffix = 'C'; break;
+				case 'sup_nama'	: $preffix = 'E'; break;
+			}
+
+			$query->where($preffix.'.'.$args['search']['field'], 'LIKE', '%'.$args['search']['s'].'%');
+		}
+
+		return $get->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
+	}
 
 }
