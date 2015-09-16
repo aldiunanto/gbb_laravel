@@ -13,6 +13,7 @@
 
 	.base-info table{ float: right; }
 	.base-info .profile-info, .base-info .supp-info{ vertical-align: top; }
+	.base-info table tr td{ vertical-align: top; }
 	.base-info table tr td:first-child{ text-align: left; width: 100px; }
 	.base-info table tr td:nth-child(2){ width: 20px; }
 	.base-info table tr td:last-child{ text-align: left; }
