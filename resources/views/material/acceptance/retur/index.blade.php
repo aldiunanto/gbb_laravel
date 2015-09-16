@@ -70,7 +70,7 @@
 				<button><i class="fa fa-search"></i></button>
 			</form>
 		</div>
-		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i></a>
+		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
 	</div>
 	<h2>Daftar Retur Penerimaan Material <span>{{ $fetch->count() . ' dari ' . $fetch->total() }}</span></h2>
 	<div class="clearfix"></div>
@@ -98,9 +98,9 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
 				<td>{{ $row->sup_nama }}</td>
-				<td>{{ $row->pener_date }}</td>
-				<td>{{ $row->created_at }}</td>
-				<td>
+				<td class="text-center">{{ to_inDate($row->pener_date) }}</td>
+				<td class="text-center"><?php $diket = explode(' ', $row->created_at); echo to_indDate($diket[0]); ?></td>
+				<td class="text-center">
 					<?php
 						switch($row->returpener_status){
 							case 1: echo 'Menunggu persetujuan QA';  break;
