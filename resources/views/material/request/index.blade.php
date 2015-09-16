@@ -3,6 +3,7 @@
 @section('content')
 <input type="hidden" name="pm" value="true" />
 
+{!! session('accepted') !!}
 @if($hak_akses != 3 && $fetchReq->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
@@ -12,8 +13,7 @@
 	</h2>
 	<div class="clearfix"></div>
 </div>
-<div class="main approving">	
-	{!! session('accepted') !!}
+<div class="main approving">
 	<table class="data-list">
 		<thead>
 			<tr>
