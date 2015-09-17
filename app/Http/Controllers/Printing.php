@@ -40,7 +40,7 @@ class Printing extends Controller {
 				$eachMat->save();
 				#End
 
-				#Update is reduced
+				#Update is_reduced field
 				$each = Returpeners::find($mat->returpeners_id);
 
 				$each->returpeners_is_reduced = 1;
