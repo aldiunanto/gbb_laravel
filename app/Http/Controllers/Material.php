@@ -783,5 +783,15 @@ class Material extends Controller {
 		
 		return $get->save();
 	}
+	public function acceptanceReturDestroy($returpener_id)
+	{
+		$get = Returpener::find($returpener_id);
+
+		$get->visibility = 2;
+		$get->save();
+
+		Session::flash('deleted', '<span class="info warning">Data Retur Penerimaan Material telah dihapus.</span>');
+		return redirect('material/acceptance/retur/');
+	}
 
 }

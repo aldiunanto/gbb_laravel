@@ -442,6 +442,7 @@ material = {
 			material.index._openSearchForm();
 			material.index._closeSearchForm();
 			material.index._focusingSearch();
+			material.index._delete('Anda yakin ingin menghapus Retur Penerimaan Material ini?');
 		},
 		_returDetail: function(){
 			$('.view-retur-detail').on('click', function(e){

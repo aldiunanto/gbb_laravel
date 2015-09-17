@@ -124,7 +124,7 @@
 
 								@if($role == 1 || $role == 5)
 								<li class="separator">&nbsp;</li>
-								<li><a href="{{ url('material/acceptance/retur/destroy/' . $row->returpener_id) }}"><i class="fa fa-trash"></i>Hapus</a></li>
+								<li><a href="{{ url('material/acceptance/retur/destroy/' . $row->returpener_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>
 						</li>
