@@ -63,7 +63,7 @@ class Retur_penerimaan extends Model {
 				case 'sup_nama'	: $preffix = 'E'; break;
 			}
 
-			$query->where($preffix.'.'.$args['search']['field'], 'LIKE', '%'.$args['search']['s'].'%');
+			$get->where($preffix.'.'.$args['search']['field'], 'LIKE', '%'.$args['search']['s'].'%');
 		}
 
 		return $get->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
