@@ -137,6 +137,18 @@
 	</table>
 
 	<?php echo $fetch->render() ?>
+
+	<fieldset class="label-info">
+		<legend>Label Info</legend>
+		<ul>
+			<li><span class="status wait-ppic"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan QA</li>
+			<li><span class="status wait-vice"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Kepala Produksi</li>
+			<li><span class="status wait-ppic2"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan PPIC</li>
+			<li><span class="status wait-vd"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Vice Director</li>
+			<li><span class="status vice-approve"><i class="fa fa-check"></i></span> - Sudah di-approve Vice Director</li>
+			<li><span class="status po-done"><i class="fa fa-check"></i></span> - Sudah dibuat Surat Jalan</li>
+		</ul>
+	</fieldset>
 </div>
 
 @endsection
