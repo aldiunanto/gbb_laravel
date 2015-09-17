@@ -98,7 +98,7 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->po_no }}</td>
 				<td>{{ $row->sup_nama }}</td>
-				<td class="text-center">{{ to_inDate($row->pener_date) }}</td>
+				<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
 				<td class="text-center"><?php $diket = explode(' ', $row->created_at); echo to_indDate($diket[0]); ?></td>
 				<td class="text-center">
 					<?php
@@ -117,13 +117,13 @@
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('material/acceptance/retur/show/' . $row->returpener_id) }}" class="view-retur-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
-								<li class="separator">&nbsp;</li>
 
 								@if($row->returpener_status == 6 && ($role == 1 || $role == 2))
 								<li><a href="{{ url('printing/do/' . $row->returpener_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak Surat Jalan</a></li>
 								@endif
 
 								@if($role == 1 || $role == 5)
+								<li class="separator">&nbsp;</li>
 								<li><a href="{{ url('material/acceptance/retur/destroy/' . $row->returpener_id) }}"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>
