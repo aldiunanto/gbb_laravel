@@ -719,10 +719,11 @@ class Material extends Controller {
 		foreach($_POST['peners_id'] as $peners_id){
 			if(! empty($_POST['jml_retur'][$x]) && $_POST['jml_retur'][$x] != '0'){
 				$vals = [
-					'returpener_id'		=> $head->returpener_id,
-					'peners_id'			=> $peners_id,
-					'returpeners_jml'	=> trim($_POST['jml_retur'][$x]),
-					'returpeners_reason'=> trim($_POST['reason'][$x])
+					'returpener_id'			=> $head->returpener_id,
+					'peners_id'				=> $peners_id,
+					'returpeners_jml'		=> trim($_POST['jml_retur'][$x]),
+					'returpeners_reason'	=> trim($_POST['reason'][$x]),
+					'returpeners_is_reduced'=> 2
 				];
 
 				Returpeners::create($vals);
