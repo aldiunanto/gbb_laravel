@@ -438,6 +438,10 @@ material = {
 		init: function(){
 			this._returDetail();
 			this._doApprove();
+
+			material.index._openSearchForm();
+			material.index._closeSearchForm();
+			material.index._focusingSearch();
 		},
 		_returDetail: function(){
 			$('.view-retur-detail').on('click', function(e){
