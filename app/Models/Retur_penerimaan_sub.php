@@ -21,5 +21,15 @@ class Retur_penerimaan_sub extends Model {
 					->where($i->table.'.returpener_id', $returpener_id)
 					->get();
 	}
+	public static function getMatData($returpener_id){
+		$i = new static;
+		return self::select($i->table.'.'.$i->primaryKey, $i->table.'.returpeners_is_reduced', $i->table.'.returpeners_jml', 'E.mat_id', 'E.mat_stock_akhir')
+					->join('penerimaan_sub_laravel AS B', $i->table.'.peners_id', '=', 'B.peners_id')
+					->join('po_sub_laravel AS C', 'B.pos_id', '=', 'C.pos_id')
+					->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
+					->join('material_laravel AS E', 'D.mat_id', '=', 'E.mat_id')
+					->where($i->table.'.returpener_id', $returpener_id)
+					->get();
+	}
 
 }
