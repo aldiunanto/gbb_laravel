@@ -103,12 +103,12 @@
 				<td class="text-center">
 					<?php
 						switch($row->returpener_status){
-							case 1: echo 'Menunggu persetujuan QA';  break;
-							case 2: echo 'Menunggu persetujuan Kepala Produksi'; break;
-							case 3: echo 'Menunggu persetujuan PPIC'; break;
-							case 4: echo 'Menunggu persetujuan Vice Director'; break;
-							case 5: echo 'Sudah di-approve Vice Director'; break;
-							case 6: echo 'Sudah dibuat surat jalan'; break;
+							case 1: echo '<span class="status wait-ppic" title="Menunggu persetujuan QA"><i class="fa fa-spinner fa-spin"></i></span>';  break;
+							case 2: echo '<span class="status wait-vice" title="Menunggu persetujuan Kepala Produksi"><i class="fa fa-spinner fa-spin"></i></span>'; break;
+							case 3: echo '<span class="status wait-ppic2" title="Menunggu persetujuan PPIC"><i class="fa fa-spinner fa-spin"></i></span>'; break;
+							case 4: echo '<span class="status wait-vd" title="Menunggu persetujuan Vice Director"><i class="fa fa-spinner fa-spin"></i></span>'; break;
+							case 5: echo '<span class="status vice-approve" title="Sudah di-approve Vice Director"><i class="fa fa-check"></i></span>'; break;
+							case 6: echo '<span class="status po-done" title="Sudah dibuat Surat Jalan"><i class="fa fa-check"></i></span>'; break;
 						}
 					?>
 				</td>
