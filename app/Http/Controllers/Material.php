@@ -654,7 +654,13 @@ class Material extends Controller {
 	}
 	public function acceptanceReturContent(Request $req)
 	{
-		return view('material.acceptance.returContent', ['pener_id' => $req->input('penerId')]);
+		$pener_id = $req->input('penerId');
+		$data = [
+			'pener_id'	=> $pener_id,
+			'fetch'		=> Returpeners::fetch(null, $pener_id)
+		];
+
+		return view('material.acceptance.returContent', $data);
 	}
 
 	public function acceptanceRetur(Request $request)
