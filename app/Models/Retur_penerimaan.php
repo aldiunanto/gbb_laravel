@@ -68,5 +68,8 @@ class Retur_penerimaan extends Model {
 
 		return $get->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
 	}
+	public static function isRetur($pener_id){
+		return self::select('returpener_id')->where('pener_id', $pener_id)->get()->count();
+	}
 
 }
