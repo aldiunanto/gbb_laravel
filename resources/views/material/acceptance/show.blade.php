@@ -40,12 +40,12 @@
 
 						{{ to_indDate($row->pener_date) }}
 						@if($isRetur > 0)
-						<a href="javascript:;">Lihat Returan <i class="fa fa-angle-down"></i></a>
+						<a href="javascript:;" class="expand-retur" data-id="{{ $row->pener_id }}">Lihat Returan <i class="fa fa-angle-down"></i></a>
 						@endif
 					</td>
 				</tr>
 					@foreach($Peners::fetchDetail(['B.pener_id' => $row->pener_id]) as $sub)
-					<tr>
+					<tr data-id="{{ $row->pener_id }}">
 						<td class="mat-nama">{{ $sub->mat_nama }}</td>
 						<td class="text-center">{{ $sub->mat_spesifikasi }}</td>
 						<td class="text-right">{{ $sub->peners_jml }}</td>

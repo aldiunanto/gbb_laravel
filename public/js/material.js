@@ -360,6 +360,8 @@ material = {
 			}
 		},
 		_viewDetail: function(){
+			var self = this;
+
 			$('.main table.data-list').on('click', '.view-detail', function(e){
 				e.preventDefault();
 
@@ -372,8 +374,17 @@ material = {
 					'caption'		: 'Detail Daftar Penerimaan',
 					'content'		: popupContent,
 					'okAction'		: function(){ LIBS.popupDialog('close'); },
-					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); },
+					'doSomething'	: function(){
+						self._expandRetur();
+					}
 				});
+			});
+		},
+		_expandRetur: function(){
+			$('.expand-retur').on('click', function(e){
+				var el = $(this);
+				$('tr[data-id="' + el.attr('data-id') + '"]:last').css('background-color', 'red');
 			});
 		}
 	},
