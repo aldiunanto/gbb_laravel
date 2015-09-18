@@ -652,9 +652,9 @@ class Material extends Controller {
 
 		return view('material.acceptance.show', $data);
 	}
-	public function acceptanceReturContent()
+	public function acceptanceReturContent(Request $req)
 	{
-		return view('material.acceptance.returContent');
+		return view('material.acceptance.returContent', ['pener_id' => $req->input('penerId')]);
 	}
 
 	public function acceptanceRetur(Request $request)
