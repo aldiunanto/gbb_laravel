@@ -30,13 +30,18 @@
 			</thead>
 			<tbody>
 				@foreach($fetch as $row)
+				<?php $isRetur = $Returpener::isRetur($row->pener_id) ?>
+
 				<tr class="new-pener">
 					<td colspan="4">
-						@if($head->po_status == 1)
+						@if($head->po_status == 1 && $isRetur == 0)
 						<a href="{{ url('material/acceptance/retur/create/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
 						@endif
 
 						{{ to_indDate($row->pener_date) }}
+						@if($isRetur > 0)
+						<a href="javascript:;">Lihat Returan <i class="fa fa-angle-down"></i></a>
+						@endif
 					</td>
 				</tr>
 					@foreach($Peners::fetchDetail(['B.pener_id' => $row->pener_id]) as $sub)
