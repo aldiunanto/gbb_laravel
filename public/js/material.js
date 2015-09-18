@@ -386,9 +386,18 @@ material = {
 				var el 		= $(this);
 				var penerId = el.attr('data-id');
 
-				var returContent = LIBS.callAjax('material/acceptance/returContent', 'penerId=' + pener_id);
+				if(! el.hasClass('expanded')){
+					var returContent = LIBS.callAjax('material/acceptance/returContent', 'penerId=' + penerId);
+					$('tr[data-id="' + penerId + '"]:last').after(returContent);
 
-				$('tr[data-id="' + penerId + '"]:last').css('background-color', 'red');
+					el.addClass('expanded');
+					el.html('Tutup Returan <i class="fa fa-angle-up"></i>')
+				}else{
+					$('tr[data-retur-content="' + penerId + '"]').remove();
+					
+					el.removeClass('expanded');
+					el.html('Lihat Returan <i class="fa fa-angle-down"></i>');
+				}
 			});
 		}
 	},
