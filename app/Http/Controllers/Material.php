@@ -652,6 +652,10 @@ class Material extends Controller {
 
 		return view('material.acceptance.show', $data);
 	}
+	public function acceptanceReturContent()
+	{
+		return view('material.acceptance.returContent');
+	}
 
 	public function acceptanceRetur(Request $request)
 	{

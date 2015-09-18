@@ -383,8 +383,12 @@ material = {
 		},
 		_expandRetur: function(){
 			$('.expand-retur').on('click', function(e){
-				var el = $(this);
-				$('tr[data-id="' + el.attr('data-id') + '"]:last').css('background-color', 'red');
+				var el 		= $(this);
+				var penerId = el.attr('data-id');
+
+				var returContent = LIBS.callAjax('material/acceptance/returContent', 'penerId=' + pener_id);
+
+				$('tr[data-id="' + penerId + '"]:last').css('background-color', 'red');
 			});
 		}
 	},
