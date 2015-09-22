@@ -4,7 +4,7 @@
 <header>
 	<div class="caption">
 		<h1>surat jalan</h1>
-		<h2>no: 229/VIII/JIU/2015</h2>
+		<h2>no: {{ $numb }}</h2>
 	</div>
 	<table class="base-info">
 		<tr>

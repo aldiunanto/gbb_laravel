@@ -29,17 +29,19 @@ class Printing extends Controller {
 				$numb = '001/JIU/' . romawi()[date('n')] . '/' . date('Y');
 			}else{
 				$last = DoReturpener::orderBy('dorp_id', 'DESC')->take(1)->pluck('dorp_no');
-				$numb = $last;
-				//create new numb
+				$path = explode('/', $last);
+
+				$preffix = ''; $path[0]++;
+				for($x = 0; $x < (3 - strlen($path[0])); $x++){
+					$preffix .= '0';
+				}
+
+				$numb = ($preffix . $path[0]) . '/JIU/' . romawi()[date('n')] . '/' . date('Y');
 			}
 		}else{
 			$row = $get->first();
 			$numb = $row->dorp_no;
 		}
-
-		echo $numb;
-
-		exit();
 
 		#Update status to 'DO has been created'
 		$get = Returpener::find($returpener_id);
