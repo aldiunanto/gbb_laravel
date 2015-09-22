@@ -4,6 +4,7 @@
 <div class="top">
 	@if($role == 3 || $role == 1)
 	<div class="tools">
+		<a href="{{ url('material/acceptance/retur/create') }}" class="btn warning btn-search"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
 		<a href="{{ url('material/acceptance/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah penerimaan</a>
 	</div>
 	@endif
