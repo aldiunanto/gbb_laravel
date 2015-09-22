@@ -38,6 +38,12 @@ class Printing extends Controller {
 
 				$numb = ($preffix . $path[0]) . '/JIU/' . romawi()[date('n')] . '/' . date('Y');
 			}
+
+			DoReturpener::create([
+				'returpener_id'	=> $returpener_id,
+				'dorp_no'		=> $numb
+			]);
+			
 		}else{
 			$row = $get->first();
 			$numb = $row->dorp_no;
