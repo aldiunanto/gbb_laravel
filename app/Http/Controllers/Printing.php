@@ -7,6 +7,7 @@ use App\Models\Po_sub;
 use App\Models\Retur_penerimaan as Returpener;
 use App\Models\Retur_penerimaan_sub as Returpeners;
 use App\Models\Material;
+use App\Models\Do_retur_penerimaan as DoReturpener;
 
 class Printing extends Controller {
 
@@ -21,6 +22,25 @@ class Printing extends Controller {
 		return view('printing/po', $data);
 	}
 	public function deliveryOrder($returpener_id){
+
+		$get = DoReturpener::where('returpener_id', $returpener_id);
+		if($get->count() == 0){
+			if(DoReturpener::count() == 0){
+				$numb = '001/JIU/' . romawi()[date('n')] . '/' . date('Y');
+			}else{
+				$last = DoReturpener::orderBy('dorp_id', 'DESC')->take(1)->pluck('dorp_no');
+				$numb = $last;
+				//create new numb
+			}
+		}else{
+			$row = $get->first();
+			$numb = $row->dorp_no;
+		}
+
+		echo $numb;
+
+		exit();
+
 		#Update status to 'DO has been created'
 		$get = Returpener::find($returpener_id);
 		
@@ -55,7 +75,8 @@ class Printing extends Controller {
 			'asset' => new Assets(),
 			'title'	=> 'Print Retur Delivery Order',
 			'head'	=> Returpener::fetchHead($returpener_id),
-			'sub'	=> Returpeners::fetch($returpener_id)
+			'sub'	=> Returpeners::fetch($returpener_id),
+			'numb'	=> $numb
 		];
 
 		return view('printing/do', $data);
