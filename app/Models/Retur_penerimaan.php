@@ -80,6 +80,7 @@ class Retur_penerimaan extends Model {
 					->join('permintaan_barang AS E', 'C.pb_id', '=', 'E.pb_id')
 					->join('supplier_laravel AS F', 'E.sup_id', '=', 'F.sup_id')
 					->where($i->table.'.visibility', 1)
+					->groupBy($i->table.'.'.$i->primaryKey)
 					->orderBy($i->table.'.created_at', 'DESC')
 					->get();
 	}
