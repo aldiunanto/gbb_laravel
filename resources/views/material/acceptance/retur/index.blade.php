@@ -71,7 +71,7 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
-		<a href="{{ url('material/acceptance/retur/input') }}" class="btn default btn-search"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
+		<a href="{{ url('material/acceptance/retur/input') }}" class="btn default"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
 	</div>
 	<h2>Daftar Retur Penerimaan Material <span>{{ $fetch->count() . ' dari ' . $fetch->total() }}</span></h2>
 	<div class="clearfix"></div>
