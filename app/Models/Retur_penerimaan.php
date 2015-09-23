@@ -71,5 +71,17 @@ class Retur_penerimaan extends Model {
 	public static function isRetur($pener_id){
 		return self::select('returpener_id')->where('pener_id', $pener_id)->get()->count();
 	}
+	public static function openRetur(){
+		$i = new static;
+		return self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', 'B.pener_date', 'C.po_no', 'D.dorp_no', 'F.sup_nama')
+					->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+					->join('po_laravel AS C', 'B.po_id', '=', 'B.po_id')
+					->join('do_retur_penerimaan AS D', $i->table.'.'.$i->primaryKey, '=', 'D.returpener_id')
+					->join('permintaan_barang AS E', 'C.pb_id', '=', 'E.pb_id')
+					->join('supplier_laravel AS F', 'E.sup_id', '=', 'F.sup_id')
+					->where($i->table.'.visibility', 1)
+					->orderBy($i->table.'.created_at', 'DESC')
+					->get();
+	}
 
 }

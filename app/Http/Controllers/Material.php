@@ -807,7 +807,18 @@ class Material extends Controller {
 	}
 	public function acceptanceReturInput()
 	{
-		return 'Hello World';
+		$data = [
+			'title'		=> 'Tambah Penerimaan Returan Barang',
+			'asset'		=> new Assets(),
+			'opened'	=> 'material',
+			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur', 'material/acceptance/retur/input' => 'Tambah Penerimaan Returan']
+		];
+
+		return view('material.acceptance.retur.input', $data);
+	}
+	public function openRetur()
+	{
+		return view('material.acceptance.retur.openRetur', ['fetch' => Returpener::openRetur()]);
 	}
 
 }

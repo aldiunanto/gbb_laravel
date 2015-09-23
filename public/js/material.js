@@ -538,7 +538,25 @@ material = {
 	},
 	acceptanceReturInput: {
 		init: function(){
-			alert('Hello');
+			this._openPO();
+		},
+		_openPO: function(){
+			var self = this;
+			$('.open-po').on('click', function(){
+				LIBS.popupDialog('open', {
+					'caption'		: 'Pilih PO',
+					'content'		: LIBS.callAjax('material/acceptance/retur/openRetur'),
+					'posButtonText'	: 'YES',
+					'okAction'		: function(){  },
+					'cancelAction'	: function(){ 
+						LIBS.popupDialog('close');
+					},
+					'doSomething'	: function(){
+						$('button.positive').hide();
+						//self._searchPO();
+					}
+				});
+			});
 		}
 	}
 
