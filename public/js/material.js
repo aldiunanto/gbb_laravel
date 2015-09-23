@@ -535,6 +535,11 @@ material = {
 				}
 			});
 		}
+	},
+	acceptanceReturInput: {
+		init: function(){
+			alert('Hello');
+		}
 	}
 
 }
