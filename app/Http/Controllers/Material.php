@@ -805,5 +805,9 @@ class Material extends Controller {
 		Session::flash('deleted', '<span class="info warning">Data Retur Penerimaan Material telah dihapus.</span>');
 		return redirect('material/acceptance/retur/');
 	}
+	public function acceptanceReturInput()
+	{
+		return 'Hello World';
+	}
 
 }
