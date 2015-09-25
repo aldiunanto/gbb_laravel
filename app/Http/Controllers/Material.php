@@ -820,5 +820,10 @@ class Material extends Controller {
 	{
 		return view('material.acceptance.retur.openRetur', ['fetch' => Returpener::openRetur()]);
 	}
+	public function searchRetur(Request $req)
+	{
+		$fetch = Returpener::openRetur(trim($req->input('filter')));
+		return view('material.acceptance.retur.searchRetur', ['fetch' => $fetch]);
+	}
 
 }

@@ -557,10 +557,26 @@ material = {
 					}
 				});
 			});
-		}.
-		_searchRetur: function(){
-			
 		},
+		_searchRetur: function(){
+			var form = $('.get-po form');
+			form.on('submit', function(e){ e.preventDefault(); });
+			
+			var doFilter = function(){
+				var filterVal = $('input[name="filter"]').val();
+
+				if(filterVal != ''){
+					var result = LIBS.callAjax(form.attr('action'), form.serialize());
+					$('#popup .list table tbody').html(result);
+				}
+			};
+
+			var timer = null;
+			$('input[name="filter"]').keydown(function(){
+				clearTimeout(timer);
+				timer = setTimeout(doFilter, 1000);
+			});
+		}
 	}
 
 }
