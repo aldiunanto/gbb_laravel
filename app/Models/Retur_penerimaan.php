@@ -82,6 +82,7 @@ class Retur_penerimaan extends Model {
 					->where($i->table.'.visibility', 1)
 					->groupBy($i->table.'.'.$i->primaryKey)
 					->orderBy($i->table.'.created_at', 'DESC')
+					->take(20)
 					->get();
 	}
 
