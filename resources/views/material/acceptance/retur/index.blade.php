@@ -20,7 +20,7 @@
 				<th>Nomor PO</th>
 				<th>Supplier</th>
 				<th>Tanggal Penerimaan</th>
-				<th>Tanggal Diketahui</th>
+				<th>Tanggal Retur</th>
 				<th>Aksi</th>
 			</tr>
 		</thead>
@@ -86,7 +86,7 @@
 				<th>Nomor PO</th>
 				<th>Supplier</th>
 				<th>Tgl Penerimaan</th>
-				<th>Tgl Diketahui</th>
+				<th>Tgl Retur</th>
 				<th>Status</th>
 				<th>Aksi</th>
 			</tr>
