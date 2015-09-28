@@ -546,7 +546,7 @@ class Material extends Controller {
 		Session::flash('updated', '<div class="info success">Permintaan material berhasil diubah.</div>');
 		return redirect('material/request/edit/' . $_POST['pb_id']);
 	}
-	public function acceptance(Request $req)
+	public function acceptance()
 	{
 		$data = [
 			'title'		=> 'Daftar Penerimaan Material',
@@ -559,7 +559,7 @@ class Material extends Controller {
 			'role'		=> $this->_user->hak_akses
 		];
 
-		return view('material.acceptance.index', $data);
+		return view('material.acceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
 	}
 	public function acceptanceCreate($po_id = null)
 	{
