@@ -805,17 +805,6 @@ class Material extends Controller {
 		Session::flash('deleted', '<span class="info warning">Data Retur Penerimaan Material telah dihapus.</span>');
 		return redirect('material/acceptance/retur/');
 	}
-	public function acceptanceReturInput()
-	{
-		$data = [
-			'title'		=> 'Tambah Penerimaan Returan Barang',
-			'asset'		=> new Assets(),
-			'opened'	=> 'material',
-			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur/input' => 'Tambah Penerimaan Returan']
-		];
-
-		return view('material.acceptance.retur.input', $data);
-	}
 	public function openRetur()
 	{
 		return view('material.acceptance.retur.openRetur', ['fetch' => Returpener::openRetur()]);
@@ -825,7 +814,6 @@ class Material extends Controller {
 		$fetch = Returpener::openRetur(trim($req->input('filter')));
 		return view('material.acceptance.retur.searchRetur', ['fetch' => $fetch]);
 	}
-
 	public function acceptanceReturAcceptance()
 	{
 		$data = [
@@ -839,6 +827,17 @@ class Material extends Controller {
 		];
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
+	}
+	public function acceptanceReturAcceptanceCreate()
+	{
+		$data = [
+			'title'		=> 'Tambah Penerimaan Returan Barang',
+			'asset'		=> new Assets(),
+			'opened'	=> 'material',
+			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan', 'material/acceptance/retur/acceptance/create' => 'Tambah Penerimaan']
+		];
+
+		return view('material.acceptance.retur.acceptance.create', $data);
 	}
 
 }
