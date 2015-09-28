@@ -673,7 +673,7 @@ class Material extends Controller {
 		$data = [
 			'title'		=> 'Daftar Retur Penerimaan',
 			'asset'		=> new Assets(),
-			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur'],
+			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Returan'],
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
 			'fetchAppr' => Returpener::fetchApprovement($this->_user->hak_akses),
