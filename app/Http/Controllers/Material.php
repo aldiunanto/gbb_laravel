@@ -811,7 +811,7 @@ class Material extends Controller {
 			'title'		=> 'Tambah Penerimaan Returan Barang',
 			'asset'		=> new Assets(),
 			'opened'	=> 'material',
-			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur' => 'Retur', 'material/acceptance/retur/input' => 'Tambah Penerimaan Returan']
+			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/retur/input' => 'Tambah Penerimaan Returan']
 		];
 
 		return view('material.acceptance.retur.input', $data);
