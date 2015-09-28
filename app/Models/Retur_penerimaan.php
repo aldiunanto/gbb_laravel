@@ -72,8 +72,8 @@ class Retur_penerimaan extends Model {
 		return self::select('returpener_id')->where('pener_id', $pener_id)->get()->count();
 	}
 	public static function openRetur($search = null){
-		$i = new static;
-		$get = self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', 'B.pener_date', 'C.po_no', 'D.dorp_no', 'F.sup_nama')
+		$i 		= new static;
+		$get	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', 'B.pener_date', 'C.po_no', 'D.dorp_no', 'F.sup_nama')
 				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
 				->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
 				->join('do_retur_penerimaan AS D', $i->table.'.'.$i->primaryKey, '=', 'D.returpener_id')
@@ -93,6 +93,17 @@ class Retur_penerimaan extends Model {
 					->take(20)
 					->get();
 
+	}
+	public static function fetchAcceptanceReturHead($returpener_id){
+		$i 		= new static;
+		return self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', 'B.pener_date', 'C.po_no', 'E.sup_nama', 'F.dorp_no')
+				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+				->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
+				->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')
+				->join('supplier_laravel AS E', 'D.sup_id', '=', 'E.sup_id')
+				->join('do_retur_penerimaan AS F', $i->table.'.'.$i->primaryKey, '=', 'F.'.$i->primaryKey)
+				->where($i->table.'.'.$i->primaryKey, $returpener_id)
+				->first();
 	}
 
 }

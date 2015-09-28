@@ -830,7 +830,7 @@ class Material extends Controller {
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
 	}
-	public function acceptanceReturAcceptanceCreate()
+	public function acceptanceReturAcceptanceCreate($returpener_id = null)
 	{
 		$data = [
 			'title'		=> 'Tambah Penerimaan Returan Barang',
@@ -838,6 +838,12 @@ class Material extends Controller {
 			'opened'	=> 'material',
 			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan', 'material/acceptance/retur/acceptance/create' => 'Tambah Penerimaan']
 		];
+
+		if(! is_null($returpener_id)){
+			$data += [
+				'head'	=> Returpener::fetchAcceptanceReturHead($returpener_id)
+			];
+		}
 
 		return view('material.acceptance.retur.acceptance.create', $data);
 	}
