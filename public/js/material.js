@@ -536,7 +536,7 @@ material = {
 			});
 		}
 	},
-	acceptanceReturInput: {
+	acceptanceReturAcceptanceCreate: {
 		init: function(){
 			this._openPO();
 		},
