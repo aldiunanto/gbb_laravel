@@ -559,7 +559,7 @@ class Material extends Controller {
 			'role'		=> $this->_user->hak_akses
 		];
 
-		return view('material.acceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
+		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
 	}
 	public function acceptanceCreate($po_id = null)
 	{
@@ -824,6 +824,21 @@ class Material extends Controller {
 	{
 		$fetch = Returpener::openRetur(trim($req->input('filter')));
 		return view('material.acceptance.retur.searchRetur', ['fetch' => $fetch]);
+	}
+
+	public function acceptanceReturAcceptance()
+	{
+		$data = [
+			'title'		=> 'Daftar Penerimaan Returan',
+			'asset'		=> new Assets(),
+			'js'		=> ['vendor/jquery.dataTables.min'],
+			'css'		=> ['jquery.dataTables'],
+			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan'],
+			'opened'	=> 'material',
+			'role'		=> $this->_user->hak_akses
+		];
+
+		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
 	}
 
 }
