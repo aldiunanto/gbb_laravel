@@ -14,8 +14,8 @@
 	<div class="clearfix"></div>
 </div>
 <div class="nav-tabs">
-	<a href="{{ url('material/acceptance') }}" class="active">Penerimaan Barang</a>
-	<a href="{{ url('material/acceptance/retur/acceptance') }}">Penerimaan Returan</a>
+	<a href="{{ url('material/acceptance') }}" <?php echo ($active == 'default' ? 'class="active"' : '') ?>>Penerimaan Barang</a>
+	<a href="{{ url('material/acceptance/retur/acceptance') }}" <?php echo ($active == 'returan' ? 'class="active"' : '') ?>>Penerimaan Returan</a>
 </div>
 <div class="main acceptance-list">
 	{!! session('deleted') !!}

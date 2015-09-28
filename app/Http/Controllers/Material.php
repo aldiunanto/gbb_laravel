@@ -556,7 +556,8 @@ class Material extends Controller {
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
 			'fetch'		=> Pener::fetchData(),
 			'opened'	=> 'material',
-			'role'		=> $this->_user->hak_akses
+			'role'		=> $this->_user->hak_akses,
+			'active'	=> 'default'
 		];
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
@@ -823,7 +824,8 @@ class Material extends Controller {
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan'],
 			'opened'	=> 'material',
-			'role'		=> $this->_user->hak_akses
+			'role'		=> $this->_user->hak_akses,
+			'active'	=> 'returan'
 		];
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
