@@ -5,7 +5,7 @@
 	@if($role == 3 || $role == 1)
 	<div class="tools">
 		<a href="{{ url('material/acceptance/create') }}" class="btn default acc-default"><i class="fa fa-plus"></i> tambah penerimaan</a>
-		<a href="{{ url('material/acceptance/retur/input') }}" class="btn warning"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
+		<a href="{{ url('material/acceptance/retur/acceptance/create') }}" class="btn warning"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
 	</div>
 	@endif
 	<h2>Daftar Penerimaan Material</h2>
