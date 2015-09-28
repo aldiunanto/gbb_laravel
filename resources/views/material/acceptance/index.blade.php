@@ -4,8 +4,8 @@
 <div class="top">
 	@if($role == 3 || $role == 1)
 	<div class="tools">
-		<a href="{{ url('material/acceptance/create') }}" class="btn primary"><i class="fa fa-plus"></i> tambah penerimaan</a>
-		<a href="{{ url('material/acceptance/retur/input') }}" class="btn default"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
+		<a href="{{ url('material/acceptance/create') }}" class="btn default acc-default"><i class="fa fa-plus"></i> tambah penerimaan</a>
+		<a href="{{ url('material/acceptance/retur/input') }}" class="btn warning"><i class="fa fa-plus"></i> tambah penerimaan returan</a>
 	</div>
 	@endif
 	<h2>Daftar Penerimaan Material</h2>
@@ -13,7 +13,11 @@
 
 	<div class="clearfix"></div>
 </div>
-<div class="main">
+<div class="nav-tabs">
+	<a href="{{ url('material/acceptance') }}" class="active">Penerimaan Barang</a>
+	<a href="{{ url('material/acceptance/retur/acceptance') }}">Penerimaan Returan</a>
+</div>
+<div class="main acceptance-list">
 	{!! session('deleted') !!}
 	{!! session('inserted') !!}
 	<table class="data-list index">
