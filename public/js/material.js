@@ -539,6 +539,7 @@ material = {
 	acceptanceReturAcceptanceCreate: {
 		init: function(){
 			this._openPO();
+			this._controlDiterima();
 		},
 		_openPO: function(){
 			var self = this;
@@ -575,6 +576,18 @@ material = {
 			$('input[name="filter"]').keydown(function(){
 				clearTimeout(timer);
 				timer = setTimeout(doFilter, 1000);
+			});
+		},
+		_controlDiterima: function(){
+			$('input.peners').on('change', function(){
+				var max = parseInt($(this).parent().prev().prev().html());
+				if($(this).val() > max){
+					alert('Maksimal diterima = ' + max);
+
+					$(this).css('border', '1px solid #ff0000');
+				}else{
+					$(this).css('border', '1px solid #c2c1c1');
+				}
 			});
 		}
 	}
