@@ -55,6 +55,31 @@
 						<input type="text" name="rpi_date" id="rpi_date" value="{{ to_indDate(now()) }}" />
 					</td>
 				</tr>
+
+				<tr>
+					<td colspan="2">
+						<div class="caption">
+							<h3>Material</h3>
+						</div>
+						<table class="data-list">
+							<thead>
+								<tr>
+									<th>Material</th>
+									<th>Spesifikasi</th>
+									<th>Warna</th>
+									<th>Diretur</th>
+									<th>Diterima</th>
+									<th>Satuan</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</td>
+				</tr>
+
 			</table>
 		</form>
 	</div>
