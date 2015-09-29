@@ -11,7 +11,7 @@ class Retur_penerimaan_sub extends Model {
 
 	public static function fetch($returpener_id, $pener_id = null){
 		$i 		= new static;
-		$get 	= self::select('E.mat_id', 'E.mat_nama', 'E.mat_spesifikasi', 'F.wrn_nama', 'G.mats_nama', 'B.peners_jml', $i->table.'.returpeners_jml', $i->table.'.returpeners_reason', $i->table.'.'.$i->primaryKey, 'H.returpener_status', 'H.is_closed')
+		$get 	= self::select('E.mat_id', 'E.mat_nama', 'E.mat_spesifikasi', 'F.wrn_nama', 'G.mats_nama', 'B.peners_jml', $i->table.'.returpeners_jml', $i->table.'.returpeners_reason', $i->table.'.'.$i->primaryKey, 'H.returpener_status')
 					->join('penerimaan_sub_laravel AS B', $i->table.'.peners_id', '=', 'B.peners_id')
 					->join('po_sub_laravel AS C', 'B.pos_id', '=', 'C.pos_id')
 					->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')

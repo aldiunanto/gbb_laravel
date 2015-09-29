@@ -96,7 +96,7 @@ class Retur_penerimaan extends Model {
 	}
 	public static function fetchAcceptanceReturHead($returpener_id){
 		$i 		= new static;
-		return self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', 'B.pener_date', 'C.po_no', 'E.sup_nama', 'F.dorp_no')
+		return self::select($i->table.'.'.$i->primaryKey, $i->table.'.created_at', $i->table.'.is_closed', 'B.pener_date', 'C.po_no', 'E.sup_nama', 'F.dorp_no')
 				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
 				->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
 				->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')
