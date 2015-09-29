@@ -69,6 +69,7 @@
 									<th>Spesifikasi</th>
 									<th>Warna</th>
 									<th>Diretur</th>
+									<th>Alasan</th>
 									<th>Diterima</th>
 									<th>Satuan</th>
 									<th>Status</th>
@@ -81,19 +82,21 @@
 										<input type="hidden" name="returpeners_id[]" value="{{ $row->returpeners_id }}" />
 										{{ $row->mat_nama }}
 									</td>
-									<td class="mat_spesifikasi">{{ $row->mat_spesifikasi }}</td>
-									<td class="warna">{{ $row->wrn_nama }}</td>
+									<td class="mat_spesifikasi text-center">{{ $row->mat_spesifikasi }}</td>
+									<td class="warna text-center">{{ $row->wrn_nama }}</td>
 									<td class="returpeners_jml text-center">{{ $row->returpeners_jml }}</td>
+									<td class="returpeners_reason">{{ $row->returpeners_reason }}</td>
 									<td class="retur_diterima text-center">
 										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
 										<input type="text" class="text-center peners" name="peners_jml_{{ $row->returpeners_id }}" required="required" />
 									</td>
 									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
 									<td class="status text-center">
-										
+										@if($row->is_closed == 2)
 										<span class="status vice-approve label">Open</span>
+										@else
 										<span class="status pm-reject-vice label">Closed</span>
-										
+										@endif
 									</td>
 								</tr>
 								@endforeach
