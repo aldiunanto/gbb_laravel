@@ -56,6 +56,7 @@
 					</td>
 				</tr>
 
+				@if(! empty($sub))
 				<tr>
 					<td colspan="2">
 						<div class="caption">
@@ -74,11 +75,33 @@
 								</tr>
 							</thead>
 							<tbody>
-								
+								@foreach($sub as $row)
+								<tr>
+									<td class="mat_nama">
+										<input type="hidden" name="returpeners_id[]" value="{{ $row->returpeners_id }}" />
+										{{ $row->mat_nama }}
+									</td>
+									<td class="mat_spesifikasi">{{ $row->mat_spesifikasi }}</td>
+									<td class="warna">{{ $row->wrn_nama }}</td>
+									<td class="returpeners_jml text-center">{{ $row->returpeners_jml }}</td>
+									<td class="retur_diterima text-center">
+										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
+										<input type="text" class="text-center peners" name="peners_jml_{{ $row->returpeners_id }}" required="required" />
+									</td>
+									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
+									<td class="status text-center">
+										
+										<span class="status vice-approve label">Open</span>
+										<span class="status pm-reject-vice label">Closed</span>
+										
+									</td>
+								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</td>
 				</tr>
+				@endif
 
 			</table>
 		</form>

@@ -841,7 +841,8 @@ class Material extends Controller {
 
 		if(! is_null($returpener_id)){
 			$data += [
-				'head'	=> Returpener::fetchAcceptanceReturHead($returpener_id)
+				'head'	=> Returpener::fetchAcceptanceReturHead($returpener_id),
+				'sub'	=> Returpeners::fetch($returpener_id)
 			];
 		}
 
