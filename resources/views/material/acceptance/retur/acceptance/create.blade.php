@@ -8,6 +8,10 @@
 </div>
 <div class="main">
 	<div class="form">
+		@if(! empty($head) && $head->is_closed == 1)
+		<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena statusnya sudah <strong>CLOSED</strong></div>
+		@endif
+
 		<div class="info warning">*<i>Penerimaan barang menggunakan satuan <strong>Purchasing!</strong></i></div>
 		<form action="{{ url('material/acceptance/retur/inputStore') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -88,11 +92,11 @@
 									<td class="returpeners_reason">{{ $row->returpeners_reason }}</td>
 									<td class="retur_diterima text-center">
 										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
-										<input type="text" class="text-center peners" name="peners_jml_{{ $row->returpeners_id }}" required="required" />
+										<input type="text" class="text-center peners" name="peners_jml_{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
 									</td>
 									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
 									<td class="status text-center">
-										@if($row->is_closed == 2)
+										@if($head->is_closed == 2)
 										<span class="status vice-approve label">Open</span>
 										@else
 										<span class="status pm-reject-vice label">Closed</span>
@@ -106,6 +110,16 @@
 				</tr>
 				@endif
 
+				@if(! empty($head) && $head->is_closed == 2)
+				<tr>
+					<td class="text-right" colspan="2">
+						<div class="actions">
+							<a href="{{ url('material/acceptance/retur/acceptance') }}" class="btn default"><i class="fa fa-mail-reply"></i>Batal</a>
+							<button class="btn primary"><i class="fa fa-save"></i>Simpan</button>
+						</div>
+					</td>
+				</tr>
+				@endif
 			</table>
 		</form>
 	</div>
