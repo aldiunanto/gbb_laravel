@@ -890,5 +890,13 @@ class Material extends Controller {
 		Session::flash('inserted', '<div class="info success">Penerimaan Returan Material telah diinput.</div>');
 		return redirect('material/acceptance/retur/acceptance');
 	}
+	public function acceptanceReturAcceptanceShow($peneretur_id)
+	{
+		$data = [
+			'head'	=> Peneretur::fetchHead($peneretur_id)
+		];
+
+		return view('material.acceptance.retur.acceptance.show', $data);
+	}
 
 }
