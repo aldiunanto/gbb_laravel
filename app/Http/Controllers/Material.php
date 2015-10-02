@@ -881,6 +881,11 @@ class Material extends Controller {
 			}
 		}
 
+		$get = Returpener::find($req->input('returpener_id'));
+		
+		$get->is_closed = 1;
+		$get->save();
+
 		Session::flash('inserted', '<div class="info success">Penerimaan Returan Material telah diinput.</div>');
 		return redirect('material/acceptance/retur/acceptance');
 	}
