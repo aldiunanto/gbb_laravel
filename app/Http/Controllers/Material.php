@@ -17,6 +17,8 @@ use App\Models\Notification as Notif;
 use App\Models\Supplier as Supp;
 use App\Models\Retur_penerimaan as Returpener;
 use App\Models\Retur_penerimaan_sub as Returpeners;
+use App\Models\Penerimaan_returan AS Peneretur;
+use App\Models\Penerimaan_returan_sub AS Penereturs;
 use Validator;
 use Session;
 use Auth;
@@ -639,7 +641,7 @@ class Material extends Controller {
 		}
 		#End of checking
 
-		Session::flash('inserted', '<div class="info success">Penerimaan material berhasil diinput.</div>');
+		Session::flash('inserted', '<div class="info success">Penerimaan material telah diinput.</div>');
 		return redirect('material/acceptance');
 	}
 	public function acceptanceShow($po_id)
@@ -848,6 +850,39 @@ class Material extends Controller {
 		}
 
 		return view('material.acceptance.retur.acceptance.create', $data);
+	}
+	public function acceptanceReturAcceptanceStore(Request $req)
+	{
+		$parentData = [
+			'returpener_id'		=> $req->input('returpener_id'),
+			'peneretur_date'	=> now(),
+			'userid_input'		=> $this->_user->hak_akses,
+			'visibility'		=> 1
+		];
+
+		$parent = Peneretur::create($parentData);
+
+		foreach($_POST['returpeners_id'] as $returpeners_id){
+			if(! empty($_POST['penereturs_jml_' . $returpeners_id])){
+				$vals = [
+					'peneretur_id'		=> $parent->peneretur_id,
+					'returpeners_id'	=> $returpeners_id,
+					'penereturs_jml'	=> $_POST['penereturs_jml_' . $returpeners_id]
+				];
+
+				Penereturs::create($vals);
+
+				if(! empty($_POST['mat_id_' . $returpeners_id])){
+					$mat = MatModel::find($_POST['mat_id_' . $returpeners_id]);
+
+					$mat->mat_stock_akhir = $mat->mat_stock_akhir + $_POST['penereturs_jml_' . $returpeners_id];
+					$mat->save();
+				}
+			}
+		}
+
+		Session::flash('inserted', '<div class="info success">Penerimaan Returan Material telah diinput.</div>');
+		return redirect('material/acceptance/retur/acceptance');
 	}
 
 }
