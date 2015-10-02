@@ -15,14 +15,14 @@
 		<?php $x = 0 ?>
 		@foreach($fetch as $row)
 		<tr>
-			<td>{{ ++$x }}.</td>
+			<td class="text-right">{{ ++$x }}.</td>
 			<td>{{ $row->po_no }}</td>
 			<td>{{ $row->dorp_no }}</td>
 			<td>{{ $row->sup_nama }}</td>
-			<td>{{ $row->pener_date }}</td>
-			<td>{{ $row->tglRetur }}</td>
-			<td>{{ $row->peneretur_date }}</td>
-			<td>
+			<td class="text-center">{{ to_indDate($row->pener_date) }}</td>
+			<td class="text-center"><?php $tglRetur = explode(' ', $row->tglRetur); echo to_indDate($tglRetur[0]) ?></td>
+			<td class="text-center">{{ to_indDate($row->peneretur_date) }}</td>
+			<td class="text-right">
 				<ul class="actions">
 					<li><span><i class="fa fa-angle-down"></i></span>
 						<ul>
