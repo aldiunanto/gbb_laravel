@@ -92,7 +92,7 @@
 									<td class="returpeners_reason">{{ $row->returpeners_reason }}</td>
 									<td class="retur_diterima text-center">
 										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
-										<input type="text" class="text-center peners" name="penereturs_jml{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
+										<input type="text" class="text-center peners" name="penereturs_jml_{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
 									</td>
 									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
 									<td class="status text-center">
