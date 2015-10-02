@@ -828,7 +828,8 @@ class Material extends Controller {
 			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan'],
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
-			'active'	=> 'returan'
+			'active'	=> 'returan',
+			'fetch'		=> Peneretur::fetch()
 		];
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
@@ -882,7 +883,7 @@ class Material extends Controller {
 		}
 
 		$get = Returpener::find($req->input('returpener_id'));
-		
+
 		$get->is_closed = 1;
 		$get->save();
 
