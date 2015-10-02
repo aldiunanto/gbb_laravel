@@ -536,6 +536,38 @@ material = {
 			});
 		}
 	},
+	acceptanceReturAcceptance: {
+		init: function(){
+			this._dataTables();
+			this._viewDetail();
+		},
+		_dataTables: function(){
+			if($('.main table.data-list.index').length > 0){
+				$('.main table.data-list').DataTable({
+					'aoColumnDefs' : [
+						{ 'bSortable' : false, 'aTargets' : [7] }
+					]
+				});
+			}
+		},
+		_viewDetail: function(){
+			$('.main table.data-list').on('click', '.view-detail', function(e){
+				e.preventDefault();
+
+				var el = $(this);
+				var href = el.attr('href');
+				var splitHref = href.split('/');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Detail Penerimaan Returan',
+					'content'		: popupContent,
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		}
+	},
 	acceptanceReturAcceptanceCreate: {
 		init: function(){
 			this._openPO();
