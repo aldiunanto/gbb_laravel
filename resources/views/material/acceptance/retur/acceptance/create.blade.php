@@ -13,7 +13,7 @@
 		@endif
 
 		<div class="info warning">*<i>Penerimaan barang menggunakan satuan <strong>Purchasing!</strong></i></div>
-		<form action="{{ url('material/acceptance/retur/inputStore') }}" method="post">
+		<form action="{{ url('material/acceptance/retur/acceptance/store') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<table>
 				<tr>
@@ -55,8 +55,8 @@
 						<input type="text" name="sup_nama" id="sup_nama" disabled="disabled" style="width: 350px;" value="{{ (!empty($head->sup_nama) ? $head->sup_nama : '') }}" />
 					</td>
 					<td>
-						<label for="rpi_date">Tanggal Kedatangan</label>
-						<input type="text" name="rpi_date" id="rpi_date" value="{{ to_indDate(now()) }}" />
+						<label for="peneretur_date">Tanggal Kedatangan</label>
+						<input type="text" name="peneretur_date" id="peneretur_date" value="{{ to_indDate(now()) }}" />
 					</td>
 				</tr>
 
@@ -92,7 +92,7 @@
 									<td class="returpeners_reason">{{ $row->returpeners_reason }}</td>
 									<td class="retur_diterima text-center">
 										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
-										<input type="text" class="text-center peners" name="peners_jml_{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
+										<input type="text" class="text-center peners" name="penereturs_jml{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
 									</td>
 									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
 									<td class="status text-center">
