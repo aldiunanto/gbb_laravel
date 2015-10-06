@@ -6,12 +6,13 @@
 					<th>Material</th>
 					<th>Jml Retur</th>
 					<th>Alasan</th>
-					<th>Status</th>
 					
 					@if($is_penerimaanReturan > 0)
 					<th>Diterima</th>
 					<th>Tgl Terima</th>
 					@endif
+
+					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,6 +21,18 @@
 					<td>{{ $row->mat_nama }}</td>
 					<td class="text-right">{{ $row->returpeners_jml }}</td>
 					<td class="text-center">{{ $row->returpeners_reason }}</td>
+					<?php
+
+						$pener = $Penereturs::getItem($row->returpeners_id);
+						if($is_penerimaanReturan > 0 && $pener->count() > 0){
+							$get = $pener->first();
+					?>
+							<td class="text-center">{{ $get->penereturs_jml }}</td>
+							<td class="text-center">{{ to_indDate($get->peneretur_date) }}</td>
+					<?php
+						}
+					?>
+
 					<td class="text-center">
 						<?php
 							switch($row->returpener_status){
@@ -32,18 +45,6 @@
 							}
 						?>
 					</td>
-					<?php
-
-						$pener = $Penereturs::getItem($row->returpeners_id);
-						if($pener->count() > 0){
-							$get = $pener->first();
-					?>
-							<td class="text-center">{{ $get->penereturs_jml }}</td>
-							<td class="text-center">{{ to_indDate($get->peneretur_date) }}</td>
-					<?php
-						}
-
-					?>
 				</tr>
 				@endforeach
 			</tbody>
