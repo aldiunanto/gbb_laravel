@@ -893,7 +893,8 @@ class Material extends Controller {
 	public function acceptanceReturAcceptanceShow($peneretur_id)
 	{
 		$data = [
-			'head'	=> Peneretur::fetchHead($peneretur_id)
+			'head'	=> Peneretur::fetchHead($peneretur_id),
+			'fetch'	=> Penereturs::fetch($peneretur_id)
 		];
 
 		return view('material.acceptance.retur.acceptance.show', $data);
