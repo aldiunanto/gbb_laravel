@@ -6,10 +6,10 @@
 					<th>Material</th>
 					<th>Jml Retur</th>
 					<th>Alasan</th>
-					
+
 					@if($is_penerimaanReturan > 0)
-					<th>Diterima</th>
-					<th>Tgl Terima</th>
+					<th class="diterima">Diterima</th>
+					<th class="diterima">Tgl Terima</th>
 					@endif
 
 					<th>Status</th>
@@ -27,8 +27,8 @@
 						if($is_penerimaanReturan > 0 && $pener->count() > 0){
 							$get = $pener->first();
 					?>
-							<td class="text-center">{{ $get->penereturs_jml }}</td>
-							<td class="text-center">{{ to_indDate($get->peneretur_date) }}</td>
+							<td class="text-center diterima">{{ $get->penereturs_jml }}</td>
+							<td class="text-center diterima">{{ to_indDate($get->peneretur_date) }}</td>
 					<?php
 						}
 					?>
