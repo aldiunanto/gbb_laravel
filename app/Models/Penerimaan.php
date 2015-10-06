@@ -36,5 +36,13 @@ class Penerimaan extends Model {
 					->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
 					->where($i->table.'.'.$i->primaryKey, $pener_id)->first();
 	}
+	public static function is_penerimaanReturan($pener_id){
+		$i = new static;
+		return self::select('C.userid_input')
+					->join('retur_penerimaan_laravel AS B', $i->table.'.'.$i->primaryKey, '=', 'B.'.$i->primaryKey)
+					->join('penerimaan_returan AS C', 'B.returpener_id', '=', 'C.returpener_id')
+					->where($i->table.'.'.$i->primaryKey, $pener_id)
+					->count();
+	}
 
 }
