@@ -904,13 +904,25 @@ class Material extends Controller {
 
 	public function expenditure(Request $req)
 	{
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
 		$data = [
 			'title'		=> 'Daftar Pengeluaran Barang',
 			'opened'	=> 'material',
-			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang']
+			'asset'		=> new Assets(),
+			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang'],
+			'search'	=> $search,
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
 		];
 
-		return view('material.expenditure.index');
+		return view('material.expenditure.index', $data);
 	}
 
 }
