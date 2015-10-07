@@ -902,4 +902,15 @@ class Material extends Controller {
 		return view('material.acceptance.retur.acceptance.show', $data);
 	}
 
+	public function expenditure(Request $req)
+	{
+		$data = [
+			'title'		=> 'Daftar Pengeluaran Barang',
+			'opened'	=> 'material',
+			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang']
+		];
+
+		return view('material.expenditure.index');
+	}
+
 }
