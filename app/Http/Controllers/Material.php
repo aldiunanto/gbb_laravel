@@ -19,6 +19,7 @@ use App\Models\Retur_penerimaan as Returpener;
 use App\Models\Retur_penerimaan_sub as Returpeners;
 use App\Models\Penerimaan_returan AS Peneretur;
 use App\Models\Penerimaan_returan_sub AS Penereturs;
+use App\Models\Pengeluaran AS Pengel;
 use Validator;
 use Session;
 use Auth;
@@ -915,6 +916,7 @@ class Material extends Controller {
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang'],
 			'search'	=> $search,
+			'fetch'		=> Pengel::fetch(),
 			'isSelected'=> function($field) use($search){
 				if(! is_null($search['field'])){
 					if($search['field'] == $field) return 'selected="selected"';

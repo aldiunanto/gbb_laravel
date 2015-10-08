@@ -36,7 +36,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			
+		<?php $x = 0 ?>
+		@foreach($fetch as $row)
+			<tr>
+				<td class="text-right">{{ ++$x }}.</td>
+				<td>{{ $row->deptbg_nama }}</td>
+				<td>{{ $row->pengel_date }}</td>
+				<td>{{ $row->pengel_bpb }}</td>
+				<td>{{ $row->pengel_po }}</td>
+				<td class="text-right">
+					<ul class="actions">
+						<li><span><i class="fa fa-angle-down"></i></span>
+							<ul>
+								<li><a href="{{ url('material/expenditure/show/' . $row->pengel_id) }}" class="view-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								<li><a href="{{ url('material/expenditure/destroy/' . $row->pengel_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		@endforeach
 		</tbody>
 	</table>
 </div>
