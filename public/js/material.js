@@ -622,6 +622,27 @@ material = {
 				}
 			});
 		}
+	},
+	expenditure: {
+		init: function(){
+			material.index._openSearchForm();
+			material.index._closeSearchForm();
+
+			this._checkIfDatePicker();
+		},
+		_checkIfDatePicker: function(){
+			$('select[name="field"]').on('change', function(){
+				if($(this).val() == 'pengel_date'){
+					$('input[name="s"]').datepicker({
+						dateFormat	: 'yy-mm-dd',
+						changeMonth	: true,
+						changeYear	: true
+					});
+				}else{
+					$('input[name="s"]').datepicker('destroy');
+				}
+			});
+		}
 	}
 
 }
