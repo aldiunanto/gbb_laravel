@@ -629,6 +629,7 @@ material = {
 			material.index._closeSearchForm();
 
 			this._checkIfDatePicker();
+			this._viewExpenditureDetail();
 		},
 		_checkIfDatePicker: function(){
 			$('select[name="field"]').on('change', function(){
@@ -641,6 +642,22 @@ material = {
 				}else{
 					$('input[name="s"]').datepicker('destroy');
 				}
+			});
+		},
+		_viewExpenditureDetail: function(){
+			$('.view-detail').on('click', function(e){
+				e.preventDefault();
+
+				var href = $(this).attr('href');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Detail Pengeluaran Barang',
+					'content'		: popupContent,
+					'posButtonText'	: 'OK',
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
 			});
 		}
 	}
