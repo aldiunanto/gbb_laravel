@@ -1,4 +1,4 @@
-<div class="material-request-detail">
+<div class="acceptance-retur-detail">
 	<div class="base-info">
 		<table>
 			<tr>
@@ -19,7 +19,37 @@
 			</tr>
 		</table>
 	</div>
+	<span class="info warning text-center"><i>*Satuan yang digunakan adalah satuan <strong>Gudang</strong>.</i></span>
 	<table class="data-list">
-		
+		<thead>
+			<tr>
+				<th rowspan="2">No.</th>
+				<th rowspan="2">Material</th>
+				<th rowspan="2">Warna</th>
+				<th rowspan="2">Spesifikasi</th>
+				<th rowspan="2">Satuan</th>
+				<th colspan="2">Jumlah</th>
+				<th rowspan="2">Ket</th>
+			</tr>
+			<tr>
+				<th>Permintaan</th>
+				<th>Realisasi</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php $x = 0 ?>
+		@foreach($sub as $row)
+			<tr>
+				<td>{{ ++$x }}</td>
+				<td>{{ $row->mat_nama }}</td>
+				<td>{{ $row->wrn_nama }}</td>
+				<td>{{ $row->mat_spesifikasi }}</td>
+				<td>{{ $row->mats_nama }}</td>
+				<td>{{ $row->pengels_permintaan }}</td>
+				<td>{{ $row->pengels_realisasi }}</td>
+				<td>{{ $row->pengels_ket }}</td>
+			</tr>
+		@endforeach
+		</tbody>
 	</table>
 </div>

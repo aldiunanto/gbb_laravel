@@ -17,9 +17,10 @@ use App\Models\Notification as Notif;
 use App\Models\Supplier as Supp;
 use App\Models\Retur_penerimaan as Returpener;
 use App\Models\Retur_penerimaan_sub as Returpeners;
-use App\Models\Penerimaan_returan AS Peneretur;
-use App\Models\Penerimaan_returan_sub AS Penereturs;
-use App\Models\Pengeluaran AS Pengel;
+use App\Models\Penerimaan_returan as Peneretur;
+use App\Models\Penerimaan_returan_sub as Penereturs;
+use App\Models\Pengeluaran as Pengel;
+use App\Models\Pengeluaran_sub as Pengels;
 use Validator;
 use Session;
 use Auth;
@@ -944,7 +945,8 @@ class Material extends Controller {
 	public function expenditureShow($pengel_id)
 	{
 		$data = [
-			'head'	=> Pengel::fetchRow($pengel_id)
+			'head'	=> Pengel::fetchRow($pengel_id),
+			'sub'	=> Pengels::fetch($pengel_id)
 		];
 
 		return view('material.expenditure.show', $data);
