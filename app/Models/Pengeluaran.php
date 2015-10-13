@@ -25,5 +25,12 @@ class Pengeluaran extends Model {
 
 		return $get->orderBy($i->table.'.pengel_date', 'DESC')->paginate($args['perPage']);
 	}
+	public static function fetchRow($id){
+		$i = new static;
+		return self::select($i->table.'.pengel_po', $i->table.'.pengel_bpb', $i->table.'.pengel_date', 'B.deptbg_nama')
+				->join('dept_bagian AS B', $i->table.'.deptbg_id', '=', 'B.deptbg_id')
+				->where($i->table.'.'.$i->primaryKey, $id)
+				->first();
+	}
 
 }

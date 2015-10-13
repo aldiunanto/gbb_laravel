@@ -941,6 +941,14 @@ class Material extends Controller {
 
 		return view('material.expenditure.index', $data);
 	}
+	public function expenditureShow($pengel_id)
+	{
+		$data = [
+			'head'	=> Pengel::fetchRow($pengel_id)
+		];
+
+		return view('material.expenditure.show', $data);
+	}
 	public function expenditureCreate()
 	{
 		$data = [
