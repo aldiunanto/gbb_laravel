@@ -41,7 +41,7 @@
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->deptbg_nama }}</td>
-				<td class="text-center">{{ $row->pengel_date }}</td>
+				<td class="text-center">{{ to_indDate($row->pengel_date) }}</td>
 				<td>{{ $row->pengel_bpb }}</td>
 				<td>{{ $row->pengel_po }}</td>
 				<td class="text-right">

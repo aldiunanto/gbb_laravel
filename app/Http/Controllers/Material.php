@@ -905,7 +905,8 @@ class Material extends Controller {
 
 	public function expenditure(Request $req)
 	{
-		$search 	= [
+		$perPage	= 20;
+		$search  	= [
 			's'		=> ($req->has('s') ? $req->input('s') : null),
 			'field'	=> ($req->has('field') ? $req->input('field') : null)
 		];
@@ -914,15 +915,29 @@ class Material extends Controller {
 			'title'		=> 'Daftar Pengeluaran Barang',
 			'opened'	=> 'material',
 			'asset'		=> new Assets(),
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang'],
 			'search'	=> $search,
-			'fetch'		=> Pengel::fetch(),
+			'fetch'		=> Pengel::fetch(['search' => $search, 'perPage' => $perPage]),
 			'isSelected'=> function($field) use($search){
 				if(! is_null($search['field'])){
 					if($search['field'] == $field) return 'selected="selected"';
 				}
+			},
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
 			}
 		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('material'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
 
 		return view('material.expenditure.index', $data);
 	}
