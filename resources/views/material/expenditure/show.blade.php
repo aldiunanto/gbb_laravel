@@ -40,14 +40,14 @@
 		<?php $x = 0 ?>
 		@foreach($sub as $row)
 			<tr>
-				<td>{{ ++$x }}</td>
+				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->mat_nama }}</td>
-				<td>{{ $row->wrn_nama }}</td>
-				<td>{{ $row->mat_spesifikasi }}</td>
+				<td class="text-center">{{ $row->wrn_nama }}</td>
+				<td class="text-center">{{ $row->mat_spesifikasi }}</td>
 				<td>{{ $row->mats_nama }}</td>
-				<td>{{ $row->pengels_permintaan }}</td>
-				<td>{{ $row->pengels_realisasi }}</td>
-				<td>{{ $row->pengels_ket }}</td>
+				<td class="text-right">{{ number_format($row->pengels_permintaan, 2, ',', '.') }}</td>
+				<td class="text-right">{{ number_format($row->pengels_realisasi, 2, ',', '.') }}</td>
+				<td class="text-center">{{ $row->pengels_ket }}</td>
 			</tr>
 		@endforeach
 		</tbody>
