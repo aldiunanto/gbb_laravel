@@ -962,5 +962,15 @@ class Material extends Controller {
 
 		return view('material.expenditure.create', $data);
 	}
+	public function expenditureDestroy($pengel_id)
+	{
+		$get = Pengel::find($pengel_id);
+
+		$get->visibility = 2;
+		$get->save();
+
+		Session::flash('deleted', '<div class="info warning">Data Pengeluaran Material telah dihapus.</div>');
+		return redirect('material/expenditure');
+	}
 
 }

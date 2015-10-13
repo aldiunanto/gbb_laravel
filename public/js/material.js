@@ -627,6 +627,7 @@ material = {
 		init: function(){
 			material.index._openSearchForm();
 			material.index._closeSearchForm();
+			material.index._delete('Anda yakin ingin menghapus data Pengeluaran Material ini?');
 
 			this._checkIfDatePicker();
 			this._viewExpenditureDetail();
