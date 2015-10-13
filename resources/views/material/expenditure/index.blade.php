@@ -6,10 +6,10 @@
 			<form action="{{ url('material/expenditure') }}" method="get">
 				<i class="fa fa-close"></i>
 				<select name="field">
-					<option value="dept" <?php echo $isSelected('dept') ?>>Departemen</option>
-					<option value="tgl" <?php echo $isSelected('tgl') ?>>Tanggal</option>
-					<option value="bpb" <?php echo $isSelected('bpb') ?>>Nomor BPB</option>
-					<option value="pono" <?php echo $isSelected('pono') ?>>Nomor PO</option>
+					<option value="deptbg_nama" <?php echo $isSelected('deptbg_nama') ?>>Departemen</option>
+					<option value="pengel_date" <?php echo $isSelected('pengel_date') ?>>Tanggal</option>
+					<option value="pengel_bpb" <?php echo $isSelected('pengel_bpb') ?>>Nomor BPB</option>
+					<option value="pengel_po" <?php echo $isSelected('pengel_po') ?>>Nomor PO</option>
 				</select>
 				<input type="text" name="s" value="{{ $search['s'] }}" placeholder="Kata pencarian.." />
 				<button><i class="fa fa-search"></i></button>
@@ -41,7 +41,7 @@
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->deptbg_nama }}</td>
-				<td>{{ $row->pengel_date }}</td>
+				<td class="text-center">{{ $row->pengel_date }}</td>
 				<td>{{ $row->pengel_bpb }}</td>
 				<td>{{ $row->pengel_po }}</td>
 				<td class="text-right">
