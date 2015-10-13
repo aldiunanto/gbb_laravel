@@ -941,5 +941,16 @@ class Material extends Controller {
 
 		return view('material.expenditure.index', $data);
 	}
+	public function expenditureCreate()
+	{
+		$data = [
+			'title'		=> 'Buat Pengeluran Barang',
+			'asset'		=> new Assets(),
+			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang', 'material/expenditure/create' => 'Buat Pengeluaran'],
+			'opened'	=> 'material'
+		];
+
+		return view('material.expenditure.create', $data);
+	}
 
 }
