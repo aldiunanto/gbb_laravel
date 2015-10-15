@@ -957,6 +957,8 @@ class Material extends Controller {
 		$data = [
 			'title'		=> 'Buat Pengeluran Barang',
 			'asset'		=> new Assets(),
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang', 'material/expenditure/create' => 'Buat Pengeluaran'],
 			'opened'	=> 'material',
 			'deptbg'	=> Deptbg::orderBy('deptbg_nama')->get()

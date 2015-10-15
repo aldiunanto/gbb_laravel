@@ -661,6 +661,11 @@ material = {
 				});
 			});
 		}
+	},
+	expenditureCreate: {
+		init: function(){
+			material.requestCreate._getDatePicker();
+		}
 	}
 
 }
