@@ -21,6 +21,7 @@ use App\Models\Penerimaan_returan as Peneretur;
 use App\Models\Penerimaan_returan_sub as Penereturs;
 use App\Models\Pengeluaran as Pengel;
 use App\Models\Pengeluaran_sub as Pengels;
+use App\Models\Dept_bagian as Deptbg;
 use Validator;
 use Session;
 use Auth;
@@ -957,7 +958,8 @@ class Material extends Controller {
 			'title'		=> 'Buat Pengeluran Barang',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang', 'material/expenditure/create' => 'Buat Pengeluaran'],
-			'opened'	=> 'material'
+			'opened'	=> 'material',
+			'deptbg'	=> Deptbg::orderBy('deptbg_nama')->get()
 		];
 
 		return view('material.expenditure.create', $data);
