@@ -976,5 +976,9 @@ class Material extends Controller {
 		Session::flash('deleted', '<div class="info warning">Data Pengeluaran Material telah dihapus.</div>');
 		return redirect('material/expenditure');
 	}
+	public function expenditureGetMaterial()
+	{
+		echo 'Hello World';
+	}
 
 }

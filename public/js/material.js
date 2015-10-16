@@ -665,6 +665,24 @@ material = {
 	expenditureCreate: {
 		init: function(){
 			material.requestCreate._getDatePicker();
+
+			this._openMaterial();
+		},
+		_openMaterial: function(){
+			$('.open-material').on('click', function(){
+				LIBS.popupDialog('open', {
+					'caption'		: 'Piilh Material',
+					'content'		: LIBS.callAjax('material/expenditure/getMaterial'),
+					'posButtonText'	: '',
+					'okAction'		: function(){ },
+					'cancelAction'	: function(){
+						LIBS.popupDialog('close');
+					},
+					'doSomething'	: function(){
+						$('button.positive').hide();
+					}
+				});
+			});
 		}
 	}
 
