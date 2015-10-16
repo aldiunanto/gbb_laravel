@@ -66,7 +66,6 @@
 									<th rowspan="2">Material</th>
 									<th rowspan="2">Warna</th>
 									<th rowspan="2">Spesifikasi</th>
-									<th rowspan="2">Satuan</th>
 									<th colspan="2">Jumlah</th>
 									<th rowspan="2">Keterangan</th>
 									<th rowspan="2">&nbsp;</th>
@@ -87,7 +86,6 @@
 									</td>
 									<td class="exp-warna text-center">&nbsp;</td>
 									<td class="exp-spek text-center">&nbsp;</td>
-									<td class="exp-satuan text-center">&nbsp;</td>
 									<td class="text-center"><input type="text" name="pengels_permintaan[]" class="text-center" /></td>
 									<td class="text-center"><input type="text" name="pengels_realisasi[]" class="text-center" /></td>
 									<td class="text-center"><input type="text" name="pengels_ket[]" /></td>
