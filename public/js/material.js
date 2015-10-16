@@ -671,15 +671,16 @@ material = {
 		_openMaterial: function(){
 			$('.open-material').on('click', function(){
 				LIBS.popupDialog('open', {
-					'caption'		: 'Piilh Material',
-					'content'		: LIBS.callAjax('material/expenditure/getMaterial'),
-					'posButtonText'	: '',
-					'okAction'		: function(){ },
+					'caption'		: 'Pilih Material',
+					'content'		: null,
+					'posButtonText'	: null,
+					'okAction'		: null,
 					'cancelAction'	: function(){
 						LIBS.popupDialog('close');
 					},
 					'doSomething'	: function(){
 						$('button.positive').hide();
+						$('.material-list.hidden .get-po').appendTo('#popup .content');
 					}
 				});
 			});
