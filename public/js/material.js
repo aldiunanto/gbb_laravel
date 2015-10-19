@@ -685,16 +685,25 @@ material = {
 
 						material.index._focusingSearch();
 						self._searchMaterial();
+						self._chooseMaterial();
 					}
 				});
 			});
 		},
 		_searchMaterial: function(){
+			var self = this;
 			$('.material-list form').on('submit', function(e){
 				e.preventDefault();
-				var result = LIBS.callAjax($(this).attr('action'), $(this).serialize());
 
+				var result = LIBS.callAjax($(this).attr('action'), $(this).serialize());
 				$('.material-list .list tbody').html(result);
+				
+				self._chooseMaterial();
+			});
+		},
+		_chooseMaterial: function(){
+			$('.pick-button').on('click', function(){
+				alert($(this).attr('data-id'));
 			});
 		}
 	}
