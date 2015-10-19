@@ -961,8 +961,7 @@ class Material extends Controller {
 			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang', 'material/expenditure/create' => 'Buat Pengeluaran'],
 			'opened'	=> 'material',
-			'deptbg'	=> Deptbg::orderBy('deptbg_nama')->get(),
-			'materials'	=> MatModel::fetchForExpenditure()
+			'deptbg'	=> Deptbg::orderBy('deptbg_nama')->get()
 		];
 
 		return view('material.expenditure.create', $data);
@@ -976,6 +975,10 @@ class Material extends Controller {
 
 		Session::flash('deleted', '<div class="info warning">Data Pengeluaran Material telah dihapus.</div>');
 		return redirect('material/expenditure');
+	}
+	public function expenditureGetMaterial()
+	{
+		return view('material.expenditure.getMaterial', ['materials' => MatModel::fetchForExpenditure()]);
 	}
 
 }

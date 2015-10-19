@@ -672,7 +672,7 @@ material = {
 			$('.open-material').on('click', function(){
 				LIBS.popupDialog('open', {
 					'caption'		: 'Pilih Material',
-					'content'		: null,
+					'content'		: LIBS.callAjax('material/expenditure/getMaterial'),
 					'posButtonText'	: null,
 					'okAction'		: null,
 					'cancelAction'	: function(){
@@ -680,7 +680,6 @@ material = {
 					},
 					'doSomething'	: function(){
 						$('button.positive').hide();
-						$('.material-list.hidden .get-po').appendTo('#popup .content');
 					}
 				});
 			});
