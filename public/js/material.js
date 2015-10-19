@@ -680,6 +680,7 @@ material = {
 					},
 					'doSomething'	: function(){
 						$('button.positive').hide();
+						material.index._focusingSearch();
 					}
 				});
 			});
