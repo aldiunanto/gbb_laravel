@@ -669,6 +669,8 @@ material = {
 			this._openMaterial();
 		},
 		_openMaterial: function(){
+			var self = this;
+
 			$('.open-material').on('click', function(){
 				LIBS.popupDialog('open', {
 					'caption'		: 'Pilih Material',
@@ -680,9 +682,19 @@ material = {
 					},
 					'doSomething'	: function(){
 						$('button.positive').hide();
+
 						material.index._focusingSearch();
+						self._searchMaterial();
 					}
 				});
+			});
+		},
+		_searchMaterial: function(){
+			$('.material-list form').on('submit', function(e){
+				e.preventDefault();
+				var result = LIBS.callAjax($(this).attr('action'), $(this).serialize());
+
+				$('.material-list .list tbody').html(result);
 			});
 		}
 	}
