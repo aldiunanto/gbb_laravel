@@ -660,6 +660,7 @@ material = {
 			var self = this;
 
 			$('.open-material').on('click', function(){
+				var el = $(this);
 				LIBS.popupDialog('open', {
 					'caption'		: 'Pilih Material',
 					'content'		: LIBS.callAjax('material/expenditure/getMaterial'),
@@ -672,13 +673,13 @@ material = {
 						$('button.positive').hide();
 
 						material.index._focusingSearch();
-						self._searchMaterial();
-						self._chooseMaterial();
+						self._searchMaterial(el);
+						self._chooseMaterial(el);
 					}
 				});
 			});
 		},
-		_searchMaterial: function(){
+		_searchMaterial: function(el){
 			var self = this;
 			$('.material-list form').on('submit', function(e){
 				e.preventDefault();
@@ -686,13 +687,29 @@ material = {
 				var result = LIBS.callAjax($(this).attr('action'), $(this).serialize());
 				$('.material-list .list tbody').html(result);
 				
-				self._chooseMaterial();
+				self._chooseMaterial(el);
 			});
 		},
-		_chooseMaterial: function(){
+		_chooseMaterial: function(el){
 			$('.pick-button').on('click', function(){
 				var data = LIBS.callAjax('material/expenditure/chooseMaterial', 'mat_id=' + $(this).attr('data-id'));
-				alert(data);
+				row = JSON.parse(data);
+
+				var detail  = '<table class="mat-detail">';
+					detail += '<tr><td>Satuan P</td><td>:</td><td>' + row.satuan_p + '</td></tr>';
+					detail += '<tr><td>Satuan R</td><td>:</td><td>' + row.satuan_r + '</td></tr>';
+					detail += '<tr><td>Perbandingan</td><td>:</td><td>1:' + row.mat_perbandingan + '</td></tr>';
+					detail += '<tr><td>Stock Akhir</td><td>:</td><td>' + row.mat_stock_akhir + ' ' + row.satuan_r + '</td></tr></table>';
+
+				if(el.next('.mat-detail').length > 0){
+					el.next().remove();
+				}
+
+				el.after(detail);
+				el.prev().val(row.mat_perbandingan).prev().val(row.mat_id).prev().val(row.mat_nama);
+				el.parent().next().html(row.wrn_nama).next().html(row.mat_spesifikasi).next().find('input').focus();
+
+				LIBS.popupDialog('close');
 			});
 		},
 		_addRowItem: function(){
@@ -703,7 +720,7 @@ material = {
 				
 				var row = LIBS.callAjax('material/expenditure/getRowItem');
 				
-				$('.data-list.expenditure tbody').append(row);
+				$('.data-list.expenditure > tbody').append(row);
 				$('html, body').animate({ scrollTop: $(document).height() }, 300);
 				
 				self._openMaterial();
