@@ -990,5 +990,9 @@ class Material extends Controller {
 		$row = MatModel::chooseMaterial($req->input('mat_id'));
 		echo json_encode($row);
 	}
+	public function expenditureGetRowItem()
+	{
+		return view('material.expenditure.getRowItem');
+	}
 
 }

@@ -653,6 +653,7 @@ material = {
 			material.requestCreate._getDatePicker();
 
 			this._openMaterial();
+			this._addRowItem();
 		},
 		_openMaterial: function(){
 			var self = this;
@@ -692,6 +693,16 @@ material = {
 				var data = LIBS.callAjax('material/expenditure/chooseMaterial', 'mat_id=' + $(this).attr('data-id'));
 				alert(data);
 			});
+		},
+		_addRowItem: function(){
+			$('.add-item').on('click', function(e){
+				e.preventDefault();
+				
+				var row = LIBS.callAjax('material/expenditure/getRowItem');
+				
+				$('.data-list.expenditure tbody').append(row);
+				$('html, body').animate({ scrollTop: $(document).height() }, 300);
+			})
 		}
 	}
 
