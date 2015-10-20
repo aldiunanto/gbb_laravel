@@ -654,6 +654,7 @@ material = {
 
 			this._openMaterial();
 			this._addRowItem();
+			this._removeRow();
 		},
 		_openMaterial: function(){
 			var self = this;
@@ -695,6 +696,8 @@ material = {
 			});
 		},
 		_addRowItem: function(){
+			var self = this;
+			
 			$('.add-item').on('click', function(e){
 				e.preventDefault();
 				
@@ -702,6 +705,14 @@ material = {
 				
 				$('.data-list.expenditure tbody').append(row);
 				$('html, body').animate({ scrollTop: $(document).height() }, 300);
+				
+				self._openMaterial();
+				self._removeRow();
+			})
+		},
+		_removeRow: function(){
+			$('.remove-row').on('click', function(){
+				$(this).parent().parent().remove();
 			})
 		}
 	}
