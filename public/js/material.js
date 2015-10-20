@@ -211,20 +211,6 @@ material = {
 			this._createPO();
 
 			material.create._openSupplier();
-			/*material.create._openSupplier(function(){
-				var supId 	= $('input[name="sup_id"]').val();
-				var inform 	= LIBS.callAjax('supplier/getInformation', 'sup_id=' + supId);
-				var row		= JSON.parse(inform);
-
-				$('span.sup_alamat').html(row.sup_alamat);
-				$('span.sup_kota').html(row.sup_kota);
-				$('span.sup_provinsi').html(row.sup_provinsi);
-				$('span.sup_cp').html(row.sup_cp);
-
-				$('.supp-info').slideUp(250, function(){
-					$(this).slideDown();
-				});
-			});*/
 		},
 		_getDatePicker: function(){
 			if($('.date-picker').length > 0){
