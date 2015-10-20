@@ -689,7 +689,8 @@ material = {
 		},
 		_chooseMaterial: function(){
 			$('.pick-button').on('click', function(){
-				alert($(this).attr('data-id'));
+				var data = LIBS.callAjax('material/expenditure/chooseMaterial', 'mat_id=' + $(this).attr('data-id'));
+				alert(data);
 			});
 		}
 	}

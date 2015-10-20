@@ -985,5 +985,10 @@ class Material extends Controller {
 		$fetch = MatModel::fetchForExpenditure(['field' => $req->input('field'), 's' => $req->input('s')]);
 		return view('material.expenditure.searchMaterial', ['fetch' => $fetch]);
 	}
+	public function expenditureChooseMaterial(Request $req)
+	{
+		$row = MatModel::chooseMaterial($req->input('mat_id'));
+		echo json_encode($row);
+	}
 
 }
