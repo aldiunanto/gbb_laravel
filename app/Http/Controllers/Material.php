@@ -1017,8 +1017,23 @@ class Material extends Controller {
 			];
 			
 			Pengels::create($vals);
+			
+			#reducing stock
+			$mat = MatModel::find($mat_id);
+			
+			$y = ($mat->mat_stock_akhir * $mat->mat_perbandingan);
+			$y = $y - $req->input('pengels_realisasi')[$x];
+			$y = $y / $mat->mat_perbandingan;
+			
+			$mat->mat_stock_akhir = $y;
+			$mat->save();
+			#stock reduced
+			
 			$x++;
 		}
+		
+		Session::flash('inserted', '<div class="info success">Pengeluaran Barang berhasil disimpan.</div>');
+		return redirect('material/expenditure');
 	}
 
 }
