@@ -7,7 +7,7 @@
 		<td class="text-center">{{ $row->mat_spesifikasi }}</td>
 		<td>{{ $row->wrn_nama }}</td>
 		<td>{{ $row->mats_nama }}</td>
-		<td class="text-right">{{ $row->mat_stock_akhir }}</td>
+		<td class="text-right">{{ ($row->mat_stock_akhir * $row->mat_perbandingan) }}</td>
 	</tr>
 	@endforeach
 @else

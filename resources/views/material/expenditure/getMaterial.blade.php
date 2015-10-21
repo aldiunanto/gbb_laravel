@@ -11,7 +11,7 @@
 		</div>
 	</form>
 
-	<div class="info success text-center">*Material menggunakan satuan <strong>Gudang.</strong></div>
+	<div class="info warning text-center"><i>Satuan yang digunakan adalah satuan <strong>Gudang</strong>.</i></div>
 	<div class="list">
 		<table>
 			<thead>
@@ -34,7 +34,7 @@
 					<td class="text-center">{{ $row->mat_spesifikasi }}</td>
 					<td>{{ $row->wrn_nama }}</td>
 					<td>{{ $row->mats_nama }}</td>
-					<td class="text-right">{{ $row->mat_stock_akhir }}</td>
+					<td class="text-right">{{ ($row->mat_stock_akhir * $row->mat_perbandingan) }}</td>
 				</tr>
 				@endforeach
 			</tbody>

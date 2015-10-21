@@ -699,7 +699,7 @@ material = {
 					detail += '<tr><td>Satuan P</td><td>:</td><td>' + row.satuan_p + '</td></tr>';
 					detail += '<tr><td>Satuan R</td><td>:</td><td>' + row.satuan_r + '</td></tr>';
 					detail += '<tr><td>Perbandingan</td><td>:</td><td>1:' + row.mat_perbandingan + '</td></tr>';
-					detail += '<tr><td>Stock Akhir</td><td>:</td><td>' + row.mat_stock_akhir + ' ' + row.satuan_r + '</td></tr></table>';
+					detail += '<tr><td>Stock Akhir</td><td>:</td><td>' + (row.mat_stock_akhir * row.mat_perbandingan) + ' ' + row.satuan_r + '</td></tr></table>';
 
 				if(el.next('.mat-detail').length > 0){
 					el.next().remove();
