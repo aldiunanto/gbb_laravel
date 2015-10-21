@@ -32,8 +32,8 @@
 							</tr>
 							<tr>
 								<td>
-									<label for="pengel_pbp">nomor BPB</label>
-									<input type="text" name="pengel_pbp" id="pengel_pbp" />
+									<label for="pengel_bpb">nomor BPB</label>
+									<input type="text" name="pengel_bpb" id="pengel_bpb" />
 								</td>
 							</tr>
 						</table>
