@@ -994,5 +994,31 @@ class Material extends Controller {
 	{
 		return view('material.expenditure.getRowItem');
 	}
+	public function expenditureStore(Request $req)
+	{
+		$vals = [
+			'deptbg_id'		=> $req->input('deptbg_id'),
+			'pengel_bpb'	=> $req->input('pengel_bpb'),
+			'pengel_po'		=> $req->input('pengel_po'),
+			'pengel_date'	=> $req->input('pengel_date'),
+			'visibility'	=> 1
+		];
+		
+		$parent = Pengel::create($vals);
+		
+		$x = 0;
+		foreach($req->input('mat_id') as $mat_id){
+			$vals = [
+				'pengel_id'			=> $parent->pengel_id,
+				'mat_id'			=> $mat_id,
+				'pengels_permintaan'=> $req->input('pengels_permintaan')[$x],
+				'pengels_realisasi'	=> $req->input('pengels_realisasi')[$x],
+				'pengels_ket'		=> trim($req->input('pengels_ket')[$x])
+			];
+			
+			Pengels::create($vals);
+			$x++;
+		}
+	}
 
 }
