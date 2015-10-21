@@ -21,8 +21,8 @@
 						<table>
 							<tr>
 								<td>
-									<label for="dept_id">departemen <span class="required">*</span></label>
-									<select name="dept_id" id="dept_id">
+									<label for="deptbg_id">departemen <span class="required">*</span></label>
+									<select name="deptbg_id" id="deptbg_id">
 										<option value="">-- Pilih --</option>
 										@foreach($deptbg as $row)
 										<option value="{{ $row->deptbg_id }}">{{ $row->deptbg_nama }}</option>
