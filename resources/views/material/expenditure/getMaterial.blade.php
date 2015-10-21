@@ -11,6 +11,7 @@
 		</div>
 	</form>
 
+	<div class="info success text-center">*Material menggunakan satuan <strong>Gudang.</strong></div>
 	<div class="list">
 		<table>
 			<thead>
