@@ -40,7 +40,7 @@
 		<?php $x = $getNumb(); ?>
 		@foreach($fetch as $row)
 
-			<tr>
+			<tr <?php echo (($row->mat_stock_akhir <= $row->mat_stock_min) || $row->mat_stock_min == 0 ? 'class="danger"' : '') ?>>
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
