@@ -31,18 +31,22 @@
 									<th>Material</th>
 									<th>Spesifikasi</th>
 									<th>Warna</th>
+									<th>Satuan</th>
 									<th>Mata Uang</th>
 									<th>Ubah Harga</th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php $x = 0 ?>
+							
+							<?php $x = 0 ?>
+							@if($fetch->count() > 0)
 								@foreach($fetch as $row)
 								<tr>
 									<td class="text-right">{{ ++$x }}.</td>
 									<td>{{ $row->mat_nama }}</td>
 									<td class="text-center">{{ $row->mat_spesifikasi }}</td>
 									<td class="text-center">{{ $row->wrn_nama }}</td>
+									<td>{{ $row->mats_nama }}</td>
 									<td>{{ $row->mu_shortcut }}</td>
 									<td class="text-center">
 										<input type="hidden" name="mat_id[]" value="{{ $row->mat_id }}" />
@@ -50,6 +54,12 @@
 									</td>
 								</tr>
 								@endforeach
+							@else
+								<tr>
+									<td colspan="7"><div class="info warning text-center">Tidak ada material untuk Supplier ini.</div></td>
+								</tr>
+							@endif
+							
 							</tbody>
 						</table>
 					</td>
