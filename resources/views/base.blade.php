@@ -54,9 +54,9 @@
           <li><a href="{{ url('po') }}" <?php echo is_active('po') ?>><i class="fa fa-file-powerpoint-o left"></i>purchasing order</a></li>
           <li class="sidebar-dropdown-toggle {{ (! empty($opened) && $opened == 'report' ? 'opened' : '') }}"><a href="" <?php echo is_active('report') ?>><i class="fa fa-area-chart left"></i>laporan<i class="fa fa-angle-left right"></i></a>
             <ul>
-              <li><a href="">Laporan 1</a></li>
-              <li><a href="">Laporan 2</a></li>
-              <li><a href="">Laporan 3</a></li>
+              <li><a href=""><i class="fa fa-bar-chart"></i>Laporan 1</a></li>
+              <li><a href=""><i class="fa fa-line-chart"></i>Laporan 2</a></li>
+              <li><a href=""><i class="fa fa-pie-chart"></i>Laporan 3</a></li>
             </ul>
           </li>
 				</ul>
