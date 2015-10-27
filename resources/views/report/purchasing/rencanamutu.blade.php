@@ -17,7 +17,7 @@
 						<select name="month" id="month" required="required">
 							<option value=""></option>
 							@for($x = 1; $x <= 12; $x++)
-							<option value="{{ $x }}">{{ $x }}</option>
+							<option value="{{ $x }}">{{ $months[$x] }}</option>
 							@endfor
 						</select>
 					</td>
