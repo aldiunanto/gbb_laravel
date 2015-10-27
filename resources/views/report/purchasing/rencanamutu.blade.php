@@ -13,8 +13,8 @@
 			<table>
 				<tr>
 					<td>
-						<label for="month">Pilih Bulan</label>
-						<select name="month" id="month">
+						<label for="month">Pilih Bulan <span class="required">*</span></label>
+						<select name="month" id="month" required="required">
 							<option value=""></option>
 							@for($x = 1; $x <= 31; $x++)
 							<option value="{{ $x }}">{{ $x }}</option>
@@ -22,8 +22,8 @@
 						</select>
 					</td>
 					<td>
-						<label for="year">Pilih Tahun</label>
-						<select name="year" id="year">
+						<label for="year">Pilih Tahun <span class="required">*</span></label>
+						<select name="year" id="year" required="required">
 							<option value=""></option>
 							@for($x = date('Y'); $x >= 2010; $x--)
 							<option value="{{ $x }}">{{ $x }}</option>
