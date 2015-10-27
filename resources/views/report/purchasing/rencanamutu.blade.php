@@ -16,7 +16,7 @@
 						<label for="month">Pilih Bulan <span class="required">*</span></label>
 						<select name="month" id="month" required="required">
 							<option value=""></option>
-							@for($x = 1; $x <= 31; $x++)
+							@for($x = 1; $x <= 12; $x++)
 							<option value="{{ $x }}">{{ $x }}</option>
 							@endfor
 						</select>
