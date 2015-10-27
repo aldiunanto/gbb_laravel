@@ -11,7 +11,8 @@ use App\Models\Do_retur_penerimaan as DoReturpener;
 
 class Printing extends Controller {
 
-	public function po($po_id){
+	public function po($po_id)
+	{
 		$data = [
 			'asset' => new Assets(),
 			'title'	=> 'Print Purchasing Order',
@@ -21,7 +22,8 @@ class Printing extends Controller {
 
 		return view('printing/po', $data);
 	}
-	public function deliveryOrder($returpener_id){
+	public function deliveryOrder($returpener_id)
+	{
 
 		$get = DoReturpener::where('returpener_id', $returpener_id);
 		if($get->count() == 0){
@@ -88,6 +90,10 @@ class Printing extends Controller {
 		];
 
 		return view('printing/do', $data);
+	}
+	public function rencanamutu()
+	{
+		print_r($_POST);
 	}
 
 }
