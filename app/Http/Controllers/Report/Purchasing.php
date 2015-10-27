@@ -1,12 +1,20 @@
 <?php namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\Assets;
 
 class Purchasing extends Controller {
 
 	public function rencanamutu()
 	{
-		return 'Hello World';
+		$data = [
+			'title'		=> 'Form Report Rencana Mutu',
+			'asset'		=> new Assets(),
+			'position'	=> ['report/purchasing/rencanamutu' => 'Report Rencana Mutu'],
+			'opened'	=> 'report'
+		];
+		
+		return view('report.purchasing.rencanamutu', $data);
 	}
 
 }
