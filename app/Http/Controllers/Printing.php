@@ -93,7 +93,12 @@ class Printing extends Controller {
 	}
 	public function rencanamutu()
 	{
-		print_r($_POST);
+		$data = [
+			'asset'	=> new Assets(),
+			'title'	=> 'Report Rencana Mutu'
+		];
+
+		return view('printing/rencanamutu', $data);
 	}
 
 }
