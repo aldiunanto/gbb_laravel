@@ -17,7 +17,7 @@
 				<th>Material</th>
 				<th>QTY</th>
 				<th>Unit</th>
-				<th>Tgl Kirim</th>
+				<th>Tgl Permintaan</th>
 				<th>Tgl Datang</th>
 			</tr>
 		</thead>
@@ -49,23 +49,23 @@
 				<td>18-10-2015</td>
 				<td></td>
 			</tr>
-			<tr class="partial">
+			<tr>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class="right">35</td>
-				<td></td>
-				<td></td>
-				<td>10-10-2015</td>
+				<td class="right partial">35</td>
+				<td class="partial"></td>
+				<td class="partial"></td>
+				<td class="partial">10-10-2015</td>
 			</tr>
-			<tr class="partial">
+			<tr>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td class="right">45</td>
-				<td></td>
-				<td></td>
-				<td>12-10-2015</td>
+				<td class="right partial">45</td>
+				<td class="partial"></td>
+				<td class="partial"></td>
+				<td class="partial">12-10-2015</td>
 			</tr>
 		</tbody>
 	</table>
