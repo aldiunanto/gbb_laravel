@@ -8,6 +8,7 @@
 	</div>
 </header>
 <section>
+	<h3>ppn</h3>
 	<table class="data-list">
 		<thead>
 			<tr>
@@ -22,49 +23,49 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="bordered-left">02-10-2015</td>
+				<td>02-10-2015</td>
 				<td>P/501/X/JIU/15</td>
-				<td>M E K (Methil Ethil Kethon)</td>
-				<td>200</td>
+				<td class="left">M E K (Methil Ethil Kethon)</td>
+				<td class="right">200</td>
 				<td>Pcs</td>
 				<td>05-10-2015</td>
-				<td class="bordered-right">05-10-2015</td>
+				<td>05-10-2015</td>
 			</tr>
 			<tr>
-				<td class="bordered-left"></td>
 				<td></td>
-				<td>Kulit Cicak</td>
-				<td>400</td>
+				<td></td>
+				<td class="left">Kulit Cicak</td>
+				<td class="right">400</td>
 				<td>Sqf</td>
 				<td>05-10-2015</td>
-				<td class="bordered-right">05-10-2015</td>
+				<td>05-10-2015</td>
 			</tr>
 			<tr>
-				<td class="bordered-left">03-10-2015</td>
+				<td>03-10-2015</td>
 				<td>P/502/X/JIU/15</td>
-				<td>Kaos Kutang</td>
-				<td>80</td>
+				<td class="left">Kaos Kutang</td>
+				<td class="right">80</td>
 				<td>Meter</td>
 				<td>18-10-2015</td>
-				<td class="bordered-right"></td>
+				<td></td>
 			</tr>
 			<tr class="partial">
-				<td class="bordered-left"></td>
 				<td></td>
 				<td></td>
-				<td>35</td>
+				<td></td>
+				<td class="right">35</td>
 				<td></td>
 				<td></td>
-				<td class="bordered-right">10-10-2015</td>
+				<td>10-10-2015</td>
 			</tr>
 			<tr class="partial">
-				<td class="bordered-left"></td>
 				<td></td>
 				<td></td>
-				<td>45</td>
+				<td></td>
+				<td class="right">45</td>
 				<td></td>
 				<td></td>
-				<td class="bordered-right">12-10-2015</td>
+				<td>12-10-2015</td>
 			</tr>
 		</tbody>
 	</table>
