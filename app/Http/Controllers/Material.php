@@ -551,6 +551,16 @@ class Material extends Controller {
 		Session::flash('updated', '<div class="info success">Permintaan material berhasil diubah.</div>');
 		return redirect('material/request/edit/' . $_POST['pb_id']);
 	}
+	public function requestCancel($pb_id)
+	{
+		$pb = Pb::find($pb_id);
+
+		$pb->visibility = 2;
+		$pb->save();
+
+		Session::flash('canceled', '<div class="info warning">Permintaan Barang telah dibatalkan.</div>');
+		return redirect('material/request');
+	}
 	public function acceptance()
 	{
 		$data = [

@@ -142,6 +142,7 @@ material = {
 			this._viewRequestDetail();
 			this._doApprove();
 			this._doReject();
+			this._cancel();
 			
 			material.index._delete('Anda yakin ingin menghapus Permintaan Material ini?');
 			material.index._openSearchForm();
@@ -197,6 +198,19 @@ material = {
 						window.location.href = options.baseUrl + 'material/request';
 					},
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		},
+		_cancel: function(text){
+			$('.cancel').on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+
+				LIBS.confirmation({
+					'text'		: 'Apakah anda yakin ingin membatalkan Permintaan Material ini?',
+					'okAction'	: function(){
+						window.location.href = el.attr('href');
+					}
 				});
 			});
 		}
