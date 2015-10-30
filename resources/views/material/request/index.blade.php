@@ -51,16 +51,16 @@
 								<li><a href="{{ url('material/request/edit/' . $row->pb_id) }}"><i class="fa fa-edit"></i>Ubah Data</a></li>
 								@endif
 
+								@if($row->pb_status == 3 && ($hak_akses == 1 || $hak_akses == 2 || $hak_akses == 3))
+								<li><a href="{{ url('po/create/' . $row->pb_id) }}"><i class="fa fa-check-square-o"></i>Buat PO</a></li>
+								@endif
+
 								@if($hak_akses == 1 || $hak_akses == 2)
 								<li><a href="{{ url('material/request/cancel/' . $row->pb_id) }}" class="cancel"><i class="fa fa-times-circle"></i>Batalkan</a></li>
 								@endif
 
 								@if($hak_akses == 1)
 								<li><a href="{{ url('material/request/destroy/' . $row->pb_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
-								@endif
-
-								@if($row->pb_status == 3 && ($hak_akses == 1 || $hak_akses == 2 || $hak_akses == 3))
-								<li><a href="{{ url('po/create/' . $row->pb_id) }}"><i class="fa fa-check-square-o"></i>Buat PO</a></li>
 								@endif
 							</ul>
 						</li>

@@ -382,7 +382,7 @@ class Material extends Controller {
 	}
 	public function requestCreate()
 	{
-		$get = Pb::select('pb_no')->orderBy('created_at', 'DESC');
+		$get = Pb::select('pb_no')->where('visibility', 1)->orderBy('created_at', 'DESC');
 		if($get->count() == 0){
 			$numb = 'GBB/001/' . romawi()[date('n')] . '/' . date('y');
 		}else{
