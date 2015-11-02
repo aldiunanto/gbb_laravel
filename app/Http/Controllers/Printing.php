@@ -9,6 +9,8 @@ use App\Models\Retur_penerimaan_sub as Returpeners;
 use App\Models\Material;
 use App\Models\Do_retur_penerimaan as DoReturpener;
 
+use Illuminate\Http\Request;
+
 class Printing extends Controller {
 
 	public function po($po_id)
@@ -91,14 +93,18 @@ class Printing extends Controller {
 
 		return view('printing/do', $data);
 	}
-	public function rencanamutu()
+	public function rencanamutu(Request $req)
 	{
-		$data = [
+		foreach(PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn') as $row){
+			echo $row->po_id . '<br />';
+		}
+
+		/*$data = [
 			'asset'	=> new Assets(),
 			'title'	=> 'Report Rencana Mutu'
 		];
 
-		return view('printing/rencanamutu', $data);
+		return view('printing/rencanamutu', $data);*/
 	}
 
 }
