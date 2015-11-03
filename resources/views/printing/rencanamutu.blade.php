@@ -22,37 +22,36 @@
 			</tr>
 		</thead>
 		<tbody>
-
 		@foreach($fetch as $row)
-		<?php $get = $Pener::fetchAll($row->po_id) ?>
-
 			<tr>
 				<td>{{ $row->po_tgl_buat }}</td>
 				<td>{{ $row->po_no }}</td>
-				<td class="left">&nbsp;</td>
-				<td class="right">&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>{{ $row->po_tgl_kedatangan }}</td>
-				<td>
-					<?php
 
-						if($get->count() == 1){
-							$each = $get->first();
-							echo $each->pener_date;
-						}
+			<?php $sub = $Posub::fetchDetail($row->po_id); $x = 1; ?>
+			@foreach($sub as $item)
+				@if($x > 1)
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+				@endif
 
-					?>
-				</td>
-			</tr>
-			
+						<td class="left">{{ $item->mat_nama }}</td>
+						<td class="right">{{ $item->pbs_jml }}</td>
+						<td>{{ $item->mats_nama }}</td>
+						<td>{{ $row->po_tgl_kedatangan }}</td>
+						<td></td>
+					</tr>
+
+				<?php $x++ ?>
+			@endforeach
+
 		@endforeach
-
 		</tbody>
 	</table>
 </section>
 
 <section>
-	<h3>ppn</h3>
+	<h3>example</h3>
 	<table class="data-list">
 		<thead>
 			<tr>
