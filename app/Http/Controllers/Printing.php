@@ -96,16 +96,14 @@ class Printing extends Controller {
 	}
 	public function rencanamutu(Request $req)
 	{
-		foreach(PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn') as $row){
-			echo $row->po_id . ' -> ' . Pener::fetchAll($row->po_id)->count() . '<br />';
-		}
-
-		/*$data = [
+		$data = [
 			'asset'	=> new Assets(),
-			'title'	=> 'Report Rencana Mutu'
+			'title'	=> 'Report Rencana Mutu',
+			'fetch'	=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
+			'Pener'	=> new Pener()
 		];
 
-		return view('printing/rencanamutu', $data);*/
+		return view('printing/rencanamutu', $data);
 	}
 
 }

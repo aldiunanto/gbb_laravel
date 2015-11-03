@@ -22,6 +22,50 @@
 			</tr>
 		</thead>
 		<tbody>
+
+		@foreach($fetch as $row)
+		<?php $get = $Pener::fetchAll($row->po_id) ?>
+
+			<tr>
+				<td>{{ $row->po_tgl_buat }}</td>
+				<td>{{ $row->po_no }}</td>
+				<td class="left">&nbsp;</td>
+				<td class="right">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>{{ $row->po_tgl_kedatangan }}</td>
+				<td>
+					<?php
+
+						if($get->count() == 1){
+							$each = $get->first();
+							echo $each->pener_date;
+						}
+
+					?>
+				</td>
+			</tr>
+			
+		@endforeach
+
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<h3>ppn</h3>
+	<table class="data-list">
+		<thead>
+			<tr>
+				<th>Tanggal</th>
+				<th>Nomor PO</th>
+				<th>Material</th>
+				<th>QTY</th>
+				<th>Unit</th>
+				<th>Tgl Permintaan</th>
+				<th>Tgl Datang</th>
+			</tr>
+		</thead>
+		<tbody>
 			<tr>
 				<td>02-10-2015</td>
 				<td>P/501/X/JIU/15</td>
