@@ -9,6 +9,7 @@ use App\Models\Retur_penerimaan_sub as Returpeners;
 use App\Models\Material;
 use App\Models\Do_retur_penerimaan as DoReturpener;
 use App\Models\Penerimaan as Pener;
+use App\Models\Penerimaan_sub as Peners;
 
 use Illuminate\Http\Request;
 
@@ -101,7 +102,8 @@ class Printing extends Controller {
 			'title'	=> 'Report Rencana Mutu',
 			'fetch'	=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
 			'Posub'	=> new Po_sub(),
-			'Pener'	=> new Pener()
+			'Pener'	=> new Pener(),
+			'Peners'=> new Peners()
 		];
 
 		return view('printing/rencanamutu', $data);

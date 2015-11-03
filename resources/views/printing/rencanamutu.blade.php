@@ -42,7 +42,19 @@
 						<td></td>
 					</tr>
 
-				<?php $x++ ?>
+				<?php $x++; $partial = $Peners::partialForPrint($item->pos_id); ?>
+				
+				@if($partial->count() > 1)
+					@foreach($partial as $each)
+						<tr>
+							<td colspan="3"></td>
+							<td class="right partial">{{ $each->peners_jml }}</td>
+							<td class="partial"></td>
+							<td class="partial"></td>
+							<td class="partial">{{ $each->pener_date }}</td>
+						</tr>
+					@endforeach
+				@endif
 			@endforeach
 
 		@endforeach
