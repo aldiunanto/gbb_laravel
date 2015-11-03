@@ -8,6 +8,7 @@ use App\Models\Retur_penerimaan as Returpener;
 use App\Models\Retur_penerimaan_sub as Returpeners;
 use App\Models\Material;
 use App\Models\Do_retur_penerimaan as DoReturpener;
+use App\Models\Penerimaan as Pener;
 
 use Illuminate\Http\Request;
 
@@ -96,7 +97,7 @@ class Printing extends Controller {
 	public function rencanamutu(Request $req)
 	{
 		foreach(PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn') as $row){
-			echo $row->po_id . '<br />';
+			echo $row->po_id . ' -> ' . Pener::fetchAll($row->po_id)->count() . '<br />';
 		}
 
 		/*$data = [
