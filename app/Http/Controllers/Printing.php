@@ -98,12 +98,13 @@ class Printing extends Controller {
 	public function rencanamutu(Request $req)
 	{
 		$data = [
-			'asset'	=> new Assets(),
-			'title'	=> 'Report Rencana Mutu',
-			'fetch'	=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
-			'Posub'	=> new Po_sub(),
-			'Pener'	=> new Pener(),
-			'Peners'=> new Peners()
+			'asset'		=> new Assets(),
+			'title'		=> 'Report Rencana Mutu',
+			'fetch'		=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
+			'Posub'		=> new Po_sub(),
+			'Pener'		=> new Pener(),
+			'Peners'	=> new Peners(),
+			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
 		];
 
 		return view('printing/rencanamutu', $data);
