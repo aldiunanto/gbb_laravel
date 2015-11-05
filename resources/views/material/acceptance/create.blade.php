@@ -31,6 +31,16 @@
 									<input type="text" name="sup_nama" id="sup_nama" disabled="disabled" style="width: 350px" value="{{ (!empty($head->sup_nama) ? $head->sup_nama : '') }}" />
 								</td>
 							</tr>
+							<tr>
+								<td>
+									<label for="po_is_partial">parsial?</label>
+									<select name="po_is_partial" id="po_is_partial">
+										<option value="">-- Pilih --</option>
+										<option value="1">Ya</option>
+										<option value="2">Tidak</option>
+									</select>
+								</td>
+							</tr>
 						</table>
 					</td>
 					<td>
