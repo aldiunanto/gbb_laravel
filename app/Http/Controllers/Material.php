@@ -607,7 +607,7 @@ class Material extends Controller {
 	public function acceptanceStore(Request $req)
 	{
 		$vals = [
-			'po_id'			=> $_POST['po_id'],
+			'po_id'			=> $req->input('po_id'),
 			'pener_date'	=> now(),
 			'userid_input'	=> $this->_user->user_id,
 			'visibility'	=> 1
@@ -634,7 +634,7 @@ class Material extends Controller {
 		}
 
 		#Checking for update po_status
-		$sub = Po_sub::fetchDetail($_POST['po_id']);
+		$sub = Po_sub::fetchDetail($req->input('po_id'));
 		$el = array();
 
 		foreach($sub as $row){
@@ -647,7 +647,7 @@ class Material extends Controller {
 		}
 
 		if(! in_array('open', $el)){
-			$rec = Po::find($_POST['po_id']);
+			$rec = Po::find($req->input('po_id'));
 
 			$rec->po_status = 2;
 			$rec->save();
@@ -655,7 +655,7 @@ class Material extends Controller {
 		#End of checking
 
 		#We should update parent (po_is_partial=1) to mark it partial
-		$rec = Po::find($_POST['po_id']);
+		$rec = Po::find($req->input('po_id'));
 
 		$rec->po_is_partial = $req->input('po_is_partial');
 		$rec->save();
