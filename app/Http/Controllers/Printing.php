@@ -100,7 +100,8 @@ class Printing extends Controller {
 		$data = [
 			'asset'		=> new Assets(),
 			'title'		=> 'Report Rencana Mutu',
-			'fetch'		=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
+			'fetchp'	=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
+			'fetchn'	=> PoModel::getByDate(['m' => $req->input('month'), 'y' => $req->input('year')], 'nppn'),
 			'Posub'		=> new Po_sub(),
 			'Pener'		=> new Pener(),
 			'Peners'	=> new Peners(),
