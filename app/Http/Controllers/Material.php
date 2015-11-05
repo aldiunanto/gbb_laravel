@@ -654,6 +654,13 @@ class Material extends Controller {
 		}
 		#End of checking
 
+		#We should update parent (po_is_partial=1) to mark it partial
+		$rec = Po::find($_POST['po_id']);
+
+		$rec->po_is_partial = $req->input('po_is_partial');
+		$rec->save();
+		#End of marked
+
 		Session::flash('inserted', '<div class="info success">Penerimaan material telah diinput.</div>');
 		return redirect('material/acceptance');
 	}
