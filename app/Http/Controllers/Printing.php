@@ -110,5 +110,15 @@ class Printing extends Controller {
 
 		return view('printing/qualityplan', $data);
 	}
+	public function purchasemonthly(Request $req)
+	{
+		$data = [
+			'title'		=> 'Laporan Pembelian Bulanan',
+			'asset'		=> new Assets(),
+			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
+		];
+
+		return view('printing/purchasemonthly', $data);
+	}
 
 }
