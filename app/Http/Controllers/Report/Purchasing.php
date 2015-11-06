@@ -17,5 +17,17 @@ class Purchasing extends Controller {
 		
 		return view('report.purchasing.qualityplan', $data);
 	}
+	public function purchasemonthly()
+	{
+		$data = [
+			'title'		=> 'Form Laporan Pembelian Bulanan',
+			'asset'		=> new Assets(),
+			'position'	=> ['report/purchasing/purchasemonthly' => 'Laporan Pembelian Bulanan'],
+			'opened'	=> 'report',
+			'months'	=> libMonths()
+		];
+
+		return view('report.purchasing.purchasemonthly', $data);
+	}
 
 }
