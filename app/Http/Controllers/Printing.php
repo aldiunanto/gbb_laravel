@@ -95,7 +95,7 @@ class Printing extends Controller {
 
 		return view('printing/do', $data);
 	}
-	public function rencanamutu(Request $req)
+	public function qualityplan(Request $req)
 	{
 		$data = [
 			'asset'		=> new Assets(),
@@ -108,7 +108,7 @@ class Printing extends Controller {
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
 		];
 
-		return view('printing/rencanamutu', $data);
+		return view('printing/qualityplan', $data);
 	}
 
 }
