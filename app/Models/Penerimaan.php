@@ -46,7 +46,7 @@ class Penerimaan extends Model {
 	}
 	public static function purchasemonthly($date, $type){
 		$i 		= new static;
-		$get	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.pener_date', 'D.sup_nama')
+		$get	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.pener_date', 'B.po_no', 'D.sup_nama')
 					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 					->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
 					->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')

@@ -24,11 +24,23 @@
 		@foreach($fetchp as $row)
 			<tr>
 				<td>{{ to_indDate($row->pener_date) }}</td>
-				<td>{{ $row->sup_nama }}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+				<td class="left">{{ $row->sup_nama }}</td>
+
+			<?php $x = 1 ?>
+			@foreach($Peners::purchasemonthly($row->pener_id) as $sub)
+				@if($x > 1)
+				<tr>
+					<td></td>
+					<td></td>
+				@endif
+
+					<td class="left">{{ $sub->mat_nama }}</td>
+					<td class="right">{{ $sub->peners_jml }}</td>
+					<td>{{ $sub->mats_nama }}</td>
+				</tr>
+
+				<?php $x++ ?>
+			@endforeach
 		@endforeach
 		</tbody>
 	</table>

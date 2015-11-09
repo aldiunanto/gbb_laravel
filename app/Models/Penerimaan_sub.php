@@ -31,6 +31,17 @@ class Penerimaan_sub extends Model {
 				->where($i->table.'.pos_id', $pos_id)
 				->get();
 	}
+	public static function purchasemonthly($pener_id){
+		$i = new static;
+		return self::select($i->table.'.peners_jml', 'D.mat_nama', 'E.mats_nama')
+				->join('po_sub_laravel AS B', $i->table.'.pos_id', '=', 'B.pos_id')
+				->join('permintaan_barang_sub AS C', 'B.pbs_id', '=', 'C.pbs_id')
+				->join('material_laravel AS D', 'C.mat_id', '=', 'D.mat_id')
+				->join('material_satuan AS E', 'D.matsp_id', '=', 'E.mats_id')
+				->where($i->table.'.pener_id', $pener_id)
+				->orderBy($i->table.'.'.$i->primaryKey, 'ASC')
+				->get();
+	}
 
 }
 
