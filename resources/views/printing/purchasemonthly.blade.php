@@ -21,7 +21,15 @@
 			</tr>
 		</thead>
 		<tbody>
-		
+		@foreach($fetchp as $row)
+			<tr>
+				<td>{{ to_indDate($row->pener_date) }}</td>
+				<td>{{ $row->sup_nama }}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		@endforeach
 		</tbody>
 	</table>
 </section>

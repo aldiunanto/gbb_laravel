@@ -44,5 +44,23 @@ class Penerimaan extends Model {
 					->where($i->table.'.'.$i->primaryKey, $pener_id)
 					->count();
 	}
+	public static function purchasemonthly($date, $type){
+		$i 		= new static;
+		$get	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.pener_date', 'D.sup_nama')
+					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
+					->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
+					->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
+					->where($i->table.'.visibility', 1);
+
+		switch($type){
+			case 'ppn' : $get->where('B.po_is_ppn', 1); break;
+			case 'nppn': $get->where('B.po_is_ppn', 2); break;
+		}
+
+		return $get->whereMonth($i->table.'.pener_date', '=', $date['m'])
+					->whereYear($i->table.'.pener_date', '=', $date['y'])
+					->orderBy($i->table.'.pener_date', 'ASC')
+					->get();
+	}
 
 }
