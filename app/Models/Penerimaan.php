@@ -44,7 +44,7 @@ class Penerimaan extends Model {
 					->where($i->table.'.'.$i->primaryKey, $pener_id)
 					->count();
 	}
-	public static function purchasemonthly($date, $type){
+	public static function purchasemonthly($date, $type, $sortBy){
 		$i 		= new static;
 		$get	= self::select($i->table.'.'.$i->primaryKey, $i->table.'.pener_date', 'B.po_no', 'D.sup_nama')
 					->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
@@ -59,7 +59,7 @@ class Penerimaan extends Model {
 
 		return $get->whereMonth($i->table.'.pener_date', '=', $date['m'])
 					->whereYear($i->table.'.pener_date', '=', $date['y'])
-					->orderBy($i->table.'.pener_date', 'ASC')
+					->orderBy(($sortBy == 'pener_date' ? $i->table : 'D') . '.' . $sortBy, 'ASC')
 					->get();
 	}
 

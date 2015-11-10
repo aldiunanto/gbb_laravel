@@ -32,6 +32,16 @@
 					</td>
 				</tr>
 				<tr>
+					<td>
+						<label for="sort_by">Sorot Berdasarkan</label>
+						<select name="sort_by" id="sort_by">
+							<option value="pener_date">Tanggal Penerimaan</option>
+							<option value="sup_nama">Supplier</option>
+						</select>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
 					<td colspan="2" class="text-right">
 						<div class="actions">
 							<button class="btn primary">buat laporan <i class="fa fa-hand-o-right"></i></button>

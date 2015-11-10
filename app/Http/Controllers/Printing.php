@@ -116,8 +116,8 @@ class Printing extends Controller {
 			'title'		=> 'Laporan Pembelian Bulanan',
 			'asset'		=> new Assets(),
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
-			'fetchp'	=> Pener::purchasemonthly(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn'),
-			'fetchn'	=> Pener::purchasemonthly(['m' => $req->input('month'), 'y' => $req->input('year')], 'nppn'),
+			'fetchp'	=> Pener::purchasemonthly(['m' => $req->input('month'), 'y' => $req->input('year')], 'ppn', $req->input('sort_by')),
+			'fetchn'	=> Pener::purchasemonthly(['m' => $req->input('month'), 'y' => $req->input('year')], 'nppn', $req->input('sort_by')),
 			'Peners'	=> new Peners()
 		];
 
