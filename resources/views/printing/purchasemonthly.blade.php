@@ -35,7 +35,7 @@
 				@endif
 
 					<td class="left">{{ $sub->mat_nama }}</td>
-					<td class="right">{{ $sub->peners_jml }}</td>
+					<td class="right">{{ numbFormat($sub->peners_jml) }}</td>
 					<td>{{ $sub->mats_nama }}</td>
 				</tr>
 
@@ -71,7 +71,7 @@
 				@endif
 
 					<td class="left">{{ $sub->mat_nama }}</td>
-					<td class="right">{{ $sub->peners_jml }}</td>
+					<td class="right">{{ numbFormat($sub->peners_jml) }}</td>
 					<td>{{ $sub->mats_nama }}</td>
 				</tr>
 
