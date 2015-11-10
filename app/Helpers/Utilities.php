@@ -9,6 +9,10 @@
     function notif($type, $msg){
     	return '<div class="notif ' . $type . '"><p>' . $msg . '</p></div>';
     }
+    function numbFormat($numb){
+        $numb = number_format($numb, 2, ',', '.');
+        return (strpos($numb, ',') ? rtrim(rtrim($numb, 0), ',') : $numb);
+    }
     function current_route($type){
     	$path  = explode('@', Route::currentRouteAction());
     	$pathc = explode("\\", $path[0]);
