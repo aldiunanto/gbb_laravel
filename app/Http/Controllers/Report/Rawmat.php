@@ -7,7 +7,15 @@ class Rawmat extends Controller {
 
 	public function materialTransaction()
 	{
-		return 'Hello World';
+		$data = [
+			'title'		=> 'Form Report Transaksi Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['report/rawmat/materialTransaction' => 'Report Transaksi Material'],
+			'opened'	=> 'report',
+			'months' 	=> libMonths()
+		];
+
+		return view('report.rawmat.materialTransaction', $data);
 	}
 
 }
