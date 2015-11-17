@@ -3,12 +3,12 @@
 @section('content')
 <div class="top">
 	<div class="tools">&nbsp;</div>
-	<h2>form laporan pembelian bulanan</h2>
+	<h2>form report transaksi material</h2>
 	<div class="clearfix"></div>
 </div>
 <div class="main">
 	<div class="form">
-		<form action="{{ url('printing/purchasemonthly') }}" method="post" target="_blank">
+		<form action="{{ url('printing/materialTransaction') }}" method="post" target="_blank">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<table>
 				<tr>
@@ -30,16 +30,6 @@
 							@endfor
 						</select>
 					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="sort_by">Sorot Berdasarkan</label>
-						<select name="sort_by" id="sort_by">
-							<option value="pener_date">Tanggal Penerimaan</option>
-							<option value="sup_nama">Supplier</option>
-						</select>
-					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="text-right">
