@@ -56,6 +56,8 @@
             <ul>
               <li><a href="{{ url('report/purchasing/qualityplan') }}"><i class="fa fa-bar-chart"></i>Rencana Mutu</a></li>
               <li><a href="{{ url('report/purchasing/purchasemonthly') }}"><i class="fa fa-line-chart"></i>Pembelian Bulanan</a></li>
+
+              <li><a href="{{ url('report/rawmat/materialTransaction') }}"><i class="fa fa-bar-chart"></i>Transaksi Material</a></li>
             </ul>
           </li>
 				</ul>
