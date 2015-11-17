@@ -123,5 +123,9 @@ class Printing extends Controller {
 
 		return view('printing/purchasemonthly', $data);
 	}
+	public function materialTransaction(Request $req)
+	{
+		print_r($req->input());
+	}
 
 }
