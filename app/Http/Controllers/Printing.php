@@ -125,7 +125,13 @@ class Printing extends Controller {
 	}
 	public function materialTransaction(Request $req)
 	{
-		print_r($req->input());
+		$data = [
+			'title'		=> 'Laporan Transaksi Material Bulanan',
+			'asset'		=> new Assets(),
+			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
+		];
+
+		return view('printing/materialTransaction', $data);
 	}
 
 }
