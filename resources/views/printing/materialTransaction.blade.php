@@ -24,7 +24,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td rowspan="2">1.</td>
+				<td rowspan="2" class="numb">1.</td>
 				<td>Kulit Milling</td>
 				<td>SQF</td>
 				<td>1.6mm - 1.8mm</td>
@@ -42,28 +42,28 @@
 							@for($x = 1; $x <= 31; $x++)
 							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>">{{ $x }}</td>
 							@endfor
-							<td>Total</td>
+							<td class="total">Total</td>
 						</tr>
 						<tr>
-							<td>Penerimaan</td>
+							<td>In</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
+							<td class="right <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
-							<td></td>
+							<td class="total"></td>
 						</tr>
 						<tr>
-							<td>Pengeluaran</td>
+							<td>Out</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
+							<td class="right <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
-							<td></td>
+							<td class="total"></td>
 						</tr>
 						<tr>
 							<td>Retur</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
+							<td class="right <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
-							<td></td>
+							<td class="total"></td>
 						</tr>
 					</table>
 				</td>
