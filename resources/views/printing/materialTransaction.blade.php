@@ -36,32 +36,32 @@
 			</tr>
 			<tr>
 				<td colspan="8">
-					<table>
+					<table class="transac-detail">
 						<tr>
 							<td></td>
 							@for($x = 1; $x <= 31; $x++)
-							<td>{{ $x }}</td>
+							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>">{{ $x }}</td>
 							@endfor
 							<td>Total</td>
 						</tr>
 						<tr>
 							<td>Penerimaan</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td></td>
+							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
 							<td></td>
 						</tr>
 						<tr>
 							<td>Pengeluaran</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td></td>
+							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
 							<td></td>
 						</tr>
 						<tr>
 							<td>Retur</td>
 							@for($x = 1; $x <= 31; $x++)
-							<td></td>
+							<td class="date <?php echo (isWeekend($post['year'] . '-' . $post['month'] . '-' . $x) ? 'weekend' : '') ?>"></td>
 							@endfor
 							<td></td>
 						</tr>
