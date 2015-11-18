@@ -20,6 +20,9 @@
     	if($type == 'class') return strtolower(end($pathc));
     	else return end($path);
     }
+    function isWeekend($date) {
+        return (date('N', strtotime($date)) >= 6);
+    }
     function is_active($expect){
         if(current_route('class') == $expect) return 'class="active"';
     }
