@@ -129,7 +129,8 @@ class Printing extends Controller {
 			'title'		=> 'Laporan Transaksi Material Bulanan',
 			'asset'		=> new Assets(),
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
-			'post'		=> $req->input()
+			'post'		=> $req->input(),
+			'fetch'		=> Material::fetchForReport()
 		];
 
 		return view('printing/materialTransaction', $data);
