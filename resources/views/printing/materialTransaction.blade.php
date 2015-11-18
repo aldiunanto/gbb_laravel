@@ -23,6 +23,43 @@
 			</tr>
 		</thead>
 		<tbody>
+			@foreach($fetch as $row)
+			<?php $x = 1; ?>
+			<tr>
+				<td class="numb">{{ $x++ }}.</td>
+				<td>{{ $row->mat_nama }}</td>
+				<td>{{ $row->mats_nama }}</td>
+				<td>{{ $row->mat_spesifikasi }}</td>
+				<td>{{ $row->wrn_nama }}</td>
+				<td>{{ $row->sup_nama }}</td>
+				<td>{{ $row->mat_stock_min }}</td>
+				<td>{{ $row->mat_stock_awal }}</td>
+				<td>1425</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<table>
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>material</th>
+				<th>satuan</th>
+				<th>spek</th>
+				<th>warna</th>
+				<th>supplier</th>
+				<th>stok<br />minimum</th>
+				<th>stok<br />awal</th>
+				<th>stok<br />akhir</th>
+			</tr>
+		</thead>
+		<tbody>
 			<tr>
 				<td rowspan="2" class="numb">1.</td>
 				<td>Kulit Milling</td>
