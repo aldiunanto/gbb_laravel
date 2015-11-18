@@ -128,7 +128,8 @@ class Printing extends Controller {
 		$data = [
 			'title'		=> 'Laporan Transaksi Material Bulanan',
 			'asset'		=> new Assets(),
-			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
+			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
+			'post'		=> $req->input()
 		];
 
 		return view('printing/materialTransaction', $data);
