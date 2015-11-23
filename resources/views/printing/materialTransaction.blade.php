@@ -60,7 +60,7 @@
 									<td class="date">
 										<?php $peners_jml = 0 ?>
 										@foreach($Peners::getQuantity($row->mat_id, $date) as $each)
-											<?php $peners_jml += $each->peners_jml ?>
+											<?php $peners_jml += ($each->peners_jml * $each->mat_perbandingan) ?>
 										@endforeach
 										{{ ($peners_jml == 0 ? '' : $peners_jml) }}
 									</td>

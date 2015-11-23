@@ -44,10 +44,11 @@ class Penerimaan_sub extends Model {
 	}
 	public static function getQuantity($matId, $date){
 		$i = new static;
-		return self::select($i->table.'.peners_jml')
+		return self::select($i->table.'.peners_jml', 'E.mat_perbandingan')
 				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
 				->join('po_sub_laravel AS C', $i->table.'.pos_id', '=', 'C.pos_id')
 				->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
+				->join('material_laravel AS E', 'D.mat_id', '=', 'E.mat_id')
 				->where('B.pener_date', $date)
 				->where('D.mat_id', $matId)
 				->get();
