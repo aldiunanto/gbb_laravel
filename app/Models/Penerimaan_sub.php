@@ -42,6 +42,24 @@ class Penerimaan_sub extends Model {
 				->orderBy($i->table.'.'.$i->primaryKey, 'ASC')
 				->get();
 	}
+	public static function getQuantity($matId, $date){
+		$i = new static;
+		return self::select($i->table.'.peners_jml')
+				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+				->join('po_sub_laravel AS C', $i->table.'.pos_id', '=', 'C.pos_id')
+				->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
+				->where('D.mat_id', $matId)
+				->where('B.pener_date', $date)
+				->pluck($i->table.'.peners_jml');
+
+		/*SELECT A.peners_jml
+		FROM penerimaan_sub_laravel AS A
+		INNER JOIN penerimaan_laravel AS B ON A.pener_id = B.pener_id
+		INNER JOIN po_sub_laravel AS C ON A.pos_id = C.pos_id
+		INNER JOIN permintaan_barang_sub AS D ON C.pbs_id = D.pbs_id
+		WHERE D.mat_id = x
+			AND B.pener_date = y*/
+	}
 
 }
 
