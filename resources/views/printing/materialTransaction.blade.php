@@ -53,10 +53,17 @@
 						<tr>
 							<td>In</td>
 							@for($x = 1; $x <= 31; $x++)
-								@if(isWeekend($post['year'] . '-' . $post['month'] . '-' . $x))
+								<?php $date = ($post['year'] . '-' . (strlen($post['month']) == 1 ? ('0'.$post['month']) : $post['month']) . '-' . (strlen($x) == 1 ? ('0'.$x) : $x)) ?>
+								@if(isWeekend($date))
 									<td class="date weekend"></td>
 								@else
-									<td class="date"></td>
+									<td class="date">
+										<?php $peners_jml = 0 ?>
+										@foreach($Peners::getQuantity($row->mat_id, $date) as $each)
+											<?php $peners_jml += $each->peners_jml ?>
+										@endforeach
+										{{ ($peners_jml == 0 ? '' : $peners_jml) }}
+									</td>
 								@endif
 							@endfor
 							<td class="total"></td>
