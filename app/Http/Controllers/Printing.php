@@ -10,6 +10,7 @@ use App\Models\Material;
 use App\Models\Do_retur_penerimaan as DoReturpener;
 use App\Models\Penerimaan as Pener;
 use App\Models\Penerimaan_sub as Peners;
+use App\Models\Pengeluaran_sub as Pengels;
 
 use Illuminate\Http\Request;
 
@@ -131,7 +132,8 @@ class Printing extends Controller {
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
 			'post'		=> $req->input(),
 			'fetch'		=> Material::fetchForReport(),
-			'Peners'	=> new Peners()
+			'Peners'	=> new Peners(),
+			'Pengels'	=> new Pengels()
 		];
 
 		return view('printing/materialTransaction', $data);

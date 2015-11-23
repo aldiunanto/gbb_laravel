@@ -18,5 +18,14 @@ class Pengeluaran_sub extends Model {
 				->where($i->table.'.pengel_id', $pengel_id)
 				->get();
 	}
+	public static function getQuantity($matId, $date){
+		$i = new static;
+		return self::select($i->table.'.pengels_realisasi', 'C.mat_perbandingan')
+				->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
+				->join('material_laravel AS C', $i->table.'.mat_id', '=', 'C.mat_id')
+				->where('B.pengel_date', $date)
+				->where($i->table.'.mat_id', $matId)
+				->get();
+	}
 
 }
