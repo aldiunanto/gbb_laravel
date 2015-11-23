@@ -130,7 +130,8 @@ class Printing extends Controller {
 			'asset'		=> new Assets(),
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
 			'post'		=> $req->input(),
-			'fetch'		=> Material::fetchForReport()
+			'fetch'		=> Material::fetchForReport(),
+			'Peners'	=> new Peners()
 		];
 
 		return view('printing/materialTransaction', $data);
