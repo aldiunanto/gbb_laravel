@@ -42,32 +42,44 @@
 						<tr>
 							<td></td>
 							@for($x = 1; $x <= 31; $x++)
-							<?php $isWeekend = isWeekend($post['year'] . '-' . $post['month'] . '-' . $x); ?>
-							<td class="date <?php echo ($isWeekend ? 'weekend' : '') ?>">{{ $x }}</td>
+								@if(isWeekend($post['year'] . '-' . $post['month'] . '-' . $x))
+									<td class="date weekend">{{ $x }}</td>
+								@else
+									<td class="date">{{ $x }}</td>
+								@endif
 							@endfor
 							<td class="total">Total</td>
 						</tr>
 						<tr>
 							<td>In</td>
 							@for($x = 1; $x <= 31; $x++)
-							<?php $isWeekend = isWeekend($post['year'] . '-' . $post['month'] . '-' . $x); ?>
-							<td class="right <?php echo ($isWeekend ? 'weekend' : '') ?>"></td>
+								@if(isWeekend($post['year'] . '-' . $post['month'] . '-' . $x))
+									<td class="date weekend"></td>
+								@else
+									<td class="date"></td>
+								@endif
 							@endfor
 							<td class="total"></td>
 						</tr>
 						<tr>
 							<td>Out</td>
 							@for($x = 1; $x <= 31; $x++)
-							<?php $isWeekend = isWeekend($post['year'] . '-' . $post['month'] . '-' . $x); ?>
-							<td class="right <?php echo ($isWeekend ? 'weekend' : '') ?>"></td>
+								@if(isWeekend($post['year'] . '-' . $post['month'] . '-' . $x))
+									<td class="date weekend"></td>
+								@else
+									<td class="date"></td>
+								@endif
 							@endfor
 							<td class="total"></td>
 						</tr>
 						<tr>
 							<td>Retur</td>
 							@for($x = 1; $x <= 31; $x++)
-							<?php $isWeekend = isWeekend($post['year'] . '-' . $post['month'] . '-' . $x); ?>
-							<td class="right <?php echo ($isWeekend ? 'weekend' : '') ?>"></td>
+								@if(isWeekend($post['year'] . '-' . $post['month'] . '-' . $x))
+									<td class="date weekend"></td>
+								@else
+									<td class="date"></td>
+								@endif
 							@endfor
 							<td class="total"></td>
 						</tr>
