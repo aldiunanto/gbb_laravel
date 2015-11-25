@@ -78,7 +78,7 @@
 									<td class="date">
 										<?php $pengels_jml = 0 ?>
 										@foreach($Pengels::getQuantity($row->mat_id, $date) as $each)
-											<?php $pengels_jml += $each->pengels_jml ?>
+											<?php $pengels_jml += $each->pengels_realisasi ?>
 										@endforeach
 										{{ ($pengels_jml == 0 ? '' : $pengels_jml) }}
 									</td>
