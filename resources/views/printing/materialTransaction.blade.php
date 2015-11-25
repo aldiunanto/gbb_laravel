@@ -52,6 +52,7 @@
 						</tr>
 						<tr>
 							<td>In</td>
+							<?php $total = 0 ?>
 							@for($x = 1; $x <= 31; $x++)
 								<?php $date = ($post['year'] . '-' . (strlen($post['month']) == 1 ? ('0'.$post['month']) : $post['month']) . '-' . (strlen($x) == 1 ? ('0'.$x) : $x)) ?>
 								@if(isWeekend($date))
@@ -62,14 +63,20 @@
 										@foreach($Peners::getQuantity($row->mat_id, $date) as $each)
 											<?php $peners_jml += ($each->peners_jml * $each->mat_perbandingan) ?>
 										@endforeach
-										{{ ($peners_jml == 0 ? '' : $peners_jml) }}
+										<?php
+
+											echo ($peners_jml == 0 ? '' : $peners_jml);
+											$total += $peners_jml;
+
+										?>
 									</td>
 								@endif
 							@endfor
-							<td class="total"></td>
+							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
 						</tr>
 						<tr>
 							<td>Out</td>
+							<?php $total = 0 ?>
 							@for($x = 1; $x <= 31; $x++)
 								<?php $date = ($post['year'] . '-' . (strlen($post['month']) == 1 ? ('0'.$post['month']) : $post['month']) . '-' . (strlen($x) == 1 ? ('0'.$x) : $x)) ?>
 								@if(isWeekend($date))
@@ -80,14 +87,20 @@
 										@foreach($Pengels::getQuantity($row->mat_id, $date) as $each)
 											<?php $pengels_jml += $each->pengels_realisasi ?>
 										@endforeach
-										{{ ($pengels_jml == 0 ? '' : $pengels_jml) }}
+										<?php
+
+											echo ($pengels_jml == 0 ? '' : $pengels_jml);
+											$total += $pengels_jml;
+
+										?>
 									</td>
 								@endif
 							@endfor
-							<td class="total"></td>
+							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
 						</tr>
 						<tr>
 							<td>Retur</td>
+							<?php $total = 0 ?>
 							@for($x = 1; $x <= 31; $x++)
 								<?php $date = ($post['year'] . '-' . (strlen($post['month']) == 1 ? ('0'.$post['month']) : $post['month']) . '-' . (strlen($x) == 1 ? ('0'.$x) : $x)) ?>
 								@if(isWeekend($date))
@@ -98,11 +111,16 @@
 										@foreach($Returpeners::getQuantity($row->mat_id, $date) as $each)
 											<?php $retur_jml += $each->returpeners_jml ?>
 										@endforeach
-										{{ ($retur_jml == 0 ? '' : $retur_jml) }}
+										<?php
+
+											echo ($retur_jml == 0 ? '' : $retur_jml);
+											$total += $retur_jml;
+
+										?>
 									</td>
 								@endif
 							@endfor
-							<td class="total"></td>
+							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
 						</tr>
 					</table>
 				</td>
