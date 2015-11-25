@@ -127,13 +127,14 @@ class Printing extends Controller {
 	public function materialTransaction(Request $req)
 	{
 		$data = [
-			'title'		=> 'Laporan Transaksi Material Bulanan',
-			'asset'		=> new Assets(),
-			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
-			'post'		=> $req->input(),
-			'fetch'		=> Material::fetchForReport(),
-			'Peners'	=> new Peners(),
-			'Pengels'	=> new Pengels()
+			'title'			=> 'Laporan Transaksi Material Bulanan',
+			'asset'			=> new Assets(),
+			'period'		=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
+			'post'			=> $req->input(),
+			'fetch'			=> Material::fetchForReport(),
+			'Peners'		=> new Peners(),
+			'Pengels'		=> new Pengels(),
+			'Returpeners'	=> new Returpeners()
 		];
 
 		return view('printing/materialTransaction', $data);
