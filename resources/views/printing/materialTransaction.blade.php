@@ -19,14 +19,15 @@
 				<th>supplier</th>
 				<th>stok<br />minimum</th>
 				<th>stok<br />awal</th>
-				<th>stok<br />akhir</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php $y = 1; ?>
 			@foreach($fetch as $row)
+			<?php $stockAkhir = $row->mat_stock_awal ?>
+
 			<tr class="item">
-				<td rowspan="2" class="numb">{{ $y++ }}</td>
+				<td rowspan="3" class="numb">{{ $y++ }}</td>
 				<td class="left">{{ $row->mat_nama }}</td>
 				<td>{{ $row->mats_nama }}</td>
 				<td class="left">{{ $row->mat_spesifikasi }}</td>
@@ -34,10 +35,9 @@
 				<td class="left">{{ $row->sup_nama }}</td>
 				<td class="right">{{ numbFormat($row->mat_stock_min) }}</td>
 				<td class="right">{{ numbFormat($row->mat_stock_awal) }}</td>
-				<td class="right">{{ numbFormat(1425) }}</td>
 			</tr>
 			<tr>
-				<td colspan="8">
+				<td colspan="7">
 					<table class="transac-detail">
 						<tr>
 							<td></td>
@@ -73,6 +73,8 @@
 								@endif
 							@endfor
 							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
+
+							<?php $stockAkhir += $total ?>
 						</tr>
 						<tr>
 							<td>Out</td>
@@ -97,6 +99,8 @@
 								@endif
 							@endfor
 							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
+
+							<?php $stockAkhir -= $total ?>
 						</tr>
 						<tr>
 							<td>Retur</td>
@@ -121,8 +125,15 @@
 								@endif
 							@endfor
 							<td class="total">{{ ($total == 0 ? '' : $total) }}</td>
+
+							<?php $stockAkhir -= $total ?>
 						</tr>
 					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="7">
+					Stok Akhir: {{ $stockAkhir }}
 				</td>
 			</tr>
 			@endforeach
