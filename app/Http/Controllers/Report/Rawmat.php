@@ -17,5 +17,9 @@ class Rawmat extends Controller {
 
 		return view('report.rawmat.materialTransaction', $data);
 	}
+	public function monthly()
+	{
+		return 'Hello World';
+	}
 
 }

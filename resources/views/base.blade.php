@@ -58,6 +58,7 @@
               <li><a href="{{ url('report/purchasing/purchasemonthly') }}"><i class="fa fa-line-chart"></i>Pembelian Bulanan</a></li>
 
               <li><a href="{{ url('report/rawmat/materialTransaction') }}"><i class="fa fa-bar-chart"></i>Transaksi Material</a></li>
+              <li><a href="{{ url('report/rawmat/monthly') }}"><i class="fa fa-line-chart"></i>Bulanan</a></li>
             </ul>
           </li>
 				</ul>
