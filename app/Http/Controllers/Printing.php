@@ -139,5 +139,18 @@ class Printing extends Controller {
 
 		return view('printing/materialTransaction', $data);
 	}
+	public function materialMonthly()
+	{
+		/*echo date('m', strtotime('-2 months'));
+		echo 04*/
+
+		$data = [
+			'title'		=> 'Laporan Bulanan Material',
+			'asset'		=> new Assets(),
+			'period'	=> 'september 2015',
+		];
+
+		return view('printing/materialMonthly', $data);
+	}
 
 }
