@@ -20,7 +20,7 @@ class Rawmat extends Controller {
 	public function expenditure()
 	{
 		$data = [
-			'title'		=> 'Form Laporan Pengeluaran Bulanan Material'
+			'title'		=> 'Form Laporan Pengeluaran Bulanan Material',
 			'asset'		=> new Assets(),
 			'position'	=> ['report/rawmat/expenditure' => 'Report Pengeluaran Bulanan'],
 			'opened'	=> 'report',
