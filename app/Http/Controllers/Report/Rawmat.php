@@ -17,9 +17,17 @@ class Rawmat extends Controller {
 
 		return view('report.rawmat.materialTransaction', $data);
 	}
-	public function monthly()
+	public function expenditure()
 	{
-		return 'Hello World';
+		$data = [
+			'title'		=> 'Form Laporan Pengeluaran Bulanan Material'
+			'asset'		=> new Assets(),
+			'position'	=> ['report/rawmat/expenditure' => 'Report Pengeluaran Bulanan'],
+			'opened'	=> 'report',
+			'months'	=> libMonths()
+		];
+
+		return view('report.rawmat.expenditure', $data);
 	}
 
 }
