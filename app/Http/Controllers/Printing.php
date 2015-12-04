@@ -25,7 +25,7 @@ class Printing extends Controller {
 			'sub'	=> Po_sub::fetchDetail($po_id)
 		];
 
-		return view('printing/po', $data);
+		return view('printing.po', $data);
 	}
 	public function deliveryOrder($returpener_id)
 	{
@@ -94,7 +94,7 @@ class Printing extends Controller {
 			'numb'	=> $numb
 		];
 
-		return view('printing/do', $data);
+		return view('printing.do', $data);
 	}
 	public function qualityplan(Request $req)
 	{
@@ -109,7 +109,7 @@ class Printing extends Controller {
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year')
 		];
 
-		return view('printing/qualityplan', $data);
+		return view('printing.qualityplan', $data);
 	}
 	public function purchasemonthly(Request $req)
 	{
@@ -122,7 +122,7 @@ class Printing extends Controller {
 			'Peners'	=> new Peners()
 		];
 
-		return view('printing/purchasemonthly', $data);
+		return view('printing.purchasemonthly', $data);
 	}
 	public function materialTransaction(Request $req)
 	{
@@ -137,7 +137,7 @@ class Printing extends Controller {
 			'Returpeners'	=> new Returpeners()
 		];
 
-		return view('printing/materialTransaction', $data);
+		return view('printing.materialTransaction', $data);
 	}
 	public function expenditure(Request $req)
 	{
@@ -150,7 +150,7 @@ class Printing extends Controller {
 			'dEnd'		=> $dEnd
 		];
 
-		return view('printing/expenditure', $data);
+		return view('printing.expenditure', $data);
 	}
 
 }
