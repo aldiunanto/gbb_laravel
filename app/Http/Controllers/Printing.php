@@ -144,10 +144,13 @@ class Printing extends Controller {
 		/*echo date('m', strtotime('-2 months'));
 		echo 04*/
 
+		$dEnd = '2015-04';
 		$data = [
 			'title'		=> 'Laporan Bulanan Material',
 			'asset'		=> new Assets(),
 			'period'	=> 'september 2015',
+			'dStart'	=> date('Y-m', strtotime('-5 months', strtotime($dEnd))),
+			'dEnd'		=> $dEnd
 		];
 
 		return view('printing/materialMonthly', $data);
