@@ -139,21 +139,18 @@ class Printing extends Controller {
 
 		return view('printing/materialTransaction', $data);
 	}
-	public function materialMonthly()
+	public function expenditure(Request $req)
 	{
-		/*echo date('m', strtotime('-2 months'));
-		echo 04*/
-
-		$dEnd = '2015-04';
+		$dEnd = $req->input('year') . '-' . $req->input('month');
 		$data = [
-			'title'		=> 'Laporan Bulanan Material',
+			'title'		=> 'Laporan Pengeluaran Bulanan Material',
 			'asset'		=> new Assets(),
-			'period'	=> 'september 2015',
+			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
 			'dStart'	=> date('Y-m', strtotime('-5 months', strtotime($dEnd))),
 			'dEnd'		=> $dEnd
 		];
 
-		return view('printing/materialMonthly', $data);
+		return view('printing/expenditure', $data);
 	}
 
 }
