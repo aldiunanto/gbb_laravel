@@ -148,7 +148,8 @@ class Printing extends Controller {
 			'period'	=> libMonths()[$req->input('month')] . ' ' . $req->input('year'),
 			'dStart'	=> date('Y-m', strtotime('-5 months', strtotime($dEnd))),
 			'dEnd'		=> $dEnd,
-			'fetch'		=> Material::fetchForReport()
+			'fetch'		=> Material::fetchForReport(),
+			'Pengels'	=> new Pengels()
 		];
 
 		return view('printing.expenditure', $data);
