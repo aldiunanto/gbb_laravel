@@ -18,13 +18,20 @@ class Pengeluaran_sub extends Model {
 				->where($i->table.'.pengel_id', $pengel_id)
 				->get();
 	}
-	public static function getQuantity($matId, $date){
-		$i = new static;
-		return self::select($i->table.'.pengels_realisasi')
-				->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
-				->where('B.pengel_date', $date)
-				->where($i->table.'.mat_id', $matId)
-				->get();
+	public static function getQuantity($matId, $date, $dYaMo = false, $dYaMoV = array()){ //dYaMo = Date Year and Moth Only. Extra 'V' = value
+		$i 		= new static;
+		$get 	= self::select($i->table.'.pengels_realisasi')
+					->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
+					->where($i->table.'.mat_id', $matId);
+
+		if($dYaMo){
+			$get->whereYear('B.pengel_date', '=', $dYaMoV[0])
+				->whereMonth('B.pengel_date', '=', $dYaMoV[1]);
+		}else{
+			$get->where('B.pengel_date', $date);
+		}
+	
+		return $get->get();
 	}
 
 }
