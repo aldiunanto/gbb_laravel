@@ -49,7 +49,7 @@
               <li><a href="{{ url('material/request') }}"><i class="fa fa-shopping-cart"></i>permintaan<?php $count = count_request(); echo ($count == 0 ? '' : '<span class="notif-count">'.$count.'</span>') ?></a></li>
               <li><a href="{{ url('material/acceptance') }}"><i class="fa fa-sign-in"></i>penerimaan</a></li>
               <li><a href="{{ url('material/expenditure') }}"><i class="fa fa-sign-out"></i>pengeluaran</a></li>
-              <li><a href="{{ url('material/setStock') }}"><i class="fa fa-wrench"></i>setel stok</a></li>
+              <li><a href="{{ url('material/closingStock') }}"><i class="fa fa-retweet"></i>closing stok</a></li>
             </ul>
           </li>
           <li><a href="{{ url('po') }}" <?php echo is_active('po') ?>><i class="fa fa-file-powerpoint-o left"></i>purchasing order</a></li>
