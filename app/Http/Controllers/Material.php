@@ -1052,5 +1052,9 @@ class Material extends Controller {
 		Session::flash('inserted', '<div class="info success">Pengeluaran Barang berhasil disimpan.</div>');
 		return redirect('material/expenditure');
 	}
+	public function closingStock()
+	{
+		return 'Hello World';
+	}
 
 }
