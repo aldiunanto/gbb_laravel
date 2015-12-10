@@ -1054,7 +1054,14 @@ class Material extends Controller {
 	}
 	public function closingStock()
 	{
-		return 'Hello World';
+		$data = [
+			'title'		=> 'Form Closing Stok',
+			'asset'		=> new Assets(),
+			'position'	=> ['material' => 'Material', 'material/closingStock' => 'Form Closing Stok'],
+			'opened'	=> 'material'
+		];
+
+		return view('material.closingStock', $data);
 	}
 
 }
