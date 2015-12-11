@@ -1058,7 +1058,8 @@ class Material extends Controller {
 			'title'		=> 'Form Closing Stok',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/closingStock' => 'Form Closing Stok'],
-			'opened'	=> 'material'
+			'opened'	=> 'material',
+			'isDec'		=> (date('m') == 12 ? true : false)
 		];
 
 		return view('material.closingStock', $data);
