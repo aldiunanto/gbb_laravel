@@ -26,7 +26,7 @@
 				<tr>
 					<td>
 						<label for="cs_year">Tahun</label>
-						<input type="text" disabled="disabled" id="cs_year" name="year" value="{{ date('Y') }}" />
+						<input type="text" readonly="readonly" id="cs_year" name="year" value="{{ date('Y') }}" />
 					</td>
 				</tr>
 				<tr>
