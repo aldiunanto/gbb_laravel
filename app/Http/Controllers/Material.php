@@ -1067,5 +1067,9 @@ class Material extends Controller {
 
 		return view('material.closingStock', $data);
 	}
+	public function closingStockDo(Request $req)
+	{
+		print_r($req->input());
+	}
 
 }
