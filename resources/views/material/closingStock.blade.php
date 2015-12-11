@@ -32,7 +32,7 @@
 				<tr>
 					<td class="text-right">
 						<div class="actions">
-							<button class="btn primary">close now!</button>
+							<button class="btn primary" <?php echo ((!$isDec || $isClosed) ? 'disabled="disabled"' : '') ?>>close now!</button>
 						</div>
 					</td>
 				</tr>
