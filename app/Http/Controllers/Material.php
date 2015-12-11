@@ -1055,13 +1055,14 @@ class Material extends Controller {
 	}
 	public function closingStock()
 	{
+		$isClosed = Cs::isClosed();
 		$data = [
 			'title'		=> 'Form Closing Stok',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/closingStock' => 'Form Closing Stok'],
 			'opened'	=> 'material',
 			'isDec'		=> (date('m') == 12 ? true : false),
-			'isClosed'	=> (Cs::isCLosed() > 0 ? true : false)
+			'isClosed'	=> ($isClosed->count() > 0 ? $isClosed->first() : false)
 		];
 
 		return view('material.closingStock', $data);

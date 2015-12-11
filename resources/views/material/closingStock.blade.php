@@ -9,7 +9,7 @@
 <div class="main">
 	<div class="form">
 		@if($isClosed)
-		<div class="info error text-center"><i>Closing Stok sudah dilakukan pada tahun ini!<br /><strong>(30-12-2015 15:02:56)</strong></i></div>
+		<div class="info error text-center"><i>Closing Stok sudah dilakukan pada tahun ini!<br /><strong>({{ $isClosed->created_at }})</strong></i></div>
 		@endif
 		@if(! $isDec)
 		<div class="info error text-center"><i>Anda tidak diperkenankan melakukan Closing Stok sebelum bulan Desember!</i></div>
