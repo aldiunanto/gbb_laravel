@@ -22,6 +22,7 @@ use App\Models\Penerimaan_returan_sub as Penereturs;
 use App\Models\Pengeluaran as Pengel;
 use App\Models\Pengeluaran_sub as Pengels;
 use App\Models\Dept_bagian as Deptbg;
+use App\Models\Closing_stock as Cs;
 use Validator;
 use Session;
 use Auth;
@@ -1059,7 +1060,8 @@ class Material extends Controller {
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/closingStock' => 'Form Closing Stok'],
 			'opened'	=> 'material',
-			'isDec'		=> (date('m') == 12 ? true : false)
+			'isDec'		=> (date('m') == 12 ? true : false),
+			'isClosed'	=> (Cs::isCLosed() > 0 ? true : false)
 		];
 
 		return view('material.closingStock', $data);

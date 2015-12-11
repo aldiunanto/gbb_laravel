@@ -8,11 +8,13 @@
 </div>
 <div class="main">
 	<div class="form">
+		@if($isClosed)
 		<div class="info error text-center"><i>Closing Stok sudah dilakukan pada tahun ini!<br /><strong>(30-12-2015 15:02:56)</strong></i></div>
+		@endif
 		@if(! $isDec)
 		<div class="info error text-center"><i>Anda tidak diperkenankan melakukan Closing Stok sebelum bulan Desember!</i></div>
 		@endif
-		
+
 		<div class="info warning">
 			*<i>Closing Stok dilakukan <strong>satu kali dalam satu tahun</strong> di pengujung tahun yaitu <strong>pengujung Bulan Desember</strong>.</i><br />
 			*<i>Closing Stok berfungsi untuk perhitungan stok material secara keseluruhan dalam transaksi (penerimaan, pengeluaran, dan retur) dan akan diperoleh sebuah hasil <strong>Stok Akhir</strong> yang lalu <strong>di-set sebagai Stok Awal</strong> pada tahun berikutnya.</i>
