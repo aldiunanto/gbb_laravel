@@ -746,6 +746,22 @@ material = {
 				$(this).parent().parent().remove();
 			})
 		}
+	},
+	closingStock: {
+		init: function(){
+			this._areYouSure();
+		},
+		_areYouSure: function(){
+			$('.form form').on('submit', function(e){
+				var form = this;
+				e.preventDefault();
+
+				LIBS.confirmation({
+					'text'		: 'Pemrosesan Closing Stok tidak bisa diurungkan setelah anda mengklik \'OK\'. Lanjutkan?',
+					'okAction'	: function(){ form.submit(); }
+				});
+			});
+		}
 	}
 
 }
