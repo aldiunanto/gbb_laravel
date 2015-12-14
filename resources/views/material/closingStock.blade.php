@@ -8,6 +8,7 @@
 </div>
 <div class="main">
 	<div class="form">
+		{!! session('success') !!}
 		@if($isClosed)
 		<div class="info error text-center"><i>Closing Stok sudah dilakukan pada tahun ini!<br /><strong>({{ $isClosed->created_at }})</strong></i></div>
 		@endif

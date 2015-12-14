@@ -1084,6 +1084,9 @@ class Material extends Controller {
 			$mat->mat_stock_awal = $mat->mat_stock_akhir;
 			$mat->save();
 		}
+
+		Session::flash('success', '<div class="info success">Closing Stok untuk tahun ' . $req->input('year') . ' berhasil dilakukan.</div>');
+		return redirect('material/closingStock');
 	}
 
 }
