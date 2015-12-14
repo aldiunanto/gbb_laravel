@@ -1069,7 +1069,7 @@ class Material extends Controller {
 	}
 	public function closingStockDo(Request $req)
 	{
-		print_r($req->input());
+		$cs = Cs::create(['user_id' => $this->_user->user_id, 'cs_year' => $req->input('year')]);
 	}
 
 }
