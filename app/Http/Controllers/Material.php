@@ -23,6 +23,7 @@ use App\Models\Pengeluaran as Pengel;
 use App\Models\Pengeluaran_sub as Pengels;
 use App\Models\Dept_bagian as Deptbg;
 use App\Models\Closing_stock as Cs;
+use App\Models\Closing_stock_materials as Csm; 
 use Validator;
 use Session;
 use Auth;
@@ -1070,6 +1071,19 @@ class Material extends Controller {
 	public function closingStockDo(Request $req)
 	{
 		$cs = Cs::create(['user_id' => $this->_user->user_id, 'cs_year' => $req->input('year')]);
+		foreach(MatModel::fetchForClosing() as $row){
+			$vals = [
+				'cs_id' 			=> $cs->cs_id,
+				'mat_id' 			=> $row->mat_id,
+				'mat_stock_awal' 	=> $row->mat_stock_awal,
+				'mat_stock_akhir'	=> $row->mat_stock_akhir
+			];
+			Csm::create($vals);
+
+			$mat = MatModel::find($row->mat_id);
+			$mat->mat_stock_awal = $mat->mat_stock_akhir;
+			$mat->save();
+		}
 	}
 
 }
