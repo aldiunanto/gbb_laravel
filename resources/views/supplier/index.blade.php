@@ -10,7 +10,9 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn-search btn warning" <?php echo (! is_null($search) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
+		@if($role == 4 || $role == 5 || $role == 6 || $role == 7)
 		<a href="{{ url('supplier/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah supplier baru</a>
+		@endif
 		<div class="clearfix"></div>
 	</div>
 	<h2>Supplier List <span>({{ $fetch->count() }} dari {{ $fetch->total() }})</span></h2>
