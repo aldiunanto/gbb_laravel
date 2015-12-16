@@ -46,7 +46,7 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('supplier/show/' . $row->sup_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								<li><a href="{{ url('supplier/show/' . $row->sup_id) }}" class="view-detail {{ (in_array($role, $banned) ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 								@if(! in_array($role, $banned))
 								<li><a href="{{ url('supplier/edit/' . $row->sup_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
 								<li><a href="{{ url('material/edit/' . $row->sup_id . '/price') }}" title="Ubah semua harga material untuk supplier {{ $row->sup_nama }}"><i class="fa fa-money"></i>Ubah harga</a></li>
