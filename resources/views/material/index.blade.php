@@ -54,7 +54,7 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ ($role == 4) ? 'no-print' : '' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ (in_array($role, [1,2,3])) ? '' : 'no-print' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 
 								@if($role != 4 && $role != 5 && $role != 6 && $role != 7)
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
