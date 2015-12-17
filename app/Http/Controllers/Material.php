@@ -56,7 +56,7 @@ class Material extends Controller {
 			'fetch'		=> MatModel::fetchData(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'opened'	=> 'material',
-			'hak_akses'	=> $this->_user->hak_akses,
+			'role'		=> $this->_user->hak_akses,
 			'getNumb'	=> function() use ($perPage, $request){
 				if($request->has('page') && $request->input('page') != 1){
 					return ($request->input('page') * $perPage) - $perPage;

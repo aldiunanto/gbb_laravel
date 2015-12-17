@@ -15,7 +15,7 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
-		@if($hak_akses != 4)
+		@if($role != 4)
 		<a href="{{ url('material/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah material baru</a>
 		@endif
 	</div>
@@ -50,12 +50,12 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ ($hak_akses == 4) ? 'no-print' : '' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
-								@if($hak_akses != 4)
+								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ ($role == 4) ? 'no-print' : '' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								@if($role != 4)
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
 								<li><a href="{{ url('material/edit/' . $row->sup_id . '/price') }}" title="Ubah semua harga material untuk supplier {{ $row->sup_nama }}"><i class="fa fa-money"></i>Ubah harga</a></li>
 								@endif
-								@if($hak_akses != 3 && $hak_akses != 4)
+								@if($role != 3 && $role != 4)
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>
