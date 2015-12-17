@@ -31,7 +31,9 @@
 				<th>No</th>
 				<th>Nama Material</th>
 				<th>Spesifikasi</th>
+				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<th>Satuan</th>
+				@endif
 				<th>Supplier</th>
 				<th>Aksi</th>
 			</tr>
@@ -44,7 +46,9 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
+				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<td>{{ $row->mats_nama }}</td>
+				@endif
 				<td>{{ $row->sup_nama }}</td>
 				<td class="text-right">
 					<ul class="actions">
