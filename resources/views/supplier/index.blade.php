@@ -51,7 +51,9 @@
 								<li><a href="{{ url('supplier/show/' . $row->sup_id) }}" class="view-detail {{ (in_array($role, $banned) ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 								@if(! in_array($role, $banned))
 								<li><a href="{{ url('supplier/edit/' . $row->sup_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
+								@if($role != 5)
 								<li><a href="{{ url('material/edit/' . $row->sup_id . '/price') }}" title="Ubah semua harga material untuk supplier {{ $row->sup_nama }}"><i class="fa fa-money"></i>Ubah harga</a></li>
+								@endif
 								<li><a href="{{ url('supplier/destroy/' . $row->sup_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>
