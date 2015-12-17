@@ -15,7 +15,7 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
-		@if($role != 4)
+		@if($role != 4 && $role != 5 && $role != 6 && $role != 7)
 		<a href="{{ url('material/create') }}" class="btn default"><i class="fa fa-plus"></i> tambah material baru</a>
 		@endif
 	</div>
