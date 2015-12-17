@@ -202,12 +202,6 @@ class Material extends Controller {
 			case 3 : //rawmat
 				$accessable = ['disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
 			break;
-			case 4 : //PPIC
-				$accessable = ['disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];
-			break;
-			case 5 : //Vice Director
-				$accessable = ['', '', '', '', '', '', '', '', '', '', ''];
-			break;
 		}
 
 		$data = [
