@@ -90,7 +90,7 @@ class Material extends Controller {
 		if($role == 2){
 			$accessable = ['', '', '', '', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"'];
 		}elseif($role == 3){
-			$accessable = ['', '', '', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', '', ''];
+			$accessable = ['', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];
 		}else{
 			$accessable = ['', '', '', '', '', '', '', '', '', '', ''];
 		}
