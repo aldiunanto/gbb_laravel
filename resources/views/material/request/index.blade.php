@@ -4,7 +4,7 @@
 <input type="hidden" name="pm" value="true" />
 
 {!! session('accepted') !!}
-@if($hak_akses != 3 && $fetchReq->count() > 0)
+@if($hak_akses != 3 && $hak_akses != 6 && $fetchReq->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
 	<h2>
