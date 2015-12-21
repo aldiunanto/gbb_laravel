@@ -39,12 +39,14 @@
 			<nav>
 				<ul>
           <li><a href="{{ url('home') }}" <?php echo is_active('home') ?>><i class="fa fa-home left"></i>beranda</a></li>
-          <?php $role = Auth::user()->hak_akses; ?>
+          <?php $role = Auth::user()->hak_akses ?>
 					<li><a href="{{ url('supplier') }}" <?php echo is_active('supplier') ?>><i class="fa fa-users left"></i>supplier</a></li>
           <li class="sidebar-dropdown-toggle  {{ (! empty($opened) && $opened == 'material' ? 'opened' : '') }}"><a href="" <?php echo is_active('material') ?>><i class="fa fa-dropbox left"></i>material<i class="fa fa-angle-left right"></i></a>
             <ul>
               <li><a href="{{ url('material') }}"><i class="fa fa-list"></i>data list</a></li>
+              @if($role != 7)
               <li><a href="{{ url('material/request') }}"><i class="fa fa-shopping-cart"></i>permintaan<?php $count = count_request(); echo ($count == 0 ? '' : '<span class="notif-count">'.$count.'</span>') ?></a></li>
+              @endif
               <li><a href="{{ url('material/acceptance') }}"><i class="fa fa-sign-in"></i>penerimaan</a></li>
               <li><a href="{{ url('material/expenditure') }}"><i class="fa fa-sign-out"></i>pengeluaran</a></li>
               <li><a href="{{ url('material/closingStock') }}"><i class="fa fa-retweet"></i>closing stok</a></li>
@@ -68,7 +70,9 @@
 				<ul>
           <li><a href="{{ url('notification') }}" class="notif-top" title="Notifikasi"><i class="fa fa-bell fa-2x"></i><?php $notif = count_notif(); echo ($notif == 0 ? '' : '<span>' . $notif . '</span>') ?></a></li>
           <li><a href="{{ url('material/acceptance/retur') }}" class="notif-top" title="Retur Penerimaan Material"><i class="fa fa-rotate-left fa-2x"></i><?php $countAppr = count_returApprovement(); echo ($countAppr == 0 ? '' : '<span>' . $countAppr . '</span>') ?></a></li>
+          @if($role != 7)
           <li><a href="{{ url('material/request') }}" class="notif-top" title="Permintaan Material"><i class="fa fa-shopping-cart fa-2x"></i><?php echo ($count == 0 ? '' : '<span>' . $count . '</span>') ?></a></li>
+          @endif
 					<li><a href=""><img src="{{ images_url('foto/' . session('kar_foto')) }}" alt="User" class="user-logged-in" />{{ session('kar_nama') }} <i class="fa fa-angle-down"></i></a>
 						<ul class="dropdown-menu">
 							<li><a href="" id="get-profile"><i class="fa fa-user"></i> My Profile</a></li>
