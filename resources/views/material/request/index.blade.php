@@ -41,6 +41,7 @@
 								<li><a href="{{ url('material/request/show/' . $row->pb_id) }}" class="view-request-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
 								<li class="separator">&nbsp;</li>
 
+								<!--  if(role in [admin,PPIC,VD] and status = Approved by VD) -->
 								@if(($role == 1 || $role == 4 || $role == 5) && $row->pb_status != 3)
 								<li><a href="{{ url('material/request/accept/' . $row->pb_id) }}" class="do-approve"><i class="fa fa-check"></i>Setujui</a></li>
 								<li><a href="{{ url('material/request/reject/' . $row->pb_id) }}" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
@@ -83,7 +84,7 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($s) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
-		@if($role == 3 || $role == 1)
+		@if($role == 1 || $role == 3)
 		<a href="{{ url('material/request/create') }}" class="btn default"><i class="fa fa-plus"></i> buat permintaan</a>
 		@endif
 	</div>
