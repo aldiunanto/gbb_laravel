@@ -4,12 +4,12 @@
 <input type="hidden" name="pm" value="true" />
 
 {!! session('accepted') !!}
-@if($hak_akses != 3 && $hak_akses != 6 && $fetchReq->count() > 0)
+@if($role != 3 && $role != 6 && $fetchReq->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
 	<h2>
 		<?php $count = count_request(); echo ($count == 0 ? '' : '<span>'.$count.'</span>') ?>
-		<?php echo ($hak_akses == 2 ? 'PM di-approve' : 'Persetujuan Material') ?>
+		<?php echo ($role == 2 ? 'PM di-approve' : 'Persetujuan Material') ?>
 	</h2>
 	<div class="clearfix"></div>
 </div>
@@ -41,25 +41,25 @@
 								<li><a href="{{ url('material/request/show/' . $row->pb_id) }}" class="view-request-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
 								<li class="separator">&nbsp;</li>
 
-								@if(($hak_akses == 1 || $hak_akses == 4 || $hak_akses == 5) && $row->pb_status != 3)
+								@if(($role == 1 || $role == 4 || $role == 5) && $row->pb_status != 3)
 								<li><a href="{{ url('material/request/accept/' . $row->pb_id) }}" class="do-approve"><i class="fa fa-check"></i>Setujui</a></li>
 								<li><a href="{{ url('material/request/reject/' . $row->pb_id) }}" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
 								<li class="separator">&nbsp;</li>
 								@endif
 
-								@if($hak_akses != 2 && $hak_akses != 3)
+								@if($role != 2 && $role != 3)
 								<li><a href="{{ url('material/request/edit/' . $row->pb_id) }}"><i class="fa fa-edit"></i>Ubah Data</a></li>
 								@endif
 
-								@if($row->pb_status == 3 && ($hak_akses == 1 || $hak_akses == 2 || $hak_akses == 3))
+								@if($row->pb_status == 3 && ($role == 1 || $role == 2 || $role == 3))
 								<li><a href="{{ url('po/create/' . $row->pb_id) }}"><i class="fa fa-check-square-o"></i>Buat PO</a></li>
 								@endif
 
-								@if($hak_akses == 1 || $hak_akses == 2)
+								@if($role == 1 || $role == 2)
 								<li><a href="{{ url('material/request/cancel/' . $row->pb_id) }}" class="cancel"><i class="fa fa-times-circle"></i>Batalkan</a></li>
 								@endif
 
-								@if($hak_akses == 1)
+								@if($role == 1)
 								<li><a href="{{ url('material/request/destroy/' . $row->pb_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>
@@ -83,7 +83,7 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($s) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
-		@if($hak_akses == 3 || $hak_akses == 1)
+		@if($role == 3 || $role == 1)
 		<a href="{{ url('material/request/create') }}" class="btn default"><i class="fa fa-plus"></i> buat permintaan</a>
 		@endif
 	</div>
@@ -149,7 +149,7 @@
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('material/request/show/' . $row->pb_id) }}" class="view-request-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
-								@if($hak_akses == 1)
+								@if($role == 1)
 								<li><a href="{{ url('material/request/edit/' . $row->pb_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
 								<li><a href="{{ url('material/request/destroy/' . $row->pb_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif

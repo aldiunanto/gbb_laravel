@@ -303,7 +303,7 @@ class Material extends Controller {
 			'fetchReq'	=> Pb::fetchReq($role),
 			's'			=> $s,
 			'opened'	=> 'material',
-			'hak_akses'	=> $role,
+			'role'		=> $role,
 			'getNumb'	=> function() use ($perPage, $request){
 				if($request->has('page') && $request->input('page') != 1){
 					return ($request->input('page') * $perPage) - $perPage;
