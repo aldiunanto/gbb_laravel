@@ -47,11 +47,11 @@
 								<li class="separator">&nbsp;</li>
 								@endif
 
-								@if($role != 2 && $role != 3)
+								@if($role != 2 && $role != 5)
 								<li><a href="{{ url('material/request/edit/' . $row->pb_id) }}"><i class="fa fa-edit"></i>Ubah Data</a></li>
 								@endif
 
-								@if($row->pb_status == 3 && ($role == 1 || $role == 2 || $role == 3))
+								@if($row->pb_status == 3 && ($role == 1 || $role == 2))
 								<li><a href="{{ url('po/create/' . $row->pb_id) }}"><i class="fa fa-check-square-o"></i>Buat PO</a></li>
 								@endif
 
