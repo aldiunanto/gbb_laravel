@@ -6,8 +6,7 @@ class Retur_penerimaan extends Model {
 
 	protected	$table		= 'retur_penerimaan_laravel';
 	protected	$primaryKey	= 'returpener_id';
-	protected	$fillable	= ['userid_input', 'pener_id', 'returpener_status', 'returpener_vd_desc', 'visibility', 'is_closed', 'created_at'];
-	public 		$timestamps = false;
+	protected	$fillable	= ['userid_input', 'pener_id', 'returpener_status', 'returpener_vd_desc', 'visibility', 'is_closed'];
 
 	public static function fetchApprovement($role){
 		$i 		= new static;
