@@ -462,6 +462,7 @@ material = {
 		init: function(){
 			this._returDetail();
 			this._doApprove();
+			this._doReject();
 
 			material.index._openSearchForm();
 			material.index._closeSearchForm();
