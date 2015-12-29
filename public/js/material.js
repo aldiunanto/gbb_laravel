@@ -518,7 +518,29 @@ material = {
 					}
 				});
 			});
-		}
+		},
+		_doReject: function(){
+			$('.do-reject').on('click', function(e){
+				e.preventDefault();
+
+				var splitHref 		= $(this).attr('href').split('/');
+				var popupContent 	= LIBS.callAjax('material/acceptance/retur/getRejectForm', 'returpener_id=' + splitHref[splitHref.length-1]);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Returan ditolak - alasan..',
+					'content'		: popupContent,
+					'posButtonText'	: 'Tolak',
+					'okAction'		: function(){
+						var data  = 'returpener_reject_reason=' + $('textarea[name="returpener_reject_reason"]').val();
+							data += '&returpener_id=' + $('input[name="returpener_id"]').val();
+
+						LIBS.callAjax('material/acceptance/retur/reject', data);
+						window.location.href = options.baseUrl + 'material/acceptance/retur';
+					},
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		},
 	},
 	acceptanceReturCreate: {
 		init: function(){
