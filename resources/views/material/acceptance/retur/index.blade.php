@@ -109,6 +109,10 @@
 							case 4: echo '<span class="status wait-vd" title="Menunggu persetujuan Vice Director"><i class="fa fa-spinner fa-spin"></i></span>'; break;
 							case 5: echo '<span class="status vice-approve" title="Sudah di-approve Vice Director"><i class="fa fa-check"></i></span>'; break;
 							case 6: echo '<span class="status po-done" title="Sudah dibuat Surat Jalan"><i class="fa fa-check"></i></span>'; break;
+							case 7: echo '<span class="status retur-reject-qa" title="Ditolak QA"><i class="fa fa-times"></i></span>'; break;
+							case 8: echo '<span class="status retur-reject-ph" title="Ditolak Kepala Produksi"><i class="fa fa-times"></i></span>'; break;
+							case 9: echo '<span class="status retur-reject-ppic" title="Ditolak PPIC"><i class="fa fa-times"></i></span>'; break;
+							case 10: echo '<span class="status pm-reject-vice" title="Ditolak Vice Director"><i class="fa fa-times"></i></span>'; break;
 						}
 					?>
 				</td>
@@ -147,6 +151,10 @@
 			<li><span class="status wait-vd"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Vice Director</li>
 			<li><span class="status vice-approve"><i class="fa fa-check"></i></span> - Sudah di-approve Vice Director</li>
 			<li><span class="status po-done"><i class="fa fa-check"></i></span> - Sudah dibuat Surat Jalan</li>
+			<li><span class="status retur-reject-qa"><i class="fa fa-times"></i></span> - Ditolak QA</li>
+			<li><span class="status retur-reject-ph"><i class="fa fa-times"></i></span> - Ditolak Kepala Produksi</li>
+			<li><span class="status retur-reject-ppic"><i class="fa fa-times"></i></span> - Ditolak PPIC</li>
+			<li><span class="status pm-reject-vice"><i class="fa fa-times"></i></span> - Ditolak Vice Director</li>
 		</ul>
 	</fieldset>
 </div>
