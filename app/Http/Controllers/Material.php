@@ -742,8 +742,7 @@ class Material extends Controller {
 			'pener_id'			=> $req->input('pener_id'),
 			'returpener_status'	=> 1,
 			'visibility'		=> 1,
-			'is_closed'			=> 2,
-			'created_at'		=> now(true)
+			'is_closed'			=> 2
 		];
 
 		$head = Returpener::create($vals);
