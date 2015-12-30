@@ -15,7 +15,11 @@ class Retur_penerimaan extends Model {
 					->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
 					->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')
 					->join('supplier_laravel AS E', 'D.sup_id', '=', 'E.sup_id')
-					->where($i->table.'.visibility', 1);
+					->where($i->table.'.visibility', 1)
+					->where($i->table.'.returpener_status', '<>', 7)
+					->where($i->table.'.returpener_status', '<>', 8)
+					->where($i->table.'.returpener_status', '<>', 9)
+					->where($i->table.'.returpener_status', '<>', 10);
 
 		switch($role){
 			case 1 : $get->where($i->table.'.returpener_status', '<>', 6); break;
