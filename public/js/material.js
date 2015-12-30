@@ -535,13 +535,14 @@ material = {
 						var data  = 'returpener_reject_reason=' + $('textarea[name="returpener_reject_reason"]').val();
 							data += '&returpener_id=' + $('input[name="returpener_id"]').val();
 
+
 						LIBS.callAjax('material/acceptance/retur/reject', data);
 						window.location.href = options.baseUrl + 'material/acceptance/retur';
 					},
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});
 			});
-		},
+		}
 	},
 	acceptanceReturCreate: {
 		init: function(){

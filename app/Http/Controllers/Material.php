@@ -809,6 +809,23 @@ class Material extends Controller {
 	{
 		return view('material.acceptance.retur.getRejectForm', ['returpener_id' => $_POST['returpener_id']]);
 	}
+	public function returReject(Request $req)
+	{
+		$data = Returpener::find($req->input('returpener_id'));
+
+		$data->userid_reject			= $this->_user->user_id;
+		$data->returpener_reject_reason	= trim($req->input('returpener_reject_reason'));
+
+		switch($this->_user->hak_akses){
+			case 7: $status = 7; break; //QA
+			case 6: $status = 8; break; //Prod. Head
+			case 4: $status = 9; break; //PPIC
+			case 5: case 1: $status = 10; break; //VD
+		}
+
+		$data->returpener_status = $status;
+		$data->save();
+	}
 	public function acceptForm()
 	{
 		return view('material.acceptance.retur.acceptForm');
