@@ -56,17 +56,23 @@
               <li><a href="{{ url('material/expenditure') }}"><i class="fa fa-sign-out"></i>pengeluaran</a></li>
               @endif
               <li><a href="{{ url('material/acceptance/retur') }}"><i class="fa fa-rotate-left"></i>returan</a></li>
+
+              @if($role == 1 || $role == 3)
               <li><a href="{{ url('material/closingStock') }}"><i class="fa fa-retweet"></i>closing stok</a></li>
+              @endif
             </ul>
           </li>
           <li><a href="{{ url('po') }}" <?php echo is_active('po') ?>><i class="fa fa-file-powerpoint-o left"></i>purchasing order</a></li>
           <li class="sidebar-dropdown-toggle {{ (! empty($opened) && $opened == 'report' ? 'opened' : '') }}"><a href="" <?php echo is_active('report') ?>><i class="fa fa-area-chart left"></i>laporan<i class="fa fa-angle-left right"></i></a>
             <ul>
+              @if($role == 1 || $role == 2 || $role == 5)
               <li><a href="{{ url('report/purchasing/qualityplan') }}"><i class="fa fa-bar-chart"></i>Rencana Mutu</a></li>
               <li><a href="{{ url('report/purchasing/purchasemonthly') }}"><i class="fa fa-line-chart"></i>Pembelian Bulanan</a></li>
-
+              @endif
+              @if($role == 1 || $role == 3 || $role == 5)
               <li><a href="{{ url('report/rawmat/materialTransaction') }}"><i class="fa fa-bar-chart"></i>Transaksi Material</a></li>
               <li><a href="{{ url('report/rawmat/expenditure') }}"><i class="fa fa-line-chart"></i>Pengeluaran</a></li>
+              @endif
             </ul>
           </li>
 				</ul>
