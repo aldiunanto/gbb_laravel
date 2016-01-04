@@ -666,7 +666,8 @@ class Material extends Controller {
 			'head'			=> Po::getDetail($po_id),
 			'fetch'			=> Pener::fetchAll($po_id),
 			'Peners'		=> new Peners(),
-			'Returpener'	=> new Returpener()
+			'Returpener'	=> new Returpener(),
+			'role'			=> $this->_user->hak_akses
 		];
 
 		return view('material.acceptance.show', $data);
