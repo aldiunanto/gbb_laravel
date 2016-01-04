@@ -116,7 +116,7 @@
 								<li><a href="{{ $row->po_id }}" class="close-po"><i class="fa fa-check-square-o"></i>Close</a></li>
 								@endif
 
-								@if($role != 3 && $role != 4)
+								@if($role == 1 || $role == 2)
 								<li class="separator">&nbsp;</li>
 								<li><a href="{{ url('printing/po/' . $row->po_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak PO</a></li>
 								@endif
