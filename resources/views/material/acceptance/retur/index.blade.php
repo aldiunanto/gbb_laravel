@@ -43,7 +43,7 @@
 								@if(($role == 2 || $role == 1) && $row->returpener_status == 5)
 								<li><a href="{{ url('printing/do/' . $row->returpener_id) }}" target="_blank" ><i class="fa fa-print"></i>Cetak Surat Jalan</a></li>
 								@else
-								<li><a href="{{ url('material/acceptance/retur/accept/' . $row->returpener_id) }}" class="do-approve{{ (($role == 5 || $role == 1) ? ' vd' : '') }}"><i class="fa fa-check"></i>Setujui</a></li>
+								<li><a href="{{ url('material/acceptance/retur/accept/' . $row->returpener_id) }}" class="do-approve{{ (($row->returpener_status == 4) ? ' vd' : '') }}"><i class="fa fa-check"></i>Setujui</a></li>
 								<li><a href="{{ url('material/acceptance/retur/reject/' . $row->returpener_id) }}" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
 								@endif
 							</ul>
