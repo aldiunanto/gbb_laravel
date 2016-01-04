@@ -51,7 +51,10 @@
               @if($role != 6 && $role != 7 && $role != 4)
               <li><a href="{{ url('material/acceptance') }}"><i class="fa fa-sign-in"></i>penerimaan</a></li>
               @endif
+
+              @if($role == 1 || $role == 3)
               <li><a href="{{ url('material/expenditure') }}"><i class="fa fa-sign-out"></i>pengeluaran</a></li>
+              @endif
               <li><a href="{{ url('material/acceptance/retur') }}"><i class="fa fa-rotate-left"></i>returan</a></li>
               <li><a href="{{ url('material/closingStock') }}"><i class="fa fa-retweet"></i>closing stok</a></li>
             </ul>

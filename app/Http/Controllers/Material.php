@@ -951,6 +951,7 @@ class Material extends Controller {
 			'title'		=> 'Daftar Pengeluaran Barang',
 			'opened'	=> 'material',
 			'asset'		=> new Assets(),
+			'role'		=> $this->_user->hak_akses,
 			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
 			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/expenditure' => 'Pengeluaran Barang'],

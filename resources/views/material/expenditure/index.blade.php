@@ -49,7 +49,9 @@
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('material/expenditure/show/' . $row->pengel_id) }}" class="view-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								@if($role == 1)
 								<li><a href="{{ url('material/expenditure/destroy/' . $row->pengel_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
+								@endif
 							</ul>
 						</li>
 					</ul>
