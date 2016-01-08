@@ -8,19 +8,20 @@
 </div>
 <div class="main">
 	<div class="form">
+		<div class="info error">Password tidak sama!</div>
 		<form action="{{ url('admin/savePassword') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<table>
 				<tr>
 					<td>
 						<label for="pass">Password Baru <span class="required">*</span></label>
-						<input type="password" name="pass" id="pass" />
+						<input type="password" name="pass" id="pass" required="required" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<label for="re_pass">Ulangi</label>
-						<input type="password" name="re_pass" id="re_pass" />
+						<label for="re_pass">Ulangi <span class="required">*</span></label>
+						<input type="password" name="re_pass" id="re_pass" required="required" />
 					</td>
 				</tr>
 				<tr>
