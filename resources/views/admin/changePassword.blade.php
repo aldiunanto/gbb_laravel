@@ -9,6 +9,7 @@
 <div class="main">
 	<div class="form">
 		<div class="info error">Password tidak sama!</div>
+		<?php echo session('updated') ?>
 		<form action="{{ url('admin/savePassword') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<table>
