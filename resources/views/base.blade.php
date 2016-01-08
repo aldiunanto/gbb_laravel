@@ -95,8 +95,9 @@
           @endif
 					<li><a href=""><img src="{{ images_url('foto/' . session('kar_foto')) }}" alt="User" class="user-logged-in" />{{ session('kar_nama') }} <i class="fa fa-angle-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="" id="get-profile"><i class="fa fa-user"></i> My Profile</a></li>
-							<li><a href="{{ url('auth/logout') }}" id="logout"><i class="fa fa-key"></i> Logout</a></li>
+							<li><a href="" id="get-profile"><i class="fa fa-user"></i> Profil Saya</a></li>
+              <li><a href="{{ url('admin/changePassword') }}"><i class="fa fa-shield"></i> Ubah Password</a></li>
+							<li><a href="{{ url('auth/logout') }}" id="logout"><i class="fa fa-key"></i> Sign out</a></li>
 						</ul>
 					</li>
 				</ul>
