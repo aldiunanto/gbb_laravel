@@ -39,7 +39,7 @@
 			</div>
 			<nav>
 				<ul>
-          <li><a href="{{ url('home') }}" <?php echo is_active('home') ?>><i class="fa fa-home left"></i>beranda</a></li>
+          <li><a href="{{ url('home') }}" <?php echo is_active('home') . is_active('admin') ?>><i class="fa fa-home left"></i>beranda</a></li>
           <?php $role = Auth::user()->hak_akses ?>
 					<li><a href="{{ url('supplier') }}" <?php echo is_active('supplier') ?>><i class="fa fa-users left"></i>supplier</a></li>
           <li class="sidebar-dropdown-toggle  {{ (! empty($opened) && $opened == 'material' ? 'opened' : '') }}"><a href="" <?php echo is_active('material') ?>><i class="fa fa-dropbox left"></i>material<i class="fa fa-angle-left right"></i></a>

@@ -13,7 +13,7 @@
 			<table>
 				<tr>
 					<td>
-						<label for="pass">Password Baru</label>
+						<label for="pass">Password Baru <span class="required">*</span></label>
 						<input type="password" name="pass" id="pass" />
 					</td>
 				</tr>
