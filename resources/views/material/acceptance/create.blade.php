@@ -33,8 +33,8 @@
 							</tr>
 							<tr>
 								<td>
-									<label for="po_is_partial">parsial?</label>
-									<select name="po_is_partial" id="po_is_partial">
+									<label for="po_is_partial">parsial? <span class="required">*</span></label>
+									<select name="po_is_partial" id="po_is_partial" required="required">
 										<option value="">-- Pilih --</option>
 										<option value="1" <?php echo ((!empty($head->po_is_partial) && $head->po_is_partial == 1) ? 'selected="selected"' : '') ?>>Ya</option>
 										<option value="2" <?php echo ((!empty($head->po_is_partial) && $head->po_is_partial == 2) ? 'selected="selected"' : '') ?>>Tidak</option>
