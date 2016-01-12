@@ -224,7 +224,9 @@ material = {
 			this._addItem();
 			this._createPO();
 
-			material.create._openSupplier();
+			material.create._openSupplier(function(){
+				$('form .data-list tbody').empty();
+			});
 		},
 		_getDatePicker: function(){
 			if($('.date-picker').length > 0){
@@ -291,7 +293,7 @@ material = {
 				other		= JSON.parse(other);
 
 				el.prev().val(other.mat_harga).prev().val(other.mat_perbandingan).prev().val(mat_id).prev().val(mat_nama);
-				el.parent().next().html(other.satuan_p).next().html(other.satuan_r).next().children().val(0).parent().next().empty();
+				el.parent().next().html(other.mat_spesifikasi).next().html(other.satuan_p).next().html(other.satuan_r).next().children().val(0).parent().next().empty();
 
 				LIBS.popupDialog('close');
 			});
