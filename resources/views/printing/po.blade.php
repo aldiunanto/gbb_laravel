@@ -101,8 +101,8 @@
 			<?php $x++; ?>
 			@endforeach
 
-			@for($y = 1; $y <= (5 - $x); $y++)
-			@if($y == (5 - $x))
+			@for($y = 1; $y <= (6 - $x); $y++)
+			@if($y == (6 - $x))
 			<tr>
 				<td colspan="8" class="bordered-bottom bordered-left bordered-right bottom">&nbsp;</td>
 			</tr>
