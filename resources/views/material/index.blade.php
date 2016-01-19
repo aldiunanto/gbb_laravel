@@ -34,6 +34,7 @@
 				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<th>Satuan</th>
 				@endif
+				<th>Bagian</th>
 				<th>Supplier</th>
 				<th>Aksi</th>
 			</tr>
@@ -49,6 +50,7 @@
 				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<td>{{ $row->mats_nama }}</td>
 				@endif
+				<td>{{ $row->deptbg_nama }}</td>
 				<td>{{ $row->sup_nama }}</td>
 				<td class="text-right">
 					<ul class="actions">
