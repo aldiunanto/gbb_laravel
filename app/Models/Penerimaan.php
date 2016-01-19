@@ -19,7 +19,7 @@ class Penerimaan extends Model {
 					->where($i->table.'.visibility', 1)
 					->groupBy($i->table.'.po_id');
 
-		return $get->orderBy($i->table.'.pener_date', 'DESC')->get();
+		return $get->orderBy($i->table.'.created_at', 'DESC')->get();
 	}
 	public static function fetchAll($po_id){
 		return self::select('pener_id', 'pener_date')
