@@ -138,6 +138,7 @@ class Material extends Controller {
 			'wrn_id'			=> $request->input('wrn_id'),
 			'sup_id'			=> $request->input('sup_id'),
 			'mu_id'				=> $request->input('mu_id'),
+			'deptbg_id'			=> 'D25',
 			'mat_nama'			=> trim($request->input('mat_nama')),
 			'mat_spesifikasi'	=> trim($request->input('mat_spesifikasi')),
 			'mat_harga'			=> trim($request->input('mat_harga')),
