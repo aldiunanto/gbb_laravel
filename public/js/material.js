@@ -10,6 +10,7 @@ material = {
 			this._closeSearchForm();
 			this._focusingSearch();
 			this._viewDetail();
+			this._modifyDept();
 			this._delete('Anda yakin ingin menghapus data material ini?');
 
 		},
@@ -87,11 +88,12 @@ material = {
 					'okAction'		: function(){
 						//get mat_id from href -> splitHref[splitHref.length-1]
 						/*var data  = 'pb_alasan_tolak=' + $('textarea[name="pb_alasan_tolak"]').val();
-							data += '&pb_id=' + $('input[name="pb_id"]').val();*/
+							data += '&pb_id=' + $('input[name="pb_id"]').val();
 
 						var res = LIBS.callAjax('material/modifyDept', data);
 						alert(res);
-						//window.location.reload(true);
+
+						window.location.reload(true);*/
 					},
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});

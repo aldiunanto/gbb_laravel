@@ -290,6 +290,15 @@ class Material extends Controller {
 		return redirect('material');
 	}
 
+	public function formModifyDept($mat_id)
+	{
+		$data = [
+			'head' 		=> MatModel::getDetail($mat_id),
+			'deptbg'	=> Deptbg::all()
+		];
+
+		return view('material/formModifyDept', $data);
+	}
 	public function request(Request $request)
 	{
 		$perPage	= 20;
