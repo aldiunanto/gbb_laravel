@@ -70,6 +70,32 @@ material = {
 					}
 				});
 			});
+		},
+		_modifyDept: function(){
+			$('a.modify-dept').on('click', function(e){
+				e.preventDefault();
+
+				var el = $(this);
+				var href = el.attr('href');
+				var splitHref = href.split('/');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Bagian / Departemen',
+					'content'		: popupContent,
+					'posButtonText'	: 'simpan',
+					'okAction'		: function(){
+						//get mat_id from href -> splitHref[splitHref.length-1]
+						/*var data  = 'pb_alasan_tolak=' + $('textarea[name="pb_alasan_tolak"]').val();
+							data += '&pb_id=' + $('input[name="pb_id"]').val();*/
+
+						var res = LIBS.callAjax('material/modifyDept', data);
+						alert(res);
+						//window.location.reload(true);
+					},
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			})
 		}
 	},
 	create: {

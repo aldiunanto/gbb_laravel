@@ -50,7 +50,7 @@
 				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<td>{{ $row->mats_nama }}</td>
 				@endif
-				<td><a href="{{ url('material/modifyDept/' . $row->mat_id) }}" class="modify-dept">{{ $row->deptbg_nama }}</a></td>
+				<td><a href="{{ url('material/formModifyDept/' . $row->mat_id) }}" class="modify-dept">{{ $row->deptbg_nama }}</a></td>
 				<td>{{ $row->sup_nama }}</td>
 				<td class="text-right">
 					<ul class="actions">
