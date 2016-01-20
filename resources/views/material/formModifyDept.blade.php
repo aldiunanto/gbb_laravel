@@ -1,5 +1,4 @@
 <div class="modify-dept-form material-detail">
-	<input type="hidden" name="mat_id" value="{{ $head->mat_id }}" />
 	<div class="base-info">
 		<table>
 			<tr>
