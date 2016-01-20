@@ -299,6 +299,13 @@ class Material extends Controller {
 
 		return view('material/formModifyDept', $data);
 	}
+	public function modifyDept(Request $req)
+	{
+		$row = MatModel::find($req->input('mat_id'));
+		$row->deptbg_id = $req->input('deptbg_id');
+
+		$row->save();
+	}
 	public function request(Request $request)
 	{
 		$perPage	= 20;
