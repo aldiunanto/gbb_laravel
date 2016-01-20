@@ -86,14 +86,11 @@ material = {
 					'content'		: popupContent,
 					'posButtonText'	: 'simpan',
 					'okAction'		: function(){
-						//get mat_id from href -> splitHref[splitHref.length-1]
-						/*var data  = 'pb_alasan_tolak=' + $('textarea[name="pb_alasan_tolak"]').val();
-							data += '&pb_id=' + $('input[name="pb_id"]').val();
+						var data  = 'mat_id=' + splitHref[splitHref.length-1];
+							data += '&deptbg_id=' + $('select[name="deptbg_id"]').val();
 
-						var res = LIBS.callAjax('material/modifyDept', data);
-						alert(res);
-
-						window.location.reload(true);*/
+						LIBS.callAjax('material/modifyDept', data);
+						window.location.reload(true);
 					},
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});
