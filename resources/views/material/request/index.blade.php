@@ -119,6 +119,12 @@
 				<td class="text-center">
 					<?php
 
+						if(in_array($row->pb_status, [3,4])){
+							if($row->pb_vd_id == 68) $p = '<i class="actor">l</i>';
+							elseif($row->pb_vd_id == 100) $p = '<i class="actor">d</i>';
+							else $p = '';
+						}
+
 						switch($row->pb_status){
 							case 1 :
 								$d = '<span class="status wait-ppic" title="Menunggu persetujuan PPIC"><i class="fa fa-spinner fa-spin"></i><span>';
@@ -127,10 +133,10 @@
 								$d = '<span class="status wait-vice" title="Menunggu persetujuan Vice Director"><i class="fa fa-spinner fa-spin"></i></span>';
 							break;
 							case 3 :
-								$d = '<span class="status vice-approve" title="PM sudah di-approve"><i class="fa fa-check"></i></span>';
+								$d = '<span class="status vice-approve" title="PM sudah di-approve">' . $p. '<i class="fa fa-check"></i></span>';
 							break;
 							case 4 :
-								$d = '<span class="status po-done" title="PO sudah dibuat"><i class="fa fa-check"></i></span>';
+								$d = '<span class="status po-done" title="PO sudah dibuat">' . $p . '<i class="fa fa-check"></i></span>';
 							break;
 							case 5 : //rejected by PPIC
 								$d = '<span class="status pm-reject-ppic" title="PM ditolak PPIC"><i class="fa fa-times-circle"></i></span>';

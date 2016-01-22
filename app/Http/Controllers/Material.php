@@ -368,7 +368,9 @@ class Material extends Controller {
 			break;
 			case 2 : //approved by Vice Director
 				$set = 3;
-				$req->vd_approved_at = now(true);
+
+				$req->vd_approved_at 	= now(true);
+				$req->pb_vd_id			= $this->_user->user_id;
 			break;
 		}
 
