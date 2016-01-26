@@ -24,7 +24,7 @@
 
 		<?php $x = 0; $po_no = ''; ?>
 		@foreach($fetch as $row)
-			<?php $accepted = countDiterima($row->pos_id); $text = null; ?>
+			<?php $accepted = countDiterima($row->pos_id); $isDiterima = isDiterima($row->po_id); $text = null; ?>
 			@if($po_no != $row->po_no)
 			<?php
 				$tr_class = 'new-po';
@@ -108,7 +108,8 @@
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
 								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
-								@if($accepted != 0 && ! is_null($row->pener_date))
+								
+								@if($isDiterima > 0)
 								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 								@endif
 
