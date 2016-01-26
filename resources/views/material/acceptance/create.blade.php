@@ -74,6 +74,7 @@
 									<th>Spesifikasi</th>
 									<th>Permintaan</th>
 									<th>Telah Diterima</th>
+									<th>Kekurangan</th>
 									<th>Diterima</th>
 									<th>Satuan</th>
 									<th>Status</th>
@@ -90,6 +91,7 @@
 									<td class="mat_spesifikasi text-center">{{ $row->mat_spesifikasi }}</td>
 									<td class="pbs_jml text-center">{{ $row->pbs_jml }}</td>
 									<td class="diterima text-center">{{ $diterima }}</td>
+									<td class="kekurangan text-center">{{ ($rest <= 0 ? '-' : $rest) }}</td>
 									<td class="peners_jml text-center">
 										@if($rest > 0)
 										<input type="hidden" name="mat_id_{{ $row->pos_id }}" value="{{ $row->mat_id }}" />
