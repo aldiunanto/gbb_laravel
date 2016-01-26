@@ -376,6 +376,7 @@ material = {
 		init: function(){
 			this._dataTables();
 			this._viewDetail();
+			this._acceptanceDetail();
 		},
 		_dataTables: function(){
 			if($('.main table.data-list.index').length > 0){
@@ -426,6 +427,23 @@ material = {
 					el.html('Lihat Returan <i class="fa fa-angle-down"></i>');
 				}
 			});
+		},
+		_acceptanceDetail: function(){
+			$('.main table.data-list').on('click', '.acceptance-detail', function(e){
+				e.preventDefault();
+
+				var el = $(this);
+				var href = el.attr('href');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Detail Penerimaan',
+					'content'		: popupContent,
+					'posButtonText'	: 'ok',
+					'okAction'		: function(){ LIBS.popupDialog('close'); },
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			})
 		}
 	},
 	acceptanceCreate: {

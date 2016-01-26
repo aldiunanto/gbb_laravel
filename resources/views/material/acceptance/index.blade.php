@@ -26,6 +26,7 @@
 					<li><span><i class="fa fa-angle-down"></i></span>
 						<ul>
 							<li><a href="{{ url('material/acceptance/show/' . $row->po_id) }}" class="view-detail"><i class="fa fa-eye"></i>Lihat detail</a></li>
+							<li><a href="{{ url('po/acceptanceDetail/' . getPOId($row->pener_id)) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>
 						</ul>
 					</li>
 				</ul>
