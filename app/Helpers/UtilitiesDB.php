@@ -75,3 +75,10 @@
                     ->where('po_id', $po_id)
                     ->count();
     }
+    function getPOId($pener_id){
+        return DB::table('penerimaan_laravel')
+                    ->select('po_id')
+                    ->where('pener_id', $pener_id)
+                    ->take(1)
+                    ->pluck('po_id');
+    }
