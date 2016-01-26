@@ -70,3 +70,8 @@
 
         return $count->count();
     }
+    function isDiterima($po_id){
+        return DB::table('penerimaan_laravel')
+                    ->where('po_id', $po_id)
+                    ->count();
+    }
