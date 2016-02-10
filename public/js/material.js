@@ -449,7 +449,7 @@ material = {
 	acceptanceCreate: {
 		init: function(){
 			this._openPO();
-			this._controlDiterima();
+			//this._controlDiterima();
 		},
 		_openPO: function(){
 			var self = this;
@@ -640,7 +640,7 @@ material = {
 	acceptanceReturAcceptanceCreate: {
 		init: function(){
 			this._openPO();
-			this._controlDiterima();
+			//this._controlDiterima();
 		},
 		_openPO: function(){
 			var self = this;
