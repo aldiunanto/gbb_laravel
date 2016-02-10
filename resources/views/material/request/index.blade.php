@@ -48,7 +48,7 @@
 								<li class="separator">&nbsp;</li>
 								@endif
 
-								@if($role != 2 && $role != 5)
+								@if($role != 2)
 								<li><a href="{{ url('material/request/edit/' . $row->pb_id) }}"><i class="fa fa-edit"></i>Ubah Data</a></li>
 								@endif
 
