@@ -87,16 +87,19 @@
 		<tbody>
 			<?php $x = 0; $total = 0; ?>
 			@foreach($sub as $row)
-			<?php $subJml = ($row->pos_harga - (($row->pos_harga * $row->pos_discount) / 100)) * $row->pbs_jml; $total += $subJml; ?>
+			<?php
+				$subJml = ($row->pos_harga - (($row->pos_harga * $row->pos_discount) / 100)) * $row->pbs_jml; $total += $subJml;
+				$borderedBottom = ($x == 5 ? 'bordered-bottom' : '');
+			?>
 			<tr>
-				<td class="bordered-left">{{ number_format($row->pbs_jml, 0, null, '.') }}</td>
-				<td>{{ $row->mats_nama }}</td>
-				<td class="left">{{ $row->mat_nama }}</td>
-				<td>{{ $row->wrn_nama }}</td>
-				<td class="spek">{{ $row->mat_spesifikasi }}</td>
-				<td class="left rawmat"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($row->pos_harga, 0, null, '.') . '</span>' ?></td>
-				<td class="rawmat">{{ $row->pos_discount }}%</td>
-				<td class="bordered-right left rawmat"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($subJml, 0, null, '.') . '</span>' ?></td>
+				<td class="bordered-left <?php echo $borderedBottom ?>">{{ number_format($row->pbs_jml, 0, null, '.') }}</td>
+				<td class="<?php echo $borderedBottom ?>">{{ $row->mats_nama }}</td>
+				<td class="left <?php echo $borderedBottom ?>">{{ $row->mat_nama }}</td>
+				<td class="<?php echo $borderedBottom ?>">{{ $row->wrn_nama }}</td>
+				<td class="spek <?php echo $borderedBottom ?>">{{ $row->mat_spesifikasi }}</td>
+				<td class="left rawmat <?php echo $borderedBottom ?>"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($row->pos_harga, 0, null, '.') . '</span>' ?></td>
+				<td class="rawmat <?php echo $borderedBottom ?>">{{ $row->pos_discount }}%</td>
+				<td class="bordered-right left rawmat <?php echo $borderedBottom ?>"><?php echo $row->mu_shortcut . '<span class="money">' . number_format($subJml, 0, null, '.') . '</span>' ?></td>
 			</tr>
 			<?php $x++; ?>
 			@endforeach
