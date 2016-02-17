@@ -173,7 +173,7 @@
 			<td>Vice Director</td>
 		</tr>
 		<tr>
-			<td>{{ session('kar_nama_panggilan') }}</td>
+			<td>{{ (! session('kar_nama_panggilan') ? session('kar_nama') : session('kar_nama_panggilan')) }}</td>
 			<td>Livia Yuwono</td>
 		</tr>
 		<tr>
