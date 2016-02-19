@@ -26,6 +26,12 @@
     function is_active($expect){
         if(current_route('class') == $expect) return 'class="active"';
     }
+    function isDecimal($numb){
+        if ( strpos( $numb, "." ) !== false ) {
+            return true;
+        }
+        return false;
+    }
     function convert_date($the_date, $date2, $view = 'short'){ 
         if($date2 == '') return '-';
         
