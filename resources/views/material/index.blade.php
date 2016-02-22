@@ -25,6 +25,14 @@
 <div class="main">
 	{!! session('deleted') !!}
 	{!! session('inserted') !!}
+
+	<div class="info warning">
+		*<i>Material bertanda merah menandakan bahwa:</i>
+		<ul>
+			<li><i>Belum memiliki Stok Minimal. ATAU</i></li>
+			<li><i>Stock Akhir yang dimiliki <strong>kurang dari</strong> Stok Minimal.</i></li>
+		</ul>
+	</div>
 	<table class="data-list">
 		<thead>
 			<tr>
