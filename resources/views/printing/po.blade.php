@@ -89,7 +89,11 @@
 			@foreach($sub as $row)
 			<?php
 				$subJml = ($row->pos_harga - (($row->pos_harga * $row->pos_discount) / 100)) * $row->pbs_jml; $total += $subJml;
-				$borderedBottom = ($x == 5 ? 'bordered-bottom' : '');
+				if($sub->count() > 5){
+					$borderedBottom = '';
+				}else{
+					$borderedBottom = ($x == 5 ? 'bordered-bottom' : '');
+				}
 			?>
 			<tr>
 				<td class="bordered-left <?php echo $borderedBottom ?>">{{ number_format($row->pbs_jml, 0, null, '.') }}</td>
@@ -122,6 +126,12 @@
 			</tr>
 			@endif
 			@endfor
+
+			@if($sub->count() > 5)
+			<tr>
+				<td colspan="8" class="bordered-bottom bordered-left bordered-right bottom">&nbsp;</td>
+			</tr>
+			@endif
 		</tbody>
 	</table>
 </section>
