@@ -22,7 +22,7 @@
 							<tr>
 								<td>
 									<label for="deptbg_id">departemen <span class="required">*</span></label>
-									<select name="deptbg_id" id="deptbg_id">
+									<select name="deptbg_id" id="deptbg_id" required="required">
 										<option value="">-- Pilih --</option>
 										@foreach($deptbg as $row)
 										<option value="{{ $row->deptbg_id }}">{{ $row->deptbg_nama }}</option>
@@ -48,8 +48,8 @@
 							</tr>
 							<tr>
 								<td>
-									<label for="pengel_date">tanggal pengeluaran</label>
-									<input type="text" name="pengel_date" id="pengel_date" class="date-picker" />
+									<label for="pengel_date">tanggal pengeluaran <span class="required">*</span></label>
+									<input type="text" name="pengel_date" id="pengel_date" class="date-picker" required="required" />
 								</td>
 							</tr>
 						</table>
