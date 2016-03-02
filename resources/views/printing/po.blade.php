@@ -145,7 +145,7 @@
 						<td style="width: 35px;" class="left">&nbsp;</td>
 						<td class="left">&nbsp;</td>
 						@else
-						<td style="width: 42px;" class="left">Note :</td>
+						<td style="width: 43px;" class="left">Note :</td>
 						<td class="left">{{ $head->po_note }}</td>
 						@endif
 					</tr>
