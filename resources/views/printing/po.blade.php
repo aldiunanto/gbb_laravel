@@ -160,6 +160,8 @@
 						<td>:</td>
 						<td class="left"><?php echo $mu_shortcut . '<span class="money">' . number_format($total, 2, ',', '.') . '</span>' ?></td>
 					</tr>
+					@endif
+					@if($head->po_is_use_ppn == 1)
 					<tr>
 						<td class="left">PPN</td>
 						<td>:</td>
@@ -170,7 +172,16 @@
 					<tr class="total">
 						<td class="left">Total Bayar</td>
 						<td>:</td>
-						<td class="left"><?php if($head->po_is_ppn != 2){ $bayar = $total + $ppn; }else{ $bayar = $total; } echo $mu_shortcut . '<span class="money">' . number_format($bayar, 2, ',', '.') . '</span>' ?></td>
+						<td class="left">
+							<?php
+
+								$theppn = (! empty($ppn) ? $ppn : 0);
+								$bayar = $total + $theppn;
+
+								echo $mu_shortcut . '<span class="money">' . number_format($bayar, 2, ',', '.') . '</span>';
+
+							?>
+						</td>
 					</tr>
 				</table>
 			</td>
