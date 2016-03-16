@@ -80,6 +80,7 @@ class Po extends Controller {
 			'po_tgl_kedatangan'	=> $request->input('po_tgl_kedatangan'),
 			'po_note'			=> trim($request->input('po_note')),
 			'po_is_ppn'			=> ($path[0] == 'P' ? 1 : 2),
+			'po_is_use_ppn'		=> $request->input('po_is_use_ppn'),
 			'po_status'			=> 1,
 			'po_sudden'			=> 2
 		];
