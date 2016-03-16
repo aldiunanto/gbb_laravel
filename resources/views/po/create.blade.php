@@ -78,6 +78,16 @@
 							</tr>
 							<tr>
 								<td>
+									<label for="po_is_use_ppn">PPN 10% <span class="required">*</span></label>
+									<select name="po_is_use_ppn" id="po_is_use_ppn">
+										<option value="">-- Pilih --</option>
+										<option value="1">Gunakan</option>
+										<option value="2">Jangan Gunakan</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label for="po_note">catatan</label>
 									<textarea name="po_note" id="po_note">{{ $head->pb_note }}</textarea>
 								</td>
