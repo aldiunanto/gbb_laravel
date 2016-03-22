@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="top">
+	<div class="tools">
+		<div class="search" <?php echo (! is_null($search) ? 'style="display: block;"' : '') ?>>
+			<form action="{{ url('po') }}" method="get">
+				<i class="fa fa-close"></i><input type="text" name="s" value="{{ $search }}" placeholder="Nomor PO" />
+				<button><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+		<a href="javascript:;" class="btn-search btn warning" <?php echo (! is_null($search) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
+		<div class="clearfix"></div>
+	</div>
 	<h2>Data List PO</h2>
 	<div class="clearfix"></div>
 </div>
@@ -22,7 +32,7 @@
 		</thead>
 		<tbody>
 
-		<?php $x = 0; $po_no = ''; ?>
+		<?php $x = $getNumb(); $po_no = ''; ?>
 		@foreach($fetch as $row)
 			<?php $accepted = countDiterima($row->pos_id); $isDiterima = isDiterima($row->po_id); $text = null; ?>
 			@if($po_no != $row->po_no)
@@ -132,6 +142,7 @@
 		</tbody>
 	</table>
 
+	<?php echo $fetch->render() ?>
 	<fieldset class="label-info">
 		<legend>Label Info</legend>
 		<ul>

@@ -34,8 +34,6 @@ class Po extends Controller {
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
-			'js'		=> ['vendor/jquery.dataTables.min'],
-			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['po' => 'Purchasing Order'],
 			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
 			'getNumb'	=> function() use ($perPage, $req){
