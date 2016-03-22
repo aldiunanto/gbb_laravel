@@ -26,15 +26,26 @@ class Po extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(Request $request)
+	public function index(Request $req)
 	{
+		$perPage	= 20;
+		$search		= $req->has('s') ? $req->input('s') : null;
+
 		$data = [
 			'title'		=> 'Data List PO',
 			'asset'		=> new Assets(),
 			'js'		=> ['vendor/jquery.dataTables.min'],
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['po' => 'Purchasing Order'],
-			'fetch'		=> Po_sub::fetch(),
+			'fetch'		=> Po_sub::fetch(['search' => $search, 'perPage' => $perPage]),
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'search'	=> $search,
 			'opened'	=> 'po',
 			'role'		=> $this->role
 		];
