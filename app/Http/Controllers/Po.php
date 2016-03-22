@@ -18,7 +18,7 @@ class Po extends Controller {
 	protected $role;
 
 	public function __construct(){
-		$this->role = Auth::user();
+		$this->role = Auth::user()->hak_akses;
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Po extends Controller {
 			'position'	=> ['po' => 'Purchasing Order'],
 			'fetch'		=> Po_sub::fetch(),
 			'opened'	=> 'po',
-			'role'		=> $this->role->hak_akses
+			'role'		=> $this->role
 		];
 
 		return view('po.index', $data);
@@ -121,7 +121,7 @@ class Po extends Controller {
 		$data = [
 			'head'	=> PoModel::getDetail($id),
 			'sub'	=> Po_sub::fetchDetail($id),
-			'role'	=> $this->role->hak_akses
+			'role'	=> $this->role
 		];
 
 		return view('po.show', $data);
@@ -193,7 +193,7 @@ class Po extends Controller {
 			'master' 	=> $item,
 			'matNama'	=> $matNama,
 			'pbsJml'	=> $pbsJml,
-			'role'		=> $this->role->hak_akses
+			'role'		=> $this->role
 		];
 
 		return view('po.acceptanceDetail', $data);
