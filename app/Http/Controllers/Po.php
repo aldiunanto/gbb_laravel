@@ -48,6 +48,11 @@ class Po extends Controller {
 			'role'		=> $this->role
 		];
 
+		# Pagination config
+		$data['fetch']->setPath(url('po'));
+		if($req->has('s')) $data['fetch']->appends(['s' => $search]);
+		# End of pagination config
+
 		return view('po.index', $data);
 	}
 
