@@ -13,7 +13,7 @@ po = {
 			this._acceptanceDetail();
 			this._closePO();
 
-			this._dataTables();
+			//this._dataTables();
 		},
 		_dataTables: function(){
 			if($('.main table.data-list.index').length > 0){
