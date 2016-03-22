@@ -32,7 +32,7 @@ class Po_sub extends Model {
 						);
 
 		if(! is_null($args['search'])){
-			$get->where('B.po_no', 'LIKE', '%' . $args['search'] . '%')
+			$get->where('B.po_no', 'LIKE', '%' . $args['search'] . '%');
 		}
 
 		$get->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
