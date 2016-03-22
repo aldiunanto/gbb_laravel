@@ -79,7 +79,7 @@
 							<tr>
 								<td>
 									<label for="po_is_use_ppn">PPN 10% <span class="required">*</span></label>
-									<select name="po_is_use_ppn" id="po_is_use_ppn">
+									<select name="po_is_use_ppn" id="po_is_use_ppn" required="required">
 										<option value="">-- Pilih --</option>
 										<option value="1">Gunakan</option>
 										<option value="2">Jangan Gunakan</option>
