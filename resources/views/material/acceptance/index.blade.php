@@ -24,7 +24,7 @@
 	</thead>
 	<tbody>
 	<?php $x = $getNumb(); ?>
-	@foreach($fetch as $row)
+	@foreach($fetch['fetch'] as $row)
 
 		<tr>
 			<td class="text-right">{{ ++$x }}.</td>
@@ -48,3 +48,5 @@
 	@endforeach
 	</tbody>
 </table>
+
+<?php echo $paginator->render() ?>

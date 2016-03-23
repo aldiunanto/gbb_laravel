@@ -29,6 +29,7 @@ use Session;
 use Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Material extends Controller {
 
@@ -578,7 +579,9 @@ class Material extends Controller {
 	}
 	public function acceptance(Request $req)
 	{
-		$perPage 	= 5;
+		$perPage 	= 20;
+		$currPage	= $req->input('page', 1);
+
 		$search 	= [
 			's'		=> ($req->has('s') ? $req->input('s') : null),
 			'field'	=> ($req->has('field') ? $req->input('field') : null)
@@ -590,7 +593,8 @@ class Material extends Controller {
 			'js'		=> ['vendor/jquery.dataTables.min'],
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
-			'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage]),
+			//'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage]),
+			'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage, 'currPage' => $currPage]),
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
 			'active'	=> 'default',
@@ -609,11 +613,12 @@ class Material extends Controller {
 			}
 		];
 
-		# Pagination config
-		$data['fetch']->setPath('material/acceptance');
-		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
-		# End of pagination config
+		$paginator = new LengthAwarePaginator([], $data['fetch']['total'], $perPage, $currPage);
 
+		$paginator->setPath('acceptance');
+		if($req->has('s')) $paginator->appends(['field' => $search['field'], 's' => $search['s']]);
+
+		$data['paginator'] = $paginator;
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
 	}
 	public function acceptanceCreate($po_id = null)

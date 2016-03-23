@@ -27,7 +27,13 @@ class Penerimaan extends Model {
 			$get->where($preffix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
 		}
 
-		return $get->groupBy($i->table.'.po_id')->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
+		$get->groupBy($i->table.'.po_id')->orderBy($i->table.'.created_at', 'DESC');
+		return [
+			'total'	=> $get->get()->count(),
+			'fetch'	=> $get->limit($args['perPage'])->offset(($args['currPage'] - 1) * $args['perPage'])->get()
+		];
+
+		//return $get->groupBy($i->table.'.po_id')->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
 	}
 	public static function fetchAll($po_id){
 		return self::select('pener_id', 'pener_date')
