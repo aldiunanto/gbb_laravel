@@ -1,3 +1,15 @@
+<div class="data-list-filter">
+	<form action="{{ url('material/acceptance') }}" method="get">
+		<select name="field">
+			<option value="po_no">Nomor PO</option>
+			<option value="sup_nama">Supplier</option>
+		</select>
+		<input type="text" name="s" placeholder="Kata pencarian.." />
+		<button><i class="fa fa-search"></i></button>
+	</form>
+</div>
+<div class="clearfix"></div>
+
 <table class="data-list index">
 	<thead>
 		<tr>

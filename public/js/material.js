@@ -374,7 +374,7 @@ material = {
 
 	acceptance: {
 		init: function(){
-			this._dataTables();
+			//this._dataTables();
 			this._viewDetail();
 			this._acceptanceDetail();
 		},
