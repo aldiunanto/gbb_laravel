@@ -576,19 +576,43 @@ class Material extends Controller {
 		Session::flash('canceled', '<div class="info warning">Permintaan Barang telah dibatalkan.</div>');
 		return redirect('material/request');
 	}
-	public function acceptance()
+	public function acceptance(Request $req)
 	{
+		$perPage 	= 5;
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
 		$data = [
 			'title'		=> 'Daftar Penerimaan Material',
 			'asset'		=> new Assets(),
 			'js'		=> ['vendor/jquery.dataTables.min'],
 			'css'		=> ['jquery.dataTables'],
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
-			'fetch'		=> Pener::fetchData(),
+			'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage]),
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
-			'active'	=> 'default'
+			'active'	=> 'default',
+			'search'	=> $search,
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
 		];
+
+		# Pagination config
+		$data['fetch']->setPath('material/acceptance');
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
 
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.index', $data);
 	}
