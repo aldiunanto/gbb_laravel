@@ -1,10 +1,10 @@
 <div class="data-list-filter">
 	<form action="{{ url('material/acceptance') }}" method="get">
 		<select name="field">
-			<option value="po_no">Nomor PO</option>
-			<option value="sup_nama">Supplier</option>
+			<option value="po_no" <?php echo $isSelected('po_no') ?>>Nomor PO</option>
+			<option value="sup_nama" <?php echo $isSelected('sup_nama') ?>>Supplier</option>
 		</select>
-		<input type="text" name="s" placeholder="Kata pencarian.." />
+		<input type="text" name="s" placeholder="Kata pencarian.." value="{{ $search['s'] }}" />
 		<button><i class="fa fa-search"></i></button>
 	</form>
 </div>
@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php $x = 0; ?>
+	<?php $x = $getNumb(); ?>
 	@foreach($fetch as $row)
 
 		<tr>
