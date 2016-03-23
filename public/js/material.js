@@ -374,9 +374,12 @@ material = {
 
 	acceptance: {
 		init: function(){
-			//this._dataTables();
 			this._viewDetail();
 			this._acceptanceDetail();
+
+			material.index._focusingSearch();
+
+			//this._dataTables();
 		},
 		_dataTables: function(){
 			if($('.main table.data-list.index').length > 0){
