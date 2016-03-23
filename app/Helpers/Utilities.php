@@ -96,7 +96,7 @@
         }elseif($date1 < $date2){
             $str .= '<span class="status po-done label">Lebih cepat ';
         }else{
-            return '<span class="status vice-approve label">Tepat waktu';
+            return '<span class="status vice-approve label">Tepat waktu</span>';
         }
 
         if($diff->y > 0){ $str .= $diff->y.$d['y'].', '; }
