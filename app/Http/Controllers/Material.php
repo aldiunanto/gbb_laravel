@@ -907,7 +907,7 @@ class Material extends Controller {
 	}
 	public function acceptanceReturAcceptance(Request $req)
 	{
-		$perPage	= 1;
+		$perPage	= 20;
 		$search 	= [
 			's'		=> ($req->has('s') ? $req->input('s') : null),
 			'field'	=> ($req->has('field') ? $req->input('field') : null)
