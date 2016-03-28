@@ -1,3 +1,16 @@
+<div class="data-list-filter">
+	<form action="{{ url('material/acceptance/retur/acceptance') }}" method="get">
+		<select name="field">
+			<option value="po_no" <?php echo $isSelected('po_no') ?>>Nomor PO</option>
+			<option value="dorp_no" <?php echo $isSelected('dorp_no') ?>>No. Surat Jalan</option>
+			<option value="sup_nama" <?php echo $isSelected('sup_nama') ?>>Supplier</option>
+		</select>
+		<input type="text" name="s" placeholder="Kata pencarian.." value="{{ $search['s'] }}" />
+		<button><i class="fa fa-search"></i></button>
+	</form>
+</div>
+<div class="clearfix"></div>
+
 <table class="data-list index">
 	<thead>
 		<tr>
@@ -12,7 +25,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php $x = 0 ?>
+		<?php $x = $getNumb(); ?>
 		@foreach($fetch as $row)
 		<tr>
 			<td class="text-right">{{ ++$x }}.</td>
@@ -35,3 +48,5 @@
 		@endforeach
 	</tbody>
 </table>
+
+<?php echo $fetch->render() ?>
