@@ -907,10 +907,8 @@ class Material extends Controller {
 	}
 	public function acceptanceReturAcceptance(Request $req)
 	{
-		$perPage	= 20;
-		$currPage 	= $req->input('page', 1);
-
-		$search = [
+		$perPage	= 1;
+		$search 	= [
 			's'		=> ($req->has('s') ? $req->input('s') : null),
 			'field'	=> ($req->has('field') ? $req->input('field') : null)
 		];
@@ -925,7 +923,7 @@ class Material extends Controller {
 			'role'		=> $this->_user->hak_akses,
 			'active'	=> 'returan',
 			//'fetch'		=> Peneretur::fetch(),
-			'fetch'		=> Peneretur::fetch(['search' => $search, 'perPage' => $perPage, 'currPage' => $currPage]),
+			'fetch'		=> Peneretur::fetch(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'getNumb'	=> function() use ($perPage, $req){
 				if($req->has('page') && $req->input('page') != 1){
@@ -941,12 +939,11 @@ class Material extends Controller {
 			}
 		];
 
-		$paginator = new LengthAwareaginator([], $data['fetch']['total'], $perPage, $currPage);
+		# Pagination config
+		$data['fetch']->setPath(url('material/acceptance/retur/acceptance'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
 
-		$paginator->setPath('acceptance/retur/acceptance');
-		if($req->has('s')) $paginator->appends(['field' => $search['field'], 's' => $search['s']]);
-
-		$data['paginator'] = $paginator;
 		return view('material.baseAcceptance', $data)->nest('dataListContent', 'material.acceptance.retur.acceptance.index', $data);
 	}
 	public function acceptanceReturAcceptanceCreate($returpener_id = null)
