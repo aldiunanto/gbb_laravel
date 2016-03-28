@@ -610,8 +610,9 @@ material = {
 	},
 	acceptanceReturAcceptance: {
 		init: function(){
-			this._dataTables();
+			//this._dataTables();
 			this._viewDetail();
+			material.index._focusingSearch();
 		},
 		_dataTables: function(){
 			if($('.main table.data-list.index').length > 0){
