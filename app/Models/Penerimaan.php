@@ -24,7 +24,7 @@ class Penerimaan extends Model {
 				case 'sup_nama'	: $prefix = 'D.'; break;
 			}
 
-			$get->where($preffix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
+			$get->where($prefix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
 		}
 
 		$get->groupBy($i->table.'.po_id')->orderBy($i->table.'.created_at', 'DESC');
