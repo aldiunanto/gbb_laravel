@@ -117,14 +117,23 @@ class Material extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$validate = Validator::make($request->all(), [
-			'mat_nama'	=> 'required',
-			'sup_id'	=> 'required',
-			'mat_harga'	=> 'required|numeric',
-			'mu_id'		=> 'required',
-			'wrn_id'	=> 'required',
-			'matsp_id'	=> 'required'
-		]);
+		if($this->_user['hak_akses'] == 3){
+			$requirements = [
+				'mat_nama'	=> 'required',
+				'sup_id'	=> 'required',
+				'wrn_id'	=> 'required'
+			];
+		}else{
+			$requirements = [
+				'mat_nama'	=> 'required',
+				'sup_id'	=> 'required',
+				'mat_harga'	=> 'required|numeric',
+				'mu_id'		=> 'required',
+				'wrn_id'	=> 'required',
+				'matsp_id'	=> 'required'
+			];
+		}
+		$validate = Validator::make($request->all(), $requirements);
 
 		$validate->setAttributeNames(['mat_nama' => 'Nama Material', 'sup_id' => 'Supplier', 'mat_harga' => 'Harga', 'mu_id' => 'Mata Uang', 'wrn_id' => 'Warna', 'matsp_id' => 'Satuan Purchasing']);
 		if($validate->fails()){
