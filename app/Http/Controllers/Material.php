@@ -91,7 +91,7 @@ class Material extends Controller {
 		if($role == 2){
 			$accessable = ['', '', '', '', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"'];
 		}elseif($role == 3){
-			$accessable = ['', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];
+			$accessable = ['', '', '', 'disabled="disabled"', '', '', '', '', '', '', ''];
 		}else{
 			$accessable = ['', '', '', '', '', '', '', '', '', '', ''];
 		}
@@ -121,7 +121,9 @@ class Material extends Controller {
 			$requirements = [
 				'mat_nama'	=> 'required',
 				'sup_id'	=> 'required',
-				'wrn_id'	=> 'required'
+				'mu_id'		=> 'required',
+				'wrn_id'	=> 'required',
+				'matsp_id'	=> 'required'
 			];
 		}else{
 			$requirements = [
