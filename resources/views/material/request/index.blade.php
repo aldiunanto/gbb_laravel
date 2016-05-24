@@ -123,7 +123,7 @@
 							if($row->pb_vd_id == 68) $p = '<i class="actor">l</i>';
 							elseif($row->pb_vd_id == 100) $p = '<i class="actor">d</i>';
 							elseif($row->pb_vd_id == 103) $p = '<i class="actor">f</i>';
-							else $p = '';
+							else $p = '<i class="actor">n</i>';
 						}
 
 						switch($row->pb_status){
