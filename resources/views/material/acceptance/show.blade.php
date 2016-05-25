@@ -34,7 +34,8 @@
 
 				<tr class="new-pener">
 					<td colspan="4">
-						@if($head->po_status == 1 && $isRetur == 0 && ($role == 1 || $role == 3))
+						@if($isRetur == 0 && ($role == 1 || $role == 3))
+						<?php //if($head->po_status == 1 && $isRetur == 0 && ($role == 1 || $role == 3)) ?>
 						<a href="{{ url('material/acceptance/retur/create/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
 						@endif
 
