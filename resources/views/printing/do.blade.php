@@ -44,7 +44,7 @@
 <section class="content">
 	<div class="info">
 		<span class="date">Tanggal&emsp;&emsp;&nbsp;:</span>
-		<span class="po-no">Nomor PO&emsp;: P/404/VIII/2015</span>
+		<span class="po-no">Nomor PO&emsp;: {{ $head->po_no }}</span>
 	</div>
 	<table>
 		<thead>
@@ -57,14 +57,18 @@
 			</tr>
 		</thead>
 		<tbody>
+			<?php $x = 1 ?>
 			@foreach($sub as $row)
 			<tr>
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
 				<td>{{ $row->returpeners_jml }}</td>
 				<td>{{ $row->mats_nama }}</td>
-				<td>{{ $row->returpeners_reason }}</td>
+				@if($x == 1)
+				<td class="reason" rowspan="{{ $sub->count() }}">{{ $head->returpener_reason }}</td>
+				@endif
 			</tr>
+			<?php $x++ ?>
 			@endforeach
 
 			@if($sub->count() < 5)
