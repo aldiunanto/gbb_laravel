@@ -802,7 +802,8 @@ class Material extends Controller {
 			'pener_id'			=> $req->input('pener_id'),
 			'returpener_status'	=> 1,
 			'visibility'		=> 1,
-			'is_closed'			=> 2
+			'is_closed'			=> 2,
+			'returpener_reason'	=> trim($req->input('reason'))
 		];
 
 		$head = Returpener::create($vals);
@@ -814,7 +815,6 @@ class Material extends Controller {
 					'returpener_id'			=> $head->returpener_id,
 					'peners_id'				=> $peners_id,
 					'returpeners_jml'		=> trim($_POST['jml_retur'][$x]),
-					'returpeners_reason'	=> trim($_POST['reason'][$x]),
 					'returpeners_is_reduced'=> 2
 				];
 
