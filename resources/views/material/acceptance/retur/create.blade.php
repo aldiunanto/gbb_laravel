@@ -60,7 +60,6 @@
 						<th>Satuan</th>
 						<th>Diterima</th>
 						<th>Jml Retur</th>
-						<th>Alasan</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -77,10 +76,17 @@
 							<input type="hidden" name="peners_id[]" value="{{ $row->peners_id }}" />
 							<input type="text" name="jml_retur[]" class="text-right" />
 						</td>
-						<td class="text-center reason"><textarea name="reason[]"></textarea></td>
 					</tr>
 					@endforeach
 				</tbody>
+			</table>
+			<div class="caption">
+				<h3>Alasan Retur</h3>
+			</div>
+			<table>
+				<tr>
+					<td class="text-center"><textarea name="reason" placeholder="Alasan retur"></textarea></td>
+				</tr>
 			</table>
 			<table>
 				<tr>
