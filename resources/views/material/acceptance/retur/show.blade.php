@@ -29,7 +29,6 @@
 				<th>Satuan</th>
 				<th>Diterima</th>
 				<th>Jml Retur</th>
-				<th>Alasan</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,9 +42,13 @@
 				<td class="text-center">{{ $row->mats_nama }}</td>
 				<td class="text-center">{{ $row->peners_jml }}</td>
 				<td class="text-center">{{ $row->returpeners_jml }}</td>
-				<td>{{ $row->returpeners_reason }}</td>
 			</tr>
 			@endforeach
+			<tr>
+				<td colspan="7" class="text-center">
+					<em>Alasan: {{ $head->returpener_reason }}</em>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 </div>
