@@ -46,7 +46,7 @@
 			@endforeach
 			<tr>
 				<td colspan="7" class="text-center">
-					<em>Alasan: {{ $head->returpener_reason }}</em>
+					<em>Alasan: {{ ($head->returpener_reason ?: '-') }}</em>
 				</td>
 			</tr>
 		</tbody>
