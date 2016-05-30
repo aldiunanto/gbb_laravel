@@ -4,8 +4,8 @@
 			<thead>
 				<tr>
 					<th>Material</th>
+					<th>Spesifikasi</th>
 					<th>Jml Retur</th>
-					<th>Alasan</th>
 
 					@if($is_penerimaanReturan > 0)
 					<th class="diterima">Diterima</th>
@@ -19,8 +19,8 @@
 				@foreach($fetch as $row)
 				<tr>
 					<td>{{ $row->mat_nama }}</td>
+					<td>{{ $row->mat_spesifikasi }}</td>
 					<td class="text-right">{{ $row->returpeners_jml }}</td>
-					<td class="text-center">{{ $row->returpeners_reason }}</td>
 					<?php
 
 						$pener = $Penereturs::getItem($row->returpeners_id);
@@ -47,6 +47,11 @@
 					</td>
 				</tr>
 				@endforeach
+				<tr>
+					<td class="text-center" colspan="{{ ($is_penerimaanReturan > 0 ? 6 : 4) }}">
+						<em>Alasan: {{ ($row->returpener_reason ?: '-') }}</em>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</td>
