@@ -824,7 +824,7 @@ class Material extends Controller {
 			$x++;
 		}
 
-		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya data akan ditampilkan di QA untuk proses approvement.</div>');
+		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya data retur akan ditampilkan di QA untuk proses approval.</div>');
 		return redirect('material/acceptance/retur');
 	}
 	public function acceptanceReturShow($returpener_id)
