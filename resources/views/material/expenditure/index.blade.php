@@ -36,7 +36,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?php $x = 0 ?>
+		<?php $x = $getNumb(); ?>
 		@foreach($fetch as $row)
 			<tr>
 				<td class="text-right">{{ ++$x }}.</td>
@@ -60,5 +60,7 @@
 		@endforeach
 		</tbody>
 	</table>
+
+	<?php echo $fetch->render() ?>
 </div>
 @endsection

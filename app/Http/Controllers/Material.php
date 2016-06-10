@@ -1056,7 +1056,7 @@ class Material extends Controller {
 		];
 
 		# Pagination config
-		$data['fetch']->setPath(url('material'));
+		$data['fetch']->setPath(url('material/expenditure'));
 		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
 		# End of pagination config
 
