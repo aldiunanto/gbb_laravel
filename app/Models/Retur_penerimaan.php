@@ -55,9 +55,9 @@ class Retur_penerimaan extends Model {
 			#case 1, 3, & 7 (admin, rawmat, and QA) let them know all of datas
 
 			case 2: $get->whereIn($i->table.'.returpener_status', [5, 6]); break; //Purchasing
-			case 4: $get->whereIn($i->table.'.returpener_status', [3, 4, 5, 6]); break; //PPIC
-			case 5: $get->whereIn($i->table.'.returpener_status', [4, 5, 6]); break; //Vice Director
-			case 6: $get->whereIn($i->table.'.returpener_status', [2, 3, 4, 5, 6]); break; //K.a Prod
+			case 4: $get->whereIn($i->table.'.returpener_status', [4, 5, 6]); break; //PPIC
+			case 5: $get->whereIn($i->table.'.returpener_status', [5, 6]); break; //Vice Director
+			case 6: $get->whereIn($i->table.'.returpener_status', [3, 4, 5, 6]); break; //K.a Prod
 		}
 
 		if(! is_null($args['search']['s'])){
