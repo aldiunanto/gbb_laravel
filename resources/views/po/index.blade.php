@@ -45,8 +45,8 @@
 			@endif
 
 			<tr class="{{ $tr_class }}">
-				<td class="text-center">{{ ++$x }}.</td>
-				<td>{{ $po_no }}</td>
+				<td class="text-center">{{ ($tr_class == '' ? '' : ++$x . '.') }}</td>
+				<td>{{ ($tr_class == '' ? '' : $po_no) }}</td>
 				<td>{{ $row->mat_nama }}</td>
 				<td class="text-center">{{ to_indDate($row->po_tgl_buat) }}</td>
 				<td>{{ $row->pbs_jml }}</td>
