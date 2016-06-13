@@ -113,7 +113,7 @@
 			</td>
 		</tr>
 		<tr class="name">
-			<td>MELANI</td>
+			<td>{{ (! session('kar_nama_panggilan') ? session('kar_nama') : session('kar_nama_panggilan')) }}</td>
 			<td>LIVIA YUWONO</td>
 		</tr>
 		<tr>
