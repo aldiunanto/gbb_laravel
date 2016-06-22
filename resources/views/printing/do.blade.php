@@ -50,6 +50,7 @@
 		<thead>
 			<tr>
 				<th>Barang</th>
+				<th>Warna</th>
 				<th>Spek</th>
 				<th>Jumlah</th>
 				<th>Satuan</th>
@@ -61,6 +62,7 @@
 			@foreach($sub as $row)
 			<tr>
 				<td>{{ $row->mat_nama }}</td>
+				<td>{{ $row->wrn_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
 				<td>{{ $row->returpeners_jml }}</td>
 				<td>{{ $row->mats_nama }}</td>
@@ -74,6 +76,7 @@
 			@if($sub->count() < 5)
 				@for($x = 1; $x <= (5 - $sub->count()); $x++)
 				<tr>
+					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
