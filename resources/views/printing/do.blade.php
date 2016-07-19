@@ -58,7 +58,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php $x = 1 ?>
+			<?php $x = 1; $total = 0; ?>
 			@foreach($sub as $row)
 			<tr>
 				<td>{{ $row->mat_nama }}</td>
@@ -74,7 +74,7 @@
 			@endforeach
 
 			@if($sub->count() < 5)
-				@for($x = 1; $x <= (5 - $sub->count()); $x++)
+				@for($x = 1; $x <= (4 - $sub->count()); $x++)
 				<tr>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -84,6 +84,24 @@
 					<td>&nbsp;</td>
 				</tr>
 				@endfor
+
+				<tr class="row-total">
+					<td>&nbsp;</td>
+					<td colspan="2">Total</td>
+					<td>{{ $total }}</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			@endif
+
+			@if($sub->count() >= 5)
+			<tr class="row-total">
+				<td>&nbsp;</td>
+				<td colspan="2">Total</td>
+				<td>{{ $total }}</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
 			@endif
 		</tbody>
 	</table>
