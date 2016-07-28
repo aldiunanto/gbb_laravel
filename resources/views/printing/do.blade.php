@@ -43,8 +43,9 @@
 </header>
 <section class="content">
 	<div class="info">
-		<span class="date">Tanggal&emsp;&emsp;&nbsp;:</span>
-		<span class="po-no">Nomor PO&emsp;: {{ $head->po_no }}</span>
+		<span class="date">Tanggal&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ to_indDate(now()) }}</span>
+		<span class="po-no">Nomor PO&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ $head->po_no }}</span>
+		<span class="po-no">Tanggal Penerimaan : {{ to_indDate($head->pener_date) }}</span>
 	</div>
 	<table>
 		<thead>
@@ -70,7 +71,7 @@
 				<td class="reason" rowspan="{{ $sub->count() }}">{{ $head->returpener_reason }}</td>
 				@endif
 			</tr>
-			<?php $x++ ?>
+			<?php $x++; $total += $row->returpeners_jml; ?>
 			@endforeach
 
 			@if($sub->count() < 5)
