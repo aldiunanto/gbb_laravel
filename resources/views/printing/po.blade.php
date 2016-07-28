@@ -146,7 +146,11 @@
 						<td class="left">&nbsp;</td>
 						@else
 						<td style="width: 43px;" class="left">Note :</td>
-						<td class="left">{{ $head->po_note }}</td>
+						<td class="left"><span>{{ $head->po_note }}</span>
+							<a href="javascript:;" class="edit-note hidden-element">
+								[Edit]
+							</a>
+						</td>
 						@endif
 					</tr>
 				</table>
