@@ -42,7 +42,7 @@
 				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
 				<th>Satuan</th>
 				@endif
-				<th>Bagian</th>
+				<th>Stock Akhir</th>
 				<th>Supplier</th>
 				<th>Aksi</th>
 			</tr>
@@ -60,10 +60,12 @@
 				@endif
 				
 				@if($role == 4 || $role == 1)
-				<td><a href="{{ url('material/formModifyDept/' . $row->mat_id) }}" class="modify-dept">{{ $row->deptbg_nama }}</a></td>
+				<!-- <td><a href="{{ url('material/formModifyDept/' . $row->mat_id) }}" class="modify-dept">{{ $row->deptbg_nama }}</a></td> -->
 				@else
-				<td>{{ $row->deptbg_nama }}</td>
+				<!-- <td>{{ $row->deptbg_nama }}</td> -->
 				@endif
+
+				<td>{{ ($row->mat_stock_akhir == 0 ? '-' : number_format($row->mat_stock_akhir, 2, ',', '.')) }}</td>
 
 				<td>{{ $row->sup_nama }}</td>
 				<td class="text-right">
