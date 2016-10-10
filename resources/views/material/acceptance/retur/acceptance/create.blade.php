@@ -56,10 +56,11 @@
 					</td>
 					<td>
 						<label for="peneretur_date">Tanggal Kedatangan</label>
-						<input type="text" name="peneretur_date" id="peneretur_date" value="{{ to_indDate(now()) }}" />
+						<input type="text" class="date-picker" name="peneretur_date" id="peneretur_date" value="{{ now() }}" />
 					</td>
 				</tr>
 
+				<?php $el = array() ?>
 				@if(! empty($sub))
 				<tr>
 					<td colspan="2">
@@ -71,9 +72,11 @@
 								<tr>
 									<th>Material</th>
 									<th>Spesifikasi</th>
-									<th>Warna</th>
+									<!-- <th>Warna</th> -->
 									<th>Diretur</th>
 									<th>Alasan</th>
+									<th>Telah Diterima</th>
+									<th>Kekurangan</th>
 									<th>Diterima</th>
 									<th>Satuan</th>
 									<th>Status</th>
@@ -81,23 +84,32 @@
 							</thead>
 							<tbody>
 								@foreach($sub as $row)
+								<?php $diterima = countReturDiterima($row->returpeners_id); $rest = $row->returpeners_jml - $diterima; ?>
 								<tr>
 									<td class="mat_nama">
 										<input type="hidden" name="returpeners_id[]" value="{{ $row->returpeners_id }}" />
 										{{ $row->mat_nama }}
 									</td>
 									<td class="mat_spesifikasi text-center">{{ $row->mat_spesifikasi }}</td>
-									<td class="warna text-center">{{ $row->wrn_nama }}</td>
+									<!-- <td class="warna text-center">{{ $row->wrn_nama }}</td> -->
 									<td class="returpeners_jml text-center">{{ $row->returpeners_jml }}</td>
 									<td class="returpeners_reason">{{ $row->returpeners_reason }}</td>
+									<td class="diterima text-center">{{ $diterima }}</td>
+									<td class="kekurangan text-center">{{ ($rest <= 0 ? '-' : $rest) }}</td>
 									<td class="retur_diterima text-center">
+										@if($rest > 0)
 										<input type="hidden" name="mat_id_{{ $row->returpeners_id }}" value="{{ $row->mat_id }}" />
 										<input type="text" class="text-center peners" name="penereturs_jml_{{ $row->returpeners_id }}" required="required" <?php echo ($head->is_closed == 1 ? 'disabled="disabled"' : '') ?> />
+										@else
+										-
+										@endif
 									</td>
 									<td class="satuan_p text-center">{{ $row->mats_nama }}</td>
 									<td class="status text-center">
-										@if($head->is_closed == 2)
+										@if($rest > 0)
+										<?php array_push($el, 'open') ?>
 										<span class="status vice-approve label">Open</span>
+
 										@else
 										<span class="status pm-reject-vice label">Closed</span>
 										@endif

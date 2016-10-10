@@ -38,6 +38,19 @@
 
     	return $total;
     }
+    function countReturDiterima($returpeners_id){
+        $total  = 0;
+        $get    = DB::table('penerimaan_returan_sub')
+                        ->select('penereturs_jml')
+                        ->where('returpeners_id', '=', $returpeners_id)
+                        ->get();
+
+        foreach($get as $row){
+            $total += $row->penereturs_jml;
+        }
+
+        return $total;
+    }
     function getLatest_PenerDate($po_id){
         return DB::table('penerimaan_laravel')
                     ->select('pener_date')
