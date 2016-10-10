@@ -644,6 +644,7 @@ material = {
 	acceptanceReturAcceptanceCreate: {
 		init: function(){
 			this._openPO();
+			material.requestCreate._getDatePicker();
 			//this._controlDiterima();
 		},
 		_openPO: function(){

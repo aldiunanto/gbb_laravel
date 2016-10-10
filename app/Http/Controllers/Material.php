@@ -963,6 +963,8 @@ class Material extends Controller {
 			'title'		=> 'Tambah Penerimaan Returan Barang',
 			'asset'		=> new Assets(),
 			'opened'	=> 'material',
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/acceptance/retur/acceptance' => 'Penerimaan Returan', 'material/acceptance/retur/acceptance/create' => 'Tambah Penerimaan']
 		];
 
