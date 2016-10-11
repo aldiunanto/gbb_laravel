@@ -9,7 +9,7 @@
 
 					@if($is_penerimaanReturan > 0)
 					<th class="diterima">Diterima</th>
-					<th class="diterima">Tgl Terima</th>
+					<th class="diterima">Tgl Terima Trkhr</th>
 					@endif
 
 					<th>Status</th>
@@ -25,10 +25,15 @@
 
 						$pener = $Penereturs::getItem($row->returpeners_id);
 						if($is_penerimaanReturan > 0 && $pener->count() > 0){
-							$get = $pener->first();
+
+							$penersTotal = 0;
+							foreach($pener as $pen){
+								$penersTotal += $pen->penereturs_jml;
+								$date = $pen->peneretur_date;
+							}
 					?>
-							<td class="text-center diterima">{{ $get->penereturs_jml }}</td>
-							<td class="text-center diterima">{{ to_indDate($get->peneretur_date) }}</td>
+							<td class="text-center diterima">{{ $penersTotal }}</td>
+							<td class="text-center diterima">{{ to_indDate($date) }}</td>
 					<?php
 						}
 					?>
