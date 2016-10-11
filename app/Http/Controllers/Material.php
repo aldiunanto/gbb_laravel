@@ -1007,10 +1007,26 @@ class Material extends Controller {
 			}
 		}
 
-		$get = Returpener::find($req->input('returpener_id'));
+		#Checking for update po_status
+		$sub = Returpeners::fetch($req->input('returpener_id'));
+		$el = array();
 
-		$get->is_closed = 1;
-		$get->save();
+		foreach($sub as $row){
+			$diterima = countReturDiterima($row->returpeners_id);
+			$rest = $row->returpeners_jml - $diterima;
+
+			if($rest > 0){
+				array_push($el, 'open');
+			}
+		}
+
+		if(! in_array('open', $el)){
+			$get = Returpener::find($req->input('returpener_id'));
+
+			$get->is_closed = 1;
+			$get->save();
+		}
+		#End of checking
 
 		Session::flash('inserted', '<div class="info success">Penerimaan Returan Material telah diinput.</div>');
 		return redirect('material/acceptance/retur/acceptance');
