@@ -27,7 +27,7 @@
     }
     function countDiterima($pos_id){
     	$total	= 0;
-    	$get	= DB::table('penerimaan_sub_laravel AS A')
+    	$get	= DB::table('penerimaan_sub_laravel')
     					->select('peners_jml')
     					->where('pos_id', '=', $pos_id)
     					->get();
