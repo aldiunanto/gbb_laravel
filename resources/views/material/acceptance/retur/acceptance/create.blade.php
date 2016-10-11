@@ -9,7 +9,7 @@
 <div class="main">
 	<div class="form">
 		@if(! empty($head) && $head->is_closed == 1)
-		<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena statusnya sudah <strong>CLOSED</strong></div>
+		<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena sudah <strong>CLOSED</strong></div>
 		@endif
 
 		<div class="info warning">*<i>Penerimaan barang menggunakan satuan <strong>Purchasing!</strong></i></div>
@@ -132,7 +132,7 @@
 				?>
 				<tr>
 					<td class="text-right" colspan="2">
-						<div class="actions">
+						<div class="actions {{ $class }}">
 							<a href="{{ url('material/acceptance/retur/acceptance') }}" class="btn default"><i class="fa fa-mail-reply"></i>Batal</a>
 							<button class="btn primary"><i class="fa fa-save"></i>Simpan</button>
 						</div>

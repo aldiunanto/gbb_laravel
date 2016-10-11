@@ -663,7 +663,7 @@ class Material extends Controller {
 	{
 		$vals = [
 			'po_id'			=> $req->input('po_id'),
-			'pener_date'	=> now(),
+			'pener_date'	=> $req->input('pener_date'),
 			'userid_input'	=> $this->_user->user_id,
 			'visibility'	=> 1
 		];
@@ -981,7 +981,7 @@ class Material extends Controller {
 	{
 		$parentData = [
 			'returpener_id'		=> $req->input('returpener_id'),
-			'peneretur_date'	=> now(),
+			'peneretur_date'	=> $req->input('peneretur_date'),
 			'userid_input'		=> $this->_user->hak_akses,
 			'visibility'		=> 1
 		];
