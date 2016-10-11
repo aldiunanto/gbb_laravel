@@ -1007,7 +1007,7 @@ class Material extends Controller {
 			}
 		}
 
-		#Checking for update po_status
+		#Checking for update is_closed
 		$sub = Returpeners::fetch($req->input('returpener_id'));
 		$el = array();
 

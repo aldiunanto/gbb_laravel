@@ -138,7 +138,7 @@
 						</div>
 
 						@if(! empty($head->po_status) && $head->po_status == 2)
-						<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena statusnya sudah <strong>CLOSED</strong></div>
+						<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena sudah <strong>CLOSED</strong></div>
 						@endif
 					</td>
 				</tr>

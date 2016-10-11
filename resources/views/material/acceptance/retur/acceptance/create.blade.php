@@ -122,16 +122,26 @@
 				</tr>
 				@endif
 
-				@if(! empty($head) && $head->is_closed == 2)
+				<?php
+
+					if(! empty($sub) && ! in_array('open', $el)){ $class = 'hidden'; }
+					else{ $class = ''; }
+
+					if(empty($sub) || $head->is_closed == 1){ $class = 'hidden'; }
+
+				?>
 				<tr>
 					<td class="text-right" colspan="2">
 						<div class="actions">
 							<a href="{{ url('material/acceptance/retur/acceptance') }}" class="btn default"><i class="fa fa-mail-reply"></i>Batal</a>
 							<button class="btn primary"><i class="fa fa-save"></i>Simpan</button>
 						</div>
+
+						@if(! empty($head->is_closed) && $head->is_closed == 1)
+						<div class="info error text-center">Anda tidak bisa melakukan input untuk PO ini karena sudah <strong>CLOSED</strong></div>
+						@endif
 					</td>
 				</tr>
-				@endif
 			</table>
 		</form>
 	</div>
