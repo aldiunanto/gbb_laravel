@@ -89,7 +89,9 @@
 			<nav>
 				<ul>
           <!-- <li><a href="{{ url('notification') }}" class="notif-top" title="Notifikasi"><i class="fa fa-bell fa-2x"></i><?php $notif = count_notif(); echo ($notif == 0 ? '' : '<span>' . $notif . '</span>') ?></a></li> -->
-          <li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist Penerimaan dan Pengeluaran Material"><i class="fa fa-check fa-2x"></i></a></li>
+          @if($role == 1 || $role == 7)
+          <li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist QA"><i class="fa fa-calendar-check-o fa-2x"></i></a></li>
+          @endif
           <li><a href="{{ url('material/acceptance/retur') }}" class="notif-top" title="Retur Penerimaan Material"><i class="fa fa-rotate-left fa-2x"></i><?php $countAppr = count_returApprovement(); echo ($countAppr == 0 ? '' : '<span>' . $countAppr . '</span>') ?></a></li>
           @if($role != 7)
           <li><a href="{{ url('material/request') }}" class="notif-top" title="Permintaan Material"><i class="fa fa-shopping-cart fa-2x"></i><?php echo ($count == 0 ? '' : '<span>' . $count . '</span>') ?></a></li>
