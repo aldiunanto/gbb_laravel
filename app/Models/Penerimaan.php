@@ -79,11 +79,11 @@ class Penerimaan extends Model {
 	public static function fetchQaCheck($args){
 		$i 		= new static;
 		$get	= $i
-			->select($i->table.'.'.$i->primaryKey, 'B.po_no', 'D.sup_nama', 'B.po_tgl_kedatangan', $i->table.'.pener_date')
+			->select($i->table.'.'.$i->primaryKey, 'B.po_no', 'D.sup_nama', 'B.po_tgl_kedatangan', $i->table.'.pener_date', $i->table.'.qa_check')
 			->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 			->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
 			->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
-			->where($i->table.'.qa_check', 1)
+			//->where($i->table.'.qa_check', 1)
 			->where($i->table.'.visibility', 1);
 
 		if(! is_null($args['search']['s'])){
