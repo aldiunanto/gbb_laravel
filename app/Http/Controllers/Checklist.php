@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Libraries\Assets;
 
+use App\Models\Penerimaan as Pener;
+
 class Checklist extends Controller {
 
 	/**
@@ -12,15 +14,41 @@ class Checklist extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $req)
 	{
-		$data = [
-			'title'		=> 'Checklist QA',
-			'asset'		=> new Assets(),
-			'position'	=> ['checklist' => 'Checklist QA']
+		$perPage 	= 20;
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
 		];
 
-		return view('checklist.index', $data);
+		$data = [
+			'title'		=> 'Checklist QA - Penerimaan Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['checklist' => 'Checklist QA', 'checklist/index' => 'Penerimaan'],
+			'fetch'		=> Pener::fetchQaCheck(['search' => $search, 'perPage' => $perPage]),
+			'active'	=> 'default',
+			'search'	=> $search,
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
+		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('checklist'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
+
+		return view('checklist.baseFrame', $data)->nest('dataListContent', 'checklist.index', $data);
 	}
 
 	/**
