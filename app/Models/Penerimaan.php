@@ -7,7 +7,7 @@ class Penerimaan extends Model {
 
 	protected	$table		= 'penerimaan_laravel';
 	protected	$primaryKey	= 'pener_id';
-	protected	$fillable	= ['po_id', 'pener_date', 'userid_input', 'visibility'];
+	protected	$fillable	= ['po_id', 'pener_date', 'userid_input', 'qa_check', 'visibility'];
 	public 		$timestamps	= true;
 
 	public static function fetchData($args){

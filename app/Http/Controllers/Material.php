@@ -665,6 +665,7 @@ class Material extends Controller {
 			'po_id'			=> $req->input('po_id'),
 			'pener_date'	=> $req->input('pener_date'),
 			'userid_input'	=> $this->_user->user_id,
+			'qa_check'		=> 1,
 			'visibility'	=> 1
 		];
 
@@ -983,6 +984,7 @@ class Material extends Controller {
 			'returpener_id'		=> $req->input('returpener_id'),
 			'peneretur_date'	=> $req->input('peneretur_date'),
 			'userid_input'		=> $this->_user->hak_akses,
+			'qa_check'			=> 1,
 			'visibility'		=> 1
 		];
 
@@ -1138,6 +1140,7 @@ class Material extends Controller {
 			'pengel_bpb'	=> $req->input('pengel_bpb'),
 			'pengel_po'		=> $req->input('pengel_po'),
 			'pengel_date'	=> $req->input('pengel_date'),
+			'qa_check'		=> 1,
 			'visibility'	=> 1
 		];
 		
