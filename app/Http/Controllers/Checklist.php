@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Libraries\Assets;
 
 use App\Models\Penerimaan as Pener;
+use App\Models\Penerimaan_returan as Peneretur;
+use App\Models\Pengeluaran as Pengel;
 
 class Checklist extends Controller {
 
@@ -29,6 +31,11 @@ class Checklist extends Controller {
 			'fetch'		=> Pener::fetchQaCheck(['search' => $search, 'perPage' => $perPage]),
 			'active'	=> 'default',
 			'search'	=> $search,
+			'count'		=> [
+				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+			],
 			'getNumb'	=> function() use ($perPage, $req){
 				if($req->has('page') && $req->input('page') != 1){
 					return ($req->input('page') * $perPage) - $perPage;
