@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Libraries\Assets;
 
 use App\Models\Penerimaan as Pener;
+use App\Models\Penerimaan_sub as Peners;
 use App\Models\Penerimaan_returan as Peneretur;
 use App\Models\Pengeluaran as Pengel;
 
@@ -60,7 +61,8 @@ class Checklist extends Controller {
 	public function acceptanceShow($penerId)
 	{
 		$data = [
-			'head'	=> Pener::fetchHead($penerId)
+			'head'	=> Pener::fetchHead($penerId),
+			'sub'	=> Peners::fetchDetail(['B.pener_id' => $penerId])
 		];
 
 		return view('checklist.acceptanceShow', $data);
