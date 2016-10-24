@@ -118,5 +118,15 @@ class Checklist extends Controller {
 
 		return view('checklist.baseFrame', $data)->nest('dataListContent', 'checklist.acceptanceRetur', $data);
 	}
+	public function acceptanceReturCheck(Request $req, $penereturId)
+	{
+		$row = Peneretur::find($penereturId);
+
+		$row->qa_check = 2;
+		$row->save();
+
+		$req->session()->flash('message', '<div class="info success">Check Penerimaan Returan berhasil.</div>');
+		return redirect('checklist/acceptance-retur');
+	}
 
 }
