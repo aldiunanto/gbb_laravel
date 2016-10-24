@@ -171,5 +171,15 @@ class Checklist extends Controller {
 
 		return view('checklist.baseFrame', $data)->nest('dataListContent', 'checklist.expenditure', $data);
 	}
+	public function expenditureCheck(Request $req, $pengelId)
+	{
+		$row = Pengel::find($pengelId);
+
+		$row->qa_check = 2;
+		$row->save();
+
+		$req->session()->flash('message', '<div class="info success">Check Pengeluaran Material berhasil.</div>');
+		return redirect('checklist/expenditure');
+	}
 
 }
