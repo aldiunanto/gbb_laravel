@@ -67,5 +67,15 @@ class Checklist extends Controller {
 
 		return view('checklist.acceptanceShow', $data);
 	}
+	public function acceptanceCheck(Request $req, $penerId)
+	{
+		$row = Pener::find($penerId);
+
+		$row->qa_check = 2;
+		$row->save();
+
+		$req->session()->flash('message', '<div class="info success">Check Penerimaan Barang berhasil.</div>');
+		return redirect('checklist');
+	}
 
 }
