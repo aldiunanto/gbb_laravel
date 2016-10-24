@@ -128,5 +128,48 @@ class Checklist extends Controller {
 		$req->session()->flash('message', '<div class="info success">Check Penerimaan Returan berhasil.</div>');
 		return redirect('checklist/acceptance-retur');
 	}
+	public function expenditure(Request $req)
+	{
+		$perPage	= 20;
+		$search  	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
+		$data = [
+			'title'		=> 'Checklist QA - Daftar Pengeluaran Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['checklist' => 'Checklist QA', 'checklist/expenditure' => 'Pengeluaran'],
+			'search'	=> $search,
+			'active'	=> 'expenditure',
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
+			'fetch'		=> Pengel::fetch(['search' => $search, 'perPage' => $perPage]),
+			'count'		=> [
+				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+			],
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			},
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			}
+		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('material/expenditure'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
+
+		return view('checklist.baseFrame', $data)->nest('dataListContent', 'checklist.expenditure', $data);
+	}
 
 }
