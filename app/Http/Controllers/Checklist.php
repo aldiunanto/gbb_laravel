@@ -28,7 +28,7 @@ class Checklist extends Controller {
 		$data = [
 			'title'		=> 'Checklist QA - Penerimaan Material',
 			'asset'		=> new Assets(),
-			'position'	=> ['checklist' => 'Checklist QA', 'checklist/index' => 'Penerimaan'],
+			'position'	=> ['checklist' => 'Checklist QA', 'checklist/' => 'Penerimaan'],
 			'fetch'		=> Pener::fetchQaCheck(['search' => $search, 'perPage' => $perPage]),
 			'active'	=> 'default',
 			'search'	=> $search,
@@ -76,6 +76,47 @@ class Checklist extends Controller {
 
 		$req->session()->flash('message', '<div class="info success">Check Penerimaan Barang berhasil.</div>');
 		return redirect('checklist');
+	}
+	public function acceptanceRetur(Request $req)
+	{
+		$perPage	= 20;
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
+		$data = [
+			'title'		=> 'Checklist QA - Penerimaan Returan Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['checklist' => 'Checklist QA', 'checklist/acceptance-retur' => 'Penerimaan Retur'],
+			'active'	=> 'retur',
+			'fetch'		=> Peneretur::fetch(['search' => $search, 'perPage' => $perPage]),
+			'search'	=> $search,
+			'count'		=> [
+				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+			],
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
+		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('check/acceptance-retur'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
+
+		return view('checklist.baseFrame', $data)->nest('dataListContent', 'checklist.acceptanceRetur', $data);
 	}
 
 }
