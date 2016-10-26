@@ -663,7 +663,7 @@ class Material extends Controller {
 	{
 		$vals = [
 			'po_id'			=> $req->input('po_id'),
-			'pener_date'	=> $req->input('pener_date'),
+			'pener_date'	=> now(),
 			'userid_input'	=> $this->_user->user_id,
 			'qa_check'		=> 1,
 			'visibility'	=> 1
