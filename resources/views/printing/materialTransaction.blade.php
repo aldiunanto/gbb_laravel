@@ -133,7 +133,7 @@
 			</tr>
 			<tr>
 				<td colspan="7">
-					Stok Akhir: {{ $stockAkhir }}
+					Stok Akhir: {{ $row->mat_stock_akhir }} <?php //$stockAkhir ?>
 				</td>
 			</tr>
 			@endforeach
