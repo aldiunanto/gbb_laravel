@@ -24,6 +24,7 @@
 				<tr>
 					<th>Material</th>
 					<th>Spesifikasi</th>
+					<th>Warna</th>
 					<th>Diterima</th>
 					<th>Satuan</th>
 				</tr>
@@ -49,6 +50,7 @@
 					<tr data-id="{{ $row->pener_id }}">
 						<td class="mat-nama">{{ $sub->mat_nama }}</td>
 						<td class="text-center">{{ $sub->mat_spesifikasi }}</td>
+						<td class="text-center">{{ $sub->wrn_nama }}</td>
 						<td class="text-right">{{ $sub->peners_jml }}</td>
 						<td class="text-center">{{ $sub->mats_nama }}</td>
 					</tr>
