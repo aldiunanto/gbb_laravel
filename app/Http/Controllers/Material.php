@@ -654,9 +654,9 @@ class Material extends Controller {
 	{
 		return view('material.acceptance.getPO', ['fetch' => Po::acceptanceGetPO()]);
 	}
-	public function acceptanceSearchPO()
+	public function acceptanceSearchPO(Request $req)
 	{
-		$get = Po::acceptanceGetPO(trim($_POST['filter']));
+		$get = Po::acceptanceGetPO($req->all());
 		return view('material.acceptance.searchPO', ['fetch' => $get]);
 	}
 	public function acceptanceStore(Request $req)
