@@ -40,7 +40,7 @@ po = {
 		},
 		_focusingSearch: function(){
 			$('select[name="field"]').on('change', function(){
-				if($(this).val() == 'po_tgl_butuh'){
+				/*if($(this).val() == 'po_tgl_butuh'){
 					$('input[name="s"]').datepicker({
 						dateFormat	: 'yy-mm-dd',
 						changeMonth	: true,
@@ -48,7 +48,7 @@ po = {
 					});
 				}else{
 					$('input[name="s"]').datepicker('destroy').removeAttr('id class');
-				}
+				}*/
 
 				$('input[name="s"]').focus();
 			});

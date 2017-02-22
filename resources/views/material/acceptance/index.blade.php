@@ -3,6 +3,7 @@
 		<select name="field">
 			<option value="po_no" <?php echo $isSelected('po_no') ?>>Nomor PO</option>
 			<option value="sup_nama" <?php echo $isSelected('sup_nama') ?>>Supplier</option>
+			<option value="pener_date" <?php echo $isSelected('pener_date') ?>>Tgl Penerimaan Terakhir</option>
 		</select>
 		<input type="text" name="s" placeholder="Kata pencarian.." value="{{ $search['s'] }}" />
 		<button><i class="fa fa-search"></i></button>

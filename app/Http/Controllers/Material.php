@@ -53,8 +53,11 @@ class Material extends Controller {
 		$data = [
 			'title'		=> 'Data List Material',
 			'asset'		=> new Assets(),
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material'],
 			'fetch'		=> MatModel::fetchData(['search' => $search, 'perPage' => $perPage]),
+			'fetchAppr'	=> MatModel::fetchAppr(),
 			'search'	=> $search,
 			'opened'	=> 'material',
 			'role'		=> $this->_user->hak_akses,
@@ -90,7 +93,7 @@ class Material extends Controller {
 		$role = $this->_user->hak_akses;
 		if($role == 2){
 			$accessable = ['', '', '', '', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"'];
-		}elseif($role == 3){
+		}elseif($role == 3 || $role == 8){
 			$accessable = ['', '', '', 'disabled="disabled"', '', '', '', '', '', '', ''];
 		}else{
 			$accessable = ['', '', '', '', '', '', '', '', '', '', ''];
@@ -117,7 +120,7 @@ class Material extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		if($this->_user['hak_akses'] == 3){
+		if($this->_user['hak_akses'] == 3 || $this->_user['hak_akses'] == 8){
 			$requirements = [
 				'mat_nama'	=> 'required',
 				'sup_id'	=> 'required',
@@ -158,11 +161,11 @@ class Material extends Controller {
 			'mat_stock_min'		=> trim($request->input('mat_stock_min')),
 			'mat_stock_awal'	=> trim($request->input('mat_stock_awal')),
 			'mat_stock_akhir'	=> trim($request->input('mat_stock_akhir')),
-			'visibility'		=> 1
+			'visibility'		=> 2
 		];
 		MatModel::create($values);
 
-		Session::flash('inserted', '<div class="info success">Data material baru berhasil ditambahkan.</div>');
+		Session::flash('inserted', '<div class="info success">Data material baru berhasil ditambahkan.<br />Menunggu persetujuan Kabag. Raw Material untuk ditampilkan.</div>');
 		return redirect('material');
 	}
 
@@ -212,7 +215,8 @@ class Material extends Controller {
 			case 2 : //purchasing
 				$accessable = ['', '', '', '', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"'];	
 			break;
-			case 3 : //rawmat
+			case 3 : //rawmat & kabag. rawmat
+			case 8 :
 				$accessable = ['disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
 			break;
 		}
@@ -302,6 +306,16 @@ class Material extends Controller {
 		return redirect('material');
 	}
 
+	public function accept($id)
+	{
+		$mat = MatModel::find($id);
+
+		$mat->visibility = 1;
+		$mat->save();
+
+		Session::flash('accepted', '<div class="info success">Material telah disetujui untuk ditampilkan.</div>');
+		return redirect('material');	
+	}
 	public function formModifyDept($mat_id)
 	{
 		$data = [
@@ -309,7 +323,7 @@ class Material extends Controller {
 			'deptbg'	=> Deptbg::all()
 		];
 
-		return view('material/formModifyDept', $data);
+		return view('material.formModifyDept', $data);
 	}
 	public function modifyDept(Request $req)
 	{
@@ -317,6 +331,24 @@ class Material extends Controller {
 		$row->deptbg_id = $req->input('deptbg_id');
 
 		$row->save();
+	}
+	public function cardStock($id)
+	{
+		$data = [
+			'mat'	=> MatModel::find($id)
+		];
+
+		return view('material.cardStock', $data);
+	}
+	public function cardStockShow(Request $req)
+	{
+		$data = [
+			'Peners'	=> new Peners(),
+			'Pengels'	=> new Pengels(),
+			'req'		=> $req->all()
+		];
+
+		return view('material.cardStockShow', $data);
 	}
 	public function request(Request $request)
 	{
@@ -374,6 +406,10 @@ class Material extends Controller {
 		$req = Pb::find($pb_id);
 
 		switch($req->pb_status){
+			case 6 : //approved by kabag. gbb
+				$set = 1;
+				$req->kabag_approved_at = now(true);
+			break;
 			case 1 : //approved by PPIC
 				$set = 2;
 				$req->ppic_approved_at = now(true);
@@ -398,12 +434,18 @@ class Material extends Controller {
 	}
 	public function requestReject(Request $request)
 	{
+		if ($this->_user->hak_akses == 4) {
+			$pbStatus = 5;
+		}elseif (in_array($this->_user->hak_akses, [1, 8])) {
+			$pbStatus = 7;
+		}
+
 		$once = Pb::find($request->input('pb_id'));
 
 		$once->pb_alasan_tolak 	= trim($request->input('pb_alasan_tolak'));
 		$once->pb_role_tolak	= $this->_user->hak_akses;
 		$once->userid_reject	= $this->_user->user_id;
-		$once->pb_status		= 5;
+		$once->pb_status		= $pbStatus;
 
 		$once->save();
 	}
@@ -467,7 +509,7 @@ class Material extends Controller {
 		];
 
 		#pb_status, wether sudden-PO or not
-		$values['pb_status'] = ($req->input('create_po') == 1 ? 4 : 1);
+		$values['pb_status'] = ($req->input('create_po') == 1 ? 4 : 6);
 		#End of sudden-PO
 
 		$pb = Pb::create($values);
@@ -601,8 +643,8 @@ class Material extends Controller {
 		$data = [
 			'title'		=> 'Daftar Penerimaan Material',
 			'asset'		=> new Assets(),
-			'js'		=> ['vendor/jquery.dataTables.min'],
-			'css'		=> ['jquery.dataTables'],
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan'],
 			//'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage]),
 			'fetch'		=> Pener::fetchData(['search' => $search, 'perPage' => $perPage, 'currPage' => $currPage]),
@@ -654,16 +696,16 @@ class Material extends Controller {
 	{
 		return view('material.acceptance.getPO', ['fetch' => Po::acceptanceGetPO()]);
 	}
-	public function acceptanceSearchPO()
+	public function acceptanceSearchPO(Request $req)
 	{
-		$get = Po::acceptanceGetPO(trim($_POST['filter']));
+		$get = Po::acceptanceGetPO($req->all());
 		return view('material.acceptance.searchPO', ['fetch' => $get]);
 	}
 	public function acceptanceStore(Request $req)
 	{
 		$vals = [
 			'po_id'			=> $req->input('po_id'),
-			'pener_date'	=> $req->input('pener_date'),
+			'pener_date'	=> now(),
 			'userid_input'	=> $this->_user->user_id,
 			'qa_check'		=> 1,
 			'visibility'	=> 1
@@ -776,7 +818,7 @@ class Material extends Controller {
 		];
 
 		# Pagination config
-		$data['fetch']->setPath(url('material'));
+		$data['fetch']->setPath(url('material/acceptance/retur'));
 		if($request->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
 		# End of pagination config
 

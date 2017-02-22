@@ -29,7 +29,10 @@ class Po extends Controller {
 	public function index(Request $req)
 	{
 		$perPage	= 20;
-		$search		= $req->has('s') ? $req->input('s') : null;
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
 
 		$data = [
 			'title'		=> 'Data List PO',
@@ -43,6 +46,11 @@ class Po extends Controller {
 					return 0;
 				}
 			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			},
 			'search'	=> $search,
 			'opened'	=> 'po',
 			'role'		=> $this->role
@@ -50,7 +58,7 @@ class Po extends Controller {
 
 		# Pagination config
 		$data['fetch']->setPath(url('po'));
-		if($req->has('s')) $data['fetch']->appends(['s' => $search]);
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
 		# End of pagination config
 
 		return view('po.index', $data);
@@ -199,6 +207,7 @@ class Po extends Controller {
 			}
 			
 			$matNama[$row->mat_id] = $row->mat_nama;
+			$matSpec[$row->mat_id] = $row->mat_spesifikasi;
 			$pbsJml[$row->mat_id] = $row->pbs_jml;
 		}
 
@@ -206,6 +215,7 @@ class Po extends Controller {
 			'head'		=> PoModel::getDetail($po_id),
 			'master' 	=> $item,
 			'matNama'	=> $matNama,
+			'matSpec'	=> $matSpec,
 			'pbsJml'	=> $pbsJml,
 			'role'		=> $this->role
 		];

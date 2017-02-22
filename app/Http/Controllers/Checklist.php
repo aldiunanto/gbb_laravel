@@ -165,7 +165,7 @@ class Checklist extends Controller {
 		];
 
 		# Pagination config
-		$data['fetch']->setPath(url('material/expenditure'));
+		$data['fetch']->setPath(url('checklist/expenditure'));
 		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
 		# End of pagination config
 

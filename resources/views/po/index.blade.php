@@ -3,13 +3,19 @@
 @section('content')
 <div class="top">
 	<div class="tools">
-		<div class="search" <?php echo (! is_null($search) ? 'style="display: block;"' : '') ?>>
+		<div class="search" <?php echo (! is_null($search['s']) ? 'style="display: block;"' : '') ?>>
 			<form action="{{ url('po') }}" method="get">
-				<i class="fa fa-close"></i><input type="text" name="s" value="{{ $search }}" placeholder="Nomor PO" />
+				<i class="fa fa-close"></i>
+				<select name="field">
+					<option value="mat_nama" <?php echo $isSelected('mat_nama') ?>>Material</option>
+					<option value="sup_nama" <?php echo $isSelected('sup_nama') ?>>Supplier</option>
+					<option value="po_no" <?php echo $isSelected('po_no') ?>>Nomor PO</option>
+				</select>
+				<input type="text" name="s" value="{{ $search['s'] }}" placeholder="Kata pencarian.." />
 				<button><i class="fa fa-search"></i></button>
 			</form>
 		</div>
-		<a href="javascript:;" class="btn-search btn warning" <?php echo (! is_null($search) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
+		<a href="javascript:;" class="btn-search btn warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
 		<div class="clearfix"></div>
 	</div>
 	<h2>Data List PO</h2>
@@ -117,7 +123,7 @@
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ ($role == 3 || $role == 4 ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
+								<li><a href="{{ url('po/show/' . $row->po_id) }}" class="view-detail {{ (in_array($role, [3, 4, 8]) ? 'no-print' : '') }}"><i class="fa fa-eye"></i>Detail PO</a></li>
 								
 								@if($isDiterima > 0)
 								<li><a href="{{ url('po/acceptanceDetail/' . $row->po_id) }}" class="acceptance-detail"><i class="fa fa-list"></i>Detail Penerimaan</a></li>

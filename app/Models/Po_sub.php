@@ -27,17 +27,25 @@ class Po_sub extends Model {
 							$i->table.'.'.$i->primaryKey,
 							'B.po_id', 'B.po_no', 'B.po_status',
 							'B.po_tgl_kedatangan', 'D.mat_nama',
-							'B.po_tgl_buat', 'C.pbs_jml',
+							'B.po_tgl_buat', 'C.pbs_jml', 'F.sup_nama',
 							DB::raw('(SELECT MAX(pener_date) FROM penerimaan_laravel WHERE po_id = B.po_id LIMIT 1) AS pener_date')
 						);
 
-		if(! is_null($args['search'])){
-			$get->where('B.po_no', 'LIKE', '%' . $args['search'] . '%');
+		if(! is_null($args['search']['s'])){
+			switch($args['search']['field']){
+				case 'mat_nama' : $preffix = 'D'; break;
+				case 'sup_nama'	: $preffix = 'F'; break;
+				case 'po_no'	: $preffix = 'B'; break;
+			}
+
+			$get->where($preffix.'.'.$args['search']['field'], 'LIKE', '%'.$args['search']['s'].'%');
 		}
 
 		$get->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 			->join('permintaan_barang_sub AS C', $i->table.'.pbs_id', '=', 'C.pbs_id')
-			->join('material_laravel AS D', 'C.mat_id', '=', 'D.mat_id');
+			->join('material_laravel AS D', 'C.mat_id', '=', 'D.mat_id')
+			->join('permintaan_barang AS E', 'C.pb_id', '=', 'E.pb_id')
+			->join('supplier_laravel AS F', 'E.sup_id', '=', 'F.sup_id');
 
 		return $get->orderBy('B.created_at', 'DESC')->paginate($args['perPage']);
 
@@ -47,7 +55,7 @@ class Po_sub extends Model {
 		INNER JOIN po_laravel AS B ON A.po_id = B.po_id
 		INNER JOIN permintaan_barang_sub AS C ON A.pbs_id = C.pbs_id
 		INNER JOIN material_laravel AS D ON C.mat_id = D.mat_id
-		ORDER BY A.pos_id DESC*/
+		ORDER BY B.created_at DESC*/
 	}
 
 }

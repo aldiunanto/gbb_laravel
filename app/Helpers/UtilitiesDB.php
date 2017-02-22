@@ -8,7 +8,7 @@
 
         switch($role){
             case 1 :
-                $count->whereNotIn('pb_status', [4, 5]);
+                $count->whereNotIn('pb_status', [4, 5, 7]);
             break;
             case 2 :
                 $count->where('pb_status', '=', 3);
@@ -20,6 +20,9 @@
             case 5 :
                 $count->where('pb_status', '=', 2);
                 $count->where('pb_role_tolak', '<>', 5);
+            break;
+            case 8 :
+                $count->where('pb_status', '=', 6);
             break;
         }
 
@@ -68,7 +71,7 @@
     }
     function count_returApprovement(){
         $role = Auth::user()->hak_akses;
-        if($role == 3) return 0;
+        if($role == 3 || $role == 8) return 0;
 
         $count = DB::table('retur_penerimaan_laravel')->where('visibility', 1);
 
@@ -101,4 +104,8 @@
         $pengel    = DB::table('pengeluaran_laravel')->where(['qa_check' => 1, 'visibility' => 1])->count();
 
         return ($pener + $peneretur + $pengel);
+    }
+    function countApprMaterials(){
+        if (! in_array(Auth::user()->hak_akses, [1, 8])) return 0;
+        return DB::table('material_laravel')->where('visibility', 2)->count();
     }

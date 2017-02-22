@@ -33,5 +33,29 @@ class Pengeluaran_sub extends Model {
 	
 		return $get->get();
 	}
+	/*public static function cardStock($data){
+		$i = new static;
+		return self::select($i->table.'.pengels_realisasi', 'D.mats_nama')
+				->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
+				->join('material_laravel AS C', $i->table.'.mat_id', '=', 'C.mat_id')
+				->join('material_satuan AS D', 'C.matsr_id', '=', 'D.mats_id')
+				->where('B.visibility', 1)
+				->where($i->table.'.mat_id', $data['matId'])
+				->whereBetween('B.pengel_date', [$data['dStart'], $data['dEnd']])
+				->orderBy('B.pengel_date', 'ASC')
+				->get();
+	}*/
+	public static function cardStock($matId, $date){
+		$i = new static;
+		return self::select($i->table.'.pengels_realisasi', 'B.pengel_bpb', 'D.mats_nama', 'E.deptbg_nama')
+				->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
+				->join('material_laravel AS C', $i->table.'.mat_id', '=', 'C.mat_id')
+				->join('material_satuan AS D', 'C.matsr_id', '=', 'D.mats_id')
+				->join('dept_bagian AS E', 'B.deptbg_id', '=', 'E.deptbg_id')
+				->where('B.visibility', 1)
+				->where($i->table.'.mat_id', $matId)
+				->where('B.pengel_date', $date)
+				->get();
+	}
 
 }

@@ -20,8 +20,9 @@ class Penerimaan extends Model {
 
 		if(! is_null($args['search']['s'])){
 			switch($args['search']['field']){
-				case 'po_no' 	: $prefix = 'B.'; break;
-				case 'sup_nama'	: $prefix = 'D.'; break;
+				case 'po_no' 		: $prefix = 'B.'; break;
+				case 'sup_nama'		: $prefix = 'D.'; break;
+				case 'pener_date'	: $prefix = ''; break;
 			}
 
 			$get->where($prefix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');

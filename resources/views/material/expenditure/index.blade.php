@@ -16,7 +16,9 @@
 			</form>
 		</div>
 		<a href="javascript:;" class="btn btn-search warning" <?php echo (! is_null($search['s']) ? 'style="display: none;"' : '') ?>><i class="fa fa-search"></i> Pencarian</a>
+		@if($role == 3 || $role == 1)
 		<a href="{{ url('material/expenditure/create') }}" class="btn default"><i class="fa fa-plus"></i> buat pengeluaran</a>
+		@endif
 	</div>
 	<h2>Daftar Pengeluaran Material <span>0 dari 1</span></h2>
 	<div class="clearfix"></div>

@@ -41,8 +41,8 @@
 								<li><a href="{{ url('material/request/show/' . $row->pb_id) }}" class="view-request-detail"><i class="fa fa-eye"></i>Lihat Detail</a></li>
 								<li class="separator">&nbsp;</li>
 
-								<!--  if(role in [admin,PPIC,VD] and status = Approved by VD) -->
-								@if(($role == 1 || $role == 4 || $role == 5) && $row->pb_status != 3)
+								<!--  if(role in [admin,PPIC,VD,Kabag.gbb] and status = Approved by VD) -->
+								@if(in_array($role, [1,4,5,8]) && $row->pb_status != 3)
 								<li><a href="{{ url('material/request/accept/' . $row->pb_id) }}" class="do-approve"><i class="fa fa-check"></i>Setujui</a></li>
 								<li><a href="{{ url('material/request/reject/' . $row->pb_id) }}" class="do-reject"><i class="fa fa-remove"></i>Tolak</a></li>
 								<li class="separator">&nbsp;</li>
@@ -127,6 +127,9 @@
 						}
 
 						switch($row->pb_status){
+							case 6 :
+								$d = '<span class="status wait-kabag" title="Menunggu persetujuan Kabag. Raw Material"><i class="fa fa-spinner fa-spin"></i><span>';
+							break;
 							case 1 :
 								$d = '<span class="status wait-ppic" title="Menunggu persetujuan PPIC"><i class="fa fa-spinner fa-spin"></i><span>';
 							break;
@@ -141,6 +144,9 @@
 							break;
 							case 5 : //rejected by PPIC
 								$d = '<span class="status pm-reject-ppic" title="PM ditolak PPIC"><i class="fa fa-times-circle"></i></span>';
+							break;
+							case 7 : //rejected by kabag. gbb
+								$d = '<span class="status pm-reject-kabag" title="PM ditolak Kabag. Raw Material"><i class="fa fa-times-circle"></i></span>';
 							break;
 						}
 
@@ -178,10 +184,12 @@
 	<fieldset class="label-info">
 		<legend>Label Info</legend>
 		<ul>
+			<li><span class="status wait-kabag"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Kabag. Raw Material</li>
 			<li><span class="status wait-ppic"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan PPIC</li>
 			<li><span class="status wait-vice"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Vice Director</li>
 			<li><span class="status vice-approve"><i class="fa fa-check"></i></span> - PM(Permintan Material) sudah di-approve Vice Director</li>
 			<li><span class="status po-done"><i class="fa fa-check"></i></span> - PO sudah dibuat</li>
+			<li><span class="status pm-reject-kabag"><i class="fa fa-times-circle"></i></span> - PM ditolak Kabag. Raw Material</li>
 			<li><span class="status pm-reject-ppic"><i class="fa fa-times-circle"></i></span> - PM ditolak PPIC</li>
 			<li><span class="status pm-reject-vice"><i class="fa fa-times-circle"></i></span> - PM ditolak Vice Director</li>
 		</ul>

@@ -11,6 +11,8 @@ material = {
 			this._focusingSearch();
 			this._viewDetail();
 			this._modifyDept();
+			this._cardStock();
+			this._approve();
 			this._delete('Anda yakin ingin menghapus data material ini?');
 
 		},
@@ -72,6 +74,19 @@ material = {
 				});
 			});
 		},
+		_approve: function(){
+			$('.approve').on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+
+				LIBS.confirmation({
+					'text'		: 'Anda yakin ingin meng-approve data material ini?',
+					'okAction'	: function(){
+						window.location.href = el.attr('href');
+					}
+				});
+			});
+		},
 		_modifyDept: function(){
 			$('a.modify-dept').on('click', function(e){
 				e.preventDefault();
@@ -95,6 +110,56 @@ material = {
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});
 			})
+		},
+		_cardStock: function(){
+			$('.card-stock').on('click', function(e){
+				e.preventDefault();
+
+				var el = $(this);
+				var href = el.attr('href');
+				var splitHref = href.split('/');
+				var popupContent = LIBS.callAjax(href);
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Kartu Stok',
+					'content'		: popupContent,
+					'posButtonText'	: 'ok',
+					'okAction'		: function(){
+						LIBS.popupDialog('close');
+					},
+					'cancelAction'	: function(){
+						LIBS.popupDialog('close');
+					},
+					'doSomething'	: function(){
+						material.requestCreate._getDatePicker();
+						material.index._cardStockShow();
+					}
+				});
+			});
+		},
+		_cardStockShow: function(){
+			$('.card-stock button').on('click', function(){
+				var validity = true;
+
+				$('.card-stock input').each(function(el){
+					if($(this).val() == ''){
+						$(this).css('border', '1px solid #ff0000');
+						validity = false;
+					}else{
+						$(this).removeAttr('style');
+						validity = true;
+					}
+				});
+
+				var data  = 'matId='+$('input[name="mat_id"]').val();
+					data += '&dStart='+$('input[name="date_start"]').val();
+					data += '&dEnd='+$('input[name="date_end"]').val();
+
+				if(validity){
+					var cardList = LIBS.callAjax(options.baseUrl + 'material/cardStockShow', data);
+					$('.card-stock .list table > tbody').html(cardList);
+				}
+			});
 		}
 	},
 	create: {
@@ -377,7 +442,8 @@ material = {
 			this._viewDetail();
 			this._acceptanceDetail();
 
-			material.index._focusingSearch();
+			material.expenditure._checkIfDatePicker('pener_date');
+			//material.index._focusingSearch();
 
 			//this._dataTables();
 		},
@@ -452,7 +518,7 @@ material = {
 	acceptanceCreate: {
 		init: function(){
 			this._openPO();
-			//this._controlDiterima();
+			this._controlDiterima();
 		},
 		_openPO: function(){
 			var self = this;
@@ -493,12 +559,21 @@ material = {
 		},
 		_controlDiterima: function(){
 			$('input.peners').on('change', function(){
-				var acceptance 	= $(this).parent().prev().prev().html();
+				/*var acceptance 	= $(this).parent().prev().prev().html();
 				var received	= $(this).parent().prev().html();
 				var diff		= acceptance - received;
 
 				if($(this).val() > diff){
 					alert('Maksimal diterima = ' + diff);
+					$(this).css('border', '1px solid #ff0000');
+				}else{
+					$(this).css('border', '1px solid #c2c1c1');
+				}*/
+
+				var deficiency = $(this).parent().prev().html();
+				
+				if($(this).val() > deficiency){
+					alert('Maksimal diterima = ' + deficiency);
 					$(this).css('border', '1px solid #ff0000');
 				}else{
 					$(this).css('border', '1px solid #c2c1c1');
@@ -703,12 +778,12 @@ material = {
 			material.index._closeSearchForm();
 			material.index._delete('Anda yakin ingin menghapus data Pengeluaran Material ini?');
 
-			this._checkIfDatePicker();
+			this._checkIfDatePicker('pengel_date');
 			this._viewExpenditureDetail();
 		},
-		_checkIfDatePicker: function(){
+		_checkIfDatePicker: function(value){
 			$('select[name="field"]').on('change', function(){
-				if($(this).val() == 'pengel_date'){
+				if($(this).val() == value){
 					$('input[name="s"]').datepicker({
 						dateFormat	: 'yy-mm-dd',
 						changeMonth	: true,

@@ -96,7 +96,7 @@
 				}
 			?>
 			<tr>
-				<td class="bordered-left <?php echo $borderedBottom ?>">{{ number_format($row->pbs_jml, 0, null, '.') }}</td>
+				<td class="bordered-left <?php echo $borderedBottom ?>">{{ number_format($row->pbs_jml, 2, ',', '.') }}</td>
 				<td class="<?php echo $borderedBottom ?>">{{ $row->mats_nama }}</td>
 				<td class="left <?php echo $borderedBottom ?>">{{ $row->mat_nama }}</td>
 				<td class="<?php echo $borderedBottom ?>">{{ $row->wrn_nama }}</td>

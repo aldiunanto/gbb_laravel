@@ -1,6 +1,62 @@
 @extends('base')
-
 @section('content')
+
+{!! session('accepted') !!}
+@if(($role == 8 || $role == 1) && $fetchAppr->count() > 0)
+<div class="top approving">
+	<div class="tools">&nbsp;</div>
+	<h2>
+		<?php $count = countApprMaterials() ?>
+		<span>{{ $count }}</span>Persetujuan Material Baru
+	</h2>
+	<div class="clearfix"></div>
+</div>
+<div class="main approving">
+	<table class="data-list">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Nama Material</th>
+				<th>Spesifikasi</th>
+				<th>Satuan</th>
+				<th>Warna</th>
+				<th>Supplier</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $x = 0; ?>
+			@foreach($fetchAppr as $row)
+			<tr>
+				<td class="text-right">{{ ++$x }}.</td>
+				<td>{{ $row->mat_nama }}</td>
+				<td>{{ $row->mat_spesifikasi }}</td>
+				<td>{{ $row->mats_nama }}</td>
+				<td>{{ $row->wrn_nama  }}</td>
+				<td>{{ $row->sup_nama }}</td>
+				<td class="text-right">
+					<ul class="actions">
+						<li><span><i class="fa fa-angle-down"></i></span>
+							<ul>
+								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail no-print"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								<li class="separator">&nbsp;</li>
+
+								<li><a href="{{ url('material/accept/' . $row->mat_id) }}" class="approve"><i class="fa fa-check"></i>Setujui</a></li>
+								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Batalkan</a></li>
+								<li class="separator">&nbsp;</li>
+
+								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
+</div>
+@endif
+
 <div class="top">
 	<div class="tools">
 		<div class="search" <?php echo (! is_null($search['s']) ? 'style="display: block;"' : '') ?>>
@@ -39,10 +95,10 @@
 				<th>No</th>
 				<th>Nama Material</th>
 				<th>Spesifikasi</th>
-				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
+				@if(! in_array($role, [3,4,6,7,8]))
 				<th>Satuan</th>
 				@endif
-				<th>Stock Akhir</th>
+				<th>Warna</th>
 				<th>Supplier</th>
 				<th>Aksi</th>
 			</tr>
@@ -55,7 +111,8 @@
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
-				@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
+
+				@if(! in_array($role, [3,4,6,7,8]))
 				<td>{{ $row->mats_nama }}</td>
 				@endif
 				
@@ -65,14 +122,14 @@
 				<!-- <td>{{ $row->deptbg_nama }}</td> -->
 				@endif
 
-				<td>{{ ($row->mat_stock_akhir == 0 ? '-' : number_format($row->mat_stock_akhir, 2, ',', '.')) }}</td>
+				<td>{{ $row->wrn_nama  }}<!--{{ ($row->mat_stock_akhir == 0 ? '-' : number_format($row->mat_stock_akhir, 2, ',', '.')) }} --></td>
 
 				<td>{{ $row->sup_nama }}</td>
 				<td class="text-right">
 					<ul class="actions">
 						<li><span><i class="fa fa-angle-down"></i></span>
 							<ul>
-								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ (in_array($role, [1,2,3])) ? '' : 'no-print' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
+								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ (in_array($role, [1,2,3,8])) ? '' : 'no-print' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 
 								@if($role != 4 && $role != 5 && $role != 6 && $role != 7)
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
@@ -82,7 +139,9 @@
 								<li><a href="{{ url('material/edit/' . $row->sup_id . '/price') }}" title="Ubah semua harga material untuk supplier {{ $row->sup_nama }}"><i class="fa fa-money"></i>Ubah harga</a></li>
 								@endif
 
-								@if($role != 3 && $role != 4 && $role != 6 && $role != 7)
+								<li><a href="{{ url('material/card-stock/' . $row->mat_id) }}" class="card-stock"><i class="fa fa-tasks"></i>Kartu Stok</a></li>
+
+								@if(! in_array($role, [3,4,6,7,8]))
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
 							</ul>

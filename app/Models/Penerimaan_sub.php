@@ -61,6 +61,33 @@ class Penerimaan_sub extends Model {
 		WHERE D.mat_id = 461
 			AND B.pener_date = '2015-8-26'*/
 	}
+	/*public static function cardStock($data){
+		$i = new static;
+		return self::select($i->table.'.peners_jml', 'F.mats_nama')
+				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+				->join('po_sub_laravel AS C', $i->table.'.pos_id', '=', 'C.pos_id')
+				->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
+				->join('material_laravel AS E', 'D.mat_id', '=', 'E.mat_id')
+				->join('material_satuan AS F', 'E.matsp_id', '=', 'F.mats_id')
+				->where('B.visibility', 1)
+				->where('E.mat_id', $data['matId'])
+				->whereBetween('B.pener_date', [$data['dStart'], $data['dEnd']])
+				->orderBy('B.pener_date', 'ASC')
+				->get();
+	}*/
+	public static function cardStock($matId, $date){
+		$i = new static;
+		return self::select($i->table.'.peners_jml', 'F.mats_nama')
+				->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
+				->join('po_sub_laravel AS C', $i->table.'.pos_id', '=', 'C.pos_id')
+				->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
+				->join('material_laravel AS E', 'D.mat_id', '=', 'E.mat_id')
+				->join('material_satuan AS F', 'E.matsp_id', '=', 'F.mats_id')
+				->where('B.visibility', 1)
+				->where('E.mat_id', $matId)
+				->where('B.pener_date', $date)
+				->get();
+	}
 
 }
 

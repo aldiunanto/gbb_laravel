@@ -3,7 +3,7 @@
 @section('content')
 
 {!! session('message') !!}
-@if($role != 3 && $fetchAppr->count() > 0)
+@if(($role != 3 && $role != 8) && $fetchAppr->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
 	<h2>

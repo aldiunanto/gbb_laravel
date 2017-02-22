@@ -32,6 +32,8 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+    
+    <?php $role = Auth::user()->hak_akses ?>
 
 		<div id="sidebar">
 			<div class="logo">
@@ -40,42 +42,41 @@
 			<nav>
 				<ul>
           <li><a href="{{ url('home') }}" <?php echo is_active('home') . is_active('admin') ?>><i class="fa fa-home left"></i>beranda</a></li>
-          <?php $role = Auth::user()->hak_akses ?>
 					<li><a href="{{ url('supplier') }}" <?php echo is_active('supplier') ?>><i class="fa fa-users left"></i>supplier</a></li>
           <li class="sidebar-dropdown-toggle  {{ (! empty($opened) && $opened == 'material' ? 'opened' : '') }}"><a href="" <?php echo is_active('material') ?>><i class="fa fa-dropbox left"></i>material<i class="fa fa-angle-left right"></i></a>
             <ul>
-              <li><a href="{{ url('material') }}"><i class="fa fa-list"></i>data list</a></li>
+              <li><a href="{{ url('material') }}"><i class="fa fa-list"></i>data list<?php $countMat = countApprMaterials(); echo ($countMat == 0 ? '' : '<span class="notif-count">'.$countMat.'</span>') ?></a></li>
               @if($role != 7)
               <li><a href="{{ url('material/request') }}"><i class="fa fa-shopping-cart"></i>permintaan<?php $count = count_request(); echo ($count == 0 ? '' : '<span class="notif-count">'.$count.'</span>') ?></a></li>
               @endif
 
-              @if($role != 6 && $role != 7 && $role != 4)
+              @if($role != 6 && $role != 7)
               <li><a href="{{ url('material/acceptance') }}"><i class="fa fa-sign-in"></i>penerimaan</a></li>
               @endif
 
-              @if($role == 1 || $role == 3)
+              @if($role == 1 || $role == 3 || $role == 8)
               <li><a href="{{ url('material/expenditure') }}"><i class="fa fa-sign-out"></i>pengeluaran</a></li>
               @endif
               <li><a href="{{ url('material/acceptance/retur') }}"><i class="fa fa-rotate-left"></i>returan</a></li>
 
-              @if($role == 1 || $role == 3)
+              @if($role == 1 || $role == 3 || $role == 8)
               <li><a href="{{ url('material/closingStock') }}"><i class="fa fa-retweet"></i>closing stok</a></li>
               @endif
             </ul>
           </li>
 
-          @if(in_array($role, [1,2,5]))
+          @if(in_array($role, [1,2,3,5,8]))
           <li><a href="{{ url('po') }}" <?php echo is_active('po') ?>><i class="fa fa-file-powerpoint-o left"></i>purchasing order</a></li>
           @endif
 
-          @if(in_array($role, [1,2,3,5,7]))
+          @if(in_array($role, [1,2,3,5,7,8]))
           <li class="sidebar-dropdown-toggle {{ (! empty($opened) && $opened == 'report' ? 'opened' : '') }}"><a href="" <?php echo is_active('report') ?>><i class="fa fa-area-chart left"></i>laporan<i class="fa fa-angle-left right"></i></a>
             <ul>
               @if($role == 1 || $role == 2 || $role == 5)
               <li><a href="{{ url('report/purchasing/qualityplan') }}"><i class="fa fa-bar-chart"></i>Rencana Mutu</a></li>
               <li><a href="{{ url('report/purchasing/purchasemonthly') }}"><i class="fa fa-line-chart"></i>Pembelian Bulanan</a></li>
               @endif
-              @if($role == 1 || $role == 3 || $role == 5 || $role == 7)
+              @if($role == 1 || $role == 3 || $role == 5 || $role == 7 || $role == 8)
               <li><a href="{{ url('report/rawmat/materialTransaction') }}"><i class="fa fa-bar-chart"></i>Transaksi Material</a></li>
               <li><a href="{{ url('report/rawmat/expenditure') }}"><i class="fa fa-line-chart"></i>Pengeluaran</a></li>
               @endif
@@ -90,7 +91,11 @@
 				<ul>
           <!-- <li><a href="{{ url('notification') }}" class="notif-top" title="Notifikasi"><i class="fa fa-bell fa-2x"></i><?php $notif = count_notif(); echo ($notif == 0 ? '' : '<span>' . $notif . '</span>') ?></a></li> -->
           @if($role == 1 || $role == 7)
-          <li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist QA"><i class="fa fa-calendar-check-o fa-2x"></i><?php $countChecklistQa = countChecklistQa(); echo ($countChecklistQa == 0 ? '' : '<span>' . $countChecklistQa . '</span>') ?></a></li>
+          <!--<li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist QA"><i class="fa fa-calendar-check-o fa-2x"></i><?php $countChecklistQa = countChecklistQa(); echo ($countChecklistQa == 0 ? '' : '<span>' . $countChecklistQa . '</span>') ?></a></li>-->
+          @endif
+
+          @if($role == 1 || $role == 8)
+          <li><a href="{{ url('material') }}" class="notif-top" title="Persetujuan Material Baru"><i class="fa fa-dropbox fa-2x"></i><?php echo ($countMat == 0 ? '' : '<span>' . $countMat . '</span>') ?></a></li>
           @endif
           <li><a href="{{ url('material/acceptance/retur') }}" class="notif-top" title="Retur Penerimaan Material"><i class="fa fa-rotate-left fa-2x"></i><?php $countAppr = count_returApprovement(); echo ($countAppr == 0 ? '' : '<span>' . $countAppr . '</span>') ?></a></li>
           @if($role != 7)
@@ -100,7 +105,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="" id="get-profile"><i class="fa fa-user"></i> Profil Saya</a></li>
               <li><a href="{{ url('admin/changePassword') }}"><i class="fa fa-shield"></i> Ubah Password</a></li>
-							<li><a href="{{ url('auth/logout') }}" id="logout"><i class="fa fa-key"></i> Sign out</a></li>
+							<li><a href="{{ url('auth/logout') }}" id="logout"><i class="fa fa-key"></i> Sign Out</a></li>
 						</ul>
 					</li>
 				</ul>
