@@ -25,10 +25,7 @@
 					<th>Material</th>
 					<th>Spesifikasi</th>
 					<th>Warna</th>
-<<<<<<< HEAD
-=======
 					<th>Diterima</th>
->>>>>>> 70bc9f45fbe0853ed3bbb73b843f2e8e181ee770
 					<th>Satuan</th>
 					<th>Diterima</th>
 				</tr>
@@ -55,10 +52,7 @@
 						<td class="mat-nama">{{ $sub->mat_nama }}</td>
 						<td class="text-center">{{ $sub->mat_spesifikasi }}</td>
 						<td class="text-center">{{ $sub->wrn_nama }}</td>
-<<<<<<< HEAD
-=======
 						<td class="text-right">{{ $sub->peners_jml }}</td>
->>>>>>> 70bc9f45fbe0853ed3bbb73b843f2e8e181ee770
 						<td class="text-center">{{ $sub->mats_nama }}</td>
 						<td class="text-right">{{ $sub->peners_jml }}</td>
 					</tr>
