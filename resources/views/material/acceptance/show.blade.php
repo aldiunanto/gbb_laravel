@@ -27,7 +27,6 @@
 					<th>Warna</th>
 					<th>Diterima</th>
 					<th>Satuan</th>
-					<th>Diterima</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,7 +34,7 @@
 				<?php $isRetur = $Returpener::isRetur($row->pener_id) ?>
 
 				<tr class="new-pener">
-					<td colspan="6">
+					<td colspan="5">
 						@if($isRetur == 0 && ($role == 1 || $role == 3))
 						<?php //if($head->po_status == 1 && $isRetur == 0 && ($role == 1 || $role == 3)) ?>
 						<a href="{{ url('material/acceptance/retur/create/' . $row->pener_id) }}" class="btn warning" style="float: right;"><i class="fa fa-rotate-left"></i>Retur</a>
@@ -54,7 +53,6 @@
 						<td class="text-center">{{ $sub->wrn_nama }}</td>
 						<td class="text-right">{{ $sub->peners_jml }}</td>
 						<td class="text-center">{{ $sub->mats_nama }}</td>
-						<td class="text-right">{{ $sub->peners_jml }}</td>
 					</tr>
 					@endforeach
 				@endforeach
