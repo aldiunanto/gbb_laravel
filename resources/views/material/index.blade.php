@@ -107,7 +107,17 @@
 		<?php $x = $getNumb(); ?>
 		@foreach($fetch as $row)
 
-			<tr <?php echo (($row->mat_stock_akhir <= $row->mat_stock_min) || $row->mat_stock_min == 0 ? 'class="danger"' : '') ?>>
+			<?php
+
+				if(($row->mat_stock_akhir <= $row->mat_stock_min) || $row->mat_stock_min == 0){
+					$class = 'danger';
+				}
+				if($row->mat_is_active == 2){
+					$class = 'inactive';
+				}
+
+			?>
+			<tr class="{{ $class }}">
 				<td class="text-right">{{ ++$x }}.</td>
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
