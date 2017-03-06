@@ -155,9 +155,9 @@
 								@if($role == 1 || $role == 8)
 								<li class="separator"></li>
 									@if($row->mat_is_active == 2)
-									<li><a href="{{ url('material/activate/' . $row->mat_id) }}" title="Tandai sebagai material aktif"><i class="fa fa-check"></i>Aktifkan</a></li>
+									<li><a href="{{ url('material/activate/' . $row->mat_id) }}" class="activate" title="Tandai sebagai material aktif"><i class="fa fa-check"></i>Aktifkan</a></li>
 									@elseif($row->mat_is_active == 1)
-									<li><a href="{{ url('material/deactivate/' . $row->mat_id) }}" title="Tandai sebagai material tidak aktif"><i class="fa fa-remove"></i>Nonaktifkan</a></li>
+									<li><a href="{{ url('material/deactivate/' . $row->mat_id) }}" class="deactivate" title="Tandai sebagai material tidak aktif"><i class="fa fa-remove"></i>Nonaktifkan</a></li>
 									@endif
 								@endif
 

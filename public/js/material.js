@@ -14,6 +14,8 @@ material = {
 			this._cardStock();
 			this._approve();
 			this._delete('Anda yakin ingin menghapus data material ini?');
+			this._activateControl('activate', 'Anda yakin ingin menandai material ini sebagai material aktif?');
+			this._activateControl('deactivate', 'Anda yakin ingin menandai material ini sebagai material tidak aktif?');
 
 		},
 		_openSearchForm: function(){
@@ -159,6 +161,19 @@ material = {
 					var cardList = LIBS.callAjax(options.baseUrl + 'material/cardStockShow', data);
 					$('.card-stock .list table > tbody').html(cardList);
 				}
+			});
+		},
+		_activateControl: function(el, text){
+			$('.' + el).on('click', function(e){
+				e.preventDefault();
+				var el = $(this);
+
+				LIBS.confirmation({
+					'text'		: text,
+					'okAction'	: function(){
+						window.location.href = el.attr('href');
+					}
+				});
 			});
 		}
 	},
