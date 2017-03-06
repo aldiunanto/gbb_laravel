@@ -111,9 +111,10 @@
 
 				if(($row->mat_stock_akhir <= $row->mat_stock_min) || $row->mat_stock_min == 0){
 					$class = 'danger';
-				}
-				if($row->mat_is_active == 2){
+				}elseif($row->mat_is_active == 2){
 					$class = 'inactive';
+				}else{
+					$class = '';
 				}
 
 			?>
