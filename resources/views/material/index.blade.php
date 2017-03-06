@@ -152,6 +152,15 @@
 
 								<li><a href="{{ url('material/card-stock/' . $row->mat_id) }}" class="card-stock"><i class="fa fa-tasks"></i>Kartu Stok</a></li>
 
+								@if($role == 1 || $role == 8)
+								<li class="separator"></li>
+									@if($row->mat_is_active == 2)
+									<li><a href="{{ url('material/activate/' . $row->mat_id) }}" title="Tandai sebagai material aktif"><i class="fa fa-check"></i>Aktifkan</a></li>
+									@elseif($row->mat_is_active == 1)
+									<li><a href="{{ url('material/deactivate/' . $row->mat_id) }}" title="Tandai sebagai material tidak aktif"><i class="fa fa-remove"></i>Nonaktifkan</a></li>
+									@endif
+								@endif
+
 								@if(! in_array($role, [3,4,6,7,8]))
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Hapus</a></li>
 								@endif
