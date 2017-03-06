@@ -316,6 +316,26 @@ class Material extends Controller {
 		Session::flash('accepted', '<div class="info success">Material telah disetujui untuk ditampilkan.</div>');
 		return redirect('material');	
 	}
+	public function activate($id)
+	{
+		$mat = MatModel::find($id);
+
+		$mat->mat_is_active = 1;
+		$mat->save();
+
+		Session::flash('activeMsg', '<div class="info success">Material telah ditandai sebagai material aktif.</div>');
+		return redirect('material');
+	}
+	public function deactivate($id)
+	{
+		$mat = MatModel::find($id);
+
+		$mat->mat_is_active = 2;
+		$mat->save();
+
+		Session::flash('activeMsg', '<div class="info error">Material telah ditandai sebagai material nonaktif.</div>');
+		return redirect('material');
+	}
 	public function formModifyDept($mat_id)
 	{
 		$data = [

@@ -81,6 +81,7 @@
 <div class="main">
 	{!! session('deleted') !!}
 	{!! session('inserted') !!}
+	{!! session('activeMsg') !!}
 
 	<div class="info warning">
 		*<i>Material bertanda merah menandakan bahwa:</i>
@@ -109,12 +110,13 @@
 
 			<?php
 
+				$class = '';
+				
 				if(($row->mat_stock_akhir <= $row->mat_stock_min) || $row->mat_stock_min == 0){
 					$class = 'danger';
-				}elseif($row->mat_is_active == 2){
+				}
+				if($row->mat_is_active == 2){
 					$class = 'inactive';
-				}else{
-					$class = '';
 				}
 
 			?>
