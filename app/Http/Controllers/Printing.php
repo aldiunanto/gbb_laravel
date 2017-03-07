@@ -154,5 +154,13 @@ class Printing extends Controller {
 
 		return view('printing.expenditure', $data);
 	}
+	public function expenditureDetail(Request $req)
+	{
+		$data = [
+			'fetch'	=> Pengels::getQuantity($req->input('matId'), null, true, explode('-', $req->input('date')))
+		];
+
+		return view('printing.expenditureDetail', $data);
+	}
 
 }

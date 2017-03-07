@@ -20,7 +20,7 @@ class Pengeluaran_sub extends Model {
 	}
 	public static function getQuantity($matId, $date, $dYaMo = false, $dYaMoV = array()){ //dYaMo = Date Year and Moth Only. Extra 'V' = value
 		$i 		= new static;
-		$get 	= self::select($i->table.'.pengels_realisasi')
+		$get 	= self::select($i->table.'.pengels_realisasi', 'B.pengel_date')
 					->join('pengeluaran_laravel AS B', $i->table.'.pengel_id', '=', 'B.pengel_id')
 					->where($i->table.'.mat_id', $matId);
 
