@@ -108,5 +108,11 @@ class Retur_penerimaan extends Model {
 				->where($i->table.'.'.$i->primaryKey, $returpener_id)
 				->first();
 	}
+	public static function fetchRetur($penerId){
+		return self::select('returpener_id', 'returpener_status', 'returpener_reason')
+			->where('visibility', 1)
+			->where('pener_id', $penerId)
+			->get();
+	}
 
 }

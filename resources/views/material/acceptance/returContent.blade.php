@@ -1,3 +1,4 @@
+@foreach($fetch as $row)
 <tr data-retur-content="{{ $pener_id }}">
 	<td colspan="4">
 		<table class="retur-content">
@@ -7,7 +8,7 @@
 					<th>Spesifikasi</th>
 					<th>Jml Retur</th>
 
-					@if($is_penerimaanReturan > 0)
+					@if($is_penerimaanReturan($row->returpener_id) > 0)
 					<th class="diterima">Diterima</th>
 					<th class="diterima">Tgl Terima Trkhr</th>
 					@endif
@@ -16,15 +17,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($fetch as $row)
+				@foreach($subRetur($row->returpener_id) as $sub)
 				<tr>
-					<td>{{ $row->mat_nama }}</td>
-					<td>{{ $row->mat_spesifikasi }}</td>
-					<td class="text-right">{{ $row->returpeners_jml }}</td>
+					<td>{{ $sub->mat_nama }}</td>
+					<td>{{ $sub->mat_spesifikasi }}</td>
+					<td class="text-right">{{ $sub->returpeners_jml }}</td>
 					<?php
 
-						$pener = $Penereturs::getItem($row->returpeners_id);
-						if($is_penerimaanReturan > 0 && $pener->count() > 0){
+						$pener = $Penereturs::getItem($sub->returpeners_id);
+						if($is_penerimaanReturan($row->returpener_id) > 0 && $pener->count() > 0){
 
 							$penersTotal = 0;
 							foreach($pener as $pen){
@@ -40,7 +41,7 @@
 
 					<td class="text-center">
 						<?php
-							switch($row->returpener_status){
+							switch($sub->returpener_status){
 								case 1: echo '<span class="status wait-ppic" title="Menunggu persetujuan QA"><i class="fa fa-spinner fa-spin"></i></span>';  break;
 								case 2: echo '<span class="status wait-vice" title="Menunggu persetujuan Kepala Produksi"><i class="fa fa-spinner fa-spin"></i></span>'; break;
 								case 3: echo '<span class="status wait-ppic2" title="Menunggu persetujuan PPIC"><i class="fa fa-spinner fa-spin"></i></span>'; break;
@@ -53,7 +54,7 @@
 				</tr>
 				@endforeach
 				<tr>
-					<td class="text-center" colspan="{{ ($is_penerimaanReturan > 0 ? 6 : 4) }}">
+					<td class="text-center" colspan="{{ ($is_penerimaanReturan($row->returpener_id) > 0 ? 6 : 4) }}">
 						<em>Alasan: {{ ($row->returpener_reason ?: '-') }}</em>
 					</td>
 				</tr>
@@ -61,3 +62,4 @@
 		</table>
 	</td>
 </tr>
+@endforeach

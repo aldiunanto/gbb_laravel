@@ -802,11 +802,23 @@ class Material extends Controller {
 	public function acceptanceReturContent(Request $req)
 	{
 		$pener_id = $req->input('penerId');
-		$data = [
+		/*$data = [
 			'pener_id'				=> $pener_id,
 			'fetch'					=> Returpeners::fetch(null, $pener_id),
 			'Penereturs'			=> new Penereturs(),
 			'is_penerimaanReturan'	=> Pener::is_penerimaanReturan($pener_id)
+		];*/
+
+		$data = [
+			'pener_id'				=> $pener_id,
+			'fetch'					=> Returpener::fetchRetur($pener_id),
+			'Penereturs'			=> new Penereturs(),
+			'is_penerimaanReturan'	=> function($returpener_id){
+				return Peneretur::is_penerimaanReturan($returpener_id);
+			},
+			'subRetur'				=> function($returpener_id){
+				return Returpeners::fetch($returpener_id);
+			}
 		];
 
 		return view('material.acceptance.returContent', $data);
