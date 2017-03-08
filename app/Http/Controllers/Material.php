@@ -217,7 +217,7 @@ class Material extends Controller {
 			break;
 			case 3 : //rawmat & kabag. rawmat
 			case 8 :
-				$accessable = ['disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
+				$accessable = ['', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
 			break;
 		}
 
@@ -264,7 +264,12 @@ class Material extends Controller {
 
 			$mat = MatModel::find($mat_id);
 
-			if($role == 3 || $role == 1){
+			if($role == 3 || $role == 1 || $role == 8){
+				if($role == 8){
+					$mat->mat_nama 			= trim($request->input('mat_nama'));
+					$mat->mat_spesifikasi	= trim($request->input('mat_spesifikasi'));
+				}
+
 				$mat->matsr_id 			= $request->input('matsr_id');
 				$mat->mat_stock_min		= trim($request->input('mat_stock_min'));
 				$mat->mat_perbandingan	= (empty($_POST['mat_perbandingan']) ? 1 : trim($request->input('mat_perbandingan')));
