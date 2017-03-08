@@ -801,15 +801,8 @@ class Material extends Controller {
 	}
 	public function acceptanceReturContent(Request $req)
 	{
-		$pener_id = $req->input('penerId');
-		/*$data = [
-			'pener_id'				=> $pener_id,
-			'fetch'					=> Returpeners::fetch(null, $pener_id),
-			'Penereturs'			=> new Penereturs(),
-			'is_penerimaanReturan'	=> Pener::is_penerimaanReturan($pener_id)
-		];*/
-
-		$data = [
+		$pener_id 	= $req->input('penerId');
+		$data 		= [
 			'pener_id'				=> $pener_id,
 			'fetch'					=> Returpener::fetchRetur($pener_id),
 			'Penereturs'			=> new Penereturs(),
