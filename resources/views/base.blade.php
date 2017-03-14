@@ -94,6 +94,7 @@
           <!--<li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist QA"><i class="fa fa-calendar-check-o fa-2x"></i><?php $countChecklistQa = countChecklistQa(); echo ($countChecklistQa == 0 ? '' : '<span>' . $countChecklistQa . '</span>') ?></a></li>-->
           @endif
 
+          <li><a href="{{ url('accept-expend-today') }}" class="notif-top" title="Penerimaan dan pengeluaran material hari ini"><i class="fa fa-calendar fa-2x"></i></a></li>
           @if($role == 1 || $role == 8)
           <li><a href="{{ url('material') }}" class="notif-top" title="Persetujuan Material Baru"><i class="fa fa-dropbox fa-2x"></i><?php echo ($countMat == 0 ? '' : '<span>' . $countMat . '</span>') ?></a></li>
           @endif
