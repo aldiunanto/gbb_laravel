@@ -33,9 +33,9 @@ class TransactionToday extends Controller {
 			'active'	=> 'default',
 			'search'	=> $search,
 			'count'		=> [
-				'pener'		=> Pener::where('visibility', 1)->whereDate('created_at', now())->count(),
-				'peneretur'	=> Peneretur::where('visibility', 1)->whereDate('created_at', now())->count(),
-				'pengel'	=> Pengel::where('visibility', 1)->whereDate('created_at', now())->count()
+				'pener'		=> Pener::where('visibility', 1)->whereDate('created_at', '=', now())->count(),
+				'peneretur'	=> Peneretur::where('visibility', 1)->whereDate('created_at', '=', now())->count(),
+				'pengel'	=> Pengel::where('visibility', 1)->whereDate('created_at', '=', now())->count()
 			],
 			'getNumb'	=> function() use ($perPage, $req){
 				if($req->has('page') && $req->input('page') != 1){

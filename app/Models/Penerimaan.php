@@ -106,7 +106,7 @@ class Penerimaan extends Model {
 			->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
 			->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
 			->where($i->table.'.visibility', 1)
-			->whereDate($i->table.'.created_at', now());
+			->whereDate($i->table.'.created_at', '=', now());
 
 		if(! is_null($args['search']['s'])){
 			switch($args['search']['field']){
