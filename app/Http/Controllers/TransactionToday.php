@@ -19,7 +19,44 @@ class TransactionToday extends Controller {
 	 */
 	public function index(Request $req)
 	{
-		
+		$perPage 	= 20;
+		$search 	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
+		$data = [
+			'title'		=> 'Transaksi Hari Ini - Penerimaan Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['transaction-today' => 'Transaksi Hari Ini', 'transaction-today' => 'Penerimaan'],
+			'fetch'		=> Pener::fetchTransacToday(['search' => $search, 'perPage' => $perPage]),
+			'active'	=> 'default',
+			'search'	=> $search,
+			'count'		=> [
+				'pener'		=> Pener::where('visibility', 1)->whereDate('created_at', now())->count(),
+				'peneretur'	=> Peneretur::where('visibility', 1)->whereDate('created_at', now())->count(),
+				'pengel'	=> Pengel::where('visibility', 1)->whereDate('created_at', now())->count()
+			],
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			},
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			}
+		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('transaction-today'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
+
+		return view('transaction-today.baseFrame', $data)->nest('dataListContent', 'transaction-today.index', $data);
 	}
 
 	/**

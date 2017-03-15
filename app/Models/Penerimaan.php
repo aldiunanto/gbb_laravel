@@ -98,5 +98,26 @@ class Penerimaan extends Model {
 
 		return $get->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
 	}
+	public static function fetchTransacToday($args){
+		$i 		= new static;
+		$get	= $i
+			->select($i->table.'.'.$i->primaryKey, 'B.po_no', 'D.sup_nama', 'B.po_tgl_kedatangan', $i->table.'.created_at')
+			->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
+			->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
+			->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
+			->where($i->table.'.visibility', 1)
+			->whereDate($i->table.'.created_at', now());
+
+		if(! is_null($args['search']['s'])){
+			switch($args['search']['field']){
+				case 'po_no' 	: $prefix = 'B.'; break;
+				case 'sup_nama'	: $prefix = 'D.'; break;
+			}
+
+			$get->where($prefix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
+		}
+
+		return $get->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
+	}
 
 }
