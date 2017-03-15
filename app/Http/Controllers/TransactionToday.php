@@ -2,8 +2,13 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Libraries\Assets;
+
+use App\Models\Penerimaan as Pener;
+use App\Models\Penerimaan_sub as Peners;
+use App\Models\Penerimaan_returan as Peneretur;
+use App\Models\Pengeluaran as Pengel;
 
 class TransactionToday extends Controller {
 
@@ -12,9 +17,9 @@ class TransactionToday extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $req)
 	{
-		return 'Hello World';
+		
 	}
 
 	/**
