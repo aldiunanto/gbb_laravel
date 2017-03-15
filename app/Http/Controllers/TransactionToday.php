@@ -28,7 +28,7 @@ class TransactionToday extends Controller {
 		$data = [
 			'title'		=> 'Transaksi Hari Ini - Penerimaan Material',
 			'asset'		=> new Assets(),
-			'position'	=> ['transaction-today' => 'Transaksi Hari Ini', 'transaction-today' => 'Penerimaan'],
+			'position'	=> ['transaction-today' => 'Transaksi Hari Ini', 'transaction-today/' => 'Penerimaan'],
 			'fetch'		=> Pener::fetchTransacToday(['search' => $search, 'perPage' => $perPage]),
 			'active'	=> 'default',
 			'search'	=> $search,
