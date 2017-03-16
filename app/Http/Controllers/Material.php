@@ -161,6 +161,7 @@ class Material extends Controller {
 			'mat_stock_min'		=> trim($request->input('mat_stock_min')),
 			'mat_stock_awal'	=> trim($request->input('mat_stock_awal')),
 			'mat_stock_akhir'	=> trim($request->input('mat_stock_akhir')),
+			'mat_is_active'		=> 1,
 			'visibility'		=> 2
 		];
 		MatModel::create($values);
