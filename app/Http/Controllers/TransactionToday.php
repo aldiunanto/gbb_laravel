@@ -99,6 +99,49 @@ class TransactionToday extends Controller {
 
 		return view('transaction-today.baseFrame', $data)->nest('dataListContent', 'transaction-today.acceptanceRetur', $data);
 	}
+	public function expenditure(Request $req)
+	{
+		$perPage	= 20;
+		$search  	= [
+			's'		=> ($req->has('s') ? $req->input('s') : null),
+			'field'	=> ($req->has('field') ? $req->input('field') : null)
+		];
+
+		$data = [
+			'title'		=> 'Transaksi Hari Ini - Daftar Pengeluaran Material',
+			'asset'		=> new Assets(),
+			'position'	=> ['transaction-today' => 'Transaksi Hari ini', 'transaction-today/expenditure' => 'Pengeluaran'],
+			'search'	=> $search,
+			'active'	=> 'expenditure',
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
+			'fetch'		=> Pengel::fetch(['search' => $search, 'perPage' => $perPage], true),
+			'count'		=> [
+				'pener'		=> Pener::where('visibility', 1)->whereDate('created_at', '=', now())->count(),
+				'peneretur'	=> Peneretur::where('visibility', 1)->whereDate('created_at', '=', now())->count(),
+				'pengel'	=> Pengel::where('visibility', 1)->whereDate('created_at', '=', now())->count()
+			],
+			'isSelected'=> function($field) use($search){
+				if(! is_null($search['field'])){
+					if($search['field'] == $field) return 'selected="selected"';
+				}
+			},
+			'getNumb'	=> function() use ($perPage, $req){
+				if($req->has('page') && $req->input('page') != 1){
+					return ($req->input('page') * $perPage) - $perPage;
+				}else{
+					return 0;
+				}
+			}
+		];
+
+		# Pagination config
+		$data['fetch']->setPath(url('transaction-today/expenditure'));
+		if($req->has('s')) $data['fetch']->appends(['field' => $search['field'], 's' => $search['s']]);
+		# End of pagination config
+
+		return view('transaction-today.baseFrame', $data)->nest('dataListContent', 'transaction-today.expenditure', $data);
+	}
 
 	/**
 	 * Show the form for creating a new resource.

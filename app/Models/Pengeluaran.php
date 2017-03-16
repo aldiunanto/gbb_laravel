@@ -8,12 +8,15 @@ class Pengeluaran extends Model {
 	protected $primaryKey	= 'pengel_id';
 	protected $fillable		= ['deptbg_id', 'pengel_bpb', 'pengel_po', 'pengel_date', 'qa_check', 'visibility'];
 
-	public static function fetch($args){
+	public static function fetch($args, $isTransacToday = false){
 		$i 		= new static;
 		$get	= self::select($i->table.'.*', 'B.deptbg_nama')
 					->join('dept_bagian AS B', $i->table.'.deptbg_id', '=', 'B.deptbg_id')
 					->where($i->table.'.visibility', 1);
 
+		if($isTransacToday){
+			$get->whereDate($i->table.'.created_at', '=', now());
+		}
 		if(! is_null($args['search']['s'])){
 			switch($args['search']['field']){
 				case 'deptbg_nama' : $preffix = 'B.'; break;
