@@ -106,7 +106,7 @@
         return ($pener + $peneretur + $pengel);
     }
     function countApprMaterials(){
-        if (! in_array(Auth::user()->hak_akses, [1, 8])) return 0;
+        if (! in_array(Auth::user()->hak_akses, [1, 2, 8])) return 0;
         return DB::table('material_laravel')->where('visibility', 2)->count();
     }
     function countTransacToday(){

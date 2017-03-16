@@ -2,12 +2,12 @@
 @section('content')
 
 {!! session('accepted') !!}
-@if(($role == 8 || $role == 1) && $fetchAppr->count() > 0)
+@if(in_array($role, [1,2,8]) && $fetchAppr->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
 	<h2>
 		<?php $count = countApprMaterials() ?>
-		<span>{{ $count }}</span>Persetujuan Material Baru
+		<span>{{ $count }}</span>{{ ($role == 2 ? 'Menunggu Persetujuan Kabag. Raw Material' : 'Persetujuan Material Baru') }}
 	</h2>
 	<div class="clearfix"></div>
 </div>
@@ -41,9 +41,11 @@
 								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail no-print"><i class="fa fa-eye"></i>Lihat detail</a></li>
 								<li class="separator">&nbsp;</li>
 
+								@if($role != 2)
 								<li><a href="{{ url('material/accept/' . $row->mat_id) }}" class="approve"><i class="fa fa-check"></i>Setujui</a></li>
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Batalkan</a></li>
 								<li class="separator">&nbsp;</li>
+								@endif
 
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
 							</ul>
