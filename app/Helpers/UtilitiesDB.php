@@ -109,3 +109,10 @@
         if (! in_array(Auth::user()->hak_akses, [1, 8])) return 0;
         return DB::table('material_laravel')->where('visibility', 2)->count();
     }
+    function countTransacToday(){
+        $pener     = DB::table('penerimaan_laravel')->where('visibility', 1)->whereDate('created_at', '=', now())->count();
+        $peneretur = DB::table('penerimaan_returan')->where('visibility', 1)->whereDate('created_at', '=', now())->count();
+        $pengel    = DB::table('pengeluaran_laravel')->where('visibility', 1)->whereDate('created_at', '=', now())->count();
+
+        return ($pener + $peneretur + $pengel);
+    }
