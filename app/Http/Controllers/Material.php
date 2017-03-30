@@ -706,7 +706,9 @@ class Material extends Controller {
 			'title'		=> 'Tambah Penerimaan Material',
 			'asset'		=> new Assets(),
 			'position'	=> ['material' => 'Material', 'material/acceptance' => 'Penerimaan', 'material/acceptance/create' => 'Tambah Penerimaan'],
-			'opened'	=> 'material'
+			'opened'	=> 'material',
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min']
 		];
 
 		if(! is_null($po_id)){
@@ -731,7 +733,7 @@ class Material extends Controller {
 	{
 		$vals = [
 			'po_id'			=> $req->input('po_id'),
-			'pener_date'	=> now(),
+			'pener_date'	=> $req->input('pener_date'),
 			'userid_input'	=> $this->_user->user_id,
 			'qa_check'		=> 1,
 			'visibility'	=> 1

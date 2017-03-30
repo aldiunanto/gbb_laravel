@@ -54,7 +54,7 @@
 							<tr>
 								<td>
 									<label for="pener_date">tanggal kedatangan</label>
-									<input type="text" name="pener_date" id="pener_date" disabled="disabled" value="<?php echo to_indDate(date('Y-m-d')) ?>" />
+									<input type="text" class="date-picker" name="pener_date" id="pener_date" value="{{ now() }}" />
 								</td>
 							</tr>
 						</table>

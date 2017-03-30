@@ -534,6 +534,8 @@ material = {
 		init: function(){
 			this._openPO();
 			this._controlDiterima();
+
+			material.requestCreate._getDatePicker();
 		},
 		_openPO: function(){
 			var self = this;
