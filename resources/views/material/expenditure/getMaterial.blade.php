@@ -11,7 +11,10 @@
 		</div>
 	</form>
 
-	<div class="info warning text-center"><i>Satuan yang digunakan adalah satuan <strong>Gudang</strong>.</i></div>
+	<div class="info warning text-center">
+		<i>- Satuan yang digunakan adalah satuan <strong>Gudang</strong>.</i><br />
+		<i>- Material berwarna merah menandakan <strong>Stok Akhir <= 0</strong>.</i>
+	</div>
 	<div class="list">
 		<table>
 			<thead>
