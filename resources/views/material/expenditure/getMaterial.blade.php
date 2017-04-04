@@ -27,7 +27,7 @@
 			</thead>
 			<tbody>
 				@foreach($materials as $row)
-				<tr>
+				<tr class="{{ ($row->mat_stock_akhir <= 0 ? 'danger' : '') }}">
 					<td><a href="javascript:;" data-id="{{ $row->mat_id }}" class="pick-button btn primary"><i class="fa fa-mail-reply"></i></a></td>
 					<td>{{ $row->mat_nama }}</td>
 					<td>{{ $row->sup_nama }}</td>
