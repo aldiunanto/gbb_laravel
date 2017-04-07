@@ -218,7 +218,7 @@ class Material extends Controller {
 			break;
 			case 3 : //rawmat & kabag. rawmat
 			case 8 :
-				$accessable = ['', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
+				$accessable = ['', '', '', 'disabled="disabled"', 'disabled="disabled"', 'disabled="disabled"', '', '', '', '', ''];	
 			break;
 		}
 
@@ -269,6 +269,7 @@ class Material extends Controller {
 				if($role == 8){
 					$mat->mat_nama 			= trim($request->input('mat_nama'));
 					$mat->mat_spesifikasi	= trim($request->input('mat_spesifikasi'));
+					$mat->wrn_id			= $request->input('wrn_id');
 				}
 
 				$mat->matsr_id 			= $request->input('matsr_id');
