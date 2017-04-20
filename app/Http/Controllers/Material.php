@@ -461,13 +461,15 @@ class Material extends Controller {
 	}
 	public function requestReject(Request $request)
 	{
+		$once = Pb::find($request->input('pb_id'));
+
 		if ($this->_user->hak_akses == 4) {
 			$pbStatus = 5;
 		}elseif (in_array($this->_user->hak_akses, [1, 8])) {
 			$pbStatus = 7;
+		}else{
+			$pbStatus = $once->pb_status;
 		}
-
-		$once = Pb::find($request->input('pb_id'));
 
 		$once->pb_alasan_tolak 	= trim($request->input('pb_alasan_tolak'));
 		$once->pb_role_tolak	= $this->_user->hak_akses;
