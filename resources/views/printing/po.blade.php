@@ -2,6 +2,7 @@
 
 @section('content')
 
+<input type="hidden" name="po_id" value="{{ $po_id }}" />
 <header>
 	<div id="tagline">
 		<div>

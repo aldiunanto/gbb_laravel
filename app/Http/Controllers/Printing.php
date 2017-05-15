@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Libraries\Assets;
 use App\Models\Po as PoModel;
@@ -22,7 +23,8 @@ class Printing extends Controller {
 			'asset' => new Assets(),
 			'title'	=> 'Print Purchasing Order',
 			'head'	=> PoModel::getDetail($po_id),
-			'sub'	=> Po_sub::fetchDetail($po_id)
+			'sub'	=> Po_sub::fetchDetail($po_id),
+			'po_id'	=> $po_id
 		];
 
 		return view('printing.po', $data);
@@ -161,6 +163,15 @@ class Printing extends Controller {
 		];
 
 		return view('printing.expenditureDetail', $data);
+	}
+	public function poRecordPrint(Request $req)
+	{
+		$row = PoModel::find($req->input('po_id'));
+
+		$row->userid_print 	= Auth::user()->user_id;
+		$row->printed_at	= now(true);
+
+		return $row->save();
 	}
 
 }
