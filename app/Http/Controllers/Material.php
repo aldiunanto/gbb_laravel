@@ -1211,6 +1211,10 @@ class Material extends Controller {
 	{
 		return view('material.expenditure.getRowItem');
 	}
+	public function expenditureIsDuplicate(Request $req)
+	{
+		return Pengel::isDuplicate($req->input('bpb'));
+	}
 	public function expenditureStore(Request $req)
 	{
 		$vals = [

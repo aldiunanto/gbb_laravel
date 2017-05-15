@@ -35,5 +35,8 @@ class Pengeluaran extends Model {
 				->where($i->table.'.'.$i->primaryKey, $id)
 				->first();
 	}
+	public static function isDuplicate($bpb){
+		return self::select('pengel_bpb')->where('pengel_bpb', $bpb)->count();
+	}
 
 }

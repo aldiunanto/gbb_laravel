@@ -12,6 +12,7 @@
 		<div class="info warning">*<i>Kolom yang bertanda bintang (*) wajib diisi</i>.</div>
 		<div class="info warning">*<i>Pengeluaran barang menggunakan satuan <strong>Gudang</strong>.</i></div>
 		<div class="info warning">*<i>Gunakan titik(.) sebagai pengganti koma. Contoh: 2.5 meter, 1.3 kg</i></div>
+		<div class="info error hidden text-center">Pengeluaran dengan Nomor BPB <span><strong></strong></span> sudah pernah dibuat!</div>
 
 		<form action="{{ url('material/expenditure/store') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />

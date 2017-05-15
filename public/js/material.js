@@ -835,6 +835,7 @@ material = {
 			this._openMaterial();
 			this._addRowItem();
 			this._removeRow();
+			this._isDuplicate();
 		},
 		_openMaterial: function(){
 			var self = this;
@@ -911,6 +912,24 @@ material = {
 			$('.remove-row').on('click', function(){
 				$(this).parent().parent().remove();
 			})
+		},
+		_isDuplicate: function(){
+			$('.main .form form').on('submit', function(e){
+				e.preventDefault();
+
+				var t = this;
+				var pengelBpb = $(this).find('input[name="pengel_bpb"]').val();
+
+				if(pengelBpb != ''){
+					var isDuplicate = LIBS.callAjax('material/expenditure/isDuplicate', 'bpb=' + pengelBpb);
+					if(isDuplicate > 0){
+						$('.form .error').removeClass('hidden').find('strong').html(pengelBpb);
+						$('html, body').animate({ scrollTop : 0 }, 300);
+					}else{
+						t.submit();
+					}
+				}
+			});
 		}
 	},
 	closingStock: {
