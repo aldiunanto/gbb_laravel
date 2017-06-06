@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="_token" content="{{ csrf_token() }}">
   
-        <link rel="shortcut icon" href="http://aldiunanto/jaly_images/favicon.ico">
+        <link rel="shortcut icon" href="http://{{ gethostname() }}/jaly_images/favicon.ico">
         <link rel="stylesheet" href="{{ $asset::css('normalize') }}">
         <link rel="stylesheet" href="{{ $asset::css('main') }}">
     		<link rel="stylesheet" href="{{ $asset::css('font-awesome.min') }}">
@@ -90,8 +90,8 @@
 			<nav>
 				<ul>
           <!-- <li><a href="{{ url('notification') }}" class="notif-top" title="Notifikasi"><i class="fa fa-bell fa-2x"></i><?php $notif = count_notif(); echo ($notif == 0 ? '' : '<span>' . $notif . '</span>') ?></a></li> -->
-          @if($role == 1 || $role == 7)
-          <!--<li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist QA"><i class="fa fa-calendar-check-o fa-2x"></i><?php $countChecklistQa = countChecklistQa(); echo ($countChecklistQa == 0 ? '' : '<span>' . $countChecklistQa . '</span>') ?></a></li>-->
+          @if($role == 1 || $role == 8)
+          <li><a href="{{ url('checklist') }}" class="notif-top" title="Checklist Kabag. Raw Material"><i class="fa fa-calendar-check-o fa-2x"></i><?php $countChecklistKabag = countChecklistKabag(); echo ($countChecklistKabag == 0 ? '' : '<span>' . $countChecklistKabag . '</span>') ?></a></li>
           @endif
 
           @if(in_array($role, [1,3,8]))

@@ -98,10 +98,10 @@
                     ->take(1)
                     ->pluck('po_id');
     }
-    function countChecklistQa(){
-        $pener     = DB::table('penerimaan_laravel')->where(['qa_check' => 1, 'visibility' => 1])->count();
-        $peneretur = DB::table('penerimaan_returan')->where(['qa_check' => 1, 'visibility' => 1])->count();
-        $pengel    = DB::table('pengeluaran_laravel')->where(['qa_check' => 1, 'visibility' => 1])->count();
+    function countChecklistKabag(){
+        $pener     = DB::table('penerimaan_laravel')->where(['kabag_check' => 1, 'visibility' => 1])->count();
+        $peneretur = DB::table('penerimaan_returan')->where(['kabag_check' => 1, 'visibility' => 1])->count();
+        $pengel    = DB::table('pengeluaran_laravel')->where(['kabag_check' => 1, 'visibility' => 1])->count();
 
         return ($pener + $peneretur + $pengel);
     }
