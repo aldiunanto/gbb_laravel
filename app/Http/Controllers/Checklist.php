@@ -26,16 +26,16 @@ class Checklist extends Controller {
 		];
 
 		$data = [
-			'title'		=> 'Checklist QA - Penerimaan Material',
+			'title'		=> 'Checklist Kabag. Raw Material - Penerimaan Material',
 			'asset'		=> new Assets(),
-			'position'	=> ['checklist' => 'Checklist QA', 'checklist/' => 'Penerimaan'],
-			'fetch'		=> Pener::fetchQaCheck(['search' => $search, 'perPage' => $perPage]),
+			'position'	=> ['checklist' => 'Checklist Kabag. Raw Material', 'checklist/' => 'Penerimaan'],
+			'fetch'		=> Pener::fetchKabagCheck(['search' => $search, 'perPage' => $perPage]),
 			'active'	=> 'default',
 			'search'	=> $search,
 			'count'		=> [
-				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+				'pener'		=> Pener::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['kabag_check' => 1, 'visibility' => 1])->count()
 			],
 			'getNumb'	=> function() use ($perPage, $req){
 				if($req->has('page') && $req->input('page') != 1){
@@ -71,7 +71,7 @@ class Checklist extends Controller {
 	{
 		$row = Pener::find($penerId);
 
-		$row->qa_check = 2;
+		$row->kabag_check = 2;
 		$row->save();
 
 		$req->session()->flash('message', '<div class="info success">Check Penerimaan Barang berhasil.</div>');
@@ -86,16 +86,16 @@ class Checklist extends Controller {
 		];
 
 		$data = [
-			'title'		=> 'Checklist QA - Penerimaan Returan Material',
+			'title'		=> 'Checklist Kabag. Raw Material - Penerimaan Returan Material',
 			'asset'		=> new Assets(),
-			'position'	=> ['checklist' => 'Checklist QA', 'checklist/acceptance-retur' => 'Penerimaan Retur'],
+			'position'	=> ['checklist' => 'Checklist Kabag. Raw Material', 'checklist/acceptance-retur' => 'Penerimaan Retur'],
 			'active'	=> 'retur',
 			'fetch'		=> Peneretur::fetch(['search' => $search, 'perPage' => $perPage]),
 			'search'	=> $search,
 			'count'		=> [
-				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+				'pener'		=> Pener::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['kabag_check' => 1, 'visibility' => 1])->count()
 			],
 			'getNumb'	=> function() use ($perPage, $req){
 				if($req->has('page') && $req->input('page') != 1){
@@ -122,7 +122,7 @@ class Checklist extends Controller {
 	{
 		$row = Peneretur::find($penereturId);
 
-		$row->qa_check = 2;
+		$row->kabag_check = 2;
 		$row->save();
 
 		$req->session()->flash('message', '<div class="info success">Check Penerimaan Returan berhasil.</div>');
@@ -137,18 +137,18 @@ class Checklist extends Controller {
 		];
 
 		$data = [
-			'title'		=> 'Checklist QA - Daftar Pengeluaran Material',
+			'title'		=> 'Checklist Kabag. Raw Material - Daftar Pengeluaran Material',
 			'asset'		=> new Assets(),
-			'position'	=> ['checklist' => 'Checklist QA', 'checklist/expenditure' => 'Pengeluaran'],
+			'position'	=> ['checklist' => 'Checklist Kabag. Raw Material', 'checklist/expenditure' => 'Pengeluaran'],
 			'search'	=> $search,
 			'active'	=> 'expenditure',
 			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
 			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'fetch'		=> Pengel::fetch(['search' => $search, 'perPage' => $perPage]),
 			'count'		=> [
-				'pener'		=> Pener::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'peneretur'	=> Peneretur::where(['qa_check' => 1, 'visibility' => 1])->count(),
-				'pengel'	=> Pengel::where(['qa_check' => 1, 'visibility' => 1])->count()
+				'pener'		=> Pener::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'peneretur'	=> Peneretur::where(['kabag_check' => 1, 'visibility' => 1])->count(),
+				'pengel'	=> Pengel::where(['kabag_check' => 1, 'visibility' => 1])->count()
 			],
 			'isSelected'=> function($field) use($search){
 				if(! is_null($search['field'])){
@@ -175,7 +175,7 @@ class Checklist extends Controller {
 	{
 		$row = Pengel::find($pengelId);
 
-		$row->qa_check = 2;
+		$row->kabag_check = 2;
 		$row->save();
 
 		$req->session()->flash('message', '<div class="info success">Check Pengeluaran Material berhasil.</div>');
