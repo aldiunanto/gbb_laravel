@@ -11,10 +11,11 @@ class Pengeluaran_sub extends Model {
 
 	public static function fetch($pengel_id){
 		$i = new static;
-		return self::select('B.mat_nama', 'B.mat_spesifikasi', 'C.wrn_nama', 'D.mats_nama', $i->table.'.pengels_permintaan', $i->table.'.pengels_realisasi', $i->table.'.pengels_ket')
+		return self::select('B.mat_nama', 'B.mat_spesifikasi', 'C.wrn_nama', 'D.mats_nama', $i->table.'.pengels_permintaan', $i->table.'.pengels_realisasi', $i->table.'.pengels_ket', 'E.sup_nama')
 				->join('material_laravel AS B', $i->table.'.mat_id', '=', 'B.mat_id')
 				->join('warna AS C', 'B.wrn_id', '=', 'C.wrn_id')
 				->join('material_satuan AS D', 'B.matsr_id', '=', 'D.mats_id')
+				->join('supplier_laravel AS E', 'B.sup_id', '=', 'E.sup_id')
 				->where($i->table.'.pengel_id', $pengel_id)
 				->get();
 	}

@@ -7,7 +7,7 @@ class Penerimaan extends Model {
 
 	protected	$table		= 'penerimaan_laravel';
 	protected	$primaryKey	= 'pener_id';
-	protected	$fillable	= ['po_id', 'pener_date', 'userid_input', 'qa_check', 'visibility'];
+	protected	$fillable	= ['po_id', 'pener_date', 'userid_input', 'kabag_check', 'visibility'];
 	public 		$timestamps	= true;
 
 	public static function fetchData($args){
@@ -84,7 +84,7 @@ class Penerimaan extends Model {
 			->join('po_laravel AS B', $i->table.'.po_id', '=', 'B.po_id')
 			->join('permintaan_barang AS C', 'B.pb_id', '=', 'C.pb_id')
 			->join('supplier_laravel AS D', 'C.sup_id', '=', 'D.sup_id')
-			//->where($i->table.'.qa_check', 1)
+			//->where($i->table.'.kabag_check', 1)
 			->where($i->table.'.visibility', 1);
 
 		if(! is_null($args['search']['s'])){
