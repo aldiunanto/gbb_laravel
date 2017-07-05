@@ -41,14 +41,14 @@
 			<?php $x = 0 ?>
 			@foreach($sub as $row)
 				<tr>
-					<td class="text-right">{{ ++$x }}.</td>
-					<td>{{ $row->mat_nama }}</td>
-					<td class="text-center">{{ $row->wrn_nama }}</td>
-					<td>{{ $row->mat_spesifikasi }}</td>
-					<td class="text-center">{{ $row->mats_nama }}</td>
-					<td class="text-right">{{ number_format($row->pengels_permintaan, 2, ',', '.') }}</td>
-					<td class="text-right">{{ number_format($row->pengels_realisasi, 2, ',', '.') }}</td>
-					<td class="text-center">{{ $row->pengels_ket }}</td>
+					<td class="text-right align-top">{{ ++$x }}.</td>
+					<td>{{ $row->mat_nama }}<br />({{ $row->sup_nama }})</td>
+					<td class="text-center align-top">{{ $row->wrn_nama }}</td>
+					<td class="align-top">{{ $row->mat_spesifikasi }}</td>
+					<td class="text-center align-top">{{ $row->mats_nama }}</td>
+					<td class="text-right align-top">{{ number_format($row->pengels_permintaan, 2, ',', '.') }}</td>
+					<td class="text-right align-top">{{ number_format($row->pengels_realisasi, 2, ',', '.') }}</td>
+					<td class="text-center align-top">{{ $row->pengels_ket }}</td>
 				</tr>
 			@endforeach
 			</tbody>
