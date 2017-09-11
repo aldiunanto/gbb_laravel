@@ -88,6 +88,14 @@
 					<td class="text-center"><textarea name="reason" placeholder="Alasan retur"></textarea></td>
 				</tr>
 			</table>
+			<div class="caption">
+				<h3>Catatan</h3>
+			</div>
+			<table>
+				<tr>
+					<td class="text-center"><textarea name="returpener_note" placeholder="Catatan"></textarea></td>
+				</tr>
+			</table>
 			<table>
 				<tr>
 					<td class="text-right">

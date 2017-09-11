@@ -882,7 +882,8 @@ class Material extends Controller {
 			'returpener_status'	=> 1,
 			'visibility'		=> 1,
 			'is_closed'			=> 2,
-			'returpener_reason'	=> trim($req->input('reason'))
+			'returpener_reason'	=> trim($req->input('reason')),
+			'returpener_note'	=> trim(nl2br($req->input('returpener_note')))
 		];
 
 		$head = Returpener::create($vals);
@@ -903,7 +904,7 @@ class Material extends Controller {
 			$x++;
 		}
 
-		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya data retur akan ditampilkan di QA untuk proses approval.</div>');
+		Session::flash('message', '<div class="info success">Pengendalian Barang Tidak Sesuai berhasil dibuat, selanjutnya returan akan melewati tahap approval dari QA.</div>');
 		return redirect('material/acceptance/retur');
 	}
 	public function acceptanceReturShow($returpener_id)

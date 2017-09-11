@@ -44,12 +44,12 @@
 <section class="content">
 
 	<div class="info">
-		<span class="date">Tanggal&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ to_indDate(now()) }}</span>
-		<span class="po-no">Nomor PO&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ $head->po_no }}</span>
+		<span class="date">Tanggal: {{ to_indDate(now()) }}</span>
+		<span class="po-no">Nomor PO: {{ $head->po_no }}</span>
 		<span class="po-no">Tanggal Penerimaan : {{ to_indDate($head->pener_date) }}</span>
 	</div>
 	<div class="info-right">
-		{!! $note !!}
+		{!! $head->returpener_note !!}
 	</div>
 	<div class="endfloat"></div>
 

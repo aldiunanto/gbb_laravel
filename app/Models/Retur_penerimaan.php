@@ -6,7 +6,7 @@ class Retur_penerimaan extends Model {
 
 	protected	$table		= 'retur_penerimaan_laravel';
 	protected	$primaryKey	= 'returpener_id';
-	protected	$fillable	= ['userid_input', 'pener_id', 'returpener_status', 'returpener_vd_desc', 'visibility', 'is_closed', 'userid_reject', 'returpener_reason', 'returpener_reject_reason'];
+	protected	$fillable	= ['userid_input', 'pener_id', 'returpener_status', 'returpener_vd_desc', 'visibility', 'is_closed', 'userid_reject', 'returpener_reason', 'returpener_reject_reason', 'returpener_note'];
 
 	public static function fetchApprovement($role){
 		$i 		= new static;
@@ -34,7 +34,7 @@ class Retur_penerimaan extends Model {
 	}
 	public static function fetchHead($returpener_id){
 		$i = new static;
-		return self::select($i->table.'.created_at', $i->table.'.returpener_reason', 'C.po_no', 'E.sup_nama', 'E.sup_alamat', 'E.sup_cp', 'E.sup_telepon', 'B.pener_date')
+		return self::select($i->table.'.created_at', $i->table.'.returpener_reason', $i->table.'.returpener_note', 'C.po_no', 'E.sup_nama', 'E.sup_alamat', 'E.sup_cp', 'E.sup_telepon', 'B.pener_date')
 					->join('penerimaan_laravel AS B', $i->table.'.pener_id', '=', 'B.pener_id')
 					->join('po_laravel AS C', 'B.po_id', '=', 'C.po_id')
 					->join('permintaan_barang AS D', 'C.pb_id', '=', 'D.pb_id')

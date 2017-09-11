@@ -49,6 +49,16 @@
 					<em>Alasan: {{ ($head->returpener_reason ?: '-') }}</em>
 				</td>
 			</tr>
+			@if($head->returpener_note)
+			<tr>
+				<td colspan="7">
+					<p>
+						Catatan:<br />
+						{!! $head->returpener_note !!}
+					</p>
+				</td>
+			</tr>
+			@endif
 		</tbody>
 	</table>
 </div>
