@@ -697,6 +697,11 @@ material = {
 				}else{
 					$(this).css('border', '1px solid #c2c1c1');
 				}
+			}).on('keydown', function(e){
+				if(e.keyCode == 13){
+					e.preventDefault();
+					return false;
+				}
 			});
 		}
 	},
