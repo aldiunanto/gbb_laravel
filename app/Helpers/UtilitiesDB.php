@@ -76,7 +76,7 @@
         $count = DB::table('retur_penerimaan_laravel')->where('visibility', 1);
 
         switch($role){
-            case 1 : $count->where('returpener_status', '<>', 6); break;
+            case 1 : $count->whereNotIn('returpener_status', [6, 7, 8, 9, 10]); break;
             case 2 : $count->where('returpener_status', 5); break;
             case 4 : $count->where('returpener_status', 3); break;
             case 5 : $count->where('returpener_status', 4); break;

@@ -52,10 +52,13 @@ class Printing extends Controller {
 				'returpener_id'	=> $returpener_id,
 				'dorp_no'		=> $numb
 			]);
+
+			$note = null;
 			
 		}else{
 			$row = $get->first();
 			$numb = $row->dorp_no;
+			$note = $row->dorp_note;
 		}
 
 		#Update status to 'DO has been created'
@@ -93,7 +96,8 @@ class Printing extends Controller {
 			'title'	=> 'Print Retur Delivery Order',
 			'head'	=> Returpener::fetchHead($returpener_id),
 			'sub'	=> Returpeners::fetch($returpener_id),
-			'numb'	=> $numb
+			'numb'	=> $numb,
+			'note'	=> $note
 		];
 
 		return view('printing.do', $data);

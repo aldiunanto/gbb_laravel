@@ -19,11 +19,16 @@
 	.base-info table tr td:last-child{ text-align: left; }
 
 	.content{ margin-top: 10px; }
-	.content .info{ display: block; margin-bottom: 5px; }
+	.content .info{ display: inline-block; margin-bottom: 5px; }
 	.content .info > span{ display: block; font-weight: bold; }
 	.content table th, .content table td{ border: 1px solid #000; }
 	.content table th, .content table tr.row-total{ font-weight: bold; }
 	.content tbody tr td:first-child{ text-align: left; }
+	.content .info-right{
+		float: right;
+		display: inline-block;
+		margin-bottom: 7px;
+	}
 
 	footer{ margin-top: 13px; }
 	footer .top{ vertical-align: top; }

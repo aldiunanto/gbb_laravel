@@ -42,11 +42,17 @@
 	</table>
 </header>
 <section class="content">
+
 	<div class="info">
 		<span class="date">Tanggal&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ to_indDate(now()) }}</span>
 		<span class="po-no">Nomor PO&emsp;&emsp;&emsp;&emsp;&nbsp;: {{ $head->po_no }}</span>
 		<span class="po-no">Tanggal Penerimaan : {{ to_indDate($head->pener_date) }}</span>
 	</div>
+	<div class="info-right">
+		{!! $note !!}
+	</div>
+	<div class="endfloat"></div>
+
 	<table>
 		<thead>
 			<tr>
@@ -85,17 +91,8 @@
 					<td>&nbsp;</td>
 				</tr>
 				@endfor
-
-				<tr class="row-total">
-					<td>&nbsp;</td>
-					<td colspan="2">Total</td>
-					<td>{{ $total }}</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 			@endif
 
-			@if($sub->count() >= 5)
 			<tr class="row-total">
 				<td>&nbsp;</td>
 				<td colspan="2">Total</td>
@@ -103,7 +100,6 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 			</tr>
-			@endif
 		</tbody>
 	</table>
 </section>
