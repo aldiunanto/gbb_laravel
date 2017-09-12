@@ -31,32 +31,7 @@ class Printing extends Controller {
 	}
 	public function deliveryOrder($returpener_id)
 	{
-
-		$get = DoReturpener::where('returpener_id', $returpener_id);
-		if($get->count() == 0){
-			if(DoReturpener::count() == 0){
-				$numb = '001/JIU/' . romawi()[date('n')] . '/' . date('Y');
-			}else{
-				$last = DoReturpener::orderBy('dorp_id', 'DESC')->take(1)->pluck('dorp_no');
-				$path = explode('/', $last);
-
-				$preffix = ''; $path[0]++;
-				for($x = 0; $x < (3 - strlen($path[0])); $x++){
-					$preffix .= '0';
-				}
-
-				$numb = ($preffix . $path[0]) . '/JIU/' . romawi()[date('n')] . '/' . date('Y');
-			}
-
-			DoReturpener::create([
-				'returpener_id'	=> $returpener_id,
-				'dorp_no'		=> $numb
-			]);
-			
-		}else{
-			$row = $get->first();
-			$numb = $row->dorp_no;
-		}
+		$row = DoReturpener::where('returpener_id', $returpener_id)->first();
 
 		#Update status to 'DO has been created'
 		$get = Returpener::find($returpener_id);
@@ -93,7 +68,7 @@ class Printing extends Controller {
 			'title'	=> 'Print Retur Delivery Order',
 			'head'	=> Returpener::fetchHead($returpener_id),
 			'sub'	=> Returpeners::fetch($returpener_id),
-			'numb'	=> $numb
+			'numb'	=> $row->dorp_no
 		];
 
 		return view('printing.do', $data);

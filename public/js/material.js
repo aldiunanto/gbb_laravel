@@ -603,6 +603,7 @@ material = {
 			this._returDetail();
 			this._doApprove();
 			this._doReject();
+			this._createDo();
 
 			material.index._openSearchForm();
 			material.index._closeSearchForm();
@@ -678,6 +679,35 @@ material = {
 
 						LIBS.callAjax('material/acceptance/retur/reject', data);
 						window.location.href = options.baseUrl + 'material/acceptance/retur';
+					},
+					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
+				});
+			});
+		},
+		_createDo: function(){
+			$('.deliv-order').on('click', function(e){
+				e.preventDefault();
+
+				var splitHref 		= $(this).attr('href').split('/');
+				var returPenerId 	= splitHref[splitHref.length-1];
+				var popupContent 	= LIBS.callAjax('material/acceptance/retur/getDoForm');
+
+				LIBS.popupDialog('open', {
+					'caption'		: 'Nomor Surat Jalan',
+					'content'		: popupContent,
+					'posButtonText'	: 'Cetak Surat Jalan',
+					'okAction'		: function(){
+						var dorpNo = $('input[name="dorp_no"]').val().trim();
+						var isExists = LIBS.callAjax('material/acceptance/retur/dorpno-is-exists', 'dorp_no=' + dorpNo);
+
+						if(isExists > 0){
+							$('input[name="dorp_no"]').css('border', '1px solid #ff0000').before('<span class="info error text-center">Nomor Surat Jalan sudah terdaftar.</span>');
+						}else{
+							var data  = 'dorp_no=' + dorpNo +'&returpener_id=' + returPenerId;
+
+							LIBS.callAjax('material/acceptance/retur/create-do', data);
+							window.location.href = options.baseUrl + 'printing/do/' + returPenerId;
+						}
 					},
 					'cancelAction'	: function(){ LIBS.popupDialog('close'); }
 				});

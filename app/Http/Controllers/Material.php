@@ -24,6 +24,7 @@ use App\Models\Pengeluaran_sub as Pengels;
 use App\Models\Dept_bagian as Deptbg;
 use App\Models\Closing_stock as Cs;
 use App\Models\Closing_stock_materials as Csm; 
+use App\Models\Do_retur_penerimaan as Dorp;
 use Validator;
 use Session;
 use Auth;
@@ -965,6 +966,21 @@ class Material extends Controller {
 
 		$data->returpener_status = $status;
 		$data->save();
+	}
+	public function returGetDoForm()
+	{
+		return view('material.acceptance.retur.getDoForm');
+	}
+	public function returDorpnoIsExists(Request $req)
+	{
+		return Dorp::where('dorp_no', $req->input('dorp_no'))->get()->count();
+	}
+	public function returCreateDo(Request $req)
+	{
+		return Dorp::create([
+			'returpener_id'	=> $req->input('returpener_id'),
+			'dorp_no'		=> $req->input('dorp_no')
+		]);
 	}
 	public function acceptForm()
 	{
