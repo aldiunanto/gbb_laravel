@@ -26,7 +26,7 @@ class Retur_penerimaan extends Model {
 			case 2 : $get->where($i->table.'.returpener_status', 5); break;
 			case 4 : $get->where($i->table.'.returpener_status', 3); break;
 			case 5 : $get->where($i->table.'.returpener_status', 4); break;
-			case 6 : $get->where($i->table.'.returpener_status', 2); break;
+			case 8 : $get->where($i->table.'.returpener_status', 2); break;
 			case 7 : $get->where($i->table.'.returpener_status', 1); break;
 		}
 

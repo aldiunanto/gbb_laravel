@@ -3,7 +3,7 @@
 @section('content')
 
 {!! session('message') !!}
-@if(($role != 3 && $role != 8) && $fetchAppr->count() > 0)
+@if(($role != 3 && $role != 6) && $fetchAppr->count() > 0)
 <div class="top approving">
 	<div class="tools">&nbsp;</div>
 	<h2>
@@ -104,13 +104,13 @@
 					<?php
 						switch($row->returpener_status){
 							case 1: echo '<span class="status wait-ppic" title="Menunggu persetujuan QA"><i class="fa fa-spinner fa-spin"></i></span>';  break;
-							case 2: echo '<span class="status wait-vice" title="Menunggu persetujuan Kepala Produksi"><i class="fa fa-spinner fa-spin"></i></span>'; break;
+							case 2: echo '<span class="status wait-kabag" title="Menunggu persetujuan Kabag. Raw Material"><i class="fa fa-spinner fa-spin"></i></span>'; break;
 							case 3: echo '<span class="status wait-ppic2" title="Menunggu persetujuan PPIC"><i class="fa fa-spinner fa-spin"></i></span>'; break;
 							case 4: echo '<span class="status wait-vd" title="Menunggu persetujuan Vice Director"><i class="fa fa-spinner fa-spin"></i></span>'; break;
 							case 5: echo '<span class="status vice-approve" title="Sudah di-approve Vice Director"><i class="fa fa-check"></i></span>'; break;
 							case 6: echo '<span class="status po-done" title="Sudah dibuat Surat Jalan"><i class="fa fa-check"></i></span>'; break;
 							case 7: echo '<span class="status retur-reject-qa" title="Ditolak QA"><i class="fa fa-times"></i></span>'; break;
-							case 8: echo '<span class="status retur-reject-ph" title="Ditolak Kepala Produksi"><i class="fa fa-times"></i></span>'; break;
+							case 8: echo '<span class="status retur-reject-kabag" title="Ditolak Kabag. Raw Material"><i class="fa fa-times"></i></span>'; break;
 							case 9: echo '<span class="status retur-reject-ppic" title="Ditolak PPIC"><i class="fa fa-times"></i></span>'; break;
 							case 10: echo '<span class="status pm-reject-vice" title="Ditolak Vice Director"><i class="fa fa-times"></i></span>'; break;
 						}
@@ -146,13 +146,13 @@
 		<legend>Label Info</legend>
 		<ul>
 			<li><span class="status wait-ppic"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan QA</li>
-			<li><span class="status wait-vice"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Kepala Produksi</li>
+			<li><span class="status wait-kabag"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Kabag. Raw Material</li>
 			<li><span class="status wait-ppic2"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan PPIC</li>
 			<li><span class="status wait-vd"><i class="fa fa-spinner fa-spin"></i></span> - Menunggu persetujuan Vice Director</li>
 			<li><span class="status vice-approve"><i class="fa fa-check"></i></span> - Sudah di-approve Vice Director</li>
 			<li><span class="status po-done"><i class="fa fa-check"></i></span> - Sudah dibuat Surat Jalan</li>
 			<li><span class="status retur-reject-qa"><i class="fa fa-times"></i></span> - Ditolak QA</li>
-			<li><span class="status retur-reject-ph"><i class="fa fa-times"></i></span> - Ditolak Kepala Produksi</li>
+			<li><span class="status retur-reject-kabag"><i class="fa fa-times"></i></span> - Ditolak Kabag. Raw Material</li>
 			<li><span class="status retur-reject-ppic"><i class="fa fa-times"></i></span> - Ditolak PPIC</li>
 			<li><span class="status pm-reject-vice"><i class="fa fa-times"></i></span> - Ditolak Vice Director</li>
 		</ul>

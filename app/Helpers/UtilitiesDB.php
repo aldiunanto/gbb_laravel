@@ -71,7 +71,7 @@
     }
     function count_returApprovement(){
         $role = Auth::user()->hak_akses;
-        if($role == 3 || $role == 8) return 0;
+        if($role == 3 || $role == 6) return 0;
 
         $count = DB::table('retur_penerimaan_laravel')->where('visibility', 1);
 
@@ -80,7 +80,7 @@
             case 2 : $count->where('returpener_status', 5); break;
             case 4 : $count->where('returpener_status', 3); break;
             case 5 : $count->where('returpener_status', 4); break;
-            case 6 : $count->where('returpener_status', 2); break;
+            case 8 : $count->where('returpener_status', 2); break;
             case 7 : $count->where('returpener_status', 1); break;
         }
 

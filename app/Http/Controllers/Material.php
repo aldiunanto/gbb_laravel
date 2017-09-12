@@ -928,7 +928,7 @@ class Material extends Controller {
 			break;
 			case 2 :
 				$status = 3;
-				$get->kprod_approved_at = now(true);
+				$get->kabag_approved_at = now(true);
 			break;
 			case 3 :
 				$status = 4;
@@ -959,7 +959,7 @@ class Material extends Controller {
 
 		switch($this->_user->hak_akses){
 			case 7: $status = 7; break; //QA
-			case 6: $status = 8; break; //Prod. Head
+			case 8: $status = 8; break; //Kabag. Rawmat
 			case 4: $status = 9; break; //PPIC
 			case 5: case 1: $status = 10; break; //VD
 		}
