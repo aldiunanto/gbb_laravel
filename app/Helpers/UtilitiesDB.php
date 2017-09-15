@@ -9,6 +9,7 @@
         switch($role){
             case 1 :
                 $count->whereNotIn('pb_status', [4, 5, 7]);
+                 $count->where('pb_role_tolak', '<>', 5);
             break;
             case 2 :
                 $count->where('pb_status', '=', 3);
