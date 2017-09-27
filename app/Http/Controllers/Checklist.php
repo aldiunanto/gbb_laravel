@@ -31,6 +31,8 @@ class Checklist extends Controller {
 			'position'	=> ['checklist' => 'Checklist Kabag. Raw Material', 'checklist/' => 'Penerimaan'],
 			'fetch'		=> Pener::fetchKabagCheck(['search' => $search, 'perPage' => $perPage]),
 			'active'	=> 'default',
+			'js'		=> ['vendor/jquery-ui-autocomplete-datepicker.min'],
+			'css'		=> ['jquery-ui-autocomplete-datepicker.min'],
 			'search'	=> $search,
 			'count'		=> [
 				'pener'		=> Pener::where(['kabag_check' => 1, 'visibility' => 1])->count(),

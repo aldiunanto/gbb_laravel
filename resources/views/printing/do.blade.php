@@ -72,7 +72,7 @@
 				<td>{{ $row->wrn_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
 				<td>{{ $row->returpeners_jml }}</td>
-				<td>{{ $row->mats_nama }}</td>
+				<td>{{ $row->satuanP }}</td>
 				@if($x == 1)
 				<td class="reason" rowspan="{{ $sub->count() }}">{{ $head->returpener_reason }}</td>
 				@endif
