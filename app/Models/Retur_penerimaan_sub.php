@@ -11,13 +11,14 @@ class Retur_penerimaan_sub extends Model {
 
 	public static function fetch($returpener_id, $pener_id = null){
 		$i 		= new static;
-		$get 	= self::select('E.mat_id', 'E.mat_nama', 'E.mat_spesifikasi', 'F.wrn_nama', 'G.mats_nama', 'B.peners_jml', $i->table.'.returpeners_jml', $i->table.'.returpeners_reason', $i->table.'.'.$i->primaryKey, 'H.returpener_status', 'H.returpener_reason')
+		$get 	= self::select('E.mat_id', 'E.mat_nama', 'E.mat_spesifikasi', 'E.mat_perbandingan', 'F.wrn_nama', 'G.mats_nama AS satuanP', 'I.mats_nama AS satuanR', 'B.peners_jml', $i->table.'.returpeners_jml', $i->table.'.returpeners_reason', $i->table.'.'.$i->primaryKey, 'H.returpener_status', 'H.returpener_reason')
 					->join('penerimaan_sub_laravel AS B', $i->table.'.peners_id', '=', 'B.peners_id')
 					->join('po_sub_laravel AS C', 'B.pos_id', '=', 'C.pos_id')
 					->join('permintaan_barang_sub AS D', 'C.pbs_id', '=', 'D.pbs_id')
 					->join('material_laravel AS E', 'D.mat_id', '=', 'E.mat_id')
 					->leftJoin('warna AS F', 'E.wrn_id', '=', 'F.wrn_id')
 					->join('material_satuan AS G', 'E.matsp_id', '=', 'G.mats_id')
+					->join('material_satuan AS I', 'E.matsr_id', '=', 'I.mats_id')
 					->join('retur_penerimaan_laravel AS H', $i->table.'.returpener_id', '=', 'H.returpener_id');
 
 		if(! is_null($returpener_id)) $get->where($i->table.'.returpener_id', $returpener_id);

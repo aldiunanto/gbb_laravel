@@ -39,9 +39,15 @@
 				<td>{{ $row->mat_nama }}</td>
 				<td>{{ $row->mat_spesifikasi }}</td>
 				<td class="text-center">{{ (empty($row->wrn_nama) ? '-' : $row->wrn_nama) }}</td>
-				<td class="text-center">{{ $row->mats_nama }}</td>
+				<td class="text-center">{{ $row->satuanP }}</td>
 				<td class="text-center">{{ $row->peners_jml }}</td>
-				<td class="text-center">{{ $row->returpeners_jml }}</td>
+				<td class="text-center">
+					@if($row->satuanP != $row->satuanR)
+						{{ $row->returpeners_jml . ' ' . $row->satuanP . ' (atau) ' . (round($row->returpeners_jml * $row->mat_perbandingan)) . ' ' . $row->satuanR }}
+					@else
+						{{ $row->returpeners_jml }}
+					@endif
+				</td>
 			</tr>
 			@endforeach
 			<tr>
