@@ -27,7 +27,7 @@
 				<th>Spesifikasi</th>
 				<th>Warna</th>
 				<th>Satuan</th>
-				<th>Diterima</th>
+				<th>Dikirim</th>
 				<th>Jml Retur</th>
 			</tr>
 		</thead>
