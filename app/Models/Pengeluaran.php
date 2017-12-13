@@ -26,7 +26,7 @@ class Pengeluaran extends Model {
 			$get->where($preffix . $args['search']['field'], 'LIKE', '%' . $args['search']['s'] . '%');
 		}
 
-		return $get->orderBy($i->table.'.pengel_date', 'DESC')->paginate($args['perPage']);
+		return $get->orderBy($i->table.'.pengel_date', 'DESC')->orderBy($i->table.'.created_at', 'DESC')->paginate($args['perPage']);
 	}
 	public static function fetchRow($id){
 		$i = new static;
