@@ -46,7 +46,7 @@
 								<li><a href="{{ url('material/destroy/' . $row->mat_id) }}" class="delete"><i class="fa fa-trash"></i>Batalkan</a></li>
 								<li class="separator">&nbsp;</li>
 								@endif
-
+	
 								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
 							</ul>
 						</li>
@@ -146,8 +146,8 @@
 							<ul>
 								<li><a href="{{ url('material/show/' . $row->mat_id) }}" class="view-detail {{ (in_array($role, [1,2,3,8])) ? '' : 'no-print' }}"><i class="fa fa-eye"></i>Lihat detail</a></li>
 
-								@if($role != 4 && $role != 5 && $role != 6 && $role != 7)
-								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data</a></li>
+								@if(! in_array($role, [2,4,5,6,7]))
+								<li><a href="{{ url('material/edit/' . $row->mat_id) }}"><i class="fa fa-edit"></i>Ubah data {{ $role }}</a></li>
 								@endif
 
 								@if($role == 1 || $role == 2)
